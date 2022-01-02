@@ -1,0 +1,2012 @@
+<!doctype html>
+<html 
+      lang="id"
+      dir="ltr">
+  <head>
+    <meta name="google-signin-client-id" content="721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com">
+    <meta name="google-signin-scope"
+          content="profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award">
+    <meta property="og:site_name" content="Android Developers">
+    <meta property="og:type" content="website"><meta name="robots" content="noindex"><meta name="theme-color" content="#3ddc84"><meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/_pwa/android/manifest.json"
+          crossorigin="use-credentials">
+    <link rel="preconnect" href="//www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="//apis.google.com" crossorigin>
+    <link rel="preconnect" href="//www.google-analytics.com" crossorigin><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap">
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Material+Icons&display=block"><link rel="stylesheet" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/css/app.css">
+      <link rel="shortcut icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/touchicon-180.png"><link rel="canonical" href="https://developer.android.com/codelabs/kotlin-android-training-internet-data?hl=id"><link rel="search" type="application/opensearchdescription+xml"
+            title="Android Developers" href="https://developer.android.com/s/opensearch.xml">
+      
+
+<title>Android Kotlin Fundamentals: 8.1 Getting data from the internet</title>
+
+<meta property="og:title" content="Android Kotlin Fundamentals: 8.1 Getting data from the internet"><meta name="description" content="Learn how to use community-developed libraries to connect to a web service to retrieve and display data in your Android Kotlin app. Also learn how to handle potential network errors.">
+  <meta property="og:description" content="Learn how to use community-developed libraries to connect to a web service to retrieve and display data in your Android Kotlin app. Also learn how to handle potential network errors."><meta property="og:url" content="https://developer.android.com/codelabs/kotlin-android-training-internet-data?hl=id"><meta property="og:image" content="https://developer.android.com/images/social/android-developers.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675"><meta property="og:locale" content="en"><meta name="twitter:card" content="summary_large_image">
+  <meta name="xsrf_token" content="ZEJNk4PDO_-c-LmBhPkMo_XGCc8pw2r8cXSYDhmRJsw6MTYyNzQ4MjU2MDI1MTY4Mw">
+  
+
+  <meta name="session_expiry" content="1627483460">
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    <meta name="original_source" content="https://docs.google.com/document/d/1Ji7I5KzAyqYLm1-WArYPG4VQgRPYD4oEjiuYGo2-SSk/edit" />
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+  
+
+    </head>
+  <body class="devsite-full-width-page"
+        template="codelab"
+        theme="android-theme"
+        type="codelab"
+        
+        layout="full"
+        
+        
+        pending>
+    <devsite-progress type="indeterminate" id="app-progress"></devsite-progress>
+  
+    <section class="devsite-wrapper"><devsite-header>
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="devsite-header--inner nocontent">
+  <div class="devsite-top-logo-row-wrapper-wrapper">
+    <div class="devsite-top-logo-row-wrapper">
+      <div class="devsite-top-logo-row">
+        <button type="button" id="devsite-hamburger-menu"
+          class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+          data-category="Site-Wide Custom Events"
+          data-label="Navigation menu button"
+          visually-hidden
+          aria-label="Open menu">
+        </button>
+        <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo"
+       alt="Android Developers">
+
+</a>
+
+
+
+  
+  
+  <span class="devsite-product-name">
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+  </span>
+
+</div>
+        <div class="devsite-top-logo-row-middle">
+          <div class="devsite-header-upper-tabs">
+            
+              
+              
+  <devsite-tabs class="upper-tabs">
+
+    <nav class="devsite-tabs-wrapper" aria-label="Tab atas">
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/about"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="platform"
+   track-metadata-eventdetail="https://developer.android.com/about"
+   track-metadata-position="nav - platform"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Platform"
+   >
+  Platform
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/studio"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="android studio"
+   track-metadata-eventdetail="https://developer.android.com/studio"
+   track-metadata-position="nav - android studio"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Android Studio"
+   >
+  Android Studio
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/distribute"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="google play"
+   track-metadata-eventdetail="https://developer.android.com/distribute"
+   track-metadata-position="nav - google play"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Google Play"
+   >
+  Google Play
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/jetpack"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="jetpack"
+   track-metadata-eventdetail="https://developer.android.com/jetpack"
+   track-metadata-position="nav - jetpack"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Jetpack"
+   >
+  Jetpack
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/kotlin"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="kotlin"
+   track-metadata-eventdetail="https://developer.android.com/kotlin"
+   track-metadata-position="nav - kotlin"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Kotlin"
+   >
+  Kotlin
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/docs"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="dokumen"
+   track-metadata-eventdetail="https://developer.android.com/docs"
+   track-metadata-position="nav - dokumen"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Dokumen"
+   >
+  Dokumen
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/news"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="berita"
+   track-metadata-eventdetail="https://developer.android.com/news"
+   track-metadata-position="nav - berita"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Berita"
+   >
+  Berita
+</a>
+
+          </tab>
+        
+      
+    </nav>
+
+  </devsite-tabs>
+
+            
+           </div>
+          
+<devsite-search
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    enable-signin
+    enable-search
+    enable-suggestions
+      enable-query-completion
+    
+    project-name="Developer Android"
+    tenant-name="Android Developers"
+    
+    
+    
+    
+    
+    role="combobox">
+  <form class="devsite-search-form" action="https://developer.android.com/s/results" method="GET">
+    <div class="devsite-search-container">
+      <div class="devsite-searchbox">
+        <input
+          aria-activedescendant=""
+          aria-autocomplete="list"
+          
+          aria-label="Penelusuran"
+          aria-haspopup="false"
+          aria-multiline="false"
+          aria-label="Kotak penelusuran"
+          autocomplete="off"
+          class="devsite-search-field devsite-search-query"
+          name="q"
+          
+          placeholder="Penelusuran"
+          role="searchbox"
+          type="text"
+          value=""
+          >
+        <div class="devsite-search-image material-icons" aria-hidden="true"></div>
+      </div>
+      <button type="button"
+              search-open
+              class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+              
+              aria-label="Buka penelusuran"></button>
+    </div>
+  </form>
+  <button type="button"
+          search-close
+          class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+          
+          aria-label="Tutup penelusuran"></button>
+</devsite-search>
+
+        </div>
+
+        
+
+        
+
+        
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+
+        
+
+        
+          
+          
+          <devsite-user signed-in
+                        
+                        
+                          enable-profiles
+                        
+                        
+                          
+                        id="devsite-user"></devsite-user>
+           
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="devsite-collapsible-section
+    
+      devsite-header-no-lower-tabs
+    ">
+    <div class="devsite-header-background">
+      
+        
+      
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+  
+</devsite-header>
+      <devsite-book-nav scrollbars hidden>
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="devsite-book-nav devsite-nav nocontent"
+     aria-label="Menu samping">
+  <div class="devsite-mobile-header">
+    <button type="button"
+            id="devsite-close-nav"
+            class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+            data-category="Site-Wide Custom Events"
+            data-label="Close navigation"
+            aria-label="Close navigation">
+    </button>
+    <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+
+</a>
+
+
+  
+      <span class="devsite-product-name">
+        
+        
+        <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+      </span>
+    
+
+</div>
+  </div>
+
+  <div class="devsite-book-nav-wrapper">
+    <div class="devsite-mobile-nav-top">
+      
+        <ul class="devsite-nav-list">
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/about"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Platform"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="platform">
+  
+    <span class="devsite-nav-text" tooltip >
+      Platform
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/studio"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Android Studio"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="androidStudio">
+  
+    <span class="devsite-nav-text" tooltip >
+      Android Studio
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/distribute"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Google Play"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="googlePlay">
+  
+    <span class="devsite-nav-text" tooltip >
+      Google Play
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/jetpack"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Jetpack"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="jetpack">
+  
+    <span class="devsite-nav-text" tooltip >
+      Jetpack
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/kotlin"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Kotlin"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="kotlin">
+  
+    <span class="devsite-nav-text" tooltip >
+      Kotlin
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/docs"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Dokumen"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="dokumen">
+  
+    <span class="devsite-nav-text" tooltip >
+      Dokumen
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/news"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Berita"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="berita">
+  
+    <span class="devsite-nav-text" tooltip >
+      Berita
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+          
+          
+        </ul>
+      
+    </div>
+    
+  </div>
+</nav>
+        
+      </devsite-book-nav>
+      <section id="gc-wrapper">
+        <main role="main" class="devsite-main-content"
+            
+            >
+          
+          <devsite-toc class="devsite-nav"
+                       role="navigation"
+                       aria-label="Daftar isi"
+            disabled></devsite-toc>
+          <devsite-content>
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="devsite-article"><style>
+      body {
+        transition: opacity ease-in 0.2s;
+      }
+
+      body[unresolved] {
+        opacity: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+      </style>
+  
+  
+  
+
+  <div class="devsite-article-meta nocontent" role="navigation">
+    
+    
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+  <a href="https://developer.android.com/"
+      
+        class="devsite-breadcrumb-link gc-analytics-event"
+      
+        data-category="Site-Wide Custom Events"
+      
+        data-label="Breadcrumbs"
+      
+        data-value="1"
+      
+        track-type="globalNav"
+      
+        track-name="breadcrumb"
+      
+        track-metadata-position="1"
+      
+        track-metadata-eventdetail="Developer Android"
+      
+    >
+    
+        Developer Android
+      
+  </a>
+  
+    
+  </li>
+  
+</ul>
+    
+  </div>
+  
+  
+    <h1 class="devsite-page-title">Android Kotlin Fundamentals: 8.1 Getting data from the internet</h1><devsite-bookmark></devsite-bookmark>
+  
+
+  <devsite-toc class="devsite-nav" devsite-toc-embedded
+               disabled>
+  </devsite-toc>
+
+  
+
+  <div class="devsite-article-body clearfix
+    ">
+
+    
+      
+    <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+    <google-codelab codelab-gaid="UA-81734179-1"
+                    doc-id="1Ji7I5KzAyqYLm1-WArYPG4VQgRPYD4oEjiuYGo2-SSk"
+                    id="kotlin-android-training-internet-data"
+                    title="Android Kotlin Fundamentals: 8.1 Getting data from the internet"
+                    environment="web"
+                    category="android,kotlin"
+                    feedback-link="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/issues/new?assignees=&amp;labels=&amp;template=android-kotlin-fundamentals.md&amp;title=Android&#43;Kotlin&#43;Fundamentals&#43;codelab%3A&#43;"
+                    >
+      
+        <google-codelab-step label="Welcome" duration="0">
+          
+            <google-codelab-about codelab-title="Android Kotlin Fundamentals: 8.1 Getting data from the internet"
+                                  authors="Google Developers Training team"
+                                  >
+            </google-codelab-about>
+          
+          <p>This codelab is part of the Android Kotlin Fundamentals course. You&#39;ll get the most value out of this course if you work through the codelabs in sequence. All the course codelabs are listed on the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+<h2 is-upgraded id="introduction" data-text="Introduction"><strong>Introduction</strong></h2>
+<p>Almost any Android app you build will need to connect to the Internet at some point. In this codelab and those that follow, you build an app that connects to a web service to retrieve and display data.  You also build on what you learned in past codelabs about  <a href="https://developer.android.com/reference/android/arch/lifecycle/ViewModel" target="_blank"><code translate="no" dir="ltr">ViewModel</code></a>,  <a href="https://developer.android.com/reference/android/arch/lifecycle/LiveData" target="_blank"><code translate="no" dir="ltr">LiveData</code></a>, and  <a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView" target="_blank"><code translate="no" dir="ltr">RecyclerView</code></a>.</p>
+<p>In this codelab, you use community developed libraries to build the network layer.  This greatly simplifies fetching the data and images, and also helps the app conform to Android best practices, such as loading images on a background thread and caching loaded images.  For the asynchronous or non-blocking sections within the code, such as talking to the web services layer, you will modify the app to use Kotlin&#39;s coroutines.  You will also update the app&#39;s user interface if the internet is slow or unavailable; this will keep the user informed about any application issues due to network connectivity.</p>
+<h2 is-upgraded id="what-you-should-already-know" data-text="What you should already know"><strong>What you should already know</strong></h2>
+<ul>
+<li>How to create and use fragments.</li>
+<li>How to navigate between fragments and use <code translate="no" dir="ltr">safeArgs</code> to pass data between fragments.</li>
+<li>How to use architecture components including <code translate="no" dir="ltr">ViewModel</code>, <code translate="no" dir="ltr">ViewModelProvider.Factory</code>, <code translate="no" dir="ltr">LiveData</code>, and <code translate="no" dir="ltr">LiveData</code> transformations.</li>
+<li>How to use coroutines for long-running tasks.</li>
+</ul>
+<h2 class="checklist" is-upgraded id="what-youll-learn" data-text="What you'll learn"><strong>What you'll learn</strong></h2>
+<ul class="checklist">
+<li>What a REST web service is.</li>
+<li>Using the  <a href="https://square.github.io/retrofit/" target="_blank">Retrofit</a> library to connect to a REST web service on the internet and get a response.</li>
+<li>Using the  <a href="https://github.com/square/moshi" target="_blank">Moshi</a>  library to parse the JSON response into a data object.</li>
+</ul>
+<h2 is-upgraded id="what-youll-do" data-text="What you'll do"><strong>What you'll do</strong></h2>
+<ul>
+<li>Modify a starter app to make a web service API request and handle the response.</li>
+<li>Implement a network layer for your app using the Retrofit library.</li>
+<li>Parse the JSON response from the web service into your app&#39;s live data with the Moshi library.</li>
+<li>Use Retrofit&#39;s support for coroutines to simplify the code.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="App overview" duration="0">
+          
+          <p>In this codelab (and the following codelab), you work with a starter app called MarsRealEstate, which shows properties for sale on Mars. This app connects to a web service to retrieve and display the property data, including details such as the price and whether the property is available for sale or rent.  The images representing each property are real-life photos from Mars captured from NASA&#39;s Mars rovers.</p>
+<p class="image-container"><img alt="b31d2df6e0f5e858.png" style="width: 332.26px" src="/codelabs/kotlin-android-training-internet-data/img/b31d2df6e0f5e858.png"></p>
+<p>The version of the app you build in this codelab won&#39;t have a lot of visual flash:  it focuses on the networking layer part of the app to connect to the internet and download the raw property data using a web service. To ensure that the data is correctly retrieved and parsed, you&#39;ll just print the number of properties on Mars in a text view:</p>
+<p class="image-container"><img alt="613d3568c44757d7.png" style="width: 334.51px" src="/codelabs/kotlin-android-training-internet-data/img/613d3568c44757d7.png"></p>
+<p>.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Explore the MarsRealEstate starter app" duration="0">
+          
+          <p>The architecture for the MarsRealEstate app has two main modules:</p>
+<ul>
+<li>An overview fragment, which contains a grid of thumbnail property images, built with a <code translate="no" dir="ltr">RecyclerView</code>.</li>
+<li>A detail view fragment, containing information about each property.</li>
+</ul>
+<p class="image-container"><img alt="c5333bd8ad9bc1d5.png" style="width: 819.88px" src="/codelabs/kotlin-android-training-internet-data/img/c5333bd8ad9bc1d5.png"></p>
+<p>The app has a <code translate="no" dir="ltr">ViewModel</code> for each fragment. For this codelab, you create a layer for the network service, and the <code translate="no" dir="ltr">ViewModel</code> communicates directly with that network layer.  This is similar to what you did in previous codelabs when the <code translate="no" dir="ltr">ViewModel</code> communicated with the <code translate="no" dir="ltr">Room</code> database.</p>
+<p>The <code translate="no" dir="ltr">overview</code> <code translate="no" dir="ltr">ViewModel</code> is responsible for making the network call to get the Mars real estate information. The <code translate="no" dir="ltr">details</code> <code translate="no" dir="ltr">ViewModel</code> holds details for the single piece of Mars real estate that&#39;s displayed in the detail fragment.  For each <code translate="no" dir="ltr">ViewModel</code>, you use <code translate="no" dir="ltr">LiveData</code> with lifecycle-aware data binding to update the app UI when the data changes.</p>
+<p>You use the Navigation component to both navigate between the two fragments, and to pass the selected property as an argument.</p>
+<p>In this task, you download and run the starter app for MarsRealEstate and familiarize yourself with the structure of the project.</p>
+<h2 is-upgraded id="step-1:-explore-fragments-and-navigation" data-text="Step 1: Explore fragments and navigation">Step 1: Explore fragments and navigation</h2>
+<ol type="1">
+<li>Download the  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-starter-apps/tree/master/MarsRealEstate-Starter" target="_blank">MarsRealEstate starter app</a> and open it in Android Studio.</li>
+<li>Examine <code translate="no" dir="ltr">app/java/MainActivity.kt</code>.  The app uses fragments for both screens, so the only task for this activity is to load the activity&#39;s layout.</li>
+<li>Examine <code translate="no" dir="ltr">app/res/layout/activity_main.xml</code>.  The activity layout is the host for the two fragments, defined in the <code translate="no" dir="ltr">nav_graph.xml</code> navigation file. This layout instantiates a <code translate="no" dir="ltr">NavHostFragment</code> and its associated navigation controller with the <code translate="no" dir="ltr">nav_graph</code> resource.</li>
+<li>Open <code translate="no" dir="ltr">app/res/navigation/nav_graph.xml</code>. Here you can see the navigation relationship between the two fragments.  The navigation graph <code translate="no" dir="ltr">StartDestination</code> points to the <code translate="no" dir="ltr">overviewFragment</code>.  This means the overview fragment is instantiated when the app is launched.</li>
+</ol>
+<h2 is-upgraded id="step-2:-explore-kotlin-source-files-and-data-binding" data-text="Step 2: Explore Kotlin source files and data binding">Step 2: Explore Kotlin source file<strong>s and data binding</strong></h2>
+<ol type="1">
+<li>In the <strong>Project</strong> pane, expand <strong>app</strong> &gt; <strong>java</strong>. Notice that the MarsRealEstate app has three package folders:  <code translate="no" dir="ltr">detail</code>, <code translate="no" dir="ltr">network</code>, and <code translate="no" dir="ltr">overview</code>.  These correspond to the three major components of your app:  the overview and detail fragments, and the code for the network layer. <img alt="b0afdfe05eee4fd3.png" style="width: 268.50px" src="/codelabs/kotlin-android-training-internet-data/img/b0afdfe05eee4fd3.png"></li>
+<li>Open <code translate="no" dir="ltr">app/java/overview/OverviewFragment.kt</code>.  The <code translate="no" dir="ltr">OverviewFragment</code> lazily initializes the <code translate="no" dir="ltr">OverviewViewModel</code>, which means the <code translate="no" dir="ltr">OverviewViewModel</code> is created the first time it is used.</li>
+<li>Examine the <code translate="no" dir="ltr">onCreateView()</code> method.  This method inflates the <code translate="no" dir="ltr">fragment_overview</code> layout using data binding, sets the binding lifecycle owner to itself (<code translate="no" dir="ltr">this</code>), and sets the <code translate="no" dir="ltr">viewModel</code> variable in the <code translate="no" dir="ltr">binding</code> object to it.  Because we&#39;ve set the lifecycle owner, any <code translate="no" dir="ltr">LiveData</code> used in data binding will automatically be observed for any changes, and the UI will be updated accordingly.</li>
+<li>Open <code translate="no" dir="ltr">app/java/overview/OverviewViewModel</code>. Because the response is a <code translate="no" dir="ltr">LiveData</code> and we&#39;ve set the lifecycle for the binding variable, any changes to it will update the app UI.</li>
+<li>Examine the <code translate="no" dir="ltr">init</code> block.  When the <code translate="no" dir="ltr">ViewModel</code> is created, it calls the <code translate="no" dir="ltr">getMarsRealEstateProperties()</code> method.</li>
+<li>Examine the <code translate="no" dir="ltr">getMarsRealEstateProperties()</code> method.  In this starter app, this method contains a placeholder response. The goal for this codelab is to update the response <code translate="no" dir="ltr">LiveData</code> within the <code translate="no" dir="ltr">ViewModel</code> using real data you get from the internet.</li>
+<li>Open <code translate="no" dir="ltr">app/res/layout/fragment_overview.xml</code>. This is the layout for the overview fragment you work with in this codelab, and it includes the data binding for the view model.  It imports the <code translate="no" dir="ltr">OverviewViewModel</code> and then binds the response from the <code translate="no" dir="ltr">ViewModel</code> to a <code translate="no" dir="ltr">TextView</code>.  In later codelabs, you replace the text view with a grid of images in a <code translate="no" dir="ltr">RecyclerView</code>.</li>
+<li>Compile and run the app.  All you see in the current version of this app is the starter response—&#34;Set the Mars API Response here!&#34;</li>
+</ol>
+<p class="image-container"><img alt="6422831b7bebd55.png" style="width: 235.62px" src="/codelabs/kotlin-android-training-internet-data/img/6422831b7bebd55.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Connect to a web service with Retrofit" duration="0">
+          
+          <p>The Mars real estate data is stored on a web server, accessible via a  <a href="https://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank">REST</a> web service. Web services using a REST architecture are built using web components and protocols.</p>
+<p>You make a request to a web service in a standardized way via URIs.</p>
+<aside class="special"><p><strong>Note</strong>: The familiar web URL is actually a type of URI.  Both URL and URI are used interchangeably throughout this course.</p>
+</aside>
+<p>For example, in the app for this lesson, you retrieve all the data using the following server URI:</p>
+<p><a href="https://android-kotlin-fun-mars-server.appspot.com" target="_blank">https://android-kotlin-fun-mars-server.appspot.com</a></p>
+<p>If you type the following URL in your browser, you get a list of all available real estate properties on Mars!</p>
+<p><a href="https://android-kotlin-fun-mars-server.appspot.com/realestate" target="_blank">https://android-kotlin-fun-mars-server.appspot.com/realestate</a></p>
+<p>The response from a web service is commonly formatted using  <a href="https://www.json.org/" target="_blank">JSON</a>, an interchange format for representing structured data. You learn more about JSON in the next task, but the short explanation is that a JSON object is a collection of key-value pairs, sometimes called a <em>dictionary</em>, a <em>hash map</em>, or an <em>associative array</em>.  A collection of JSON objects is a JSON array. This array is what you get back as a response from a web service.</p>
+<p>To get this JSON data into the app, your app needs to establish a network connection to a server, communicate with that server, and then receive and parse the JSON response data into a format the app can use.  In this codelab, you use a REST client library called  <a href="https://square.github.io/retrofit/" target="_blank">Retrofit</a> to make this connection.</p>
+<h2 is-upgraded id="step-1:-add-retrofit-dependencies-to-gradle" data-text="Step 1: Add Retrofit dependencies to Gradle">Step 1: Add Retrofit dependencies to Gradle</h2>
+<ol type="1">
+<li>Open <strong>build.gradle (Module: app)</strong>.</li>
+<li>In the <code translate="no" dir="ltr">dependencies</code> section, add these lines for the Retrofit libraries:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">implementation &#34;com.squareup.retrofit2:retrofit:$version_retrofit&#34;
+implementation &#34;com.squareup.retrofit2:converter-scalars:$version_retrofit&#34;
+</code></pre>
+<p>Notice that the version numbers are defined separately in the project Gradle file. The first dependency is for the Retrofit 2 library itself, and the second dependency is for the Retrofit scalar converter.  This converter enables Retrofit to return the JSON result as a <code translate="no" dir="ltr">String</code>. The two libraries work together.</p>
+<ol type="1" start="3">
+<li>Click <strong>Sync Now</strong> to rebuild the project with the new dependencies.</li>
+</ol>
+<h2 is-upgraded id="step-2:-add-support-for-java-8-language-features" data-text="Step 2: Add support for Java 8 language features">Step 2: Add support for Java 8 language features</h2>
+<p>Many third party libraries including Retrofit2 use Java 8 language features. The Android Gradle plugin provides built-in support for using certain Java 8 language features. To use these built-in features, update the module&#39;s <code translate="no" dir="ltr">build.gradle</code> file, as shown below:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">android {
+  ...
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+  
+  kotlinOptions {
+    jvmTarget = JavaVersion.VERSION_1_8.toString()
+  }
+}
+</code></pre>
+<p>Click <strong>Sync Now</strong> to rebuild the project to use these new features.</p>
+<h2 is-upgraded id="step-3:-implement-marsapiservice" data-text="Step 3: Implement MarsApiService"><strong>Step 3: Implement MarsApiService</strong></h2>
+<p>Retrofit creates a network API for the app based on the content from the web service. It fetches data from the web service and routes it through a separate converter library that knows how to decode the data and return it in the form of useful objects. Retrofit includes built-in support for popular web data formats such as XML and JSON. Retrofit ultimately creates most of the network layer for you, including critical details such as running the requests on background threads.</p>
+<p>The <code translate="no" dir="ltr">MarsApiService</code> class holds the network layer for the app; that is, this is the API that your <code translate="no" dir="ltr">ViewModel</code> will use to communicate with the web service.  This is the class where you will implement the Retrofit service API.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">app/java/network/MarsApiService.kt</code>.  Right now the file contains only one thing:  a constant for the base URL for the web service.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private const val BASE_URL = 
+   &#34;https://android-kotlin-fun-mars-server.appspot.com&#34;
+</code></pre>
+<ol type="1" start="2">
+<li>Just below that constant, use a Retrofit builder to create a Retrofit object.  Import <code translate="no" dir="ltr">retrofit2.Retrofit</code> and <code translate="no" dir="ltr">retrofit2.converter.scalars.ScalarsConverterFactory</code> when requested.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private val retrofit = Retrofit.Builder()
+   .addConverterFactory(ScalarsConverterFactory.create())
+   .baseUrl(BASE_URL)
+   .build()
+</code></pre>
+<p>Retrofit needs at least two things available to it to build a web services API: the base URI for the web service, and a converter factory.  The converter tells Retrofit what to do with the data it gets back from the web service.  In this case, you want Retrofit to fetch a JSON response from the web service, and return it as a <code translate="no" dir="ltr">String</code>.  Retrofit has a <code translate="no" dir="ltr">ScalarsConverter</code> that supports strings and other primitive types, so you call <code translate="no" dir="ltr">addConverterFactory()</code> on the builder with an instance of <code translate="no" dir="ltr">ScalarsConverterFactory</code>.  Finally, you call <code translate="no" dir="ltr">build()</code> to create the Retrofit object.</p>
+<ol type="1" start="3">
+<li>Just below the call to the Retrofit builder, define an interface that defines how Retrofit talks to the web server using HTTP requests.  Import <code translate="no" dir="ltr">retrofit2.http.GET</code> and <code translate="no" dir="ltr">retrofit2.Call</code> when requested.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">interface MarsApiService {
+    @GET(&#34;realestate&#34;)
+    fun getProperties():
+            Call&lt;String&gt;
+}
+</code></pre>
+<p>Right now the goal is to get the JSON response string from the web service, and you only need one method to do that: <code translate="no" dir="ltr">getProperties()</code>.  To tell Retrofit what this method should do, use a <code translate="no" dir="ltr">@GET</code> annotation and specify the path, or endpoint, for that web service method.  In this case the endpoint is called <code translate="no" dir="ltr">realestate</code>. When the <code translate="no" dir="ltr">getProperties()</code> method is invoked, Retrofit appends the endpoint <code translate="no" dir="ltr">realestate</code> to the base URL (which you defined in the Retrofit builder), and creates a <code translate="no" dir="ltr">Call</code> object. That <code translate="no" dir="ltr">Call</code> object is used to start the request.</p>
+<ol type="1" start="4">
+<li>Below the <code translate="no" dir="ltr">MarsApiService</code> interface, define a public object called <code translate="no" dir="ltr">MarsApi</code> to initialize the Retrofit service. This is a standard Kotlin code pattern to use when creating a service object.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">object MarsApi {
+    val retrofitService : MarsApiService by lazy { 
+       retrofit.create(MarsApiService::class.java) }
+}
+</code></pre>
+<p>The Retrofit <code translate="no" dir="ltr">create()</code> method creates the Retrofit service itself with the <code translate="no" dir="ltr">MarsApiService</code> interface.  Because this call is computationally expensive, you lazily initialize the Retrofit service.  And since the app only needs one Retrofit service instance, you expose the service to the rest of the app using a public object called <code translate="no" dir="ltr">MarsApi</code>. Now once all the setup is done, each time your app calls <code translate="no" dir="ltr">MarsApi.retrofitService</code>,  it will get a singleton Retrofit object that implements <code translate="no" dir="ltr">MarsApiService</code>.</p>
+<aside class="special"><p><strong>Note</strong>: Remember &#34;lazy instantiation&#34; is when object creation is purposely delayed until you actually need that object to avoid unnecessary computation or use of other computing resources.  Kotlin has  <a href="https://kotlinlang.org/docs/reference/delegated-properties.html#lazy" target="_blank">first-class support</a> for lazy instantiation.</p>
+</aside>
+<h2 is-upgraded id="step-4:-call-the-web-service-in-overviewviewmodel" data-text="Step 4: Call the web service in OverviewViewModel">Step 4: Call the web service in OverviewViewModel</h2>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">app/java/overview/OverviewViewModel.kt</code>.  Scroll down to the <code translate="no" dir="ltr">getMarsRealEstateProperties()</code> method.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private fun getMarsRealEstateProperties() {
+   _response.value = &#34;Set the Mars API Response here!&#34;
+}
+</code></pre>
+<p>This is the method where you&#39;ll call the Retrofit service and handle the returned JSON string.  Right now there&#39;s just a placeholder string for the response.</p>
+<ol type="1" start="2">
+<li>Delete the placeholder line that sets the response to &#34;Set the Mars API Response here!&#34;</li>
+<li>Inside <code translate="no" dir="ltr">getMarsRealEstateProperties()</code>, add the code shown below.  Import <code translate="no" dir="ltr">retrofit2.Callback</code> and <code translate="no" dir="ltr">com.example.android.marsrealestate.network.MarsApi</code> when requested.</li>
+</ol>
+<p>The <code translate="no" dir="ltr">MarsApi.retrofitService.getProperties()</code> method returns a <code translate="no" dir="ltr">Call</code> object.  Then you can call <code translate="no" dir="ltr">enqueue()</code> on that object to start the network request on a background thread.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">MarsApi.retrofitService.getProperties().enqueue( 
+   object: Callback&lt;String&gt; {
+})
+</code></pre>
+<ol type="1" start="4">
+<li>Click on the word <code translate="no" dir="ltr">object</code>, which is underlined in red.  Select <strong>Code &gt; Implement methods</strong>.  Select both <code translate="no" dir="ltr">onResponse()</code> and <code translate="no" dir="ltr">onFailure()</code> from the list.<br><img alt="5515afc051c01d40.png" style="width: 376.50px" src="/codelabs/kotlin-android-training-internet-data/img/5515afc051c01d40.png"></li>
+</ol>
+<p>Android Studio adds the code with TODOs in each method:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onFailure(call: Call&lt;String&gt;, t: Throwable) {
+       TODO(&#34;not implemented&#34;) 
+}
+
+override fun onResponse(call: Call&lt;String&gt;, 
+   response: Response&lt;String&gt;) {
+       TODO(&#34;not implemented&#34;) 
+}
+</code></pre>
+<ol type="1" start="5">
+<li>In <code translate="no" dir="ltr">onFailure()</code>, delete the TODO and set the <code translate="no" dir="ltr">_response</code> to a failure message, as shown below.  The <code translate="no" dir="ltr">_response</code> is a <code translate="no" dir="ltr">LiveData</code> string that determines what&#39;s shown in the text view. Each state needs to update the <code translate="no" dir="ltr">_response</code> <code translate="no" dir="ltr">LiveData</code>.</li>
+</ol>
+<p>The <code translate="no" dir="ltr">onFailure()</code> callback is called when the web service response fails.  For this response, set the <code translate="no" dir="ltr">_response</code> status  to <code translate="no" dir="ltr">"Failure: "</code> concatenated with the message from the <code translate="no" dir="ltr">Throwable</code> argument.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onFailure(call: Call&lt;String&gt;, t: Throwable) {
+   _response.value = &#34;Failure: &#34; + t.message
+}
+</code></pre>
+<ol type="1" start="6">
+<li>In <code translate="no" dir="ltr">onResponse()</code>,  delete the TODO and set the <code translate="no" dir="ltr">_response</code> to the response body. The <code translate="no" dir="ltr">onResponse()</code> callback is called when the request is successful and the web service returns a response.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onResponse(call: Call&lt;String&gt;, 
+   response: Response&lt;String&gt;) {
+      _response.value = response.body()
+}
+</code></pre>
+<h2 is-upgraded id="step-5:-define-the-internet-permission" data-text="Step 5: Define the internet permission"><strong>Step 5: Define the internet permission</strong></h2>
+<ol type="1">
+<li>Compile and run the MarsRealEstate app.  Note that the app closes immediately with an error:</li>
+</ol>
+<p class="image-container"><img alt="9c0cbe9dfe9a540d.png" style="width: 309.10px" src="/codelabs/kotlin-android-training-internet-data/img/9c0cbe9dfe9a540d.png"></p>
+<ol type="1" start="2">
+<li>Click the <strong>Logcat</strong> tab in Android Studio and note the error in the log, which starts with a line like this:</li>
+</ol>
+<pre translate="no" dir="ltr">Process: com.example.android.marsrealestate, PID: 10646
+java.lang.SecurityException: Permission denied (missing INTERNET permission?)
+</pre>
+<p>The error message indicates the app might be missing the <code translate="no" dir="ltr">INTERNET</code> permission. Connecting to the internet introduces security concerns, which is why apps do not have internet connectivity by default. You need to explicitly tell Android the app needs access to the internet.</p>
+<ol type="1" start="3">
+<li>Open <code translate="no" dir="ltr">app/manifests/AndroidManifest.xml</code>. Add this line just before the <code translate="no" dir="ltr">&lt;application&gt;</code> tag:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;uses-permission android:name=&#34;android.permission.INTERNET&#34; /&gt;
+</code></pre>
+<ol type="1" start="4">
+<li>Compile and run the app again.  If everything is working correctly with your internet connection, you see JSON text containing Mars Property data. <img alt="bc6c69295bbd1514.png" style="width: 285.50px" src="/codelabs/kotlin-android-training-internet-data/img/bc6c69295bbd1514.png"></li>
+<li>Tap the <strong>Back</strong> button in your device or emulator to close the app.</li>
+<li>Put your device or emulator into airplane mode, and then reopen the app from the Recents menu, or restart the app from Android Studio.</li>
+</ol>
+<p class="image-container"><img alt="b298e72b27ef0cf7.png" style="width: 285.50px" src="/codelabs/kotlin-android-training-internet-data/img/b298e72b27ef0cf7.png"></p>
+<ol type="1" start="7">
+<li>Turn airplane mode off again.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Parse the JSON response with Moshi" duration="0">
+          
+          <p>Now you&#39;re getting a JSON response from the Mars web service, which is a great start. But what you really need are Kotlin objects, not a big JSON string. There&#39;s a library called  <a href="https://github.com/square/moshi" target="_blank">Moshi</a>, which is an Android JSON parser that converts a JSON string into Kotlin objects. Retrofit has a converter that works with Moshi, so it&#39;s a great library for your purposes here.</p>
+<p>In this task, you use the Moshi library with Retrofit to parse the JSON response from the web service into useful Mars Property Kotlin objects. You change the app so that instead of displaying the raw JSON, the app displays the number of Mars Properties returned.</p>
+<h2 is-upgraded id="step-1:-add-moshi-library-dependencies" data-text="Step 1: Add Moshi library dependencies">Step 1: Add Moshi library dependencies</h2>
+<ol type="1">
+<li>Open <strong>build.gradle (Module: app)</strong>.</li>
+<li>In the dependencies section, add the code shown below to include the Moshi dependency. As with Retrofit, <code translate="no" dir="ltr">$version_moshi</code> is defined separately in the project-level Gradle file. This dependency adds support for the Moshi JSON library with Kotlin support.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">implementation &#34;com.squareup.moshi:moshi-kotlin:$version_moshi&#34;
+</code></pre>
+<ol type="1" start="3">
+<li>Locate the lines for the Retrofit scalar converter in the <code translate="no" dir="ltr">dependencies</code> block:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">implementation &#34;com.squareup.retrofit2:retrofit:$version_retrofit&#34;
+implementation &#34;com.squareup.retrofit2:converter-scalars:$version_retrofit&#34;
+</code></pre>
+<ol type="1" start="4">
+<li>Change these lines to use <code translate="no" dir="ltr">converter-moshi</code>:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">implementation &#34;com.squareup.retrofit2:converter-moshi:$version_retrofit&#34;
+</code></pre>
+<ol type="1" start="5">
+<li>Click <strong>Sync Now</strong> to rebuild the project with the new dependencies.</li>
+</ol>
+<aside class="special"><p><strong>Note:</strong> The project may show compiler errors related to the removed Retrofit scalar dependency.  You fix those in the next steps.</p>
+</aside>
+<h2 is-upgraded id="step-2:-implement-the-marsproperty-data-class" data-text="Step 2: Implement the MarsProperty data class"><strong>Step 2: Implement the MarsProperty data class</strong></h2>
+<p>A sample entry of the JSON response you get from the web service looks something like this:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">[{&#34;price&#34;:450000,
+&#34;id&#34;:&#34;424906&#34;,
+&#34;type&#34;:&#34;rent&#34;,
+&#34;img_src&#34;:&#34;http://mars.jpl.nasa.gov/msl-raw-images/msss/01000/mcam/1000ML0044631300305227E03_DXXX.jpg&#34;},
+...]
+</code></pre>
+<p>The JSON response shown above is an array, which is indicated by the square brackets.  The array contains JSON objects, which are surrounded by curly braces.  Each object contains a set of name-value pairs, separated by colons. Names are surrounded by quotes. Values can be numbers, strings, and booleans, as well as other objects or arrays.  If a value is a string, it is also surrounded by quotes. For example, the <code translate="no" dir="ltr">price</code> for this property is $450,000 and the <code translate="no" dir="ltr">img_src</code> is a URL, which is the location of the image file on the server.</p>
+<p>In the example above, notice that each Mars property entry has these JSON key and value pairs:</p>
+<ul>
+<li><code translate="no" dir="ltr">price</code>: the price of the Mars property, as a number.</li>
+<li><code translate="no" dir="ltr">id</code>: the ID of the property, as a string.</li>
+<li><code translate="no" dir="ltr">type</code>: either <code translate="no" dir="ltr">"rent"</code> or <code translate="no" dir="ltr">"buy"</code>.</li>
+<li><code translate="no" dir="ltr">img_src</code>: The image&#39;s URL as a string.</li>
+</ul>
+<p>Moshi parses this JSON data and converts it into Kotlin objects.  To do this, it needs to have a Kotlin data class to store the parsed results, so the next step is to create that class.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">app/java/network/MarsProperty.kt</code>.</li>
+<li>Replace the existing <code translate="no" dir="ltr">MarsProperty</code> class definition with the following code:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">data class MarsProperty(
+   val id: String, val img_src: String,
+   val type: String,
+   val price: Double
+)
+</code></pre>
+<p>Notice that each of the variables in the <code translate="no" dir="ltr">MarsProperty</code> class corresponds to a key name in the JSON object.  To match the types in our specific JSON response, you use <code translate="no" dir="ltr">String</code> objects for all the values except <code translate="no" dir="ltr">price</code>, which is a <code translate="no" dir="ltr">Double</code>.  Note, a <code translate="no" dir="ltr">Double</code> can be used to represent any JSON number.</p>
+<p>When Moshi parses the JSON, it matches the keys by name and fills the data objects with appropriate values.</p>
+<ol type="1" start="3">
+<li>Replace the line for the <code translate="no" dir="ltr">img_src</code> key with the line shown below.  Import <code translate="no" dir="ltr">com.squareup.moshi.Json</code> when requested.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Json(name = &#34;img_src&#34;) val imgSrcUrl: String,
+</code></pre>
+<p>Sometimes the key names in a JSON response can make confusing Kotlin properties, or may not match your coding style—for example, in the JSON file the <code translate="no" dir="ltr">img_src</code> key uses an underscore, whereas Kotlin properties commonly use upper and lowercase letters (&#34;camel case&#34;).</p>
+<p>To use variable names in your data class that differ from the key names in the JSON response, use the <code translate="no" dir="ltr">@Json</code> annotation. In this example, the name of the variable in the data class is <code translate="no" dir="ltr">imgSrcUrl</code>. The variable is mapped to the JSON attribute <code translate="no" dir="ltr">img_src</code> using <code translate="no" dir="ltr">@Json(name = "img_src")</code>.</p>
+<h2 is-upgraded id="step-3:-update-marsapiservice-and-overviewviewmodel" data-text="Step 3: Update MarsApiService and OverviewViewModel"><strong>Step 3: Update MarsApiService and OverviewViewModel</strong></h2>
+<p>With the <code translate="no" dir="ltr">MarsProperty</code> data class in place, you can now update the network API and <code translate="no" dir="ltr">ViewModel</code> to include the Moshi data.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">network/MarsApiService.kt</code>.  You may see missing-class errors for <code translate="no" dir="ltr">ScalarsConverterFactory</code>.  This is because of the Retrofit dependency change you made in Step 1.  You fix those errors soon.</li>
+<li>At the top of the file, just before the Retrofit builder, add the following code to create the Moshi instance.  Import <code translate="no" dir="ltr">com.squareup.moshi.Moshi</code> and <code translate="no" dir="ltr">com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory</code> when requested.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private val moshi = Moshi.Builder()
+   .add(KotlinJsonAdapterFactory())
+   .build()
+</code></pre>
+<p>Similar to what you did with Retrofit, here you create a <code translate="no" dir="ltr">moshi</code> object using the Moshi builder.  For Moshi&#39;s annotations to work properly with Kotlin, add the <code translate="no" dir="ltr">KotlinJsonAdapterFactory</code>, and then call <code translate="no" dir="ltr">build()</code>.</p>
+<ol type="1" start="3">
+<li>Change the Retrofit builder to use the <code translate="no" dir="ltr">MoshiConverterFactory</code> instead of the <code translate="no" dir="ltr">ScalarConverterFactory</code>, and pass in the <code translate="no" dir="ltr">moshi</code> instance you just created.  Import <code translate="no" dir="ltr">retrofit2.converter.moshi.MoshiConverterFactory</code> when requested.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private val retrofit = Retrofit.Builder()
+   .addConverterFactory(MoshiConverterFactory.create(moshi))
+   .baseUrl(BASE_URL)
+   .build()
+</code></pre>
+<ol type="1" start="4">
+<li>Delete the import for <code translate="no" dir="ltr">ScalarConverterFactory</code> as well.</li>
+</ol>
+<p>Code to delete:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">import retrofit2.converter.scalars.ScalarsConverterFactory
+</code></pre>
+<ol type="1" start="5">
+<li>Update the <code translate="no" dir="ltr">MarsApiService</code> interface to have Retrofit return a list of <code translate="no" dir="ltr">MarsProperty</code> objects, instead of returning <code translate="no" dir="ltr">Call&lt;String&gt;</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">interface MarsApiService {
+   @GET(&#34;realestate&#34;)
+   fun getProperties():
+      Call&lt;List&lt;MarsProperty&gt;&gt;
+}
+</code></pre>
+<ol type="1" start="6">
+<li>Open <code translate="no" dir="ltr">OverviewViewModel.kt</code>.  Scroll down to the call to <code translate="no" dir="ltr">getProperties().enqueue()</code> in the <code translate="no" dir="ltr">getMarsRealEstateProperties()</code> method.</li>
+<li>Change the argument to <code translate="no" dir="ltr">enqueue()</code> from <code translate="no" dir="ltr">Callback&lt;String&gt;</code> to <code translate="no" dir="ltr">Callback&lt;List&lt;MarsProperty&gt;&gt;</code>.  Import <code translate="no" dir="ltr">com.example.android.marsrealestate.network.MarsProperty</code> when requested.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">MarsApi.retrofitService.getProperties().enqueue( 
+   object: Callback&lt;List&lt;MarsProperty&gt;&gt; {
+</code></pre>
+<ol type="1" start="8">
+<li>In <code translate="no" dir="ltr">onFailure()</code>, change the argument from <code translate="no" dir="ltr">Call&lt;String&gt;</code> to <code translate="no" dir="ltr">Call&lt;List&lt;MarsProperty&gt;&gt;</code>:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onFailure(call: Call&lt;List&lt;MarsProperty&gt;&gt;, t: Throwable) {
+</code></pre>
+<ol type="1" start="9">
+<li>Make the same change to both the arguments to <code translate="no" dir="ltr">onResponse()</code>:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onResponse(call: Call&lt;List&lt;MarsProperty&gt;&gt;, 
+   response: Response&lt;List&lt;MarsProperty&gt;&gt;) {
+</code></pre>
+<ol type="1" start="10">
+<li>In the body of <code translate="no" dir="ltr">onResponse()</code>, replace the existing assignment to <code translate="no" dir="ltr">_response.value</code> with the assignment shown below.  Because the <code translate="no" dir="ltr">response.body()</code> is now a list of <code translate="no" dir="ltr">MarsProperty</code> objects, the size of that list is the number of properties that were parsed.  This response message prints that number of properties:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">_response.value = 
+   &#34;Success: ${response.body()?.size} Mars properties retrieved&#34;
+</code></pre>
+<ol type="1" start="11">
+<li>Make sure airplane mode is turned off.  Compile and run the app. This time the message should show the number of properties returned from the web service: <img alt="613d3568c44757d7.png" style="width: 334.51px" src="/codelabs/kotlin-android-training-internet-data/img/613d3568c44757d7.png"></li>
+</ol>
+<aside class="special"><p><strong>Note:</strong> If your internet connection is not working, make sure that you turned off airplane mode on your device or emulator.</p>
+</aside>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Use coroutines with Retrofit" duration="0">
+          
+          <p>Now the Retrofit API service is running, but it uses a callback with two callback methods that you had to implement. One method handles success and another handles failure, and the failure result reports exceptions.  Your code would be more efficient and easier to read if you could use coroutines with exception handling, instead of using callbacks.  In this task, you convert your network service and the <code translate="no" dir="ltr">ViewModel</code> to use coroutines.</p>
+<h2 is-upgraded id="step-1:-update-marsapiservice-and-overviewviewmodel" data-text="Step 1: Update MarsApiService and OverviewViewModel">Step 1: Update MarsApiService and OverviewViewModel</h2>
+<ol type="1">
+<li>In <code translate="no" dir="ltr">MarsApiService</code>, make <code translate="no" dir="ltr">getProperties()</code> a suspend function. Change <code translate="no" dir="ltr">Call&lt;List&lt;MarsProperty&gt;&gt;</code> to  <code translate="no" dir="ltr">List&lt;MarsProperty&gt;</code>. The <code translate="no" dir="ltr">getProperties()</code> method looks like this:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@GET(&#34;realestate&#34;)
+suspend fun getProperties(): List&lt;MarsProperty&gt;
+</code></pre>
+<ol type="1" start="2">
+<li>In the <code translate="no" dir="ltr">OverviewViewModel.kt</code> file, delete all the code inside <code translate="no" dir="ltr">getMarsRealEstateProperties()</code>.  You&#39;ll use coroutines here instead of the call to <code translate="no" dir="ltr">enqueue()</code> and the <code translate="no" dir="ltr">onFailure()</code> and <code translate="no" dir="ltr">onResponse()</code> callbacks.</li>
+<li>Inside <code translate="no" dir="ltr">getMarsRealEstateProperties()</code>, launch the coroutine using <code translate="no" dir="ltr">viewModelScope.</code></li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">viewModelScope.launch { 
+
+}
+</code></pre>
+<p>A  <a href="https://developer.android.com/topic/libraries/architecture/coroutines#viewmodelscope" target="_blank"><code translate="no" dir="ltr">ViewModelScope</code></a> is the built-in coroutine scope defined for each <code translate="no" dir="ltr">ViewModel</code> in your app. Any coroutine launched in this scope is automatically canceled if the <code translate="no" dir="ltr">ViewModel</code> is cleared.</p>
+<ol type="1" start="4">
+<li>Inside the launch block, add a <code translate="no" dir="ltr">try</code>/<code translate="no" dir="ltr">catch</code> block to handle exceptions:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">try {
+
+} catch (e: Exception) {
+  
+}
+</code></pre>
+<ol type="1" start="5">
+<li>Inside the <code translate="no" dir="ltr">try {}</code>  block, call <code translate="no" dir="ltr">getProperties()</code> on the <code translate="no" dir="ltr">retrofitService</code> object:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val listResult = MarsApi.retrofitService.getProperties()
+</code></pre>
+<p>Calling <code translate="no" dir="ltr">getProperties()</code> from the <code translate="no" dir="ltr">MarsApi</code> service creates and starts the network call on a background thread.</p>
+<ol type="1" start="6">
+<li>Also inside the <code translate="no" dir="ltr">try {}</code> block, update the response message for the successful response:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">_response.value = 
+   &#34;Success: ${listResult.size} Mars properties retrieved&#34;
+</code></pre>
+<ol type="1" start="7">
+<li>Inside the <code translate="no" dir="ltr">catch {}</code> block, handle the failure response:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">_response.value = &#34;Failure: ${e.message}&#34;
+</code></pre>
+<p>The complete <code translate="no" dir="ltr">getMarsRealEstateProperties()</code> method now looks like this:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private fun getMarsRealEstateProperties() {
+   viewModelScope.launch {
+       try {
+           val listResult = MarsApi.retrofitService.getProperties()
+           _response.value = &#34;Success: ${listResult.size} Mars properties retrieved&#34;
+       } catch (e: Exception) {
+           _response.value = &#34;Failure: ${e.message}&#34;
+       }
+   }
+}
+</code></pre>
+<ol type="1" start="8">
+<li>Compile and run the app.  You get the same result this time as in the previous task (a report of the number of properties), but with more straightforward code and error handling.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Solution code" duration="0">
+          
+          <p>Android Studio project:  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/MarsRealEstateNetwork" target="_blank">MarsRealEstateNetwork</a></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Summary" duration="0">
+          
+          <h2 is-upgraded id="rest-web-services" data-text="REST web services"><strong>REST web services</strong></h2>
+<ul>
+<li>A <em>web service</em> is software-based functionality offered over the internet that enables your app to make requests and get data back.</li>
+<li>Common web services use a  <a href="https://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank">REST</a> architecture. Web services that offer REST architecture are known as <em>RESTful</em> services. RESTful web services are built using standard web components and protocols.</li>
+<li>You make a request to a REST web service in a standardized way, via URIs.</li>
+<li>To use a web service, an app must establish a network connection and communicate with the service. Then the app must receive and parse response data into a format the app can use.</li>
+<li>The  <a href="https://square.github.io/retrofit/" target="_blank">Retrofit</a> library is a client library that enables your app to make requests to a REST web service.</li>
+<li>Use converters to tell Retrofit what to do with data it sends to the web service and gets back from the web service.  For example, the <code translate="no" dir="ltr">ScalarsConverter</code> converter treats the web service data as a <code translate="no" dir="ltr">String</code> or other primitive.</li>
+<li>To enable your app to make connections to the internet, add the <code translate="no" dir="ltr">"android.permission.INTERNET"</code> permission in the Android manifest.</li>
+</ul>
+<h2 is-upgraded id="json-parsing" data-text="JSON parsing"><strong>JSON parsing</strong></h2>
+<ul>
+<li>The response from a web service is often formatted in  <a href="https://www.json.org/" target="_blank">JSON</a>, a common interchange format for representing structured data.</li>
+<li>A JSON object is a collection of key-value pairs. This collection is sometimes called a <em>dictionary</em>, a <em>hash map</em>, or an <em>associative array</em>.</li>
+<li>A collection of JSON objects is a JSON array. You get a JSON array as a response from a web service.</li>
+<li>The keys in a key-value pair are surrounded by quotes. The values can be numbers or strings. Strings are also surrounded by quotes.</li>
+<li>The  <a href="https://github.com/square/moshi" target="_blank">Moshi</a> library is an Android JSON parser that converts a JSON string into Kotlin objects. Retrofit has a converter that works with Moshi.</li>
+<li>Moshi matches the keys in a JSON response with properties in a data object that have the same name.</li>
+<li>To use a different property name for a key, annotate that property with the <code translate="no" dir="ltr">@Json</code> annotation and the JSON key name.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Learn more" duration="0">
+          
+          <p>Udacity course:</p>
+<ul>
+<li><a href="https://www.udacity.com/course/developing-android-apps-with-kotlin--ud9012" target="_blank">Developing Android Apps with Kotlin</a></li>
+</ul>
+<p>Android developer documentation:</p>
+<ul>
+<li><a href="https://developer.android.com/topic/libraries/architecture/viewmodel" target="_blank">ViewModel Overview</a></li>
+<li><a href="https://developer.android.com/topic/libraries/architecture/livedata#kotlin" target="_blank">LiveData Overview</a></li>
+<li><a href="https://developer.android.com/reference/android/arch/lifecycle/MutableLiveData" target="_blank"><code translate="no" dir="ltr">MutableLiveData</code></a></li>
+<li><a href="https://developer.android.com/topic/libraries/architecture/coroutines#viewmodelscope" target="_blank"><code translate="no" dir="ltr">ViewModelScope</code></a></li>
+</ul>
+<p>Kotlin documentation:</p>
+<ul>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-coroutines/" target="_blank">Coroutines codelab</a></li>
+<li><a href="https://kotlinlang.org/docs/reference/coroutines-overview.html" target="_blank">Coroutines, official documentation</a></li>
+<li><a href="https://kotlinlang.org/docs/reference/coroutines/coroutine-context-and-dispatchers.html" target="_blank">Coroutine context and dispatchers</a></li>
+</ul>
+<p>Other:</p>
+<ul>
+<li><a href="https://square.github.io/retrofit/" target="_blank">Retrofit</a></li>
+<li><a href="https://github.com/square/moshi" target="_blank">Moshi</a></li>
+<li><a href="https://proandroiddev.com/moshi-with-retrofit-in-kotlin-%EF%B8%8F-a69c2621708b" target="_blank">Moshi with Retrofit in Kotlin</a></li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Homework" duration="0">
+          
+          <p>This section lists possible homework assignments for students who are working through this codelab as part of a course led by an instructor. It&#39;s up to the instructor to do the following:</p>
+<ul>
+<li>Assign homework if required.</li>
+<li>Communicate to students how to submit homework assignments.</li>
+<li>Grade the homework assignments.</li>
+</ul>
+<p>Instructors can use these suggestions as little or as much as they want, and should feel free to assign any other homework they feel is appropriate.</p>
+<p>If you&#39;re working through this codelab on your own, feel free to use these homework assignments to test your knowledge.</p>
+<h2 is-upgraded id="answer-these-questions" data-text="Answer these questions">Answer these questions</h2>
+<h3 is-upgraded id="question-1" data-text="Question 1"><strong>Question 1</strong></h3>
+<p>What are the two key things Retrofit needs to build a web services API?</p>
+<p>▢ The base URI for the web service, and a <code translate="no" dir="ltr">GET</code> query.</p>
+<p>▢ The base URI for the web service, and a converter factory.</p>
+<p>▢ A network connection to the web service, and an authorization token.</p>
+<p>▢ A converter factory, and a parser for the response.</p>
+<h3 is-upgraded id="question-2" data-text="Question 2"><strong>Question 2</strong></h3>
+<p>What is the purpose of the Moshi library?</p>
+<p>▢ To get data back from a web service.</p>
+<p>▢ To interact with Retrofit to make a web service request.</p>
+<p>▢ To parse a JSON response from a web service into Kotlin data objects.</p>
+<p>▢ To rename Kotlin objects to match the keys in the JSON response.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Next codelab" duration="0">
+          
+          <p>Start the next lesson:  <a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-internet-images/" target="_blank"><paper-button class="colored" raised>Loading and displaying images from the internet</paper-button></a></p>
+<p>For links to other codelabs in this course, see the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+
+
+        </google-codelab-step>
+      
+    </google-codelab>
+  
+    
+
+    
+  </div>
+
+  
+
+  
+    
+    
+    
+  
+
+  
+  
+</article>
+
+
+
+
+            
+          </devsite-content>
+        </main>
+        <devsite-footer-promos class="devsite-footer">
+          
+            
+
+<nav class="devsite-footer-promos nocontent" aria-label="Promosi">
+  <ul class="devsite-footer-promos-list">
+    
+    <li class="devsite-footer-promo">
+      <a href="//twitter.com/AndroidDev"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer Twitter Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="/_static/android/images/logo-twitter.svg"
+             loading="lazy"
+             alt="Twitter">
+        
+        Twitter
+      </a>
+      <div class="devsite-footer-promo-description">Ikuti @AndroidDev di Twitter</div>
+    </li>
+    
+    <li class="devsite-footer-promo">
+      <a href="//www.youtube.com/user/androiddevelopers"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer YouTube Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="//www.gstatic.com/images/icons/material/product/2x/youtube_48dp.png"
+             loading="lazy"
+             alt="YouTube">
+        
+        YouTube
+      </a>
+      <div class="devsite-footer-promo-description">Lihat Developer Android di YouTube</div>
+    </li>
+    
+  </ul>
+</nav>
+
+          
+        </devsite-footer-promos>
+        <devsite-footer-linkboxes class="devsite-footer">
+          
+            
+<nav class="devsite-footer-linkboxes nocontent" aria-label="Link footer">
+  
+  <ul class="devsite-footer-linkboxes-list">
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Selengkapnya tentang Android</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Android
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/enterprise/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Enterprise
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/security-center/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Keamanan
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//source.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Source
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dukungan</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=190923&amp;template=841312"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Laporkan bug platform
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=192697"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Laporkan bug dokumentasi
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//support.google.com/googleplay/android-developer"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Google Play support
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://google.qualtrics.com/jfe/form/SV_ewWXIoEVLBcyp7f??reserved=1&amp;utm_source=FooterLink&amp;Q_Language=en&amp;utm_medium=own_srch&amp;utm_campaign=developer.android.com&amp;utm_term=0&amp;utm_content=0&amp;productTag=reg&amp;campaignDate=may19&amp;pType=devel&amp;referral_code=gV420370"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Bergabung dengan studi riset
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dokumentasi</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/guide"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Panduan developer
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/design"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Panduan desain
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/reference"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Referensi API
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/samples"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Sampel
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/studio/intro"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 5)"
+            >
+          
+            Android Studio
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+  
+</nav>
+          
+        </devsite-footer-linkboxes>
+        <devsite-footer-utility class="devsite-footer">
+          
+            
+
+<div class="devsite-footer-utility nocontent">
+  
+  
+  <nav class="devsite-footer-sites" aria-label="Situs Google Developers lain">
+    <a href="https://developers.google.com/"
+       class="devsite-footer-sites-logo-link gc-analytics-event"
+       data-category="Site-Wide Custom Events"
+       data-label="Footer Google Developers Link">
+      <img class="devsite-footer-sites-logo"
+           src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup-developers.svg"
+           loading="lazy"
+           alt="Google Developers">
+    </a>
+    <ul class="devsite-footer-sites-list">
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.android.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Android Link"
+         
+         >
+          Android
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.chrome.com/home"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Chrome Link"
+         
+         >
+          Chrome
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//firebase.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Firebase Link"
+         
+         >
+          Firebase
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//cloud.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Google Cloud Platform Link"
+         
+         >
+          Google Cloud Platform
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developers.google.com/products/"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer All products Link"
+         
+         >
+          Semua produk
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  
+
+  
+  <nav class="devsite-footer-utility-links" aria-label="Link utilitas">
+    
+    <ul class="devsite-footer-utility-list">
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="//policies.google.com/privacy"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Privacy link"
+         >
+          Privasi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/license"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer License link"
+         >
+          Lisensi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/distribute/marketing-tools/brand-guidelines"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Brand guidelines link"
+         >
+          Pedoman brand
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 devsite-footer-utility-button">
+        
+        <span class="devsite-footer-utility-description">Dapatkan berita dan tips melalui email</span>
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/updates"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Subscribe link"
+         >
+          Berlangganan
+        </a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+  </nav>
+</div>
+          
+        </devsite-footer-utility>
+        <devsite-panel></devsite-panel>
+      </section></section>
+    <devsite-sitemask></devsite-sitemask>
+    
+<devsite-snackbar 
+                  ></devsite-snackbar>
+
+    <devsite-tooltip ></devsite-tooltip>
+    <devsite-heading-link></devsite-heading-link>
+    <devsite-analytics enable-analytics-iframe>
+      
+        <script type="application/json" analytics>[{"gaid": "UA-5831155-1", "dimensions": {"dimension4": "Developer Android", "dimension5": "id", "dimension3": false, "dimension1": "Signed In", "dimension6": "en", "dimension11": false}, "metrics": {"ratings_value": "metric1", "ratings_count": "metric2"}}]</script>
+<script type="application/json" gtm>{"parameters": {"freeTrialEligibleUser": "False", "internalUser": "False", "language": {"machineTranslated": "False", "requested": "id", "served": "en"}, "pageType": "codelab", "projectName": "Developer Android", "signedIn": "True", "tenant": "android", "recommendations": {"sourcePage": "", "sourceType": 0, "sourceRank": 0, "sourceIdenticalDescriptions": 0, "sourceTitleWords": 0, "sourceDescriptionWords": 0, "experiment": ""}}, "tags": ["GTM-KMSWPCJ"]}</script>
+      
+    </devsite-analytics>
+    
+      <devsite-badger></devsite-badger>
+    
+    
+<android-fully-clickable target=".fully-clickable" watch="devsite-content"></android-fully-clickable>
+    <script nonce="lSQdk0RrTplz9qSZ7dbgcP5g2nwPNN">
+  
+  (function(d,e,v,s,i,t,E){d['GoogleDevelopersObject']=i;
+    t=e.createElement(v);t.async=1;t.src=s;E=e.getElementsByTagName(v)[0];
+    E.parentNode.insertBefore(t,E);})(window, document, 'script',
+    'https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/js/app_loader.js', '[3,"id",null,"/js/devsite_app_module.js","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android","https://android-dot-devsite-v2-prod.appspot.com",1,null,["/_pwa/android/manifest.json","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/images/video-placeholder.svg","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg","https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap"],1,null,[1,6,8,12,14,17,21,25,40,50,63,70,75,76,80,87,88,91,92,93,97,98,100,101,102,103,104,105,107,108,111,112,113,115,117,118,120,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,138,147,148,149],"AIzaSyAP-jjEJBzmIyKR4F-3XITp8yM9T1gEEI8","AIzaSyB6xiKGDR5O3Ak2okS4rLkauxGUG7XP0hg"]')
+  
+</script>
+    <devsite-a11y-announce></devsite-a11y-announce>
+  </body>
+</html>

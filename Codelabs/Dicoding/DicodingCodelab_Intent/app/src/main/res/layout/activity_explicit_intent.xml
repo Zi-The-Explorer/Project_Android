@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ExplicitIntent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Halaman Explicit!"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+
+    <Button
+        android:id="@+id/btn_move_page_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Move Page Main"/>
+
+    <Button
+        android:id="@+id/btn_intent_with_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:onClick="btnIntentWithData"
+        android:text="@string/txt_intent"
+        tools:ignore="UsingOnClickInXml" />
+
+    <Button
+        android:id="@+id/btn_move_page_implicit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Move Page Implicit"/>
+
+</LinearLayout>

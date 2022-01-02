@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DicodingCodelab_Activity</string>
+    <string name="txt_p">Panjang</string>
+    <string name="txt_l">Lebar</string>
+    <string name="txt_t">Tinggi</string>
+    <string name="btn_ht">Hitung</string>
+    <string name="txt_h">Hasil</string>
+</resources>

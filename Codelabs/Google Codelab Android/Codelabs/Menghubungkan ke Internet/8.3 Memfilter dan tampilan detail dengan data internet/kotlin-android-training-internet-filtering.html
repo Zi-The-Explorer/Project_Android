@@ -1,0 +1,2019 @@
+<!doctype html>
+<html 
+      lang="id"
+      dir="ltr">
+  <head>
+    <meta name="google-signin-client-id" content="721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com">
+    <meta name="google-signin-scope"
+          content="profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award">
+    <meta property="og:site_name" content="Android Developers">
+    <meta property="og:type" content="website"><meta name="theme-color" content="#3ddc84"><meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/_pwa/android/manifest.json"
+          crossorigin="use-credentials">
+    <link rel="preconnect" href="//www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="//apis.google.com" crossorigin>
+    <link rel="preconnect" href="//www.google-analytics.com" crossorigin><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap">
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Material+Icons&display=block"><link rel="stylesheet" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/css/app.css">
+      <link rel="shortcut icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/touchicon-180.png"><link rel="canonical" href="https://developer.android.com/codelabs/kotlin-android-training-internet-filtering?hl=id"><link rel="search" type="application/opensearchdescription+xml"
+            title="Android Developers" href="https://developer.android.com/s/opensearch.xml">
+      
+
+<title>Android Kotlin Fundamentals: Filtering and detail views with internet data</title>
+
+<meta property="og:title" content="Android Kotlin Fundamentals: Filtering and detail views with internet data"><meta name="description" content="In this codelab, you finish the MarsRealEstate app Android Kotlin app that you have been working on in the previous two codelabs. You enable the user to filter by whether properties are available to rent or purchase. You also create a detail view so the user can tap a property photo in the overview and see details about the property.">
+  <meta property="og:description" content="In this codelab, you finish the MarsRealEstate app Android Kotlin app that you have been working on in the previous two codelabs. You enable the user to filter by whether properties are available to rent or purchase. You also create a detail view so the user can tap a property photo in the overview and see details about the property."><meta property="og:url" content="https://developer.android.com/codelabs/kotlin-android-training-internet-filtering?hl=id"><meta property="og:image" content="https://developer.android.com/images/social/android-developers.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675"><meta property="og:locale" content="en"><meta name="twitter:card" content="summary_large_image">
+  <meta name="xsrf_token" content="dpsqpYZveeFXdoURIArGurMrLBngwwI1ExV1GJqnUlo6MTYyNzQ4MjYyMTg4NTg3Mg">
+  
+
+  <meta name="session_expiry" content="1627483460">
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    <meta name="original_source" content="https://docs.google.com/document/d/1l3-XhVVRYKuM9Y4eB-lBRZ_vh2VoHOhEZQgyxORYgTg/edit" />
+    
+    
+    
+    <meta name="duration" value="0" />
+    
+      <meta name="authors" value="Google Developers Training team" />
+    
+    
+  
+
+    </head>
+  <body class="devsite-full-width-page"
+        template="codelab"
+        theme="android-theme"
+        type="codelab"
+        
+        layout="full"
+        
+        
+        pending>
+    <devsite-progress type="indeterminate" id="app-progress"></devsite-progress>
+  
+    <section class="devsite-wrapper"><devsite-header>
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="devsite-header--inner nocontent">
+  <div class="devsite-top-logo-row-wrapper-wrapper">
+    <div class="devsite-top-logo-row-wrapper">
+      <div class="devsite-top-logo-row">
+        <button type="button" id="devsite-hamburger-menu"
+          class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+          data-category="Site-Wide Custom Events"
+          data-label="Navigation menu button"
+          visually-hidden
+          aria-label="Open menu">
+        </button>
+        <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo"
+       alt="Android Developers">
+
+</a>
+
+
+
+  
+  
+  <span class="devsite-product-name">
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+  </span>
+
+</div>
+        <div class="devsite-top-logo-row-middle">
+          <div class="devsite-header-upper-tabs">
+            
+              
+              
+  <devsite-tabs class="upper-tabs">
+
+    <nav class="devsite-tabs-wrapper" aria-label="Tab atas">
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/about"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="platform"
+   track-metadata-eventdetail="https://developer.android.com/about"
+   track-metadata-position="nav - platform"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Platform"
+   >
+  Platform
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/studio"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="android studio"
+   track-metadata-eventdetail="https://developer.android.com/studio"
+   track-metadata-position="nav - android studio"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Android Studio"
+   >
+  Android Studio
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/distribute"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="google play"
+   track-metadata-eventdetail="https://developer.android.com/distribute"
+   track-metadata-position="nav - google play"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Google Play"
+   >
+  Google Play
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/jetpack"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="jetpack"
+   track-metadata-eventdetail="https://developer.android.com/jetpack"
+   track-metadata-position="nav - jetpack"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Jetpack"
+   >
+  Jetpack
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/kotlin"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="kotlin"
+   track-metadata-eventdetail="https://developer.android.com/kotlin"
+   track-metadata-position="nav - kotlin"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Kotlin"
+   >
+  Kotlin
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/docs"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="dokumen"
+   track-metadata-eventdetail="https://developer.android.com/docs"
+   track-metadata-position="nav - dokumen"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Dokumen"
+   >
+  Dokumen
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/news"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="berita"
+   track-metadata-eventdetail="https://developer.android.com/news"
+   track-metadata-position="nav - berita"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Berita"
+   >
+  Berita
+</a>
+
+          </tab>
+        
+      
+    </nav>
+
+  </devsite-tabs>
+
+            
+           </div>
+          
+<devsite-search
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    enable-signin
+    enable-search
+    enable-suggestions
+      enable-query-completion
+    
+    project-name="Developer Android"
+    tenant-name="Android Developers"
+    
+    
+    
+    
+    
+    role="combobox">
+  <form class="devsite-search-form" action="https://developer.android.com/s/results" method="GET">
+    <div class="devsite-search-container">
+      <div class="devsite-searchbox">
+        <input
+          aria-activedescendant=""
+          aria-autocomplete="list"
+          
+          aria-label="Penelusuran"
+          aria-haspopup="false"
+          aria-multiline="false"
+          aria-label="Kotak penelusuran"
+          autocomplete="off"
+          class="devsite-search-field devsite-search-query"
+          name="q"
+          
+          placeholder="Penelusuran"
+          role="searchbox"
+          type="text"
+          value=""
+          >
+        <div class="devsite-search-image material-icons" aria-hidden="true"></div>
+      </div>
+      <button type="button"
+              search-open
+              class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+              
+              aria-label="Buka penelusuran"></button>
+    </div>
+  </form>
+  <button type="button"
+          search-close
+          class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+          
+          aria-label="Tutup penelusuran"></button>
+</devsite-search>
+
+        </div>
+
+        
+
+        
+
+        
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+
+        
+
+        
+          
+          
+          <devsite-user signed-in
+                        
+                        
+                          enable-profiles
+                        
+                        
+                          
+                        id="devsite-user"></devsite-user>
+           
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="devsite-collapsible-section
+    
+      devsite-header-no-lower-tabs
+    ">
+    <div class="devsite-header-background">
+      
+        
+      
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+  
+</devsite-header>
+      <devsite-book-nav scrollbars hidden>
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="devsite-book-nav devsite-nav nocontent"
+     aria-label="Menu samping">
+  <div class="devsite-mobile-header">
+    <button type="button"
+            id="devsite-close-nav"
+            class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+            data-category="Site-Wide Custom Events"
+            data-label="Close navigation"
+            aria-label="Close navigation">
+    </button>
+    <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+
+</a>
+
+
+  
+      <span class="devsite-product-name">
+        
+        
+        <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+      </span>
+    
+
+</div>
+  </div>
+
+  <div class="devsite-book-nav-wrapper">
+    <div class="devsite-mobile-nav-top">
+      
+        <ul class="devsite-nav-list">
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/about"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Platform"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="platform">
+  
+    <span class="devsite-nav-text" tooltip >
+      Platform
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/studio"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Android Studio"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="androidStudio">
+  
+    <span class="devsite-nav-text" tooltip >
+      Android Studio
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/distribute"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Google Play"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="googlePlay">
+  
+    <span class="devsite-nav-text" tooltip >
+      Google Play
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/jetpack"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Jetpack"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="jetpack">
+  
+    <span class="devsite-nav-text" tooltip >
+      Jetpack
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/kotlin"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Kotlin"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="kotlin">
+  
+    <span class="devsite-nav-text" tooltip >
+      Kotlin
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/docs"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Dokumen"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="dokumen">
+  
+    <span class="devsite-nav-text" tooltip >
+      Dokumen
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/news"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Berita"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="berita">
+  
+    <span class="devsite-nav-text" tooltip >
+      Berita
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+          
+          
+        </ul>
+      
+    </div>
+    
+  </div>
+</nav>
+        
+      </devsite-book-nav>
+      <section id="gc-wrapper">
+        <main role="main" class="devsite-main-content"
+            
+            >
+          
+          <devsite-toc class="devsite-nav"
+                       role="navigation"
+                       aria-label="Daftar isi"
+            disabled></devsite-toc>
+          <devsite-content>
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="devsite-article"><style>
+      body {
+        transition: opacity ease-in 0.2s;
+      }
+
+      body[unresolved] {
+        opacity: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+      </style>
+  
+  
+  
+
+  <div class="devsite-article-meta nocontent" role="navigation">
+    
+    
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+  <a href="https://developer.android.com/"
+      
+        class="devsite-breadcrumb-link gc-analytics-event"
+      
+        data-category="Site-Wide Custom Events"
+      
+        data-label="Breadcrumbs"
+      
+        data-value="1"
+      
+        track-type="globalNav"
+      
+        track-name="breadcrumb"
+      
+        track-metadata-position="1"
+      
+        track-metadata-eventdetail="Developer Android"
+      
+    >
+    
+        Developer Android
+      
+  </a>
+  
+    
+  </li>
+  
+</ul>
+    
+  </div>
+  
+  
+    <h1 class="devsite-page-title">Android Kotlin Fundamentals: Filtering and detail views with internet data</h1><devsite-bookmark></devsite-bookmark>
+  
+
+  <devsite-toc class="devsite-nav" devsite-toc-embedded
+               disabled>
+  </devsite-toc>
+
+  
+
+  <div class="devsite-article-body clearfix
+    ">
+
+    
+      
+    <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+    <google-codelab codelab-gaid="UA-81734179-1"
+                    doc-id="1l3-XhVVRYKuM9Y4eB-lBRZ_vh2VoHOhEZQgyxORYgTg"
+                    id="kotlin-android-training-internet-filtering"
+                    title="Android Kotlin Fundamentals: Filtering and detail views with internet data"
+                    environment="web"
+                    feedback-link="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/issues/new?assignees=&amp;labels=&amp;template=android-kotlin-fundementals.md&amp;title=Android&#43;Kotlin&#43;Fundamentals&#43;codelab%3A&#43;"
+                    >
+      
+        <google-codelab-step label="Welcome" duration="0">
+          
+            <google-codelab-about codelab-title="Android Kotlin Fundamentals: Filtering and detail views with internet data"
+                                  last-updated="2020-08-14T22:07:24Z"
+                                  authors="Google Developers Training team"
+                                  >
+            </google-codelab-about>
+          
+          <p>This codelab is part of the Android Kotlin Fundamentals course. You&#39;ll get the most value out of this course if you work through the codelabs in sequence. All the course codelabs are listed on the <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+
+<h2 is-upgraded id="introduction" data-text="Introduction"><strong>Introduction</strong></h2>
+<p>In the previous codelabs for this lesson, you learned how to get data about real estate on Mars from a web service, and how to create a <code translate="no" dir="ltr">RecyclerView</code> with a grid layout to load and display images from that data. In this codelab, you finish the MarsRealEstate app by implementing the ability to filter the Mars properties by whether they are available to rent or for purchase. You also create a detail view so that if the user taps a property photo in the overview, they see a detail view with details about that property. </p>
+<h2 is-upgraded id="what-you-should-already-know" data-text="What you should already know"><strong>What you should already know</strong></h2>
+<ul>
+<li>How to create and use fragments.</li>
+<li>How to navigate between fragments and use Safe Args (a Gradle plugin) to pass data between fragments.</li>
+<li>How to use architecture components including view models, view model factories, transformations, and <code translate="no" dir="ltr">LiveData</code>.</li>
+<li>How to retrieve JSON encoded data from a REST web service and parse that data into Kotlin objects with the <a href="https://square.github.io/retrofit/" target="_blank">Retrofit</a> and <a href="https://github.com/square/moshi" target="_blank">Moshi</a> libraries. </li>
+</ul>
+<h2 class="checklist" is-upgraded id="what-youll-learn" data-text="What you'll learn"><strong>What you'll learn</strong></h2>
+<ul class="checklist">
+<li>How to use complex binding expressions in your layout files.</li>
+<li>How to make Retrofit requests to a web service with query options.</li>
+</ul>
+<h2 is-upgraded id="what-youll-do" data-text="What you'll do"><strong>What you'll do</strong></h2>
+<ul>
+<li>Modify the MarsRealEstate app to mark the Mars properties that are for sale (versus those that are for rent) with a dollar sign icon. </li>
+<li>Use the options menu on the overview page to create a web service request that filters the Mars properties by type. </li>
+<li>Create a detail fragment for a Mars property, hook up that fragment to the overview grid with navigation, and pass the property data into that fragment. </li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="App overview" duration="0">
+          
+          <p>In this codelab (and related codelabs) you work with an app called MarsRealEstate, which shows properties for sale on Mars. This app connects to an internet server to retrieve and display property data, including details such as the price and whether the property is available for sale or rent. The images representing each property are real-life photos from Mars captured from NASA&#39;s Mars rovers. In previous codelabs, you created a <code translate="no" dir="ltr">RecyclerView</code> with a grid layout for all the property photos:  </p>
+<p class="image-container"><img style="width: 236.50px" src="/codelabs/kotlin-android-training-internet-filtering/img/b31d2df6e0f5e858.png"></p>
+<p>In this version of the app, you work with the type of the property (rent versus buy) and add an icon to the grid layout to mark properties that are for sale:</p>
+<p class="image-container"><img style="width: 237.50px" src="/codelabs/kotlin-android-training-internet-filtering/img/670b5be64a12ddc.png"></p>
+<p>You modify the app&#39;s option menu to filter the grid to show only those properties that are for rent or for sale:</p>
+<p class="image-container"><img style="width: 188.50px" src="/codelabs/kotlin-android-training-internet-filtering/img/4b93ba4767e4a4d4.png"></p>
+<p>And finally, you create a detail view for an individual property, and you connect the icons on the overview grid to that detail fragment with navigation: </p>
+<p class="image-container"><img style="width: 237.52px" src="/codelabs/kotlin-android-training-internet-filtering/img/3732e88c965ac8c3.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add &#34;for sale&#34; images to the overview" duration="0">
+          
+          <p>Up until now, the only part of the Mars property data you&#39;ve used is the URL for the property image. But the property data—which you defined in the <code translate="no" dir="ltr">MarsProperty</code> class—also includes an ID, a price, and a type (rental or for sale). To refresh your memory, here&#39;s a snippet of the JSON data you get from the web service:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">{
+   &#34;price&#34;:8000000,
+   &#34;id&#34;:&#34;424908&#34;,
+   &#34;type&#34;:&#34;rent&#34;,
+   &#34;img_src&#34;: &#34;http://mars.jpl.nasa.gov/msl-raw-images/msss/01000/mcam/1000ML0044631290305226E03_DXXX.jpg&#34;
+},</code></pre>
+<p>In this task, you start working with the Mars property type to add a dollar-sign image to the properties on the overview page that are for sale. </p>
+<h2 is-upgraded id="step-1:-update-marsproperty-to-include-the-type" data-text="Step 1: Update MarsProperty to include the type"><strong>Step 1: Update MarsProperty to include the type</strong></h2>
+<p>The <code translate="no" dir="ltr">MarsProperty</code> class defines the data structure for each property provided by the web service. In a previous codelab, you used the <a href="https://github.com/square/moshi" target="_blank">Moshi</a> library to parse the raw JSON response from the Mars web service into individual <code translate="no" dir="ltr">MarsProperty</code> data objects. </p>
+<p>In this step, you add some logic to the <code translate="no" dir="ltr">MarsProperty</code> class to indicate whether a property is for rent or not (that is, whether the type is the string <code translate="no" dir="ltr">&#34;rent&#34;</code> or <code translate="no" dir="ltr">&#34;buy&#34;</code>). You&#39;ll use this logic in more than one place, so it&#39;s better to have it here in the data class than to replicate it. </p>
+<ol type="1" start="1">
+<li>Open the MarsRealEstate app from the last codelab. (You can download <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/MarsRealEstateGrid" target="_blank">MarsRealEstateGrid</a> if you don&#39;t have the app.)</li>
+<li>Open <code translate="no" dir="ltr">network/MarsProperty.kt</code>. Add a body to the <code translate="no" dir="ltr">MarsProperty</code> class definition, and add a custom getter for <code translate="no" dir="ltr">isRental</code> that returns <code translate="no" dir="ltr">true</code> if the object is of type <code translate="no" dir="ltr">&#34;rent&#34;</code>. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">data class MarsProperty(
+       val id: String,
+       @Json(name = &#34;img_src&#34;) val imgSrcUrl: String,
+       val type: String,
+       val price: Double)  {
+   val isRental
+       get() = type == &#34;rent&#34;
+}</code></pre>
+<h2 is-upgraded id="step-2:-update-the-grid-item-layout" data-text="Step 2: Update the grid item layout"><strong>Step 2: Update the grid item layout</strong></h2>
+<p>Now you update the item layout for the grid of images to show a dollar-sign drawable only on those property images that are for sale:</p>
+<p class="image-container"><img style="width: 237.50px" src="/codelabs/kotlin-android-training-internet-filtering/img/670b5be64a12ddc.png"></p>
+<p>With data binding expressions you can do this test entirely in the XML layout for the grid items.</p>
+<ol type="1" start="1">
+<li>Open <code translate="no" dir="ltr">res/layout/grid_view_item.xml</code>. This is the layout file for each individual cell in the grid layout for the <code translate="no" dir="ltr">RecyclerView</code>. Currently the file contains only the <code translate="no" dir="ltr">&lt;ImageView&gt;</code> element for the property image. </li>
+<li>Inside the <code translate="no" dir="ltr">&lt;data&gt;</code> element, add an <code translate="no" dir="ltr">&lt;import&gt;</code> element for the <a href="https://developer.android.com/reference/android/view/View" target="_blank"><code translate="no" dir="ltr">View</code></a> class. You use imports when you want to use components of a class inside a data binding expression in a layout file. In this case, you are going to use the <code translate="no" dir="ltr">View.GONE</code> and <code translate="no" dir="ltr">View.VISIBLE</code> constants, so you need access to the <code translate="no" dir="ltr">View</code> class. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;import type=&#34;android.view.View&#34;/&gt;</code></pre>
+<ol type="1" start="3">
+<li>Surround the entire image view with a <code translate="no" dir="ltr">FrameLayout</code>, to allow the dollar-sign drawable to be stacked on top of the property image. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;FrameLayout
+   android:layout_width=&#34;match_parent&#34;
+   android:layout_height=&#34;170dp&#34;&gt;
+             &lt;ImageView 
+                    android:id=&#34;@+id/mars_image&#34;
+            ...
+&lt;/FrameLayout&gt;</code></pre>
+<ol type="1" start="4">
+<li>For the <code translate="no" dir="ltr">ImageView</code>, change the <code translate="no" dir="ltr">android:layout_height</code> attribute to <code translate="no" dir="ltr">match_parent</code>, to fill the new parent <code translate="no" dir="ltr">FrameLayout</code>. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">android:layout_height=&#34;match_parent&#34;</code></pre>
+<ol type="1" start="5">
+<li>Add a second <code translate="no" dir="ltr">&lt;ImageView&gt;</code> element just below the first one, inside the <code translate="no" dir="ltr">FrameLayout</code>. Use the definition shown below. This image appears in the lower right corner of the grid item, on top of the Mars image, and uses the drawable defined in <code translate="no" dir="ltr">res/drawable/ic_for_sale_outline.xml</code> for the dollar-sign icon.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;ImageView
+   android:id=&#34;@+id/mars_property_type&#34;
+   android:layout_width=&#34;wrap_content&#34;
+   android:layout_height=&#34;45dp&#34;
+   android:layout_gravity=&#34;bottom|end&#34;
+   android:adjustViewBounds=&#34;true&#34;
+   android:padding=&#34;5dp&#34;
+   android:scaleType=&#34;fitCenter&#34;
+   android:src=&#34;@drawable/ic_for_sale_outline&#34;
+   tools:src=&#34;@drawable/ic_for_sale_outline&#34;/&gt;</code></pre>
+<ol type="1" start="6">
+<li>Add the <code translate="no" dir="ltr">android:visibility</code> attribute to the <code translate="no" dir="ltr">mars_property_type</code> image view. Use a binding expression to test for the property type, and assign the visibility either to <code translate="no" dir="ltr">View.GONE</code> (for a rental) or <code translate="no" dir="ltr">View.VISIBLE</code> (for a purchase). </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr"> android:visibility=&#34;@{property.rental ? View.GONE : View.VISIBLE}&#34;</code></pre>
+<p>Until now you have only seen binding expressions in layouts that use individual variables defined in the <code translate="no" dir="ltr">&lt;data&gt;</code> element. Binding expressions are extremely powerful and enable you to do operations such as tests and math calculations entirely within your XML layout. In this case, you use the ternary operator (<code translate="no" dir="ltr">?:</code>) to perform a test (is this object a rental?). You provide one result for true (hide the dollar-sign icon with <code translate="no" dir="ltr">View.GONE</code>) and another for false (show that icon with <code translate="no" dir="ltr">View.VISIBLE</code>). </p>
+<p>The new complete <code translate="no" dir="ltr">grid_view_item.xml</code> file is shown below: </p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;layout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+       xmlns:app=&#34;http://schemas.android.com/apk/res-auto&#34;
+       xmlns:tools=&#34;http://schemas.android.com/tools&#34;&gt;
+   &lt;data&gt;
+       &lt;import type=&#34;android.view.View&#34;/&gt;
+       &lt;variable
+           name=&#34;property&#34;
+           type=&#34;com.example.android.marsrealestate.network.MarsProperty&#34; /&gt;
+   &lt;/data&gt;
+   &lt;FrameLayout
+       android:layout_width=&#34;match_parent&#34;
+       android:layout_height=&#34;170dp&#34;&gt;
+
+       &lt;ImageView
+           android:id=&#34;@+id/mars_image&#34;
+           android:layout_width=&#34;match_parent&#34;
+           android:layout_height=&#34;match_parent&#34;
+           android:scaleType=&#34;centerCrop&#34;
+           android:adjustViewBounds=&#34;true&#34;
+           android:padding=&#34;2dp&#34;
+           app:imageUrl=&#34;@{property.imgSrcUrl}&#34;
+           tools:src=&#34;@tools:sample/backgrounds/scenic&#34;/&gt;
+
+       &lt;ImageView
+           android:id=&#34;@+id/mars_property_type&#34;
+           android:layout_width=&#34;wrap_content&#34;
+           android:layout_height=&#34;45dp&#34;
+           android:layout_gravity=&#34;bottom|end&#34;
+           android:adjustViewBounds=&#34;true&#34;
+           android:padding=&#34;5dp&#34;
+           android:scaleType=&#34;fitCenter&#34;
+           android:src=&#34;@drawable/ic_for_sale_outline&#34;
+           android:visibility=&#34;@{property.rental ? View.GONE : View.VISIBLE}&#34;
+           tools:src=&#34;@drawable/ic_for_sale_outline&#34;/&gt;
+   &lt;/FrameLayout&gt;
+&lt;/layout&gt;</code></pre>
+<ol type="1" start="7">
+<li>Compile and run the app, and note that properties that are not rentals have the dollar-sign icon. </li>
+</ol>
+<p class="image-container"><img style="width: 237.50px" src="/codelabs/kotlin-android-training-internet-filtering/img/670b5be64a12ddc.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Filter the results" duration="0">
+          
+          <p>Currently your app displays <em>all</em> the Mars properties in the overview grid. If a user were shopping for a rental property on Mars, having the icons to indicate which of the available properties are for sale would be useful, but there are still a lot of properties to scroll through on the page. In this task, you add an options menu to the overview fragment that enables the user to show only rentals, only for-sale properties, or show all. </p>
+<p class="image-container"><img style="width: 188.50px" src="/codelabs/kotlin-android-training-internet-filtering/img/4b93ba4767e4a4d4.png"></p>
+<p>One way you could accomplish this task is to test the type for each <code translate="no" dir="ltr">MarsProperty</code> in the overview grid and only display the matching properties. The actual Mars web service, however, has a query parameter or option (called <code translate="no" dir="ltr">filter</code>) that enables you to get only properties of either type <code translate="no" dir="ltr">rent</code> or type <code translate="no" dir="ltr">buy</code>. You could use this filter query with the <code translate="no" dir="ltr">realestate</code> web service URL in a browser like this: </p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">https://android-kotlin-fun-mars-server.appspot.com/realestate?filter=buy</code></pre>
+<p>In this task, you modify the <code translate="no" dir="ltr">MarsApiService</code> class to add a query option to the web service request with Retrofit. Then you hook up the options menu to re-download all the Mars property data using that query option. Because the response you get from the web service only contains the properties you&#39;re interested in, you don&#39;t need to change the view display logic for the overview grid at all. </p>
+<h2 is-upgraded id="step-1:-update-the-mars-api-service" data-text="Step 1: Update the Mars API service"><strong>Step 1: Update the Mars API service</strong></h2>
+<p>To change the request, you need to revisit the <code translate="no" dir="ltr">MarsApiService</code> class that you implemented in the first codelab in this series. You modify the class to provide a filtering API. </p>
+<ol type="1" start="1">
+<li>Open <code translate="no" dir="ltr">network/MarsApiService.kt</code>. Just below the imports, create an <code translate="no" dir="ltr">enum</code> called <code translate="no" dir="ltr">MarsApiFilter</code> to define constants that match the query values the web service expects. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">enum class MarsApiFilter(val value: String) {
+   SHOW_RENT(&#34;rent&#34;),
+   SHOW_BUY(&#34;buy&#34;),
+   SHOW_ALL(&#34;all&#34;) }</code></pre>
+<ol type="1" start="2">
+<li>Modify the <code translate="no" dir="ltr">getProperties()</code> method to take string input for the filter query, and annotate that input with <code translate="no" dir="ltr">@Query(&#34;filter&#34;)</code>, as shown below. <br><br>Import <code translate="no" dir="ltr">retrofit2.http.Query</code> when prompted. <br><br>The <code translate="no" dir="ltr">@Query</code> annotation tells the <code translate="no" dir="ltr">getProperties()</code> method (and thus Retrofit) to make the web service request with the filter option. Each time <code translate="no" dir="ltr">getProperties()</code> is called, the request URL includes the <code translate="no" dir="ltr">?filter=type</code> portion, which directs the web service to respond with results that match that query. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">suspend fun getProperties(@Query(&#34;filter&#34;) type: String): List&lt;MarsProperty&gt;  </code></pre>
+<h2 is-upgraded id="step-2:-update-the-overview-view-model" data-text="Step 2: Update the overview view model"><strong>Step 2: Update the overview view model</strong></h2>
+<p>You request data from the <code translate="no" dir="ltr">MarsApiService</code> in the <code translate="no" dir="ltr">getMarsRealEstateProperties()</code> method in <code translate="no" dir="ltr">OverviewViewModel</code>. Now you need to update that request to take the filter argument. </p>
+<ol type="1" start="1">
+<li>Open <code translate="no" dir="ltr">overview/OverviewViewModel.kt</code>. You will see errors in Android Studio due to the changes you made in the previous step.  Add <code translate="no" dir="ltr">MarsApiFilter</code> (the enum of possible filter values) as a parameter to the <code translate="no" dir="ltr">getMarsRealEstateProperties()</code> call. <br><br>Import <code translate="no" dir="ltr">com.example.android.marsrealestate.network.MarsApiFilter</code> when requested. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private fun getMarsRealEstateProperties(filter: MarsApiFilter) {</code></pre>
+<ol type="1" start="2">
+<li>Modify the call to <code translate="no" dir="ltr">getProperties()</code> in the Retrofit service to pass along that filter query as a string. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr"> _properties.value = MarsApi.retrofitService.getProperties(filter.value)</code></pre>
+<ol type="1" start="3">
+<li>In the <code translate="no" dir="ltr">init {}</code> block, pass <code translate="no" dir="ltr">MarsApiFilter.SHOW_ALL</code> as an argument to <code translate="no" dir="ltr">getMarsRealEstateProperties()</code>, to show all properties when the app first loads.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">init {
+   getMarsRealEstateProperties(MarsApiFilter.SHOW_ALL)
+}</code></pre>
+<ol type="1" start="4">
+<li>At the end of the class, add an <code translate="no" dir="ltr">updateFilter()</code> method that takes a <code translate="no" dir="ltr">MarsApiFilter</code> argument and calls <code translate="no" dir="ltr">getMarsRealEstateProperties()</code> with that argument.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">fun updateFilter(filter: MarsApiFilter) {
+   getMarsRealEstateProperties(filter)
+}</code></pre>
+<h2 is-upgraded id="step-3:-connect-the-fragment-to-the-options-menu" data-text="Step 3: Connect the fragment to the options menu"><strong>Step 3: Connect the fragment to the options menu</strong></h2>
+<p>The last step is to hook up the overflow menu to the fragment to call <code translate="no" dir="ltr">updateFilter()</code> on the view model when the user picks a menu option. </p>
+<ol type="1" start="1">
+<li>Open <code translate="no" dir="ltr">res/menu/overflow_menu.xml</code>. The MarsRealEstate app has an existing overflow menu that provides the three available options: showing all properties, showing just rentals, and showing just for-sale properties.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;menu xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;&gt;
+   &lt;item
+       android:id=&#34;@+id/show_all_menu&#34;
+       android:title=&#34;@string/show_all&#34; /&gt;
+   &lt;item
+       android:id=&#34;@+id/show_rent_menu&#34;
+       android:title=&#34;@string/show_rent&#34; /&gt;
+   &lt;item
+       android:id=&#34;@+id/show_buy_menu&#34;
+       android:title=&#34;@string/show_buy&#34; /&gt;
+&lt;/menu&gt;</code></pre>
+<ol type="1" start="2">
+<li>Open <code translate="no" dir="ltr">overview/OverviewFragment.kt</code>. At the end of the class, implement the <code translate="no" dir="ltr">onOptionsItemSelected()</code> method to handle menu item selections. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onOptionsItemSelected(item: MenuItem): Boolean {
+} </code></pre>
+<ol type="1" start="3">
+<li>In <code translate="no" dir="ltr">onOptionsItemSelected()</code>, call the <code translate="no" dir="ltr">updateFilter()</code> method on the view model with the appropriate filter. Use a Kotlin <code translate="no" dir="ltr">when {}</code> block to switch between the options. Use <code translate="no" dir="ltr">MarsApiFilter.SHOW_ALL</code> for the default filter value. Return <code translate="no" dir="ltr">true</code>, because you&#39;ve handled the menu item. Import <code translate="no" dir="ltr">MarsApiFilter</code> (<code translate="no" dir="ltr">com.example.android.marsrealestate.network.MarsApiFilter</code>) when requested.  The complete <code translate="no" dir="ltr">onOptionsItemSelected()</code> method is shown below.  </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onOptionsItemSelected(item: MenuItem): Boolean {
+   viewModel.updateFilter(
+           when (item.itemId) {
+               R.id.show_rent_menu -&gt; MarsApiFilter.SHOW_RENT
+               R.id.show_buy_menu -&gt; MarsApiFilter.SHOW_BUY
+               else -&gt; MarsApiFilter.SHOW_ALL
+           }
+   )
+   return true
+}</code></pre>
+<ol type="1" start="4">
+<li>Compile and run the app. The app launches the first overview grid with all property types and the for-sale properties marked with the dollar icon.</li>
+<li>Choose <strong>Rent</strong> from the options menu. The properties reload and none of them appear with the dollar icon. (Only rental properties are shown.) You might have to wait a few moments for the display to refresh to show only the filtered properties.</li>
+<li>Choose <strong>Buy</strong> from the options menu. The properties reload again, and all of them appear with the dollar icon. (Only for-sale properties are shown.)</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Create a detail page and set up navigation" duration="0">
+          
+          <p>Now you have a scrolling grid of icons for Mars properties, but it&#39;s time to get more detail. In this task, you add a detail fragment to display the details of a specific property. The detail fragment will show a larger image, the price, and the property type—whether it&#39;s a rental or for sale.</p>
+<p class="image-container"><img style="width: 237.83px" src="/codelabs/kotlin-android-training-internet-filtering/img/3732e88c965ac8c3.png"></p>
+<p>This fragment is launched when the user taps an image in the overview grid. To accomplish this, you need to add an <code translate="no" dir="ltr">onClick</code> listener to the <code translate="no" dir="ltr">RecyclerView</code> grid items, and then navigate to the new fragment. You navigate by triggering a <code translate="no" dir="ltr">LiveData</code> change in the <code translate="no" dir="ltr">ViewModel</code>, as you&#39;ve done throughout these lessons. You also use the Navigation component&#39;s Safe Args plugin to pass the selected <code translate="no" dir="ltr">MarsProperty</code> information from the overview fragment to the detail fragment. </p>
+<h2 is-upgraded id="step-1:-create-the-detail-view-model-and-update-detail-layout" data-text="Step 1: Create the detail view model and update detail layout"><strong>Step 1: Create the detail view model and update detail layout</strong></h2>
+<p>Similar to the process you used for the overview view model and fragments, you now need to implement the view model and layout files for the detail fragment. </p>
+<ol type="1" start="1">
+<li>Open <code translate="no" dir="ltr">detail/DetailViewModel.kt</code>. Just as network-related Kotlin files are contained in the <code translate="no" dir="ltr">network</code> folder and overview files in <code translate="no" dir="ltr">overview</code>, the <code translate="no" dir="ltr">detail</code> folder contains the files associated with the detail view. Notice that <code translate="no" dir="ltr">DetailViewModel</code> class (empty right now) takes a <code translate="no" dir="ltr">marsProperty</code> as a parameter in the constructor. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class DetailViewModel( marsProperty: MarsProperty,
+                     app: Application) : AndroidViewModel(app) {
+}</code></pre>
+<ol type="1" start="2">
+<li>Inside the class definition, add <code translate="no" dir="ltr">LiveData</code> for the selected Mars property, to expose that information to the detail view. Follow the usual pattern of creating a <code translate="no" dir="ltr">MutableLiveData</code> to hold the <code translate="no" dir="ltr">MarsProperty</code> itself, and then expose an immutable public <code translate="no" dir="ltr">LiveData</code> property. <br><br>Import <code translate="no" dir="ltr">androidx.lifecycle.LiveData</code> and import <code translate="no" dir="ltr">androidx.lifecycle.MutableLiveData</code> when requested. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private val _selectedProperty = MutableLiveData&lt;MarsProperty&gt;()
+val selectedProperty: LiveData&lt;MarsProperty&gt;
+   get() = _selectedProperty</code></pre>
+<ol type="1" start="3">
+<li>Create an <code translate="no" dir="ltr">init {}</code> block and set the value of the selected Mars property with the <code translate="no" dir="ltr">MarsProperty</code> object from the constructor. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">    init {
+        _selectedProperty.value = marsProperty
+    }</code></pre>
+<ol type="1" start="4">
+<li>Open <code translate="no" dir="ltr">res/layout/fragment_detail.xml</code> and look at it in the design view. <br><br>This is the layout file for the detail fragment. It contains an <code translate="no" dir="ltr">ImageView</code> for the large photo, a <code translate="no" dir="ltr">TextView</code> for the property type (rental or sale) and a <code translate="no" dir="ltr">TextView</code> for the price. Notice that the constraint layout is wrapped with a <code translate="no" dir="ltr">ScrollView</code> so it will automatically scroll if the view gets too large for the display, for example when the user views it in landscape mode.</li>
+<li>Go to the <strong>Text</strong> tab for the layout. At the top of the layout, just before the <code translate="no" dir="ltr">&lt;ScrollView&gt;</code> element, add a <code translate="no" dir="ltr">&lt;data&gt;</code> element to associate the detail view model with the layout. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;data&gt;
+   &lt;variable
+       name=&#34;viewModel&#34;
+       type=&#34;com.example.android.marsrealestate.detail.DetailViewModel&#34; /&gt;
+&lt;/data&gt;</code></pre>
+<ol type="1" start="6">
+<li>Add the <code translate="no" dir="ltr">app:imageUrl</code> attribute to the <code translate="no" dir="ltr">ImageView</code> element. Set it to the <code translate="no" dir="ltr">imgSrcUrl</code> from the view model&#39;s selected property. <br><br>The binding adapter that loads an image using Glide will automatically be used here as well, because that adapter watches all <code translate="no" dir="ltr">app:imageUrl</code> attributes. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr"> app:imageUrl=&#34;@{viewModel.selectedProperty.imgSrcUrl}&#34;</code></pre>
+<h2 is-upgraded id="step-2:-define-navigation-in-the-overview-view-model" data-text="Step 2: Define navigation in the overview view model"><strong>Step 2: Define navigation in the overview view model</strong></h2>
+<p>When the user taps a photo in the overview model, it should trigger navigation to a fragment that shows details about the clicked item. </p>
+<ol type="1" start="1">
+<li>Open <code translate="no" dir="ltr">overview/OverviewViewModel.kt</code>. Add a <code translate="no" dir="ltr">_navigateToSelectedProperty</code> <code translate="no" dir="ltr">MutableLiveData</code> property and expose it with an immutable <code translate="no" dir="ltr">LiveData</code>. <br><br>When this <code translate="no" dir="ltr">LiveData</code> changes to non-null, the navigation is triggered. (Soon you&#39;ll add the code to observe this variable and trigger the navigation.)</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private val _navigateToSelectedProperty = MutableLiveData&lt;MarsProperty&gt;()
+val navigateToSelectedProperty: LiveData&lt;MarsProperty&gt;
+   get() = _navigateToSelectedProperty</code></pre>
+<ol type="1" start="2">
+<li>At the end of the class, add a <code translate="no" dir="ltr">displayPropertyDetails()</code> method that sets _<code translate="no" dir="ltr">navigateToSelectedProperty</code> to the selected Mars property. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">fun displayPropertyDetails(marsProperty: MarsProperty) {
+   _navigateToSelectedProperty.value = marsProperty
+}</code></pre>
+<ol type="1" start="3">
+<li>Add a <code translate="no" dir="ltr">displayPropertyDetailsComplete()</code> method that nulls the value of <code translate="no" dir="ltr">_navigateToSelectedProperty</code>. You need this to mark the navigation state to complete, and to avoid the navigation being triggered again when the user returns from the detail view. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">fun displayPropertyDetailsComplete() {
+   _navigateToSelectedProperty.value = null
+}</code></pre>
+<h2 is-upgraded id="step-3:-set-up-the-click-listeners-in-the-grid-adapter-and-fragment" data-text="Step 3: Set up the click listeners in the grid adapter and fragment"><strong>Step 3: Set up the click listeners in the grid adapter and fragment</strong></h2>
+<ol type="1" start="1">
+<li>Open <code translate="no" dir="ltr">overview/PhotoGridAdapter.kt</code>. At the end of the class, create a custom <code translate="no" dir="ltr">OnClickListener</code> class that takes a lambda with a <code translate="no" dir="ltr">marsProperty</code> parameter. Inside the class, define an <code translate="no" dir="ltr">onClick()</code> function that is set to the lambda parameter.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class OnClickListener(val clickListener: (marsProperty:MarsProperty) -&gt; Unit) {
+     fun onClick(marsProperty:MarsProperty) = clickListener(marsProperty)
+}</code></pre>
+<ol type="1" start="2">
+<li>Scroll up to the class definition for the <code translate="no" dir="ltr">PhotoGridAdapter</code>, and add a private <code translate="no" dir="ltr">OnClickListener</code> property to the constructor.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class PhotoGridAdapter( private val onClickListener: OnClickListener ) :
+       ListAdapter&lt;MarsProperty,              
+           PhotoGridAdapter.MarsPropertyViewHolder&gt;(DiffCallback) {</code></pre>
+<ol type="1" start="3">
+<li>Make a photo clickable by adding the <code translate="no" dir="ltr">onClickListener</code> to the grid item in the <code translate="no" dir="ltr">onBindviewHolder()</code> method. Define the click listener in between the calls to <code translate="no" dir="ltr">getItem() and bind()</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onBindViewHolder(holder: MarsPropertyViewHolder, position: Int) {
+   val marsProperty = getItem(position)
+   holder.itemView.setOnClickListener {
+       onClickListener.onClick(marsProperty)
+   }
+   holder.bind(marsProperty)
+}</code></pre>
+<ol type="1" start="4">
+<li>Open <code translate="no" dir="ltr">overview/OverviewFragment.kt</code>. In the <code translate="no" dir="ltr">onCreateView()</code> method, replace the line that initializes the <code translate="no" dir="ltr">binding.photosGrid.adapter</code> property with the line shown below. <br><br>This code adds the <code translate="no" dir="ltr">PhotoGridAdapter.onClickListener</code> object to the <code translate="no" dir="ltr">PhotoGridAdapter</code> constructor, and calls <code translate="no" dir="ltr">viewModel.displayPropertyDetails()</code> with the passed-in <code translate="no" dir="ltr">MarsProperty</code> object. This triggers the <code translate="no" dir="ltr">LiveData</code> in the view model for the navigation.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">binding.photosGrid.adapter = PhotoGridAdapter(PhotoGridAdapter.OnClickListener {
+   viewModel.displayPropertyDetails(it)
+})</code></pre>
+<h2 is-upgraded id="step-4:-modify-the-navigation-graph-and-make-marsproperty-parcelable" data-text="Step 4: Modify the navigation graph and make MarsProperty parcelable"><strong>Step 4: Modify the navigation graph and make MarsProperty parcelable</strong></h2>
+<p>When a user taps a photo in the overview grid, the app should navigate to the detail fragment and pass through the details of the selected Mars property so the detail view can display that information.</p>
+<p class="image-container"><img style="width: 235.00px" src="/codelabs/kotlin-android-training-internet-filtering/img/3fbf1636128d623f.png"></p>
+<p>Right now you have a click listener from <code translate="no" dir="ltr">PhotoGridAdapter</code> to handle the tap, and a way to trigger the navigation from the view model. But you don&#39;t yet have a <code translate="no" dir="ltr">MarsProperty</code> object being passed to the detail fragment. For that you use Safe Args from the navigation component. </p>
+<ol type="1" start="1">
+<li>Open <code translate="no" dir="ltr">res/navigation/nav_graph.xml</code>. Click the <strong>Text</strong> tab to view the XML code for the navigation graph. </li>
+<li>Inside the <code translate="no" dir="ltr">&lt;fragment&gt;</code> element for the detail fragment, add the <code translate="no" dir="ltr">&lt;argument&gt;</code> element shown below. This argument, called <code translate="no" dir="ltr">selectedProperty</code>, has the type <code translate="no" dir="ltr">MarsProperty</code>. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;argument
+   android:name=&#34;selectedProperty&#34;
+   app:argType=&#34;com.example.android.marsrealestate.network.MarsProperty&#34;
+   /&gt;</code></pre>
+<ol type="1" start="3">
+<li>Compile the app. Navigation gives you an error because the <code translate="no" dir="ltr">MarsProperty</code> isn&#39;t <em>parcelable</em>. The <a href="https://developer.android.com/reference/android/os/Parcelable" target="_blank"><code translate="no" dir="ltr">Parcelable</code></a> interface enables objects to be serialized, so that the objects&#39; data can be passed around between fragments or activities. In this case, for the data inside the <code translate="no" dir="ltr">MarsProperty</code> object to be passed to the detail fragment via Safe Args, <code translate="no" dir="ltr">MarsProperty</code> must implement the <code translate="no" dir="ltr">Parcelable</code> interface. The good news is that Kotlin provides an easy shortcut for implementing that interface. </li>
+<li>Open <code translate="no" dir="ltr">network/MarsProperty.kt</code>. Add the <code translate="no" dir="ltr">@Parcelize</code> annotation to the class definition.<br><br>Import <code translate="no" dir="ltr">kotlinx.android.parcel.Parcelize</code> when requested. <br><br>The <code translate="no" dir="ltr">@Parcelize</code> annotation uses the Kotlin Android extensions to automatically implement the methods in the <code translate="no" dir="ltr">Parcelable</code> interface for this class. You don&#39;t have to do anything else!</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Parcelize
+data class MarsProperty (</code></pre>
+<ol type="1" start="5">
+<li>Change the class definition of <code translate="no" dir="ltr">MarsProperty</code> to extend <code translate="no" dir="ltr">Parcelable</code>.<br><br>Import <code translate="no" dir="ltr">android.os.Parcelable</code> when requested. <br><br>The <code translate="no" dir="ltr">MarsProperty</code> class definition now looks like this:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Parcelize
+data class MarsProperty (
+       val id: String,
+       @Json(name = &#34;img_src&#34;) val imgSrcUrl: String,
+       val type: String,
+       val price: Double) : Parcelable {</code></pre>
+<h2 is-upgraded id="step-5:-connect-the-fragments" data-text="Step 5: Connect the fragments "><strong>Step 5: Connect the fragments </strong></h2>
+<p>You&#39;re still not navigating—the actual navigation happens in the fragments. In this step, you add the last bits for implementing navigation between the overview and detail fragments. </p>
+<ol type="1" start="1">
+<li>Open <code translate="no" dir="ltr">overview/OverviewFragment.kt</code>. In <code translate="no" dir="ltr">onCreateView()</code>, below the lines that initialize the photo grid adapter, add the lines shown below to observe the <code translate="no" dir="ltr">navigatedToSelectedProperty</code> from the overview view model. <br><br>Import <code translate="no" dir="ltr">androidx.lifecycle.Observer</code> and import  <code translate="no" dir="ltr">androidx.navigation.fragment.findNavController</code> when requested. <br><br>The observer tests whether <code translate="no" dir="ltr">MarsProperty</code>—the <code translate="no" dir="ltr">it</code> in the lambda—is not null, and if so, it gets the navigation controller from the fragment with <code translate="no" dir="ltr">findNavController()</code>. Call <code translate="no" dir="ltr">displayPropertyDetailsComplete()</code> to tell the view model to reset the <code translate="no" dir="ltr">LiveData</code> to the null state, so you won&#39;t accidentally trigger navigation again when the app returns back to the <code translate="no" dir="ltr">OverviewFragment</code>. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">viewModel.navigateToSelectedProperty.observe(this, Observer {
+   if ( null != it ) {   
+      this.findNavController().navigate(
+              OverviewFragmentDirections.actionShowDetail(it))             
+      viewModel.displayPropertyDetailsComplete()
+   }
+})</code></pre>
+<ol type="1" start="2">
+<li>Open <code translate="no" dir="ltr">detail/DetailFragment.kt</code>. Add this line just below setting the property <code translate="no" dir="ltr">binding.lifecycleOwner</code>  in the <code translate="no" dir="ltr">onCreateView()</code> method. This line gets the selected <code translate="no" dir="ltr">MarsProperty</code> object from the Safe Args.<br><br>Notice the use of Kotlin&#39;s not-null assertion operator (<code translate="no" dir="ltr">!!</code>). If the <code translate="no" dir="ltr">selectedProperty</code> isn&#39;t there, something terrible has happened and you actually want the code to throw a null pointer. (In production code, you should handle that error in some way.)</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr"> val marsProperty = DetailFragmentArgs.fromBundle(arguments!!).selectedProperty</code></pre>
+<ol type="1" start="3">
+<li>Add this line next, to get a new <code translate="no" dir="ltr">DetailViewModelFactory</code>. You&#39;ll use the <code translate="no" dir="ltr">DetailViewModelFactory</code> to get an instance of the <code translate="no" dir="ltr">DetailViewModel</code>. The starter app includes an implementation of <code translate="no" dir="ltr">DetailViewModelFactory</code>, so all you have to do here is initialize it. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val viewModelFactory = DetailViewModelFactory(marsProperty, application)</code></pre>
+<ol type="1" start="4">
+<li>Finally, add this line to get a <code translate="no" dir="ltr">DetailViewModel</code> from the factory and to connect all the parts. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">      binding.viewModel = ViewModelProvider(
+                this, viewModelFactory).get(DetailViewModel::class.java)</code></pre>
+<ol type="1" start="5">
+<li>Compile and run the app, and tap on any Mars property photo. The detail fragment appears for that property&#39;s details. Tap the Back button to return to the overview page, and notice that the detail screen is still kind of sparse. You finish adding the property data to that detail page in the next task. </li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Create a more useful detail page" duration="0">
+          
+          <p>Right now the detail page shows only the same Mars photo you&#39;re used to seeing on the overview page. The <code translate="no" dir="ltr">MarsProperty</code> class also has a property type (rent or buy) and a property price. The detail screen should include both these values, and it would be helpful if the rental properties indicated that the price was a per-month value. You use <code translate="no" dir="ltr">LiveData</code> transformations in the view model to implement both those things.</p>
+<ol type="1" start="1">
+<li>Open <code translate="no" dir="ltr">res/values/strings.xml</code>. The starter code includes string resources, shown below,  to help you build the strings for the detail view. For the price, you&#39;ll use either the <code translate="no" dir="ltr">display_price_monthly_rental</code> resource or the <code translate="no" dir="ltr">display_price</code> resource, depending on the property type. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;string name=&#34;type_rent&#34;&gt;Rent&lt;/string&gt;
+&lt;string name=&#34;type_sale&#34;&gt;Sale&lt;/string&gt;
+&lt;string name=&#34;display_type&#34;&gt;For %s&lt;/string&gt;
+&lt;string name=&#34;display_price_monthly_rental&#34;&gt;$%,.0f/month&lt;/string&gt;
+&lt;string name=&#34;display_price&#34;&gt;$%,.0f&lt;/string&gt;</code></pre>
+<ol type="1" start="2">
+<li>Open <code translate="no" dir="ltr">detail/DetailViewModel.kt</code>. At the bottom of the class, add the code shown below. <br><br>Import <code translate="no" dir="ltr">androidx.lifecycle.Transformations</code> if requested. <br><br>This transformation tests whether the selected property is a rental, using the same test from the first task. If the property is a rental, the transformation chooses the appropriate string from the resources with a Kotlin <code translate="no" dir="ltr">when {}</code> switch. Both of these strings need a number at the end, so you concatenate the <code translate="no" dir="ltr">property.price</code> afterwards.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val displayPropertyPrice = Transformations.map(selectedProperty) {
+   app.applicationContext.getString(
+           when (it.isRental) {
+               true -&gt; R.string.display_price_monthly_rental
+               false -&gt; R.string.display_price
+           }, it.price)
+}</code></pre>
+<ol type="1" start="3">
+<li>Import the generated <code translate="no" dir="ltr">R</code> class to gain access to the string resources in the project. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">import com.example.android.marsrealestate.R</code></pre>
+<ol type="1" start="4">
+<li>After the <code translate="no" dir="ltr">displayPropertyPrice</code> transformation, add the code shown below. This transformation concatenates multiple string resources, based on whether the property type is a rental. </li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val displayPropertyType = Transformations.map(selectedProperty) {
+   app.applicationContext.getString(R.string.display_type,
+           app.applicationContext.getString(
+                   when (it.isRental) {
+                       true -&gt; R.string.type_rent
+                       false -&gt; R.string.type_sale
+                   }))
+}</code></pre>
+<ol type="1" start="5">
+<li>Open <code translate="no" dir="ltr">res/layout/fragment_detail.xml</code>. There&#39;s just one more thing to do, and that is to bind the new strings (which you created with the <code translate="no" dir="ltr">LiveData</code> transformations) to the detail view. To do that, you set the value of the text field for the property type text to <code translate="no" dir="ltr">viewModel.displayPropertyType</code>, and the text field for the price value text to <code translate="no" dir="ltr">viewModel.displayPropertyPrice</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;TextView
+   android:id=&#34;@+id/property_type_text&#34;
+...
+android:text=&#34;@{viewModel.displayPropertyType}&#34;
+...
+   tools:text=&#34;To Rent&#34; /&gt;
+
+&lt;TextView
+   android:id=&#34;@+id/price_value_text&#34;
+...
+android:text=&#34;@{viewModel.displayPropertyPrice}&#34;
+...
+   tools:text=&#34;$100,000&#34; /&gt;</code></pre>
+<ol type="1" start="6">
+<li>Compile and run the app. Now all the property data appears on the detail page, nicely formatted. </li>
+</ol>
+<p class="image-container"><img style="width: 237.52px" src="/codelabs/kotlin-android-training-internet-filtering/img/3732e88c965ac8c3.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Solution code" duration="0">
+          
+          <p>Android Studio project: <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/MarsRealEstateFinal" target="_blank">MarsRealEstateFinal</a></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Summary" duration="0">
+          
+          <h2 is-upgraded id="binding-expressions" data-text="Binding expressions"><strong>Binding expressions</strong></h2>
+<ul>
+<li>Use <a href="https://developer.android.com/topic/libraries/data-binding/expressions" target="_blank">binding expressions</a> in XML layout files to perform simple programmatic operations, such as math or conditional tests, on bound data.</li>
+<li>To reference classes inside your layout file, use the <code translate="no" dir="ltr">&lt;import&gt;</code> tag inside the <code translate="no" dir="ltr">&lt;data&gt;</code> tag.</li>
+</ul>
+<h2 is-upgraded id="web-service-query-options" data-text="Web service query options"><strong>Web service query options</strong></h2>
+<ul>
+<li>Requests to web services can include optional parameters. </li>
+<li>To specify query parameters in the request, use the <code translate="no" dir="ltr">@Query</code> annotation in <a href="https://square.github.io/retrofit/" target="_blank">Retrofit</a>.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Learn more" duration="0">
+          
+          <p>Udacity course: </p>
+<ul>
+<li><a href="https://www.udacity.com/course/developing-android-apps-with-kotlin--ud9012" target="_blank">Developing Android Apps with Kotlin</a></li>
+</ul>
+<p>Android developer documentation: </p>
+<ul>
+<li><a href="https://developer.android.com/topic/libraries/architecture/viewmodel" target="_blank">ViewModel Overview</a></li>
+<li><a href="https://developer.android.com/topic/libraries/architecture/livedata#kotlin" target="_blank">LiveData Overview</a></li>
+<li><a href="https://developer.android.com/topic/libraries/data-binding/binding-adapters" target="_blank">Binding adapters</a></li>
+<li><a href="https://developer.android.com/topic/libraries/data-binding/expressions" target="_blank">Layouts and binding expressions</a></li>
+<li><a href="https://developer.android.com/topic/libraries/architecture/navigation/" target="_blank">Navigation</a></li>
+<li><a href="https://developer.android.com/topic/libraries/architecture/navigation/navigation-implementing" target="_blank">Get started with the Navigation component</a></li>
+<li><a href="https://developer.android.com/guide/navigation/navigation-pass-data" target="_blank">Pass data between destinations</a> (also describes Safe Args)</li>
+<li><a href="https://developer.android.com/reference/androidx/lifecycle/Transformations" target="_blank"><code translate="no" dir="ltr">Transformations</code></a> class</li>
+<li><a href="https://developer.android.com/reference/androidx/lifecycle/ViewModelProvider" target="_blank"><code translate="no" dir="ltr">ViewModelProvider</code></a> class</li>
+<li><a href="https://developer.android.com/reference/androidx/lifecycle/ViewModelProvider.Factory" target="_blank"><code translate="no" dir="ltr">ViewModelProvider.Factory</code></a> class</li>
+</ul>
+<p>Other:</p>
+<ul>
+<li><a href="https://github.com/bumptech/glide" target="_blank">Glide</a> </li>
+<li><a href="https://square.github.io/retrofit/2.x/retrofit/index.html?retrofit2/http/Query.html" target="_blank">Retrofit Query class</a></li>
+<li>Kotlin&#39;s <a href="https://kotlinlang.org/docs/tutorials/android-plugin.html#parcelable-implementations-generator" target="_blank">Parcelable generator extension</a></li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Homework" duration="0">
+          
+          <p>This section lists possible homework assignments for students who are working through this codelab as part of a course led by an instructor. It&#39;s up to the instructor to do the following:</p>
+<ul>
+<li>Assign homework if required.</li>
+<li>Communicate to students how to submit homework assignments.</li>
+<li>Grade the homework assignments.</li>
+</ul>
+<p>Instructors can use these suggestions as little or as much as they want, and should feel free to assign any other homework they feel is appropriate.</p>
+<p>If you&#39;re working through this codelab on your own, feel free to use these homework assignments to test your knowledge.</p>
+
+<h2 is-upgraded id="answer-these-questions" data-text="Answer these questions">Answer these questions</h2>
+<h3 is-upgraded id="question-1" data-text="Question 1"><strong>Question 1</strong></h3>
+<p>What does the <code translate="no" dir="ltr">&lt;import&gt;</code> tag in an XML layout file do?</p>
+<p>▢ Include one layout file in another.</p>
+<p>▢ Embed Kotlin code inside the layout file.</p>
+<p>▢ Provide access to data-bound properties.</p>
+<p>▢ Enable you to reference classes and class members in binding expressions.</p>
+<h3 is-upgraded id="question-2" data-text="Question 2"><strong>Question 2</strong></h3>
+<p>How do you add a query option to a REST web service call in Retrofit?</p>
+<p>▢ Append the query to the end of the request URL.</p>
+<p>▢ Add a parameter for the query to the function that makes the request, and annotate that parameter with <code translate="no" dir="ltr">@Query</code>.</p>
+<p>▢ Use the <code translate="no" dir="ltr">Query</code> class to build a request.</p>
+<p>▢ Use the <code translate="no" dir="ltr">addQuery()</code> method in the Retrofit builder.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Next codelab" duration="0">
+          
+          <p>Start the next lesson: <a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-repository/" target="_blank"><paper-button class="colored" raised>Repository</paper-button></a></p>
+<p>For links to other codelabs in this course, see the <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+
+
+
+        </google-codelab-step>
+      
+    </google-codelab>
+  
+    
+
+    
+  </div>
+
+  
+
+  
+    
+    
+    
+  
+
+  
+  
+</article>
+
+
+
+
+            
+          </devsite-content>
+        </main>
+        <devsite-footer-promos class="devsite-footer">
+          
+            
+
+<nav class="devsite-footer-promos nocontent" aria-label="Promosi">
+  <ul class="devsite-footer-promos-list">
+    
+    <li class="devsite-footer-promo">
+      <a href="//twitter.com/AndroidDev"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer Twitter Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="/_static/android/images/logo-twitter.svg"
+             loading="lazy"
+             alt="Twitter">
+        
+        Twitter
+      </a>
+      <div class="devsite-footer-promo-description">Ikuti @AndroidDev di Twitter</div>
+    </li>
+    
+    <li class="devsite-footer-promo">
+      <a href="//www.youtube.com/user/androiddevelopers"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer YouTube Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="//www.gstatic.com/images/icons/material/product/2x/youtube_48dp.png"
+             loading="lazy"
+             alt="YouTube">
+        
+        YouTube
+      </a>
+      <div class="devsite-footer-promo-description">Lihat Developer Android di YouTube</div>
+    </li>
+    
+  </ul>
+</nav>
+
+          
+        </devsite-footer-promos>
+        <devsite-footer-linkboxes class="devsite-footer">
+          
+            
+<nav class="devsite-footer-linkboxes nocontent" aria-label="Link footer">
+  
+  <ul class="devsite-footer-linkboxes-list">
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Selengkapnya tentang Android</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Android
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/enterprise/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Enterprise
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/security-center/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Keamanan
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//source.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Source
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dukungan</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=190923&amp;template=841312"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Laporkan bug platform
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=192697"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Laporkan bug dokumentasi
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//support.google.com/googleplay/android-developer"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Google Play support
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://google.qualtrics.com/jfe/form/SV_ewWXIoEVLBcyp7f??reserved=1&amp;utm_source=FooterLink&amp;Q_Language=en&amp;utm_medium=own_srch&amp;utm_campaign=developer.android.com&amp;utm_term=0&amp;utm_content=0&amp;productTag=reg&amp;campaignDate=may19&amp;pType=devel&amp;referral_code=gV420370"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Bergabung dengan studi riset
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dokumentasi</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/guide"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Panduan developer
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/design"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Panduan desain
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/reference"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Referensi API
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/samples"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Sampel
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/studio/intro"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 5)"
+            >
+          
+            Android Studio
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+  
+</nav>
+          
+        </devsite-footer-linkboxes>
+        <devsite-footer-utility class="devsite-footer">
+          
+            
+
+<div class="devsite-footer-utility nocontent">
+  
+  
+  <nav class="devsite-footer-sites" aria-label="Situs Google Developers lain">
+    <a href="https://developers.google.com/"
+       class="devsite-footer-sites-logo-link gc-analytics-event"
+       data-category="Site-Wide Custom Events"
+       data-label="Footer Google Developers Link">
+      <img class="devsite-footer-sites-logo"
+           src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup-developers.svg"
+           loading="lazy"
+           alt="Google Developers">
+    </a>
+    <ul class="devsite-footer-sites-list">
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.android.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Android Link"
+         
+         >
+          Android
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.chrome.com/home"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Chrome Link"
+         
+         >
+          Chrome
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//firebase.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Firebase Link"
+         
+         >
+          Firebase
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//cloud.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Google Cloud Platform Link"
+         
+         >
+          Google Cloud Platform
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developers.google.com/products/"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer All products Link"
+         
+         >
+          Semua produk
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  
+
+  
+  <nav class="devsite-footer-utility-links" aria-label="Link utilitas">
+    
+    <ul class="devsite-footer-utility-list">
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="//policies.google.com/privacy"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Privacy link"
+         >
+          Privasi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/license"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer License link"
+         >
+          Lisensi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/distribute/marketing-tools/brand-guidelines"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Brand guidelines link"
+         >
+          Pedoman brand
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 devsite-footer-utility-button">
+        
+        <span class="devsite-footer-utility-description">Dapatkan berita dan tips melalui email</span>
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/updates"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Subscribe link"
+         >
+          Berlangganan
+        </a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+  </nav>
+</div>
+          
+        </devsite-footer-utility>
+        <devsite-panel></devsite-panel>
+      </section></section>
+    <devsite-sitemask></devsite-sitemask>
+    
+<devsite-snackbar 
+                  ></devsite-snackbar>
+
+    <devsite-tooltip ></devsite-tooltip>
+    <devsite-heading-link></devsite-heading-link>
+    <devsite-analytics enable-analytics-iframe>
+      
+        <script type="application/json" analytics>[{"gaid": "UA-5831155-1", "dimensions": {"dimension4": "Developer Android", "dimension1": "Signed In", "dimension6": "en", "dimension3": false, "dimension5": "id", "dimension11": false}, "metrics": {"ratings_count": "metric2", "ratings_value": "metric1"}}]</script>
+<script type="application/json" gtm>{"parameters": {"freeTrialEligibleUser": "False", "internalUser": "False", "language": {"machineTranslated": "False", "requested": "id", "served": "en"}, "pageType": "codelab", "projectName": "Developer Android", "signedIn": "True", "tenant": "android", "recommendations": {"sourcePage": "", "sourceType": 0, "sourceRank": 0, "sourceIdenticalDescriptions": 0, "sourceTitleWords": 0, "sourceDescriptionWords": 0, "experiment": ""}}, "tags": ["GTM-KMSWPCJ"]}</script>
+      
+    </devsite-analytics>
+    
+      <devsite-badger></devsite-badger>
+    
+    
+<android-fully-clickable target=".fully-clickable" watch="devsite-content"></android-fully-clickable>
+    <script nonce="UadAnVMuG60C7G8sqnboSnAs3RtFcZ">
+  
+  (function(d,e,v,s,i,t,E){d['GoogleDevelopersObject']=i;
+    t=e.createElement(v);t.async=1;t.src=s;E=e.getElementsByTagName(v)[0];
+    E.parentNode.insertBefore(t,E);})(window, document, 'script',
+    'https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/js/app_loader.js', '[3,"id",null,"/js/devsite_app_module.js","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android","https://android-dot-devsite-v2-prod.appspot.com",1,null,["/_pwa/android/manifest.json","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/images/video-placeholder.svg","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg","https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap"],1,null,[1,6,8,12,14,17,21,25,40,50,63,70,75,76,80,87,88,91,92,93,97,98,100,101,102,103,104,105,107,108,111,112,113,115,116,117,118,120,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,138,147,148],"AIzaSyAP-jjEJBzmIyKR4F-3XITp8yM9T1gEEI8","AIzaSyB6xiKGDR5O3Ak2okS4rLkauxGUG7XP0hg"]')
+  
+</script>
+    <devsite-a11y-announce></devsite-a11y-announce>
+  </body>
+</html>

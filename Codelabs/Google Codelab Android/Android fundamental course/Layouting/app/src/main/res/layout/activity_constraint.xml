@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@color/sekal_farros_red"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_hello_toast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Toast"
+        app:backgroundTint="@color/sekal_farros_yellow"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="76dp"
+        android:layout_weight="1"
+        android:background="@color/sekal_farros_purple"
+        android:gravity="center"
+        android:text="0"
+        android:textSize="160sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/btn_hello_toast"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_hello_toast"
+        app:layout_constraintTop_toBottomOf="@+id/btn_hello_toast" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Count"
+        app:backgroundTint="@color/sekal_farros_yellow"
+        app:cornerRadius="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/text_view"
+        tools:layout_editor_absoluteX="20dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

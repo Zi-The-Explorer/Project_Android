@@ -1,0 +1,1830 @@
+<!doctype html>
+<html 
+      lang="id"
+      dir="ltr">
+  <head>
+    <meta name="google-signin-client-id" content="721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com">
+    <meta name="google-signin-scope"
+          content="profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award">
+    <meta property="og:site_name" content="Android Developers">
+    <meta property="og:type" content="website"><meta name="robots" content="noindex"><meta name="theme-color" content="#3ddc84"><meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/_pwa/android/manifest.json"
+          crossorigin="use-credentials">
+    <link rel="preconnect" href="//www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="//apis.google.com" crossorigin>
+    <link rel="preconnect" href="//www.google-analytics.com" crossorigin><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap">
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Material+Icons&display=block"><link rel="stylesheet" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/css/app.css">
+      <link rel="shortcut icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/touchicon-180.png"><link rel="canonical" href="https://developer.android.com/codelabs/kotlin-android-training-live-data-transformations?hl=id"><link rel="search" type="application/opensearchdescription+xml"
+            title="Android Developers" href="https://developer.android.com/s/opensearch.xml">
+      
+
+<title>Android Kotlin Fundamentals: 5.4 LiveData transformations</title>
+
+<meta property="og:title" content="Android Kotlin Fundamentals: 5.4 LiveData transformations"><meta name="description" content="In this codelab, you learn how to transform LiveData into a different result, and have the UI show the new result every time the underlying LiveData changes.">
+  <meta property="og:description" content="In this codelab, you learn how to transform LiveData into a different result, and have the UI show the new result every time the underlying LiveData changes."><meta property="og:url" content="https://developer.android.com/codelabs/kotlin-android-training-live-data-transformations?hl=id"><meta property="og:image" content="https://developer.android.com/images/social/android-developers.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675"><meta property="og:locale" content="en"><meta name="twitter:card" content="summary_large_image">
+  <meta name="xsrf_token" content="nI40cHXWbFjDi1tgH4gov3prSMZJ3TXW9cwDd-_rUKE6MTYyNzQ4MTk3MTEwNTU0OA">
+  
+
+  <meta name="session_expiry" content="1627483460">
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    <meta name="original_source" content="https://docs.google.com/document/d/1PtUwRzExEW9O4Q1EtB8hkMq8EV7M36exLK6y5H0Krqk/edit" />
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+  
+
+    </head>
+  <body class="devsite-full-width-page"
+        template="codelab"
+        theme="android-theme"
+        type="codelab"
+        
+        layout="full"
+        
+        
+        pending>
+    <devsite-progress type="indeterminate" id="app-progress"></devsite-progress>
+  
+    <section class="devsite-wrapper"><devsite-header>
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="devsite-header--inner nocontent">
+  <div class="devsite-top-logo-row-wrapper-wrapper">
+    <div class="devsite-top-logo-row-wrapper">
+      <div class="devsite-top-logo-row">
+        <button type="button" id="devsite-hamburger-menu"
+          class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+          data-category="Site-Wide Custom Events"
+          data-label="Navigation menu button"
+          visually-hidden
+          aria-label="Open menu">
+        </button>
+        <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo"
+       alt="Android Developers">
+
+</a>
+
+
+
+  
+  
+  <span class="devsite-product-name">
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+  </span>
+
+</div>
+        <div class="devsite-top-logo-row-middle">
+          <div class="devsite-header-upper-tabs">
+            
+              
+              
+  <devsite-tabs class="upper-tabs">
+
+    <nav class="devsite-tabs-wrapper" aria-label="Tab atas">
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/about"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="platform"
+   track-metadata-eventdetail="https://developer.android.com/about"
+   track-metadata-position="nav - platform"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Platform"
+   >
+  Platform
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/studio"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="android studio"
+   track-metadata-eventdetail="https://developer.android.com/studio"
+   track-metadata-position="nav - android studio"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Android Studio"
+   >
+  Android Studio
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/distribute"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="google play"
+   track-metadata-eventdetail="https://developer.android.com/distribute"
+   track-metadata-position="nav - google play"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Google Play"
+   >
+  Google Play
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/jetpack"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="jetpack"
+   track-metadata-eventdetail="https://developer.android.com/jetpack"
+   track-metadata-position="nav - jetpack"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Jetpack"
+   >
+  Jetpack
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/kotlin"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="kotlin"
+   track-metadata-eventdetail="https://developer.android.com/kotlin"
+   track-metadata-position="nav - kotlin"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Kotlin"
+   >
+  Kotlin
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/docs"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="dokumen"
+   track-metadata-eventdetail="https://developer.android.com/docs"
+   track-metadata-position="nav - dokumen"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Dokumen"
+   >
+  Dokumen
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/news"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="berita"
+   track-metadata-eventdetail="https://developer.android.com/news"
+   track-metadata-position="nav - berita"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Berita"
+   >
+  Berita
+</a>
+
+          </tab>
+        
+      
+    </nav>
+
+  </devsite-tabs>
+
+            
+           </div>
+          
+<devsite-search
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    enable-signin
+    enable-search
+    enable-suggestions
+      enable-query-completion
+    
+    project-name="Developer Android"
+    tenant-name="Android Developers"
+    
+    
+    
+    
+    
+    role="combobox">
+  <form class="devsite-search-form" action="https://developer.android.com/s/results" method="GET">
+    <div class="devsite-search-container">
+      <div class="devsite-searchbox">
+        <input
+          aria-activedescendant=""
+          aria-autocomplete="list"
+          
+          aria-label="Penelusuran"
+          aria-haspopup="false"
+          aria-multiline="false"
+          aria-label="Kotak penelusuran"
+          autocomplete="off"
+          class="devsite-search-field devsite-search-query"
+          name="q"
+          
+          placeholder="Penelusuran"
+          role="searchbox"
+          type="text"
+          value=""
+          >
+        <div class="devsite-search-image material-icons" aria-hidden="true"></div>
+      </div>
+      <button type="button"
+              search-open
+              class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+              
+              aria-label="Buka penelusuran"></button>
+    </div>
+  </form>
+  <button type="button"
+          search-close
+          class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+          
+          aria-label="Tutup penelusuran"></button>
+</devsite-search>
+
+        </div>
+
+        
+
+        
+
+        
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+
+        
+
+        
+          
+          
+          <devsite-user signed-in
+                        
+                        
+                          enable-profiles
+                        
+                        
+                          
+                        id="devsite-user"></devsite-user>
+           
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="devsite-collapsible-section
+    
+      devsite-header-no-lower-tabs
+    ">
+    <div class="devsite-header-background">
+      
+        
+      
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+  
+</devsite-header>
+      <devsite-book-nav scrollbars hidden>
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="devsite-book-nav devsite-nav nocontent"
+     aria-label="Menu samping">
+  <div class="devsite-mobile-header">
+    <button type="button"
+            id="devsite-close-nav"
+            class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+            data-category="Site-Wide Custom Events"
+            data-label="Close navigation"
+            aria-label="Close navigation">
+    </button>
+    <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+
+</a>
+
+
+  
+      <span class="devsite-product-name">
+        
+        
+        <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+      </span>
+    
+
+</div>
+  </div>
+
+  <div class="devsite-book-nav-wrapper">
+    <div class="devsite-mobile-nav-top">
+      
+        <ul class="devsite-nav-list">
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/about"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Platform"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="platform">
+  
+    <span class="devsite-nav-text" tooltip >
+      Platform
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/studio"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Android Studio"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="androidStudio">
+  
+    <span class="devsite-nav-text" tooltip >
+      Android Studio
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/distribute"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Google Play"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="googlePlay">
+  
+    <span class="devsite-nav-text" tooltip >
+      Google Play
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/jetpack"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Jetpack"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="jetpack">
+  
+    <span class="devsite-nav-text" tooltip >
+      Jetpack
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/kotlin"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Kotlin"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="kotlin">
+  
+    <span class="devsite-nav-text" tooltip >
+      Kotlin
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/docs"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Dokumen"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="dokumen">
+  
+    <span class="devsite-nav-text" tooltip >
+      Dokumen
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/news"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Berita"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="berita">
+  
+    <span class="devsite-nav-text" tooltip >
+      Berita
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+          
+          
+        </ul>
+      
+    </div>
+    
+  </div>
+</nav>
+        
+      </devsite-book-nav>
+      <section id="gc-wrapper">
+        <main role="main" class="devsite-main-content"
+            
+            >
+          
+          <devsite-toc class="devsite-nav"
+                       role="navigation"
+                       aria-label="Daftar isi"
+            disabled></devsite-toc>
+          <devsite-content>
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="devsite-article"><style>
+      body {
+        transition: opacity ease-in 0.2s;
+      }
+
+      body[unresolved] {
+        opacity: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+      </style>
+  
+  
+  
+
+  <div class="devsite-article-meta nocontent" role="navigation">
+    
+    
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+  <a href="https://developer.android.com/"
+      
+        class="devsite-breadcrumb-link gc-analytics-event"
+      
+        data-category="Site-Wide Custom Events"
+      
+        data-label="Breadcrumbs"
+      
+        data-value="1"
+      
+        track-type="globalNav"
+      
+        track-name="breadcrumb"
+      
+        track-metadata-position="1"
+      
+        track-metadata-eventdetail="Developer Android"
+      
+    >
+    
+        Developer Android
+      
+  </a>
+  
+    
+  </li>
+  
+</ul>
+    
+  </div>
+  
+  
+    <h1 class="devsite-page-title">Android Kotlin Fundamentals: 5.4 LiveData transformations</h1><devsite-bookmark></devsite-bookmark>
+  
+
+  <devsite-toc class="devsite-nav" devsite-toc-embedded
+               disabled>
+  </devsite-toc>
+
+  
+
+  <div class="devsite-article-body clearfix
+    ">
+
+    
+      
+    <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+    <google-codelab codelab-gaid="UA-81734179-1"
+                    doc-id="1PtUwRzExEW9O4Q1EtB8hkMq8EV7M36exLK6y5H0Krqk"
+                    id="kotlin-android-training-live-data-transformations"
+                    title="Android Kotlin Fundamentals: 5.4 LiveData transformations"
+                    environment="web"
+                    category="android,kotlin"
+                    feedback-link="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/issues/new?assignees=&amp;labels=&amp;template=android-kotlin-fundamentals.md&amp;title=Android&#43;Kotlin&#43;Fundamentals&#43;codelab%3A&#43;"
+                    >
+      
+        <google-codelab-step label="Welcome" duration="0">
+          
+            <google-codelab-about codelab-title="Android Kotlin Fundamentals: 5.4 LiveData transformations"
+                                  authors="Google Developers Training team"
+                                  >
+            </google-codelab-about>
+          
+          <p>This codelab is part of the Android Kotlin Fundamentals course. You&#39;ll get the most value out of this course if you work through the codelabs in sequence. All the course codelabs are listed on the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+<h2 is-upgraded id="introduction" data-text="Introduction">Introduction</h2>
+<p>The GuessTheWord app that you worked on in the previous three codelabs implements the <code translate="no" dir="ltr">LiveData</code> observer pattern to observe  <a href="https://developer.android.com/topic/libraries/architecture/viewmodel" target="_blank"><code translate="no" dir="ltr">ViewModel</code></a> data. The views in the UI controller observe the <code translate="no" dir="ltr">LiveData</code> in the <code translate="no" dir="ltr">ViewModel</code> and update the data to be displayed.</p>
+<p>When passing <code translate="no" dir="ltr">LiveData</code> between the components, sometimes you might want to map or transform the data. Your code might need to perform calculations, display only a subset of the data, or change the rendition of the data. For example, for the <code translate="no" dir="ltr">word</code> <code translate="no" dir="ltr">LiveData</code>, you could create a transformation that returns the number of letters in the word rather than the word itself.</p>
+<p>You can transform <code translate="no" dir="ltr">LiveData</code> using the helper methods in the  <a href="https://developer.android.com/reference/androidx/lifecycle/Transformations.html" target="_blank"><code translate="no" dir="ltr">Transformations</code></a> class:</p>
+<ul>
+<li><a href="https://developer.android.com/reference/androidx/lifecycle/Transformations.html#map(androidx.lifecycle.LiveData%3CX%3E,%20androidx.arch.core.util.Function%3CX,%20Y%3E)" target="_blank"><code translate="no" dir="ltr">Transformations.map</code></a></li>
+<li><a href="https://developer.android.com/reference/androidx/lifecycle/Transformations.html#switchMap(androidx.lifecycle.LiveData%3CX%3E,%20androidx.arch.core.util.Function%3CX,%20androidx.lifecycle.LiveData%3CY%3E%3E)" target="_blank"><code translate="no" dir="ltr">Transformations.switchMap</code></a></li>
+</ul>
+<p>In this codelab, you add a countdown timer in the app. You learn how to use <code translate="no" dir="ltr">Transformations.map()</code> on the <code translate="no" dir="ltr">LiveData</code> to transform elapsed time into a format to display on the screen.</p>
+<h2 is-upgraded id="what-you-should-already-know" data-text="What you should already know">What you should already know</h2>
+<ul>
+<li>How to create basic Android apps in Kotlin</li>
+<li>How to use  <a href="https://developer.android.com/reference/android/arch/lifecycle/ViewModel" target="_blank"><code translate="no" dir="ltr">ViewModel</code></a> objects in your app</li>
+<li>How to store data using <code translate="no" dir="ltr">LiveData</code> in a <code translate="no" dir="ltr">ViewModel</code></li>
+<li>How to add <code translate="no" dir="ltr">LiveData</code> observer methods to observe the changes in the data</li>
+<li>How to use data binding with <code translate="no" dir="ltr">ViewModel</code> and <code translate="no" dir="ltr">LiveData</code></li>
+</ul>
+<h2 class="checklist" is-upgraded id="what-youll-learn" data-text="What you'll learn">What you'll learn</h2>
+<ul class="checklist">
+<li>How to use <code translate="no" dir="ltr">Transformations</code> with <code translate="no" dir="ltr">LiveData</code></li>
+</ul>
+<h2 is-upgraded id="what-youll-do" data-text="What you'll do">What you'll do</h2>
+<ul>
+<li>Add a timer to end the game.</li>
+<li>Use <code translate="no" dir="ltr">Transformations.map()</code> to transform one <code translate="no" dir="ltr">LiveData</code> into another.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="App overview" duration="0">
+          
+          <p>In the Lesson 5 codelabs, you develop the GuessTheWord app, beginning with starter code. GuessTheWord is a two-player  <a href="https://en.wikipedia.org/wiki/Charades" target="_blank">charades</a>-style game, where the players collaborate to achieve the highest score possible.</p>
+<p>The first player looks at the words in the app and acts each one out in turn, making sure not to show the word to the second player. The second player tries to guess the word.</p>
+<p>To play the game, the first player opens the app on the device and sees a word, for example &#34;guitar,&#34; as shown in the screenshot below.</p>
+<p class="image-container"><img alt="NGXI1N8h-yyjo5jMCH14C4gPooFuf_O36eZjCUXVMcHbT4ipJ9loKKBOKg9SL-C1p-ZR4ewCGDDFM4naVWnJMMxg5Sy0VZwtHaCKSb8FcsSySmp9rptV_EaTkeT6Gtad8l7nwAl6xA" style="width: 408.90px" src="https://lh6.googleusercontent.com/NGXI1N8h-yyjo5jMCH14C4gPooFuf_O36eZjCUXVMcHbT4ipJ9loKKBOKg9SL-C1p-ZR4ewCGDDFM4naVWnJMMxg5Sy0VZwtHaCKSb8FcsSySmp9rptV_EaTkeT6Gtad8l7nwAl6xA"></p>
+<p>The first player acts out the word, being careful not to actually say the word itself.</p>
+<ul>
+<li>When the second player guesses the word correctly, the first player presses the <strong>Got It</strong> button, which increases the count by one and shows the next word.</li>
+<li>If the second player can&#39;t guess the word, the first player presses the <strong>Skip</strong> button, which decreases the count by one and skips to the next word.</li>
+<li>To end the game, press the <strong>End Game</strong> button. (This functionality isn&#39;t in the starter code for the first codelab in the series.)</li>
+</ul>
+<p>In this codelab, you improve the GuessTheWord app by adding a one-minute countdown timer that appears above the score. The timer ends the game when the countdown reaches <code translate="no" dir="ltr">0</code>.</p>
+<p>You also use a transformation to format the elapsed time <code translate="no" dir="ltr">LiveData</code> object into a timer string <code translate="no" dir="ltr">LiveData</code> object. The transformed <code translate="no" dir="ltr">LiveData</code> is the data binding source for the timer&#39;s text view.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Get started" duration="0">
+          
+          <p>In this task, you locate and run your starter code for this codelab. You can use the GuessTheWord app that you built in previous codelab as your starter code, or you can download a starter app.</p>
+<ol type="1">
+<li>(Optional) If you&#39;re not using your code from the previous codelab,  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/GuessTheWordDataBinding" target="_blank">download the starter code</a> for this codelab. Unzip the code, and open the project in Android Studio.</li>
+<li>Run the app and play the game.</li>
+<li>Notice that the <strong>Skip</strong> button displays the next word and decreases the score by one, and the <strong>Got It</strong> button shows the next word and increases the score by one. The <strong>End Game</strong> button ends the game.</li>
+<li>Cycle through all the words, and notice that the app navigates automatically to the score screen.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add a timer" duration="0">
+          
+          <p>In this task, you add a countdown timer to the app. Instead of the game ending when the word list is empty, the game ends when the timer finishes. Android provides a utility class called  <a href="https://developer.android.com/reference/android/os/CountDownTimer" target="_blank"><code translate="no" dir="ltr">CountDownTimer</code></a> that you use to implement the timer.</p>
+<p>Add the logic for the timer in the <code translate="no" dir="ltr">GameViewModel</code> so that the timer does not get destroyed during configuration changes. The fragment contains the code to update the timer text view as the timer ticks.</p>
+<p>Implement the following steps in the <code translate="no" dir="ltr">GameViewModel</code> class:</p>
+<ol type="1">
+<li>Create a <strong><code translate="no" dir="ltr">companion</code></strong> object to hold the timer constants.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">companion object {
+
+   // Time when the game is over
+   private const val DONE = 0L
+
+   // Countdown time interval
+   private const val ONE_SECOND = 1000L
+
+   // Total time for the game
+   private const val COUNTDOWN_TIME = 60000L
+
+}
+</code></pre>
+<ol type="1" start="2">
+<li>To store the countdown time of the timer, add a <code translate="no" dir="ltr">MutableLiveData</code> member variable called <strong><code translate="no" dir="ltr">_currentTime</code></strong> and a backing property, <strong><code translate="no" dir="ltr">currentTime</code></strong>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">// Countdown time
+private val _currentTime = MutableLiveData&lt;Long&gt;()
+val currentTime: LiveData&lt;Long&gt;
+   get() = _currentTime
+</code></pre>
+<ol type="1" start="3">
+<li>Add a <code translate="no" dir="ltr">private</code> member variable called <strong><code translate="no" dir="ltr">timer</code></strong> of the type <code translate="no" dir="ltr">CountDownTimer</code>. You resolve the initialization error in the next step.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private val timer: CountDownTimer
+</code></pre>
+<ol type="1" start="4">
+<li>Inside the <code translate="no" dir="ltr">init</code> block, initialize and start the timer. Pass in the total time, <strong><code translate="no" dir="ltr">COUNTDOWN_TIME</code></strong>. For the time interval, use <strong><code translate="no" dir="ltr">ONE_SECOND</code></strong>. Override the callback methods  <a href="https://developer.android.com/reference/android/os/CountDownTimer#onTick(long)" target="_blank"><code translate="no" dir="ltr">onTick()</code></a> and  <a href="https://developer.android.com/reference/android/os/CountDownTimer#onFinish()" target="_blank"><code translate="no" dir="ltr">onFinish()</code></a> and start the timer.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">// Creates a timer which triggers the end of the game when it finishes
+timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
+
+   override fun onTick(millisUntilFinished: Long) {
+       
+   }
+
+   override fun onFinish() {
+       
+   }
+}
+
+timer.start()
+</code></pre>
+<ol type="1" start="5">
+<li>Implement the <code translate="no" dir="ltr">onTick()</code> callback method, which is called on every interval or on every tick. Update the <strong><code translate="no" dir="ltr">_currentTime</code></strong>, using the passed-in parameter <code translate="no" dir="ltr">millisUntilFinished</code>. The  <code translate="no" dir="ltr">millisUntilFinished</code> is the amount of time until the timer is finished in milliseconds. Convert <code translate="no" dir="ltr">millisUntilFinished</code> to seconds and assign it to <strong><code translate="no" dir="ltr">_currentTime</code></strong>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onTick(millisUntilFinished: Long)
+{
+   _currentTime.value = millisUntilFinished/ONE_SECOND
+}
+</code></pre>
+<ol type="1" start="6">
+<li>The <code translate="no" dir="ltr">onFinish()</code> callback method is called when the timer is finished. Implement <code translate="no" dir="ltr">onFinish()</code> to update the <strong><code translate="no" dir="ltr">_currentTime</code></strong> and trigger the game finish event.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onFinish() {
+   _currentTime.value = DONE
+   onGameFinish()
+}
+</code></pre>
+<ol type="1" start="7">
+<li>Update the <code translate="no" dir="ltr">nextWord()</code> method to reset the word list when the list is empty, instead of finishing the game.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private fun nextWord() {
+   // Shuffle the word list, if the list is empty 
+   if (wordList.isEmpty()) {
+       resetList()
+   } else {
+   // Remove a word from the list
+   _word.value = wordList.removeAt(0)
+   }
+}
+</code></pre>
+<ol type="1" start="8">
+<li>Inside the <code translate="no" dir="ltr">onCleared()</code> method, cancel the timer to avoid memory leaks. You can remove the log statement, because it&#39;s no longer needed. The <code translate="no" dir="ltr">onCleared()</code> method is called before the <code translate="no" dir="ltr">ViewModel</code> is destroyed.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onCleared() {
+   super.onCleared()
+   // Cancel the timer
+   timer.cancel()
+}
+</code></pre>
+<ol type="1" start="9">
+<li>Run your app and play the game. Wait 60 seconds, and the game finishes automatically. However, the timer text is not displayed on the screen. You fix that next.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add transformation for the LiveData" duration="0">
+          
+          <p>The  <a href="https://developer.android.com/reference/androidx/lifecycle/Transformations.html#map(androidx.lifecycle.LiveData%3CX%3E,%20androidx.arch.core.util.Function%3CX,%20Y%3E)" target="_blank"><code translate="no" dir="ltr">Transformations.map()</code></a> method provides a way to perform data manipulations on the source <code translate="no" dir="ltr">LiveData</code> and return a result <code translate="no" dir="ltr">LiveData</code> object. These transformations aren&#39;t calculated unless an observer is observing the returned <code translate="no" dir="ltr">LiveData</code> object.</p>
+<p>This method takes the source <code translate="no" dir="ltr">LiveData</code> and a function as parameters. The function manipulates the source <code translate="no" dir="ltr">LiveData</code>.</p>
+<aside class="special"><p><strong>Note</strong>: The lambda function passed to <code translate="no" dir="ltr">Transformation.map()</code> is executed on the main thread, so do not include long-running tasks.</p>
+</aside>
+<p>In this task, you format the elapsed time <code translate="no" dir="ltr">LiveData</code> object into a new string <code translate="no" dir="ltr">LiveData</code> object in &#34;<code translate="no" dir="ltr">MM:SS</code>&#34; format. You also display the formatted elapsed time on the screen.</p>
+<p>The <code translate="no" dir="ltr">game_fragment.xml</code> layout file already includes the timer text view. So far, the text view has had no text to display, so the timer text has not been visible.</p>
+<ol type="1">
+<li>In the <code translate="no" dir="ltr">GameViewModel</code> class, after instantiating the <strong><code translate="no" dir="ltr">currentTime</code></strong>, create a new <code translate="no" dir="ltr">LiveData</code> object named <code translate="no" dir="ltr">currentTimeString</code>. This object is for the formatted string version of the <code translate="no" dir="ltr">currentTime</code>.</li>
+<li>Use <code translate="no" dir="ltr">Transformations.map()</code> to define <code translate="no" dir="ltr">currentTimeString</code>. Pass in the <code translate="no" dir="ltr">currentTime</code> and a lambda function to format the time. You can implement the lambda function using the  <a href="https://developer.android.com/reference/android/text/format/DateUtils.html#formatElapsedTime(long)" target="_blank"><code translate="no" dir="ltr">DateUtils.formatElapsedTime()</code></a> utility method, which takes a <code translate="no" dir="ltr">long</code> number of seconds and formats it to &#34;<code translate="no" dir="ltr">MM:SS</code>&#34; string format.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">// The String version of the current time
+val currentTimeString = Transformations.map(currentTime) { time -&gt;
+   DateUtils.formatElapsedTime(time)
+}
+</code></pre>
+<ol type="1" start="3">
+<li>In the <code translate="no" dir="ltr">game_fragment.xml</code> file, in the timer text view, bind the <code translate="no" dir="ltr">text</code> attribute to the <code translate="no" dir="ltr">currentTimeString</code> of the <code translate="no" dir="ltr">gameViewModel</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;TextView
+   android:id=&#34;@+id/timer_text&#34;
+   ...
+   android:text=&#34;@{gameViewModel.currentTimeString}&#34;
+   ... /&gt;
+</code></pre>
+<ol type="1" start="4">
+<li>Run your app and play the game. The timer text updates once a second. Notice that the game does not finish when you have cycled through all the words. The game now finishes when the timer is up.</li>
+</ol>
+<p class="image-container"><img alt="beed8336e42b7ece.png" style="width: 214.03px" src="/codelabs/kotlin-android-training-live-data-transformations/img/beed8336e42b7ece.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Solution code" duration="0">
+          
+          <p>Congratulations! You successfully added a timer to the app that ends the game automatically. You also learned how to use  <a href="https://developer.android.com/reference/androidx/lifecycle/Transformations.html#map(androidx.lifecycle.LiveData%3CX%3E,%20androidx.arch.core.util.Function%3CX,%20Y%3E)" target="_blank"><code translate="no" dir="ltr">Transformations.map()</code></a> to convert one <code translate="no" dir="ltr">LiveData</code> object to another.</p>
+<p>Android Studio project:  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/GuessTheWordTransformation" target="_blank">GuessTheWord</a></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Coding challenge" duration="0">
+          
+          <aside class="special"><p><strong>Note:</strong> All coding challenges are optional.</p>
+</aside>
+<p><strong>Challenge:</strong> Create a hint about the word, and display the hint in a text view above the timer. This hint can say how many characters the word has, and can reveal one of the letters at a random position.</p>
+<p class="image-container"><img alt="9d694b538ce4012c.png" style="width: 192.19px" src="/codelabs/kotlin-android-training-live-data-transformations/img/9d694b538ce4012c.png"></p>
+<p><strong>Hints:</strong> Use  <a href="https://developer.android.com/reference/androidx/lifecycle/Transformations.html#map(androidx.lifecycle.LiveData%3CX%3E,%20androidx.arch.core.util.Function%3CX,%20Y%3E)" target="_blank"><code translate="no" dir="ltr">Transformations.map()</code></a> on the current <code translate="no" dir="ltr">word</code> <code translate="no" dir="ltr">LiveData</code> object. Add an extra <code translate="no" dir="ltr">TextView</code> to display the word hint.</p>
+<ol type="1">
+<li>In <code translate="no" dir="ltr">GameViewModel</code> class, add a <code translate="no" dir="ltr">val</code> to transform the current word into the hint.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">// The Hint for the current word
+val wordHint = Transformations.map(word) { word -&gt;
+   val randomPosition = (1..word.length).random()
+   &#34;Current word has &#34; + word.length + &#34; letters&#34; +
+           &#34;\nThe letter at position &#34; + randomPosition + &#34; is &#34; +
+           word.get(randomPosition - 1).toUpperCase()
+}
+</code></pre>
+<ol type="1" start="2">
+<li>In <code translate="no" dir="ltr">game_fragment.xml</code>, add a new text view above the timer text view to display the hint. Bind the text attribute to the <strong><code translate="no" dir="ltr">wordHint</code></strong> that you added above.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">android:text=&#34;@{gameViewModel.wordHint}&#34;
+</code></pre>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Summary" duration="0">
+          
+          <p><strong>Transforming LiveData</strong></p>
+<ul>
+<li>Sometimes you want to transform the results of <code translate="no" dir="ltr">LiveData</code>. For example, you might want to format a <code translate="no" dir="ltr">Date</code> string as &#34;hours:mins:seconds,&#34; or return the number of items in a list rather than returning the list itself. To perform transformations on <code translate="no" dir="ltr">LiveData</code>, use helper methods in the  <a href="https://developer.android.com/reference/androidx/lifecycle/Transformations.html" target="_blank"><code translate="no" dir="ltr">Transformations</code></a> class.</li>
+<li>The  <a href="https://developer.android.com/reference/androidx/lifecycle/Transformations.html#map(androidx.lifecycle.LiveData%3CX%3E,%20androidx.arch.core.util.Function%3CX,%20Y%3E)" target="_blank"><code translate="no" dir="ltr">Transformations.map()</code></a> method provides an easy way to perform data manipulations on the <code translate="no" dir="ltr">LiveData</code> and return another <code translate="no" dir="ltr">LiveData</code> object. The recommended practice is to put data-formatting logic that uses the <code translate="no" dir="ltr">Transformations</code> class in the <code translate="no" dir="ltr">ViewModel</code> along with the UI data.</li>
+</ul>
+<p><strong>Displaying the result of a transformation in a </strong></p>
+<p><strong><code translate="no" dir="ltr">TextView</code></strong></p>
+<ul>
+<li>Make sure the source data is defined as <code translate="no" dir="ltr">LiveData</code> in the <code translate="no" dir="ltr">ViewModel</code>.</li>
+<li>Define a variable, for example <code translate="no" dir="ltr">newResult</code>. Use <code translate="no" dir="ltr">Transformation.map()</code> to perform the transformation and return the result to the variable.</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val newResult = Transformations.map(someLiveData) { input -&gt;
+   // Do some transformation on the input live data
+   // and return the new value
+}
+</code></pre>
+<ul>
+<li>Make sure the layout file that contains the <code translate="no" dir="ltr">TextView</code> declares a <code translate="no" dir="ltr">&lt;data&gt;</code> variable for the <code translate="no" dir="ltr">ViewModel</code>.</li>
+</ul>
+<pre translate="no" dir="ltr">&lt;data&gt;
+   &lt;variable
+       name=&#34;MyViewModel&#34;
+       type=&#34;com.example.android.something.MyViewModel&#34; /&gt;
+&lt;/data&gt;
+</pre>
+<ul>
+<li>In the layout file, set the <code translate="no" dir="ltr">text</code> attribute of the <code translate="no" dir="ltr">TextView</code> to the binding of the <code translate="no" dir="ltr">newResult</code> of the <code translate="no" dir="ltr">ViewModel</code>. For example:</li>
+</ul>
+<pre translate="no" dir="ltr">android:text=&#34;@{SomeViewModel.newResult}&#34;
+</pre>
+<p><strong>Formatting dates</strong></p>
+<ul>
+<li>The  <a href="https://developer.android.com/reference/android/text/format/DateUtils.html#formatElapsedTime(long)" target="_blank"><code translate="no" dir="ltr">DateUtils.formatElapsedTime()</code></a> utility method takes a <code translate="no" dir="ltr">long</code> number of milliseconds and formats the number to use a <code translate="no" dir="ltr">MM:SS</code> string format.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Learn more" duration="0">
+          
+          <p>Udacity course:</p>
+<ul>
+<li><a href="https://www.udacity.com/course/developing-android-apps-with-kotlin--ud9012" target="_blank">Developing Android Apps with Kotlin</a></li>
+</ul>
+<p>Android developer documentation:</p>
+<ul>
+<li><a href="https://developer.android.com/reference/androidx/lifecycle/Transformations.html" target="_blank"><code translate="no" dir="ltr">Transformations</code></a> class</li>
+<li><a href="https://developer.android.com/reference/androidx/lifecycle/Transformations.html#map(androidx.lifecycle.LiveData%3CX%3E,%20androidx.arch.core.util.Function%3CX,%20Y%3E)" target="_blank"><code translate="no" dir="ltr">Transformations.map()</code></a> method</li>
+<li><a href="https://developer.android.com/reference/android/text/format/DateUtils.html#formatElapsedTime(long)" target="_blank"><code translate="no" dir="ltr">DateUtils.formatElapsedTime()</code></a></li>
+<li><a href="https://developer.android.com/reference/android/os/CountDownTimer" target="_blank"><code translate="no" dir="ltr">CountDownTimer</code></a></li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Homework" duration="0">
+          
+          <p>This section lists possible homework assignments for students who are working through this codelab as part of a course led by an instructor. It&#39;s up to the instructor to do the following:</p>
+<ul>
+<li>Assign homework if required.</li>
+<li>Communicate to students how to submit homework assignments.</li>
+<li>Grade the homework assignments.</li>
+</ul>
+<p>Instructors can use these suggestions as little or as much as they want, and should feel free to assign any other homework they feel is appropriate.</p>
+<p>If you&#39;re working through this codelab on your own, feel free to use these homework assignments to test your knowledge.</p>
+<h2 is-upgraded id="answer-these-questions" data-text="Answer these questions"><strong>Answer these questions</strong></h2>
+<h3 is-upgraded id="question-1" data-text="Question 1"><strong>Question 1</strong></h3>
+<p>In which class should you add the data-formatting logic that uses the  <a href="https://developer.android.com/reference/androidx/lifecycle/Transformations.html#map(androidx.lifecycle.LiveData%3CX%3E,%20androidx.arch.core.util.Function%3CX,%20Y%3E)" target="_blank"><code translate="no" dir="ltr">Transformations.map()</code></a> method to convert <code translate="no" dir="ltr">LiveData</code> to a different value or format?</p>
+<ul>
+<li><code translate="no" dir="ltr">ViewModel</code></li>
+<li><code translate="no" dir="ltr">Fragment</code></li>
+<li><code translate="no" dir="ltr">Activity</code></li>
+<li><code translate="no" dir="ltr">MainActivity</code></li>
+</ul>
+<h3 is-upgraded id="question-2" data-text="Question 2"><strong>Question 2</strong></h3>
+<p>The <code translate="no" dir="ltr">Transformations.map()</code> method provides an easy way to perform data manipulations on the <code translate="no" dir="ltr">LiveData</code> and returns __________ .</p>
+<ul>
+<li>A <code translate="no" dir="ltr">ViewModel</code> object</li>
+<li>A <code translate="no" dir="ltr">LiveData</code> object</li>
+<li>A formatted <code translate="no" dir="ltr">String</code></li>
+<li>A <code translate="no" dir="ltr">RoomDatabase</code> object</li>
+</ul>
+<h3 is-upgraded id="question-3" data-text="Question 3"><strong>Question 3</strong></h3>
+<p>What are the parameters for the <code translate="no" dir="ltr">Transformations.map()</code> method?</p>
+<ul>
+<li>A source <code translate="no" dir="ltr">LiveData</code> and a function to be applied to the <code translate="no" dir="ltr">LiveData</code></li>
+<li>Only a source <code translate="no" dir="ltr">LiveData</code></li>
+<li>No parameters</li>
+<li><code translate="no" dir="ltr">ViewModel</code> and a function to be applied</li>
+</ul>
+<h3 is-upgraded id="question-4" data-text="Question 4"><strong>Question 4</strong></h3>
+<p>The lambda function passed into the <code translate="no" dir="ltr">Transformations.map()</code> method is executed in which thread?</p>
+<ul>
+<li>Main thread</li>
+<li>Background thread</li>
+<li>UI thread</li>
+<li>In a coroutine</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Next codelab" duration="0">
+          
+          <p>Start the next lesson:  <a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-room-database" target="_blank"><paper-button class="colored" raised>Create a Room database</paper-button></a></p>
+<p>For links to other codelabs in this course, see the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+
+
+        </google-codelab-step>
+      
+    </google-codelab>
+  
+    
+
+    
+  </div>
+
+  
+
+  
+    
+    
+    
+  
+
+  
+  
+</article>
+
+
+
+
+            
+          </devsite-content>
+        </main>
+        <devsite-footer-promos class="devsite-footer">
+          
+            
+
+<nav class="devsite-footer-promos nocontent" aria-label="Promosi">
+  <ul class="devsite-footer-promos-list">
+    
+    <li class="devsite-footer-promo">
+      <a href="//twitter.com/AndroidDev"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer Twitter Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="/_static/android/images/logo-twitter.svg"
+             loading="lazy"
+             alt="Twitter">
+        
+        Twitter
+      </a>
+      <div class="devsite-footer-promo-description">Ikuti @AndroidDev di Twitter</div>
+    </li>
+    
+    <li class="devsite-footer-promo">
+      <a href="//www.youtube.com/user/androiddevelopers"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer YouTube Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="//www.gstatic.com/images/icons/material/product/2x/youtube_48dp.png"
+             loading="lazy"
+             alt="YouTube">
+        
+        YouTube
+      </a>
+      <div class="devsite-footer-promo-description">Lihat Developer Android di YouTube</div>
+    </li>
+    
+  </ul>
+</nav>
+
+          
+        </devsite-footer-promos>
+        <devsite-footer-linkboxes class="devsite-footer">
+          
+            
+<nav class="devsite-footer-linkboxes nocontent" aria-label="Link footer">
+  
+  <ul class="devsite-footer-linkboxes-list">
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Selengkapnya tentang Android</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Android
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/enterprise/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Enterprise
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/security-center/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Keamanan
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//source.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Source
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dukungan</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=190923&amp;template=841312"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Laporkan bug platform
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=192697"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Laporkan bug dokumentasi
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//support.google.com/googleplay/android-developer"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Google Play support
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://google.qualtrics.com/jfe/form/SV_ewWXIoEVLBcyp7f??reserved=1&amp;utm_source=FooterLink&amp;Q_Language=en&amp;utm_medium=own_srch&amp;utm_campaign=developer.android.com&amp;utm_term=0&amp;utm_content=0&amp;productTag=reg&amp;campaignDate=may19&amp;pType=devel&amp;referral_code=gV420370"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Bergabung dengan studi riset
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dokumentasi</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/guide"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Panduan developer
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/design"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Panduan desain
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/reference"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Referensi API
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/samples"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Sampel
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/studio/intro"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 5)"
+            >
+          
+            Android Studio
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+  
+</nav>
+          
+        </devsite-footer-linkboxes>
+        <devsite-footer-utility class="devsite-footer">
+          
+            
+
+<div class="devsite-footer-utility nocontent">
+  
+  
+  <nav class="devsite-footer-sites" aria-label="Situs Google Developers lain">
+    <a href="https://developers.google.com/"
+       class="devsite-footer-sites-logo-link gc-analytics-event"
+       data-category="Site-Wide Custom Events"
+       data-label="Footer Google Developers Link">
+      <img class="devsite-footer-sites-logo"
+           src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup-developers.svg"
+           loading="lazy"
+           alt="Google Developers">
+    </a>
+    <ul class="devsite-footer-sites-list">
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.android.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Android Link"
+         
+         >
+          Android
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.chrome.com/home"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Chrome Link"
+         
+         >
+          Chrome
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//firebase.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Firebase Link"
+         
+         >
+          Firebase
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//cloud.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Google Cloud Platform Link"
+         
+         >
+          Google Cloud Platform
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developers.google.com/products/"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer All products Link"
+         
+         >
+          Semua produk
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  
+
+  
+  <nav class="devsite-footer-utility-links" aria-label="Link utilitas">
+    
+    <ul class="devsite-footer-utility-list">
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="//policies.google.com/privacy"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Privacy link"
+         >
+          Privasi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/license"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer License link"
+         >
+          Lisensi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/distribute/marketing-tools/brand-guidelines"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Brand guidelines link"
+         >
+          Pedoman brand
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 devsite-footer-utility-button">
+        
+        <span class="devsite-footer-utility-description">Dapatkan berita dan tips melalui email</span>
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/updates"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Subscribe link"
+         >
+          Berlangganan
+        </a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+  </nav>
+</div>
+          
+        </devsite-footer-utility>
+        <devsite-panel></devsite-panel>
+      </section></section>
+    <devsite-sitemask></devsite-sitemask>
+    
+<devsite-snackbar 
+                  ></devsite-snackbar>
+
+    <devsite-tooltip ></devsite-tooltip>
+    <devsite-heading-link></devsite-heading-link>
+    <devsite-analytics enable-analytics-iframe>
+      
+        <script type="application/json" analytics>[{"gaid": "UA-5831155-1", "dimensions": {"dimension11": false, "dimension1": "Signed In", "dimension4": "Developer Android", "dimension3": false, "dimension6": "en", "dimension5": "id"}, "metrics": {"ratings_count": "metric2", "ratings_value": "metric1"}}]</script>
+<script type="application/json" gtm>{"parameters": {"freeTrialEligibleUser": "False", "internalUser": "False", "language": {"machineTranslated": "False", "requested": "id", "served": "en"}, "pageType": "codelab", "projectName": "Developer Android", "signedIn": "True", "tenant": "android", "recommendations": {"sourcePage": "", "sourceType": 0, "sourceRank": 0, "sourceIdenticalDescriptions": 0, "sourceTitleWords": 0, "sourceDescriptionWords": 0, "experiment": ""}}, "tags": ["GTM-KMSWPCJ"]}</script>
+      
+    </devsite-analytics>
+    
+      <devsite-badger></devsite-badger>
+    
+    
+<android-fully-clickable target=".fully-clickable" watch="devsite-content"></android-fully-clickable>
+    <script nonce="6q9t0ughfYrrdW2AkLXH7ohcSnJHjr">
+  
+  (function(d,e,v,s,i,t,E){d['GoogleDevelopersObject']=i;
+    t=e.createElement(v);t.async=1;t.src=s;E=e.getElementsByTagName(v)[0];
+    E.parentNode.insertBefore(t,E);})(window, document, 'script',
+    'https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/js/app_loader.js', '[3,"id",null,"/js/devsite_app_module.js","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android","https://android-dot-devsite-v2-prod.appspot.com",1,null,["/_pwa/android/manifest.json","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/images/video-placeholder.svg","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg","https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap"],1,null,[1,6,8,12,14,17,21,25,40,50,63,70,75,76,80,87,88,91,92,93,97,98,100,101,102,103,104,105,107,108,111,112,113,115,116,117,118,120,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,138,147,148],"AIzaSyAP-jjEJBzmIyKR4F-3XITp8yM9T1gEEI8","AIzaSyB6xiKGDR5O3Ak2okS4rLkauxGUG7XP0hg"]')
+  
+</script>
+    <devsite-a11y-announce></devsite-a11y-announce>
+  </body>
+</html>

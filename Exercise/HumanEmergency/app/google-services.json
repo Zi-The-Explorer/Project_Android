@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1076178230569",
+    "firebase_url": "https://human-emergency-default-rtdb.firebaseio.com",
+    "project_id": "human-emergency",
+    "storage_bucket": "human-emergency.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1076178230569:android:916dfec6d727b4abddab38",
+        "android_client_info": {
+          "package_name": "com.afauzi.humanemergency"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1076178230569-cjp2fiaaeks6cva2qem7g2nsfo8t1f3j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMiIAyoxAPHfkSWxbdCi0_mOgroy_k9SQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1076178230569-cjp2fiaaeks6cva2qem7g2nsfo8t1f3j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

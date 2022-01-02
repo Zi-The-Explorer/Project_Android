@@ -1,0 +1,1880 @@
+<!doctype html>
+<html 
+      lang="id"
+      dir="ltr">
+  <head>
+    <meta name="google-signin-client-id" content="721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com">
+    <meta name="google-signin-scope"
+          content="profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award">
+    <meta property="og:site_name" content="Android Developers">
+    <meta property="og:type" content="website"><meta name="robots" content="noindex"><meta name="theme-color" content="#3ddc84"><meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/_pwa/android/manifest.json"
+          crossorigin="use-credentials">
+    <link rel="preconnect" href="//www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="//apis.google.com" crossorigin>
+    <link rel="preconnect" href="//www.google-analytics.com" crossorigin><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap">
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Material+Icons&display=block"><link rel="stylesheet" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/css/app.css">
+      <link rel="shortcut icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/touchicon-180.png"><link rel="canonical" href="https://developer.android.com/codelabs/kotlin-android-training-data-binding-basics?hl=id"><link rel="search" type="application/opensearchdescription+xml"
+            title="Android Developers" href="https://developer.android.com/s/opensearch.xml">
+      
+
+<title>Android Kotlin Fundamentals 02.4: Data binding basics</title>
+
+<meta property="og:title" content="Android Kotlin Fundamentals 02.4: Data binding basics"><meta name="description" content="Learn how to use data binding to simplify code for accessing views in your Android app.">
+  <meta property="og:description" content="Learn how to use data binding to simplify code for accessing views in your Android app."><meta property="og:url" content="https://developer.android.com/codelabs/kotlin-android-training-data-binding-basics?hl=id"><meta property="og:image" content="https://developer.android.com/images/social/android-developers.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675"><meta property="og:locale" content="en"><meta name="twitter:card" content="summary_large_image">
+  <meta name="xsrf_token" content="Rgc4EwU8-ocIxppGOo6ffpokeB8S6ifnvifbQkV_uo06MTYyNzQ3OTEyNDE2NjczOQ">
+  
+
+  <meta name="session_expiry" content="1627479292">
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    <meta name="original_source" content="https://docs.google.com/document/d/1tVi5n5tvawpf3SMe_XkV8e_LdtAmQhCtTxdjTZZlHGg/edit" />
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+  
+
+    </head>
+  <body class="devsite-full-width-page"
+        template="codelab"
+        theme="android-theme"
+        type="codelab"
+        
+        layout="full"
+        
+        
+        pending>
+    <devsite-progress type="indeterminate" id="app-progress"></devsite-progress>
+  
+    <section class="devsite-wrapper"><devsite-header>
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="devsite-header--inner nocontent">
+  <div class="devsite-top-logo-row-wrapper-wrapper">
+    <div class="devsite-top-logo-row-wrapper">
+      <div class="devsite-top-logo-row">
+        <button type="button" id="devsite-hamburger-menu"
+          class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+          data-category="Site-Wide Custom Events"
+          data-label="Navigation menu button"
+          visually-hidden
+          aria-label="Open menu">
+        </button>
+        <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo"
+       alt="Android Developers">
+
+</a>
+
+
+
+  
+  
+  <span class="devsite-product-name">
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+  </span>
+
+</div>
+        <div class="devsite-top-logo-row-middle">
+          <div class="devsite-header-upper-tabs">
+            
+              
+              
+  <devsite-tabs class="upper-tabs">
+
+    <nav class="devsite-tabs-wrapper" aria-label="Tab atas">
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/about"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="platform"
+   track-metadata-eventdetail="https://developer.android.com/about"
+   track-metadata-position="nav - platform"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Platform"
+   >
+  Platform
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/studio"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="android studio"
+   track-metadata-eventdetail="https://developer.android.com/studio"
+   track-metadata-position="nav - android studio"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Android Studio"
+   >
+  Android Studio
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/distribute"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="google play"
+   track-metadata-eventdetail="https://developer.android.com/distribute"
+   track-metadata-position="nav - google play"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Google Play"
+   >
+  Google Play
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/jetpack"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="jetpack"
+   track-metadata-eventdetail="https://developer.android.com/jetpack"
+   track-metadata-position="nav - jetpack"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Jetpack"
+   >
+  Jetpack
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/kotlin"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="kotlin"
+   track-metadata-eventdetail="https://developer.android.com/kotlin"
+   track-metadata-position="nav - kotlin"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Kotlin"
+   >
+  Kotlin
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/docs"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="dokumen"
+   track-metadata-eventdetail="https://developer.android.com/docs"
+   track-metadata-position="nav - dokumen"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Dokumen"
+   >
+  Dokumen
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/news"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="berita"
+   track-metadata-eventdetail="https://developer.android.com/news"
+   track-metadata-position="nav - berita"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Berita"
+   >
+  Berita
+</a>
+
+          </tab>
+        
+      
+    </nav>
+
+  </devsite-tabs>
+
+            
+           </div>
+          
+<devsite-search
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    enable-signin
+    enable-search
+    enable-suggestions
+      enable-query-completion
+    
+    project-name="Developer Android"
+    tenant-name="Android Developers"
+    
+    
+    
+    
+    
+    role="combobox">
+  <form class="devsite-search-form" action="https://developer.android.com/s/results" method="GET">
+    <div class="devsite-search-container">
+      <div class="devsite-searchbox">
+        <input
+          aria-activedescendant=""
+          aria-autocomplete="list"
+          
+          aria-label="Penelusuran"
+          aria-haspopup="false"
+          aria-multiline="false"
+          aria-label="Kotak penelusuran"
+          autocomplete="off"
+          class="devsite-search-field devsite-search-query"
+          name="q"
+          
+          placeholder="Penelusuran"
+          role="searchbox"
+          type="text"
+          value=""
+          >
+        <div class="devsite-search-image material-icons" aria-hidden="true"></div>
+      </div>
+      <button type="button"
+              search-open
+              class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+              
+              aria-label="Buka penelusuran"></button>
+    </div>
+  </form>
+  <button type="button"
+          search-close
+          class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+          
+          aria-label="Tutup penelusuran"></button>
+</devsite-search>
+
+        </div>
+
+        
+
+        
+
+        
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+
+        
+
+        
+          
+          
+          <devsite-user signed-in
+                        
+                        
+                          enable-profiles
+                        
+                        
+                          
+                        id="devsite-user"></devsite-user>
+           
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="devsite-collapsible-section
+    
+      devsite-header-no-lower-tabs
+    ">
+    <div class="devsite-header-background">
+      
+        
+      
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+  
+</devsite-header>
+      <devsite-book-nav scrollbars hidden>
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="devsite-book-nav devsite-nav nocontent"
+     aria-label="Menu samping">
+  <div class="devsite-mobile-header">
+    <button type="button"
+            id="devsite-close-nav"
+            class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+            data-category="Site-Wide Custom Events"
+            data-label="Close navigation"
+            aria-label="Close navigation">
+    </button>
+    <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+
+</a>
+
+
+  
+      <span class="devsite-product-name">
+        
+        
+        <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+      </span>
+    
+
+</div>
+  </div>
+
+  <div class="devsite-book-nav-wrapper">
+    <div class="devsite-mobile-nav-top">
+      
+        <ul class="devsite-nav-list">
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/about"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Platform"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="platform">
+  
+    <span class="devsite-nav-text" tooltip >
+      Platform
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/studio"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Android Studio"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="androidStudio">
+  
+    <span class="devsite-nav-text" tooltip >
+      Android Studio
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/distribute"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Google Play"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="googlePlay">
+  
+    <span class="devsite-nav-text" tooltip >
+      Google Play
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/jetpack"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Jetpack"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="jetpack">
+  
+    <span class="devsite-nav-text" tooltip >
+      Jetpack
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/kotlin"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Kotlin"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="kotlin">
+  
+    <span class="devsite-nav-text" tooltip >
+      Kotlin
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/docs"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Dokumen"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="dokumen">
+  
+    <span class="devsite-nav-text" tooltip >
+      Dokumen
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/news"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Berita"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="berita">
+  
+    <span class="devsite-nav-text" tooltip >
+      Berita
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+          
+          
+        </ul>
+      
+    </div>
+    
+  </div>
+</nav>
+        
+      </devsite-book-nav>
+      <section id="gc-wrapper">
+        <main role="main" class="devsite-main-content"
+            
+            >
+          
+          <devsite-toc class="devsite-nav"
+                       role="navigation"
+                       aria-label="Daftar isi"
+            disabled></devsite-toc>
+          <devsite-content>
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="devsite-article"><style>
+      body {
+        transition: opacity ease-in 0.2s;
+      }
+
+      body[unresolved] {
+        opacity: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+      </style>
+  
+  
+  
+
+  <div class="devsite-article-meta nocontent" role="navigation">
+    
+    
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+  <a href="https://developer.android.com/"
+      
+        class="devsite-breadcrumb-link gc-analytics-event"
+      
+        data-category="Site-Wide Custom Events"
+      
+        data-label="Breadcrumbs"
+      
+        data-value="1"
+      
+        track-type="globalNav"
+      
+        track-name="breadcrumb"
+      
+        track-metadata-position="1"
+      
+        track-metadata-eventdetail="Developer Android"
+      
+    >
+    
+        Developer Android
+      
+  </a>
+  
+    
+  </li>
+  
+</ul>
+    
+  </div>
+  
+  
+    <h1 class="devsite-page-title">Android Kotlin Fundamentals 02.4: Data binding basics</h1><devsite-bookmark></devsite-bookmark>
+  
+
+  <devsite-toc class="devsite-nav" devsite-toc-embedded
+               disabled>
+  </devsite-toc>
+
+  
+
+  <div class="devsite-article-body clearfix
+    ">
+
+    
+      
+    <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+    <google-codelab codelab-gaid="UA-81734179-1"
+                    doc-id="1tVi5n5tvawpf3SMe_XkV8e_LdtAmQhCtTxdjTZZlHGg"
+                    id="kotlin-android-training-data-binding-basics"
+                    title="Android Kotlin Fundamentals 02.4: Data binding basics"
+                    environment="web"
+                    category="android,kotlin"
+                    feedback-link="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/issues/new?assignees=&amp;labels=&amp;template=android-kotlin-fundamentals.md&amp;title=Android&#43;Kotlin&#43;Fundamentals&#43;codelab%3A&#43;"
+                    >
+      
+        <google-codelab-step label="Welcome" duration="0">
+          
+            <google-codelab-about codelab-title="Android Kotlin Fundamentals 02.4: Data binding basics"
+                                  authors="Google Developers Training team"
+                                  >
+            </google-codelab-about>
+          
+          <p>This codelab is part of the Android Kotlin Fundamentals course. You&#39;ll get the most value out of this course if you work through the codelabs in sequence. All the course codelabs are listed on the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+<h2 is-upgraded id="introduction" data-text="Introduction">Introduction</h2>
+<p>In previous codelabs in this course, you used the <code translate="no" dir="ltr">findViewById()</code> function to get references to views. When your app has complex view hierarchies, <code translate="no" dir="ltr">findViewById()</code> is expensive and slows down the app, because Android traverses the view hierarchy, starting at the root, until it finds the desired view. Fortunately, there&#39;s a better way.</p>
+<p>To set data in views, you&#39;ve used string resources and set the data from the activity. It would be more efficient if the view knew about the data. And fortunately again, this is possible.</p>
+<p>In this codelab, you learn how to use data binding to eliminate the need for <code translate="no" dir="ltr">findViewById()</code>. You also learn how to use data binding to access data directly from a view.</p>
+<h2 is-upgraded id="what-you-should-already-know" data-text="What you should already know">What you should already know</h2>
+<p>You should be familiar with:</p>
+<ul>
+<li>What an activity is, and how to set up an activity with a layout in <code translate="no" dir="ltr">onCreate()</code>.</li>
+<li>Creating a text view and setting the text that the text view displays.</li>
+<li>Using <code translate="no" dir="ltr">findViewById()</code> to get a reference to a view.</li>
+<li>Creating and editing a basic XML layout for a view.</li>
+</ul>
+<h2 class="checklist" is-upgraded id="what-youll-learn" data-text="What you'll learn">What you'll learn</h2>
+<ul class="checklist">
+<li>How to use the Data Binding Library to eliminate inefficient calls to <code translate="no" dir="ltr">findViewById()</code>.</li>
+<li>How to access app data directly from XML.</li>
+</ul>
+<h2 is-upgraded id="what-youll-do" data-text="What you'll do">What you'll do</h2>
+<ul>
+<li>Modify an app to use data binding instead of <code translate="no" dir="ltr">findViewById()</code>, and to access data directly from the layout XML files.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="App overview" duration="0">
+          
+          <p>In this codelab, you start with the AboutMe app and change the app to use data binding. The app will look exactly the same when you are done!</p>
+<p>Here&#39;s what the AboutMe app does:</p>
+<ul>
+<li>When the user opens the app, the app shows a name, a field to enter a nickname, a <strong>Done</strong> button, a star image, and scrollable text.</li>
+<li>The user can enter a nickname and tap the <strong>Done</strong> button. The editable field and button are replaced by a text view that shows the entered nickname.</li>
+</ul>
+<p class="image-container"><img alt="8f072e88b4ce64fd.png" style="width: 567.75px" src="/codelabs/kotlin-android-training-data-binding-basics/img/8f072e88b4ce64fd.png"></p>
+<p>You can use the code you built in the previous codelab, or you can download the  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-starter-apps/tree/master/AboutMeDataBinding-Starter" target="_blank">AboutMeDataBinding-Starter</a> code from GitHub.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Use data binding to eliminate findViewById()" duration="0">
+          
+          <p>The code you wrote in previous codelabs uses the <code translate="no" dir="ltr">findViewById()</code> function to obtain references to views.</p>
+<p>Every time you use  <code translate="no" dir="ltr">findViewById()</code> to search for a view after the view is created or recreated, the Android system traverses the view hierarchy at runtime to find it. When your app has only a handful of views, this is not a problem. However, production apps may have dozens of views in a layout, and even with the best design, there will be nested views.</p>
+<p>Think of a linear layout that contains a scroll view that contains a text view. For a large or deep view hierarchy, finding a view can take enough time that it can noticeably slow down the app for the user. Caching views in variables can help, but you still have to initialize a variable for each view, in each namespace. With lots of views and multiple activities, this adds up, too.</p>
+<p>One solution is to create an object that contains a reference to each view. This object, called a <code translate="no" dir="ltr">Binding</code> object, can be used by your whole app. This technique is called <em>data binding</em>. Once a binding object has been created for your app, you can access the views, and other data, through the binding object, without having to traverse the view hierarchy or search for the data.</p>
+<p class="image-container"><img alt="204bd94c4dd5dd37.jpeg" style="width: 624.00px" src="/codelabs/kotlin-android-training-data-binding-basics/img/204bd94c4dd5dd37.jpeg"></p>
+<p>Data binding has the following benefits:</p>
+<ul>
+<li>Code is shorter, easier to read, and easier to maintain than code that uses <code translate="no" dir="ltr">findViewById()</code>.</li>
+<li>Data and views are clearly separated. This benefit of data binding becomes increasingly important later in this course.</li>
+<li>The Android system only traverses the view hierarchy once to get each view, and it happens during app startup, not at runtime when the user is interacting with the app.</li>
+<li>You get  <a href="https://en.wikipedia.org/wiki/Type_safety" target="_blank">type safety</a> for accessing views. (<em>Type safety</em> means that the compiler validates types while compiling, and it throws an error if you try to assign the wrong type to a variable.)</li>
+</ul>
+<p>In this task, you set up data binding, and you use data binding to replace calls to <code translate="no" dir="ltr">findViewById()</code> with calls to the binding object.</p>
+<h2 is-upgraded id="step-1:-enable-data-binding" data-text="Step 1: Enable data binding">Step 1: Enable data binding</h2>
+<p>To use data binding, you need to enable data binding in your Gradle file, as it&#39;s not enabled by default. This is because data binding increases compile time and may affect app startup time.</p>
+<ol type="1">
+<li>If you do not have the AboutMe app from a previous codelab, get the  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-starter-apps/tree/master/AboutMeDataBinding-Starter" target="_blank">AboutMeDataBinding-Starter</a> code from GitHub. Open it in Android Studio.</li>
+<li>Open the <code translate="no" dir="ltr">build.gradle (Module: app)</code> file.</li>
+<li>Inside the <code translate="no" dir="ltr">android</code> section, before the closing brace, add a <code translate="no" dir="ltr">buildFeatures</code> section and set <code translate="no" dir="ltr">dataBinding</code> to <code translate="no" dir="ltr">true</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">buildFeatures {
+    dataBinding true
+}
+</code></pre>
+<ol type="1" start="4">
+<li>When prompted, <strong>Sync</strong> the project. If you&#39;re not prompted, select <strong>File &gt; Sync Project with Gradle Files</strong>.</li>
+<li>You can run the app, but you won&#39;t see any changes.</li>
+</ol>
+<h2 is-upgraded id="step-2:-change-layout-file-to-be-usable-with-data-binding" data-text="Step 2: Change layout file to be usable with data binding">Step 2: Change layout file to be usable with data binding</h2>
+<p>To work with data binding, you need to wrap your XML layout with a <code translate="no" dir="ltr">&lt;layout&gt;</code> tag. This is so that the root class is no longer a view group, but is instead a layout that contains view groups and views. The binding object can then know about the layout and the views in it.</p>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">activity_main.xml</code> file.</li>
+<li>Switch to the <strong>Text</strong> tab.</li>
+<li>Add <code translate="no" dir="ltr">&lt;layout&gt;&lt;/layout&gt;</code> as the outermost tag around the <code translate="no" dir="ltr">&lt;LinearLayout&gt;</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;layout&gt;
+   &lt;LinearLayout ... &gt;
+   ...
+   &lt;/LinearLayout&gt;
+&lt;/layout&gt;
+</code></pre>
+<ol type="1" start="4">
+<li>Choose <strong>Code &gt; Reformat code</strong> to fix the code indentation.</li>
+</ol>
+<p>The namespace declarations for a layout must be in the outermost tag.</p>
+<ol type="1" start="5">
+<li>Cut the namespace declarations from the <code translate="no" dir="ltr">&lt;LinearLayout&gt;</code> and paste them into the <code translate="no" dir="ltr">&lt;layout&gt;</code> tag. Your opening <code translate="no" dir="ltr">&lt;layout&gt;</code> tag should look as shown below, and the <code translate="no" dir="ltr">&lt;LinearLayout&gt;</code> tag should only contain view properties.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;layout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+   xmlns:app=&#34;http://schemas.android.com/apk/res-auto&#34;&gt;
+</code></pre>
+<ol type="1" start="6">
+<li>Build and run your app to verify that you did this correctly.</li>
+</ol>
+<h2 is-upgraded id="step-3:-create-a-binding-object-in-the-main-activity" data-text="Step 3: Create a binding object in the main activity">Step 3: Create a binding object in the main activity</h2>
+<p>Add a reference to the binding object to the main activity, so that you can use it to access views:</p>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">MainActivity.kt</code> file.</li>
+<li>Before <code translate="no" dir="ltr">onCreate()</code>, at the top level, create a variable for the binding object. This variable is customarily called <code translate="no" dir="ltr">binding</code>.</li>
+</ol>
+<p>The type of <code translate="no" dir="ltr">binding</code>, the <code translate="no" dir="ltr">ActivityMainBinding</code> class, is created by the compiler specifically for this main activity. The name is derived from the name of the layout file, that is, <code translate="no" dir="ltr">activity_main + Binding</code>.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private lateinit var binding: ActivityMainBinding
+</code></pre>
+<ol type="1" start="3">
+<li>If prompted by Android Studio, import <code translate="no" dir="ltr">ActivityMainBinding</code>. If you aren&#39;t prompted, click on <code translate="no" dir="ltr">ActivityMainBinding</code> and press <code translate="no" dir="ltr">Alt+Enter</code> (<code translate="no" dir="ltr">Option+Enter</code> on a Mac) to import this missing class. (For more keyboard shortcuts, see  <a href="https://developer.android.com/studio/intro/keyboard-shortcuts" target="_blank">Keyboard shortcuts</a>.)</li>
+</ol>
+<p>The <code translate="no" dir="ltr">import</code> statement should look similar to the one shown below.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">import com.example.android.aboutme.databinding.ActivityMainBinding
+</code></pre>
+<p>Next, you replace the current <code translate="no" dir="ltr">setContentView()</code> function with an instruction that does the following:</p>
+<ul>
+<li>Creates the binding object.</li>
+<li>Uses the <code translate="no" dir="ltr">setContentView()</code> function from the <code translate="no" dir="ltr">DataBindingUtil</code> class to associate the <code translate="no" dir="ltr">activity_main</code> layout with the <code translate="no" dir="ltr">MainActivity</code>. This <code translate="no" dir="ltr">setContentView()</code> function also takes care of some data binding setup for the views.</li>
+</ul>
+<ol type="1" start="4">
+<li>In <code translate="no" dir="ltr">onCreate()</code>, replace the <code translate="no" dir="ltr">setContentView()</code> call with the following line of code.</li>
+</ol>
+<pre translate="no" dir="ltr">binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+</pre>
+<ol type="1" start="5">
+<li>Import <code translate="no" dir="ltr">DataBindingUtil</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">import androidx.databinding.DataBindingUtil
+</code></pre>
+<h2 is-upgraded id="step-4:-use-the-binding-object-to-replace-all-calls-to-findviewbyid" data-text="Step 4: Use the binding object to replace all calls to findViewById()">Step 4: Use the binding object to replace all calls to findViewById()</h2>
+<p>You can now replace all calls to <code translate="no" dir="ltr">findViewById()</code> with references to the views that are in the binding object. When the binding object is created, the compiler generates the names of the views in the binding object from the IDs of the views in the layout, converting them to camel case. So, for example, <code translate="no" dir="ltr">done_button</code> is <code translate="no" dir="ltr">doneButton</code> in the binding object, <code translate="no" dir="ltr">nickname_edit</code> becomes becomes <code translate="no" dir="ltr">nicknameEdit</code>, and <code translate="no" dir="ltr">nickname_text</code> becomes <code translate="no" dir="ltr">nicknameText</code>.</p>
+<ol type="1">
+<li>In <code translate="no" dir="ltr">onCreate()</code>, replace the code that uses <code translate="no" dir="ltr">findViewById()</code> to find the <code translate="no" dir="ltr">done_button</code> with code that references the button in the binding object.</li>
+</ol>
+<p>Replace this code: <code translate="no" dir="ltr">findViewById&lt;Button&gt;(R.id.</code><em><code translate="no" dir="ltr">done_button</code></em><code translate="no" dir="ltr">)</code> with: <code translate="no" dir="ltr">binding.doneButton</code></p>
+<p>Your finished code to set the click listener in <code translate="no" dir="ltr">onCreate()</code> should look like this.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">binding.doneButton.setOnClickListener {
+   addNickname(it)
+}
+</code></pre>
+<ol type="1" start="2">
+<li>Do the same for all calls to <code translate="no" dir="ltr">findViewById()</code> in the <code translate="no" dir="ltr">addNickname()</code> function. Replace all occurrences of <code translate="no" dir="ltr">findViewById&lt;</code><em><code translate="no" dir="ltr">View</code></em><code translate="no" dir="ltr">&gt;(R.id.</code><em><code translate="no" dir="ltr">id_view</code></em><code translate="no" dir="ltr">)</code> with <code translate="no" dir="ltr">binding.</code><em><code translate="no" dir="ltr">idView</code></em>. Do this in the following way:</li>
+</ol>
+<ul>
+<li>Delete the definitions for the <code translate="no" dir="ltr">editText</code> and <code translate="no" dir="ltr">nicknameTextView</code> variables along with their calls to <code translate="no" dir="ltr">findViewById()</code>. This will give you errors.</li>
+<li>Fix the errors by getting the <code translate="no" dir="ltr">nicknameText</code>, <code translate="no" dir="ltr">nicknameEdit</code>, and <code translate="no" dir="ltr">doneButton</code> views from the <code translate="no" dir="ltr">binding</code> object instead of the (deleted) variables.</li>
+<li>Replace <code translate="no" dir="ltr">view.visibility</code> with <code translate="no" dir="ltr">binding.doneButton.visibility</code>. Using <code translate="no" dir="ltr">binding.doneButton</code> instead of the passed-in <code translate="no" dir="ltr">view</code> makes the code more consistent.</li>
+</ul>
+<p>The result is the following code:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">binding.nicknameText.text = binding.nicknameEdit.text
+binding.nicknameEdit.visibility = View.GONE
+binding.doneButton.visibility = View.GONE
+binding.nicknameText.visibility = View.VISIBLE
+</code></pre>
+<ul>
+<li>There is no change in functionality. Optionally, you can now eliminate the <code translate="no" dir="ltr">view</code> parameter and update all uses of <code translate="no" dir="ltr">view</code> to use <code translate="no" dir="ltr">binding.doneButton</code> inside this function.</li>
+</ul>
+<ol type="1" start="3">
+<li>The <code translate="no" dir="ltr">nicknameText</code> requires a <code translate="no" dir="ltr">String</code>, and <code translate="no" dir="ltr">nicknameEdit.text</code> is an <code translate="no" dir="ltr">Editable</code>. When using data binding, it is necessary to explicitly convert the <code translate="no" dir="ltr">Editable</code> to a <code translate="no" dir="ltr">String</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">binding.nicknameText.text = binding.nicknameEdit.text.toString()
+</code></pre>
+<ol type="1" start="4">
+<li>You can delete the grayed out imports.</li>
+</ol>
+<p>Kotlinize the function by using <code translate="no" dir="ltr">apply{}</code>.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">binding.apply {
+   nicknameText.text = nicknameEdit.text.toString()
+   nicknameEdit.visibility = View.GONE
+   doneButton.visibility = View.GONE
+   nicknameText.visibility = View.VISIBLE
+}
+</code></pre>
+<ol type="1" start="5">
+<li>Build and run your app...and it should look and work exactly the same as before.</li>
+</ol>
+<aside class="warning"><p><strong>Tip:</strong> If you see compiler errors after you make changes, select <strong>Build &gt; Clean Project</strong> followed by <strong>Build &gt; Rebuild Project</strong>. Doing this usually updates the generated files. Otherwise, select <strong>File &gt; Invalidate Caches/Restart</strong> to do a more thorough cleanup.</p>
+</aside>
+<aside class="special"><p><strong>Tip:</strong> You previously learned about the <code translate="no" dir="ltr">Resources</code> object that holds references to all resources in the app. You can think of the <code translate="no" dir="ltr">Binding</code> object in a similar fashion when referencing views; however, the <code translate="no" dir="ltr">Binding</code> object is a lot more sophisticated.</p>
+</aside>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Use data binding to display data" duration="0">
+          
+          <p>You can take advantage of data binding to make a data class directly available to a view. This technique simplifies the code, and is extremely valuable for handling more complex cases.</p>
+<p>For this example, instead of setting the name and nickname using string resources, you create a data class for the name and nickname. You make the data class available to the view using data binding.</p>
+<h2 is-upgraded id="step-1:-create-the-myname-data-class" data-text="Step 1: Create the MyName data class">Step 1: Create the MyName data class</h2>
+<ol type="1">
+<li>In Android Studio in the <code translate="no" dir="ltr">java</code> directory, open the <code translate="no" dir="ltr">MyName.kt</code> file. If you don&#39;t have this file, create a new Kotlin file and call it <code translate="no" dir="ltr">MyName.kt</code>.</li>
+<li>Define a data class for the name and nickname. Use empty strings as the default values.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">data class MyName(var name: String = &#34;&#34;, var nickname: String = &#34;&#34;)
+</code></pre>
+<h2 is-upgraded id="step-2:-add-data-to-the-layout" data-text="Step 2: Add data to the layout">Step 2: Add data to the layout</h2>
+<p>In the <code translate="no" dir="ltr">activity_main.xml</code> file, the name is currently set in a <code translate="no" dir="ltr">TextView</code> from a string resource. You need to replace the reference to the name with a reference to data in the data class.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">activity_main.xml</code> in the <strong>Text</strong> tab.</li>
+<li>At the top of the layout, between the <code translate="no" dir="ltr">&lt;layout&gt;</code> and <code translate="no" dir="ltr">&lt;LinearLayout&gt;</code> tags, insert a <code translate="no" dir="ltr">&lt;data&gt;&lt;/data&gt;</code> tag. This is where you will connect the view with the data.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;data&gt;
+  
+&lt;/data&gt;
+</code></pre>
+<p>Inside the data tags, you can declare named variables that hold a reference to a class.</p>
+<ol type="1" start="3">
+<li>Inside the <code translate="no" dir="ltr">&lt;data&gt;</code> tag, add a <code translate="no" dir="ltr">&lt;variable&gt;</code> tag.</li>
+<li>Add a <code translate="no" dir="ltr">name</code> parameter to give the variable a name of <code translate="no" dir="ltr">"myName"</code>. Add a <code translate="no" dir="ltr">type</code> parameter and set the type to a fully qualified name of the <code translate="no" dir="ltr">MyName</code> data class (package name + variable name).</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;variable
+       name=&#34;myName&#34;
+       type=&#34;com.example.android.aboutme.MyName&#34; /&gt;
+</code></pre>
+<p>Now, instead of using the string resource for the name, you can reference the <code translate="no" dir="ltr">myName</code> variable.</p>
+<aside class="special"><p><strong>Note</strong>: Depending on how you set up the project in the project wizard, your package name may differ.  Make sure the package name of your app matches with the package name for the <code translate="no" dir="ltr">type</code> variable.</p>
+</aside>
+<ol type="1" start="5">
+<li>Replace <code translate="no" dir="ltr">android:text="@string/name"</code> with the code below.</li>
+</ol>
+<p><code translate="no" dir="ltr">@={}</code> is a directive to get the data that is referenced inside the curly braces.</p>
+<p><code translate="no" dir="ltr">myName</code> references the <code translate="no" dir="ltr">myName</code> variable that you previously defined, which points to the <code translate="no" dir="ltr">myName</code> data class and fetches the <code translate="no" dir="ltr">name</code> property from the class.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">android:text=&#34;@={myName.name}&#34;
+</code></pre>
+<h2 is-upgraded id="step-3:-create-the-data" data-text="Step 3: Create the data">Step 3: Create the data</h2>
+<p>You now have a reference to the data in your layout file. Next, you create the actual data.</p>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">MainActivity.kt</code> file.</li>
+<li>Above <code translate="no" dir="ltr">onCreate()</code>, create a private variable, also called <code translate="no" dir="ltr">myName</code> by convention. Assign the variable an instance of the <code translate="no" dir="ltr">MyName</code> data class, passing in the name.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private val myName: MyName = MyName(&#34;Aleks Haecky&#34;)
+</code></pre>
+<ol type="1" start="3">
+<li>In <code translate="no" dir="ltr">onCreate()</code>, set the value of the <code translate="no" dir="ltr">myName</code> variable in the layout file to the value of the <code translate="no" dir="ltr">myName</code> variable that you just declared. You can&#39;t access the variable in the XML directly. You need to access it through the binding object.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">binding.myName = myName
+</code></pre>
+<ol type="1" start="4">
+<li>This may show an error, because you need to refresh the binding object after making changes. Build your app, and the error should go away.</li>
+</ol>
+<h2 is-upgraded id="step-4:-use-the-data-class-for-the-nickname-in-the-textview" data-text="Step 4: Use the data class for the nickname in the TextView">Step 4: Use the data class for the nickname in the TextView</h2>
+<p>The final step is to also use the data class for the nickname in the <code translate="no" dir="ltr">TextView</code>.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">activity_main.xml</code>.</li>
+<li>In the <code translate="no" dir="ltr">nickname_text</code> text view, add a <code translate="no" dir="ltr">text</code> property. Reference the <code translate="no" dir="ltr">nickname</code> in the data class, as shown below.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">android:text=&#34;@={myName.nickname}&#34;
+</code></pre>
+<ol type="1" start="3">
+<li>In <code translate="no" dir="ltr">MainActivity</code>, replace <code translate="no" dir="ltr">nicknameText.text = nicknameEdit.text.toString()</code> with code to set the nickname in the <code translate="no" dir="ltr">myName</code> variable.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">myName?.nickname = nicknameEdit.text.toString()
+</code></pre>
+<p>After the nickname is set, you want your code to refresh the UI with the new data. To do this, you must invalidate all binding expressions so that they are recreated with the correct data.</p>
+<ol type="1" start="4">
+<li>Add <code translate="no" dir="ltr">invalidateAll()</code> after setting the nickname so that the UI is refreshed with the value in the updated binding object.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">binding.apply {
+   myName?.nickname = nicknameEdit.text.toString()
+   invalidateAll()
+   ...
+}
+</code></pre>
+<ol type="1" start="5">
+<li>Build and run your app, and it should work exactly the same as before.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Solution code" duration="0">
+          
+          <p>Android Studio project:  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/AboutMeDataBinding" target="_blank">AboutMeDataBinding</a></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Summary" duration="0">
+          
+          <p>Steps to use data binding to replace calls to <code translate="no" dir="ltr">findViewById()</code>:</p>
+<ol type="1">
+<li>Enable data binding in the android section of the <code translate="no" dir="ltr">build.gradle</code> file: <code translate="no" dir="ltr">buildFeatures {</code><code translate="no" dir="ltr">dataBinding true</code></li>
+</ol>
+<p><code translate="no" dir="ltr">}</code></p>
+<ol type="1" start="2">
+<li>Use <code translate="no" dir="ltr">&lt;layout&gt;</code> as the root view in your XML layout.</li>
+<li>Define a binding variable: <code translate="no" dir="ltr">private lateinit var binding: ActivityMainBinding</code></li>
+<li>Create a binding object in <code translate="no" dir="ltr">MainActivity</code>, replacing <code translate="no" dir="ltr">setContentView</code>: <code translate="no" dir="ltr">binding = DataBindingUtil.setContentView(this, R.layout.activity_main)</code></li>
+<li>Replace calls to <code translate="no" dir="ltr">findViewById()</code> with references to the view in the binding object. For example: <code translate="no" dir="ltr">findViewById&lt;Button&gt;(R.id.done_button)</code> ⇒ <code translate="no" dir="ltr">binding.doneButton</code> (In the example, the name of the view is generated camel case from the view&#39;s <code translate="no" dir="ltr">id</code> in the XML.)</li>
+</ol>
+<p>Steps for binding views to data:</p>
+<ol type="1">
+<li>Create a data class for your data.</li>
+<li>Add a <code translate="no" dir="ltr">&lt;data&gt;</code> block inside the <code translate="no" dir="ltr">&lt;layout&gt;</code> tag.</li>
+<li>Define a <code translate="no" dir="ltr">&lt;variable&gt;</code> with a name, and a type that is the data class.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;data&gt;
+   &lt;variable
+       name=&#34;myName&#34;
+       type=&#34;com.example.android.aboutme.MyName&#34; /&gt;
+&lt;/data&gt;
+</code></pre>
+<ol type="1" start="4">
+<li>In <code translate="no" dir="ltr">MainActivity</code>, create a variable with an instance of the data class. For example: <code translate="no" dir="ltr">private val myName: MyName = MyName("Aleks Haecky")</code></li>
+<li>In the binding object, set the variable to the variable you just created: <code translate="no" dir="ltr">binding.myName = myName</code></li>
+<li>In the XML, set the content of the view to the variable that you defined in the <code translate="no" dir="ltr">&lt;data&gt;</code> block. Use dot notation to access the data inside the data class. <code translate="no" dir="ltr">android:text="@={myName.name}"</code></li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Learn more" duration="0">
+          
+          <p>Udacity course:</p>
+<ul>
+<li><a href="https://www.udacity.com/course/developing-android-apps-with-kotlin--ud9012" target="_blank">Developing Android Apps with Kotlin</a></li>
+</ul>
+<p>Android developer documentation:</p>
+<ul>
+<li><a href="https://developer.android.com/topic/libraries/data-binding/" target="_blank">Data Binding Library</a></li>
+<li><a href="https://developer.android.com/topic/libraries/data-binding/generated-binding" target="_blank">Generated binding classes</a></li>
+<li><a href="https://developer.android.com/topic/libraries/data-binding/start" target="_blank">Get started</a> with data binding</li>
+<li><a href="https://developer.android.com/topic/libraries/data-binding/expressions" target="_blank">Layouts and binding expressions</a></li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Homework" duration="0">
+          
+          <p>This section lists possible homework assignments for students who are working through this codelab as part of a course led by an instructor. It&#39;s up to the instructor to do the following:</p>
+<ul>
+<li>Assign homework if required.</li>
+<li>Communicate to students how to submit homework assignments.</li>
+<li>Grade the homework assignments.</li>
+</ul>
+<p>Instructors can use these suggestions as little or as much as they want, and should feel free to assign any other homework they feel is appropriate.</p>
+<p>If you&#39;re working through this codelab on your own, feel free to use these homework assignments to test your knowledge.</p>
+<h2 is-upgraded id="answer-these-questions" data-text="Answer these questions"><strong>Answer these questions</strong></h2>
+<h3 is-upgraded id="question-1" data-text="Question 1"><strong>Question 1</strong></h3>
+<p>Why do you want to minimize explicit and implicit calls to <code translate="no" dir="ltr">findViewById()</code>?</p>
+<ul>
+<li>Every time <code translate="no" dir="ltr">findViewById()</code> is called, it traverses the view hierarchy.</li>
+<li><code translate="no" dir="ltr">findViewById()</code> runs on the main or UI thread.</li>
+<li>These calls can slow down the user interface.</li>
+<li>Your app is less likely to crash.</li>
+</ul>
+<h3 is-upgraded id="question-2" data-text="Question 2"><strong>Question 2</strong></h3>
+<p>How would you describe data binding?</p>
+<p>For example, here are some things you could say about data binding:</p>
+<ul>
+<li>The big idea about data binding is to create an object that connects/maps/binds two pieces of distant information together at compile time, so that you don&#39;t have to look for the data at runtime.</li>
+<li>The object that surfaces these bindings to you is called the <em>binding object</em>.</li>
+<li>The binding object is created by the compiler.</li>
+</ul>
+<h3 is-upgraded id="question-3" data-text="Question 3"><strong>Question 3</strong></h3>
+<p>Which of the following is NOT a benefit of data binding?</p>
+<ul>
+<li>Code is shorter, easier to read, and easier to maintain.</li>
+<li>Data and views are clearly separated.</li>
+<li>The Android system only traverses the view hierarchy once to get each view.</li>
+<li>Calling <code translate="no" dir="ltr">findViewById()</code> generates a compiler error.</li>
+<li><a href="https://en.wikipedia.org/wiki/Type_safety" target="_blank">Type safety</a> for accessing views.</li>
+</ul>
+<h3 is-upgraded id="question-4" data-text="Question 4"><strong>Question 4</strong></h3>
+<p>What is the function of the <code translate="no" dir="ltr">&lt;layout&gt;</code> tag?</p>
+<ul>
+<li>You wrap it around your root view in the layout.</li>
+<li>Bindings are created for all the views in a layout.</li>
+<li>It designates the top-level view in an XML layout that uses data binding.</li>
+<li>You can use the <code translate="no" dir="ltr">&lt;data&gt;</code> tag in inside a <code translate="no" dir="ltr">&lt;layout&gt;</code> to bind a variable to a data class.</li>
+</ul>
+<h3 is-upgraded id="question-5" data-text="Question 5"><strong>Question 5</strong></h3>
+<p>Which is the correct way to reference bound data in the XML layout?</p>
+<ul>
+<li><code translate="no" dir="ltr">android:text="@={myDataClass.property}"</code></li>
+<li><code translate="no" dir="ltr">android:text="@={myDataClass}"</code></li>
+<li><code translate="no" dir="ltr">android:text="@={myDataClass.property.toString()}"</code></li>
+<li><code translate="no" dir="ltr">android:text="@={myDataClass.bound_data.property}"</code></li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Next codelab" duration="0">
+          
+          <p>Start the next lesson:  <a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-create-and-add-fragment/index.html" target="_blank"><paper-button class="colored" raised>Create a fragment</paper-button></a></p>
+<p>For links to other codelabs in this course, see the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+
+
+        </google-codelab-step>
+      
+    </google-codelab>
+  
+    
+
+    
+  </div>
+
+  
+
+  
+    
+    
+    
+  
+
+  
+  
+</article>
+
+
+
+
+            
+          </devsite-content>
+        </main>
+        <devsite-footer-promos class="devsite-footer">
+          
+            
+
+<nav class="devsite-footer-promos nocontent" aria-label="Promosi">
+  <ul class="devsite-footer-promos-list">
+    
+    <li class="devsite-footer-promo">
+      <a href="//twitter.com/AndroidDev"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer Twitter Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="/_static/android/images/logo-twitter.svg"
+             loading="lazy"
+             alt="Twitter">
+        
+        Twitter
+      </a>
+      <div class="devsite-footer-promo-description">Ikuti @AndroidDev di Twitter</div>
+    </li>
+    
+    <li class="devsite-footer-promo">
+      <a href="//www.youtube.com/user/androiddevelopers"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer YouTube Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="//www.gstatic.com/images/icons/material/product/2x/youtube_48dp.png"
+             loading="lazy"
+             alt="YouTube">
+        
+        YouTube
+      </a>
+      <div class="devsite-footer-promo-description">Lihat Developer Android di YouTube</div>
+    </li>
+    
+  </ul>
+</nav>
+
+          
+        </devsite-footer-promos>
+        <devsite-footer-linkboxes class="devsite-footer">
+          
+            
+<nav class="devsite-footer-linkboxes nocontent" aria-label="Link footer">
+  
+  <ul class="devsite-footer-linkboxes-list">
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Selengkapnya tentang Android</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Android
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/enterprise/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Enterprise
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/security-center/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Keamanan
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//source.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Source
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dukungan</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=190923&amp;template=841312"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Laporkan bug platform
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=192697"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Laporkan bug dokumentasi
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//support.google.com/googleplay/android-developer"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Google Play support
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://google.qualtrics.com/jfe/form/SV_ewWXIoEVLBcyp7f??reserved=1&amp;utm_source=FooterLink&amp;Q_Language=en&amp;utm_medium=own_srch&amp;utm_campaign=developer.android.com&amp;utm_term=0&amp;utm_content=0&amp;productTag=reg&amp;campaignDate=may19&amp;pType=devel&amp;referral_code=gV420370"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Bergabung dengan studi riset
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dokumentasi</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/guide"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Panduan developer
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/design"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Panduan desain
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/reference"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Referensi API
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/samples"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Sampel
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/studio/intro"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 5)"
+            >
+          
+            Android Studio
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+  
+</nav>
+          
+        </devsite-footer-linkboxes>
+        <devsite-footer-utility class="devsite-footer">
+          
+            
+
+<div class="devsite-footer-utility nocontent">
+  
+  
+  <nav class="devsite-footer-sites" aria-label="Situs Google Developers lain">
+    <a href="https://developers.google.com/"
+       class="devsite-footer-sites-logo-link gc-analytics-event"
+       data-category="Site-Wide Custom Events"
+       data-label="Footer Google Developers Link">
+      <img class="devsite-footer-sites-logo"
+           src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup-developers.svg"
+           loading="lazy"
+           alt="Google Developers">
+    </a>
+    <ul class="devsite-footer-sites-list">
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.android.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Android Link"
+         
+         >
+          Android
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.chrome.com/home"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Chrome Link"
+         
+         >
+          Chrome
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//firebase.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Firebase Link"
+         
+         >
+          Firebase
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//cloud.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Google Cloud Platform Link"
+         
+         >
+          Google Cloud Platform
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developers.google.com/products/"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer All products Link"
+         
+         >
+          Semua produk
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  
+
+  
+  <nav class="devsite-footer-utility-links" aria-label="Link utilitas">
+    
+    <ul class="devsite-footer-utility-list">
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="//policies.google.com/privacy"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Privacy link"
+         >
+          Privasi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/license"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer License link"
+         >
+          Lisensi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/distribute/marketing-tools/brand-guidelines"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Brand guidelines link"
+         >
+          Pedoman brand
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 devsite-footer-utility-button">
+        
+        <span class="devsite-footer-utility-description">Dapatkan berita dan tips melalui email</span>
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/updates"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Subscribe link"
+         >
+          Berlangganan
+        </a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+  </nav>
+</div>
+          
+        </devsite-footer-utility>
+        <devsite-panel></devsite-panel>
+      </section></section>
+    <devsite-sitemask></devsite-sitemask>
+    
+<devsite-snackbar 
+                  ></devsite-snackbar>
+
+    <devsite-tooltip ></devsite-tooltip>
+    <devsite-heading-link></devsite-heading-link>
+    <devsite-analytics enable-analytics-iframe>
+      
+        <script type="application/json" analytics>[{"gaid": "UA-5831155-1", "dimensions": {"dimension1": "Signed In", "dimension6": "en", "dimension3": false, "dimension5": "id", "dimension11": false, "dimension4": "Developer Android"}, "metrics": {"ratings_count": "metric2", "ratings_value": "metric1"}}]</script>
+<script type="application/json" gtm>{"parameters": {"freeTrialEligibleUser": "False", "internalUser": "False", "language": {"machineTranslated": "False", "requested": "id", "served": "en"}, "pageType": "codelab", "projectName": "Developer Android", "signedIn": "True", "tenant": "android", "recommendations": {"sourcePage": "", "sourceType": 0, "sourceRank": 0, "sourceIdenticalDescriptions": 0, "sourceTitleWords": 0, "sourceDescriptionWords": 0, "experiment": ""}}, "tags": ["GTM-KMSWPCJ"]}</script>
+      
+    </devsite-analytics>
+    
+      <devsite-badger></devsite-badger>
+    
+    
+<android-fully-clickable target=".fully-clickable" watch="devsite-content"></android-fully-clickable>
+    <script nonce="mJOYp/Fwh0pX8OF3ePx/2aQdh5gilY">
+  
+  (function(d,e,v,s,i,t,E){d['GoogleDevelopersObject']=i;
+    t=e.createElement(v);t.async=1;t.src=s;E=e.getElementsByTagName(v)[0];
+    E.parentNode.insertBefore(t,E);})(window, document, 'script',
+    'https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/js/app_loader.js', '[3,"id",null,"/js/devsite_app_module.js","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android","https://android-dot-devsite-v2-prod.appspot.com",1,null,["/_pwa/android/manifest.json","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/images/video-placeholder.svg","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg","https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap"],1,null,[1,6,8,12,14,17,21,25,40,50,63,70,75,76,80,87,88,91,92,93,97,98,100,101,102,103,104,105,107,108,111,112,113,115,117,118,120,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,138,147,148,149],"AIzaSyAP-jjEJBzmIyKR4F-3XITp8yM9T1gEEI8","AIzaSyB6xiKGDR5O3Ak2okS4rLkauxGUG7XP0hg"]')
+  
+</script>
+    <devsite-a11y-announce></devsite-a11y-announce>
+  </body>
+</html>

@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://developer.android.com/courses/kotlin-android-fundamentals/toc -->
+<html lang="id" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    <meta name="google-signin-client-id" content="721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com">
+    <meta name="google-signin-scope" content="profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award">
+    <meta property="og:site_name" content="Android Developers">
+    <meta property="og:type" content="website"><meta name="theme-color" content="#3ddc84">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="https://developer.android.com/_pwa/android/manifest.json" crossorigin="use-credentials">
+    <link rel="preconnect" href="https://www.gstatic.com/" crossorigin="">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin="">
+    <link rel="preconnect" href="https://apis.google.com/" crossorigin="">
+    <link rel="preconnect" href="https://www.google-analytics.com/" crossorigin=""><link rel="stylesheet" href="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/css">
+      <link rel="stylesheet" href="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/css(1)"><link rel="stylesheet" href="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/app.css">
+      <link rel="shortcut icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/touchicon-180.png"><link rel="canonical" href="https://developer.android.com/courses/kotlin-android-fundamentals/toc?hl=id"><link rel="search" type="application/opensearchdescription+xml" title="Android Developers" href="https://developer.android.com/s/opensearch.xml">
+      
+
+<title>Codelab untuk Dasar-Dasar Kotlin Android &nbsp;|&nbsp; Kursus Pelatihan</title>
+
+<meta property="og:title" content="Codelab untuk Dasar-Dasar Kotlin Android  |  Kursus Pelatihan"><meta property="og:url" content="https://developer.android.com/courses/kotlin-android-fundamentals/toc?hl=id"><meta property="og:locale" content="id"><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/cb=gapi.loaded_0" nonce="" async=""></script><script type="text/javascript" async="" src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/linkid.js.download" nonce=""></script><script async="" src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/gtm.js.download" nonce=""></script><script async="" src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/app_loader.js.download"></script><script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Pelatihan",
+      "item": "https://developer.android.com/courses"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Codelab untuk Dasar-Dasar Kotlin Android",
+      "item": "https://developer.android.com/courses/kotlin-android-fundamentals/toc"
+    }]
+  }
+  </script>
+  <meta name="xsrf_token" content="-QsU7P8XFvorL58gupy_2TN6bhJbmCT_6-fmi-N_sys6MTYyNzQ4Mjk4Njc0OTMzMw">
+  
+
+  <meta name="session_expiry" content="1627483460">
+  
+    
+    
+    
+  
+
+    <script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/webcomponents-lite.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_app_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_a11y_announce_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_analytics_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_badger_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_book_nav_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_bookmark_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_content_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_panel_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_footer_linkboxes_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_footer_promos_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_footer_utility_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_hats_survey_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_header_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_heading_link_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_language_selector_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_progress_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_recommendations_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_recommendations_dropdown_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_search_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_select_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_sitemask_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_snackbar_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_tabs_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_thumb_rating_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_toc_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_tooltip_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_user_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_android_fully_clickable_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/analytics.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_badge_awarded_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_dialog_module__id.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_spinner_module__id.js.download" nonce=""></script><script async="" src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/lazy.min.js.download" nonce=""></script><script src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/devsite_devsite_feedback_module__id.js.download" nonce=""></script><style type="text/css"></style></head>
+  <body class="" template="page" theme="android-theme" type="article" layout="docs" ready="" signed-in="">
+    <devsite-progress id="app-progress"></devsite-progress>
+  
+    <section class="devsite-wrapper"><devsite-header top-row--height="49" bottom-row--height="84" bottom-tabs--height="0" fixed="" offset="80" style="opacity: 1;">
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="devsite-header--inner nocontent">
+  <div class="devsite-top-logo-row-wrapper-wrapper">
+    <div class="devsite-top-logo-row-wrapper">
+      <div class="devsite-top-logo-row">
+        <button type="button" id="devsite-hamburger-menu" class="devsite-header-icon-button button-flat material-icons gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Navigation menu button" aria-label="Open menu">
+        </button>
+        <div class="devsite-product-name-wrapper">
+
+  <a href="https://developer.android.com/" class="devsite-site-logo-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav" track-name="androidDevelopers" track-metadata-position="nav" track-metadata-eventdetail="nav">
+
+  <img src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+
+</a>
+
+
+
+  
+  
+  <span class="devsite-product-name">
+    <ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+  </span>
+
+</div>
+        <div class="devsite-top-logo-row-middle">
+          <div class="devsite-header-upper-tabs">
+            
+              
+              
+  <devsite-tabs class="upper-tabs" connected="">
+
+    
+
+  <nav class="devsite-tabs-wrapper" aria-label="Tab atas">
+      
+        
+          <tab>
+            <a href="https://developer.android.com/about" class="gc-analytics-event " track-type="nav" track-name="platform" track-metadata-eventdetail="https://developer.android.com/about" track-metadata-position="nav - platform" track-metadata-module="primary nav" data-category="Site-Wide Custom Events" data-label="Tab: Platform">
+  Platform
+</a>
+
+          </tab>
+        
+      
+        
+          <tab>
+            <a href="https://developer.android.com/studio" class="gc-analytics-event " track-type="nav" track-name="android studio" track-metadata-eventdetail="https://developer.android.com/studio" track-metadata-position="nav - android studio" track-metadata-module="primary nav" data-category="Site-Wide Custom Events" data-label="Tab: Android Studio">
+  Android Studio
+</a>
+
+          </tab>
+        
+      
+        
+          <tab>
+            <a href="https://developer.android.com/distribute" class="gc-analytics-event " track-type="nav" track-name="google play" track-metadata-eventdetail="https://developer.android.com/distribute" track-metadata-position="nav - google play" track-metadata-module="primary nav" data-category="Site-Wide Custom Events" data-label="Tab: Google Play">
+  Google Play
+</a>
+
+          </tab>
+        
+      
+        
+          <tab>
+            <a href="https://developer.android.com/jetpack" class="gc-analytics-event " track-type="nav" track-name="jetpack" track-metadata-eventdetail="https://developer.android.com/jetpack" track-metadata-position="nav - jetpack" track-metadata-module="primary nav" data-category="Site-Wide Custom Events" data-label="Tab: Jetpack">
+  Jetpack
+</a>
+
+          </tab>
+        
+      
+        
+          <tab>
+            <a href="https://developer.android.com/kotlin" class="gc-analytics-event " track-type="nav" track-name="kotlin" track-metadata-eventdetail="https://developer.android.com/kotlin" track-metadata-position="nav - kotlin" track-metadata-module="primary nav" data-category="Site-Wide Custom Events" data-label="Tab: Kotlin">
+  Kotlin
+</a>
+
+          </tab>
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    <tab overflow-tab=""><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#" class="devsite-icon devsite-icon-arrow-drop-down">Lainnya</a><div class="devsite-tabs-overflow-menu" scrollbars="" hidden=""><tab>
+            <a href="https://developer.android.com/docs" class="gc-analytics-event " track-type="nav" track-name="dokumen" track-metadata-eventdetail="https://developer.android.com/docs" track-metadata-position="nav - dokumen" track-metadata-module="primary nav" data-category="Site-Wide Custom Events" data-label="Tab: Dokumen">
+  Dokumen
+</a>
+
+          </tab><tab>
+            <a href="https://developer.android.com/news" class="gc-analytics-event " track-type="nav" track-name="berita" track-metadata-eventdetail="https://developer.android.com/news" track-metadata-position="nav - berita" track-metadata-module="primary nav" data-category="Site-Wide Custom Events" data-label="Tab: Berita">
+  Berita
+</a>
+
+          </tab></div></tab></nav></devsite-tabs>
+
+            
+           </div>
+          
+<devsite-search aria-expanded="false" aria-haspopup="listbox" enable-signin="" enable-search="" enable-suggestions="" enable-query-completion="" project-name="Kursus Pelatihan" tenant-name="Android Developers" role="combobox">
+  <form class="devsite-search-form" action="https://developer.android.com/s/results" method="GET">
+    <div class="devsite-search-container">
+      <div class="devsite-searchbox">
+        <input aria-activedescendant="" aria-autocomplete="list" aria-label="Penelusuran" aria-haspopup="false" aria-multiline="false" autocomplete="off" class="devsite-search-field devsite-search-query" name="q" placeholder="Penelusuran" role="searchbox" type="text" value="" aria-controls="devsite-search-popout-container-id-1">
+        <div class="devsite-search-image material-icons" aria-hidden="true"></div>
+      </div>
+      <button type="button" search-open="" class="devsite-search-button devsite-header-icon-button button-flat material-icons" aria-label="Buka penelusuran"></button>
+    </div>
+  <div class="devsite-popout" id="devsite-search-popout-container-id-1"><div class="devsite-popout-result devsite-suggest-results-container" devsite-hide=""></div></div></form>
+  <button type="button" search-close="" class="devsite-search-button devsite-header-icon-button button-flat material-icons" aria-label="Tutup penelusuran"></button>
+</devsite-search>
+
+        <div class="devsite-search-background" style="opacity: 1;"></div></div>
+
+        
+
+        
+
+        
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda." class="devsite-language-selector-select" name="language" track-name="click" track-type="languageSelector">
+    
+    
+      <option value="en" lang="en" track-metadata-original-language="id" track-metadata-selected-language="en" track-name="changed" track-type="languageSelector">
+        English
+      </option>
+    
+      <option value="id" lang="id" track-metadata-original-language="id" track-metadata-selected-language="id" track-name="changed" track-type="languageSelector" selected="selected">
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419" lang="es_419" track-metadata-original-language="id" track-metadata-selected-language="es_419" track-name="changed" track-type="languageSelector">
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br" lang="pt_br" track-metadata-original-language="id" track-metadata-selected-language="pt_br" track-name="changed" track-type="languageSelector">
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn" lang="zh_cn" track-metadata-original-language="id" track-metadata-selected-language="zh_cn" track-name="changed" track-type="languageSelector">
+        中文 – 简体
+      </option>
+    
+      <option value="ja" lang="ja" track-metadata-original-language="id" track-metadata-selected-language="ja" track-name="changed" track-type="languageSelector">
+        日本語
+      </option>
+    
+      <option value="ko" lang="ko" track-metadata-original-language="id" track-metadata-selected-language="ko" track-name="changed" track-type="languageSelector">
+        한국어
+      </option>
+    
+    </select>
+  <div class="devsite-select"><label id="devsite-select-105933404959993793-label" style="display:none;" aria-label="Pilih preferensi bahasa Anda.">Pilih opsi</label><button type="button" class="devsite-select-toggle" id="devsite-select-105933404959993793-button" aria-haspopup="true" aria-labelledby="devsite-select-105933404959993793-label devsite-select-105933404959993793-button" aria-controls="devsite-select-105933404959993793-popup"><span class="devsite-select-toggle-label">Bahasa Indonesia</span><span class="devsite-icon devsite-icon-arrow-drop-down devsite-select-toggle-icon" aria-hidden="true"></span></button><ul class="devsite-select-list" id="devsite-select-105933404959993793-popup" tabindex="-1" role="listbox" scrollbars="" aria-labelledby="devsite-select-105933404959993793-button"><li role="option" lang="en" value="en" id="devsite-select-105933404959993793-0" class="devsite-select-item" data-index="0" aria-selected="false" aria-label="English">English</li><li role="option" lang="id" value="id" id="devsite-select-105933404959993793-1" class="devsite-select-item" data-index="1" data-selected="" aria-selected="true" aria-label="Bahasa Indonesia, dipilih">Bahasa Indonesia</li><li role="option" lang="es_419" value="es_419" id="devsite-select-105933404959993793-2" class="devsite-select-item" data-index="2" aria-selected="false" aria-label="Español – América Latina">Español – América Latina</li><li role="option" lang="pt_br" value="pt_br" id="devsite-select-105933404959993793-3" class="devsite-select-item" data-index="3" aria-selected="false" aria-label="Português – Brasil">Português – Brasil</li><li role="option" lang="zh_cn" value="zh_cn" id="devsite-select-105933404959993793-4" class="devsite-select-item" data-index="4" aria-selected="false" aria-label="中文 – 简体">中文 – 简体</li><li role="option" lang="ja" value="ja" id="devsite-select-105933404959993793-5" class="devsite-select-item" data-index="5" aria-selected="false" aria-label="日本語">日本語</li><li role="option" lang="ko" value="ko" id="devsite-select-105933404959993793-6" class="devsite-select-item" data-index="6" aria-selected="false" aria-label="한국어">한국어</li></ul></div></devsite-select>
+</devsite-language-selector>
+
+
+        
+
+        
+          
+          
+          <devsite-user signed-in="" enable-profiles="" id="devsite-user" sign-in-url="https://developer.android.com/_d/signin?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fkotlin-android-fundamentals%2Ftoc&amp;prompt=select_account" sign-out-url="https://developer.android.com/_d/signout?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fkotlin-android-fundamentals%2Ftoc" url="https://developer.android.com/_d/signin?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fkotlin-android-fundamentals%2Ftoc&amp;prompt=select_account"><div class="ogb-wrapper ogb-si"><div class="devsite-user-dialog-signin">
+  
+  <a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#" class="devsite-user-dialog-toggle" role="button" aria-label="Buka dialog akun">
+  
+    <img class="devsite-user-dialog-photo-thumbnail" src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/unnamed.jpg" srcset="https://lh3.googleusercontent.com/a-/AOh14GgtCiSToaAeHIZcTSIrSnO4DTmhrSd7Bu8wzy9F=s96-c 1x, https://lh3.googleusercontent.com/a-/AOh14GgtCiSToaAeHIZcTSIrSnO4DTmhrSd7Bu8wzy9F=s96-c 2x" loading="lazy" alt="Akhmad Fauzi">
+  
+  </a>
+</div>
+
+<div class="devsite-user-dialog" role="dialog" aria-modal="true" aria-label="Account Information" aria-hidden="true">
+  
+
+  <div class="devsite-user-dialog-user">
+    <div class="devsite-user-dialog-photo">
+    
+      <img class="devsite-user-dialog-photo-portrait" src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/unnamed.jpg" srcset="https://lh3.googleusercontent.com/a-/AOh14GgtCiSToaAeHIZcTSIrSnO4DTmhrSd7Bu8wzy9F=s96-c 1x, https://lh3.googleusercontent.com/a-/AOh14GgtCiSToaAeHIZcTSIrSnO4DTmhrSd7Bu8wzy9F=s96-c 2x" loading="lazy" alt="Akhmad Fauzi">
+    
+    </div>
+
+    <div class="devsite-user-dialog-details">
+    
+      <div class="devsite-user-dialog-name">Akhmad Fauzi</div>
+    
+      <div class="devsite-user-dialog-email">akhmadfauzi0101@gmail.com</div>
+    </div>
+
+    <a class="devsite-user-manage" href="https://myaccount.google.com/?utm_source=OGB&amp;amp;utm_medium=act" target="_blank">
+      
+      Kelola Akun Google Anda
+    </a>
+  </div>
+
+  <div class="devsite-user-dialog-buttons">
+    <a class="devsite-user-signin" href="https://developer.android.com/_d/signin?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fkotlin-android-fundamentals%2Ftoc&amp;prompt=select_account" target="_top">
+      <svg class="devsite-switch-account-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#5f6368">
+        <path d="M17 18c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm3.86-2c0 .17-.01.33-.03.49l1.07.82c.1.08.13.21.06.32l-1.03 1.73c-.06.11-.2.16-.32.11l-1.28-.5c-.26.19-.55.36-.87.49l-.19 1.33c0 .12-.11.21-.24.21h-2.06c-.13 0-.23-.09-.26-.21l-.19-1.33c-.31-.12-.6-.29-.87-.49l-1.28.5c-.12.04-.25 0-.32-.11l-1.03-1.73a.26.26 0 0 1 .06-.32l1.09-.82a2.7 2.7 0 0 1 .01-.98l-1.09-.83a.235.235 0 0 1-.06-.32l1.03-1.73c.06-.11.2-.16.32-.11l1.28.5c.26-.19.55-.36.87-.49l.19-1.33c.02-.12.12-.21.25-.21h2.06c.13 0 .24.09.26.21l.19 1.33c.32.12.6.29.87.49l1.28-.5c.12-.04.25 0 .32.11l1.03 1.73c.06.11.03.24-.06.32l-1.09.83c.01.16.03.32.03.49zM10 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm1.02 7.05L10 15c-2.7 0-5.8 1.29-6 2.01V18h6l1.05 2H2v-3c0-2.66 5.33-4 8-4 .31 0 .65.02 1.02.05zM10 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+      </svg>
+      
+      Ganti akun
+    </a>
+
+    <a class="devsite-user-signout" href="https://developer.android.com/_d/signout?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fkotlin-android-fundamentals%2Ftoc" target="_top">
+      
+      Logout
+    </a>
+  </div>
+
+  <div class="devsite-user-dialog-footer">
+    <div class="devsite-user-dialog-footer-link">
+      <a href="https://myaccount.google.com/privacypolicy" target="_blank">
+        
+        Kebijakan Privasi
+      </a>
+    </div>
+
+    <div class="devsite-user-dialog-footer-link">
+      <a href="https://myaccount.google.com/termsofservice" target="_blank">
+        
+        Persyaratan Layanan
+      </a>
+    </div>
+  </div>
+</div></div></devsite-user>
+           
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="devsite-collapsible-section
+    
+      devsite-header-no-lower-tabs
+    " style="transform: translate3d(0px, -80px, 0px);">
+    <div class="devsite-header-background">
+      
+        
+          <div class="devsite-product-id-row">
+            <div class="devsite-product-description-row">
+              
+                
+                  
+                  
+                  <ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+  <a href="https://developer.android.com/courses" class="devsite-breadcrumb-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Lower Header" data-value="1" track-type="globalNav" track-name="breadcrumb" track-metadata-position="1" track-metadata-eventdetail="Kursus Pelatihan">
+    
+        Pelatihan
+      
+  </a>
+  
+    
+  </li>
+  
+</ul>
+                
+              
+              
+            </div>
+            
+          </div>
+          
+        
+      
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+  
+</devsite-header>
+      <div class="devsite-book-nav-bg" fixed="" hidden=""></div><devsite-book-nav scrollbars="" hidden="" fixed="" style="top: 133px; max-height: 585px; transform: translate3d(0px, -80px, 0px);" animatable="" top-level-nav="">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="devsite-book-nav devsite-nav nocontent" aria-label="Menu samping">
+  <div class="devsite-mobile-header">
+    <button type="button" id="devsite-close-nav" class="devsite-header-icon-button button-flat material-icons gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Close navigation" aria-label="Close navigation">
+    </button>
+    <div class="devsite-product-name-wrapper">
+
+  <a href="https://developer.android.com/" class="devsite-site-logo-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav" track-name="androidDevelopers" track-metadata-position="nav" track-metadata-eventdetail="nav">
+
+  <img src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+
+</a>
+
+
+  
+      <span class="devsite-product-name">
+        
+        
+        <ul class="devsite-breadcrumb-list">
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+      </span>
+    
+
+</div>
+  </div>
+
+  <div class="devsite-book-nav-wrapper">
+    <div class="devsite-mobile-nav-top">
+      
+        <ul class="devsite-nav-list">
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="https://developer.android.com/about" class="devsite-nav-title gc-analytics-event
+              
+              " data-category="Site-Wide Custom Events" data-label="Responsive Tab: Platform" track-type="globalNav" track-metadata-eventdetail="globalMenu" track-metadata-position="nav" track-name="platform">
+  
+    <span class="devsite-nav-text" tooltip="">
+      Platform
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="https://developer.android.com/studio" class="devsite-nav-title gc-analytics-event
+              
+              " data-category="Site-Wide Custom Events" data-label="Responsive Tab: Android Studio" track-type="globalNav" track-metadata-eventdetail="globalMenu" track-metadata-position="nav" track-name="androidStudio">
+  
+    <span class="devsite-nav-text" tooltip="">
+      Android Studio
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="https://developer.android.com/distribute" class="devsite-nav-title gc-analytics-event
+              
+              " data-category="Site-Wide Custom Events" data-label="Responsive Tab: Google Play" track-type="globalNav" track-metadata-eventdetail="globalMenu" track-metadata-position="nav" track-name="googlePlay">
+  
+    <span class="devsite-nav-text" tooltip="">
+      Google Play
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="https://developer.android.com/jetpack" class="devsite-nav-title gc-analytics-event
+              
+              " data-category="Site-Wide Custom Events" data-label="Responsive Tab: Jetpack" track-type="globalNav" track-metadata-eventdetail="globalMenu" track-metadata-position="nav" track-name="jetpack">
+  
+    <span class="devsite-nav-text" tooltip="">
+      Jetpack
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="https://developer.android.com/kotlin" class="devsite-nav-title gc-analytics-event
+              
+              " data-category="Site-Wide Custom Events" data-label="Responsive Tab: Kotlin" track-type="globalNav" track-metadata-eventdetail="globalMenu" track-metadata-position="nav" track-name="kotlin">
+  
+    <span class="devsite-nav-text" tooltip="">
+      Kotlin
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="https://developer.android.com/docs" class="devsite-nav-title gc-analytics-event
+              
+              " data-category="Site-Wide Custom Events" data-label="Responsive Tab: Dokumen" track-type="globalNav" track-metadata-eventdetail="globalMenu" track-metadata-position="nav" track-name="dokumen">
+  
+    <span class="devsite-nav-text" tooltip="">
+      Dokumen
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="https://developer.android.com/news" class="devsite-nav-title gc-analytics-event
+              
+              " data-category="Site-Wide Custom Events" data-label="Responsive Tab: Berita" track-type="globalNav" track-metadata-eventdetail="globalMenu" track-metadata-position="nav" track-name="berita">
+  
+    <span class="devsite-nav-text" tooltip="">
+      Berita
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+          
+          
+        </ul>
+      
+    </div>
+    
+  </div>
+</nav>
+        
+      </devsite-book-nav>
+      <section id="gc-wrapper" style="margin-top: 133px;">
+        <main role="main" class="devsite-main-content" has-toc="">
+          
+          <devsite-toc class="devsite-nav devsite-toc" role="navigation" aria-label="Daftar isi" visible="" fixed="" max-height="537" offset="80"><ul class="devsite-nav-list" scrollbars="" style="max-height: 537px; transform: translate3d(0px, -80px, 0px); max-width: 158.5px;"><li class="devsite-nav-item devsite-nav-heading devsite-toc-toggle" role="heading" aria-level="2"><span class="devsite-nav-title"><span class="devsite-nav-text">Daftar isi</span></span></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_1_build_your_first_app" class="devsite-nav-title gc-analytics-event devsite-nav-active" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="0" track-type="navigation" track-name="rightNav" track-metadata-position="0" track-metadata-link-destination="#lesson_1_build_your_first_app"><span class="devsite-nav-text" tooltip="">Tutorial 1: Membuat aplikasi pertama Anda</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_2_layouts" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="1" track-type="navigation" track-name="rightNav" track-metadata-position="1" track-metadata-link-destination="#lesson_2_layouts"><span class="devsite-nav-text" tooltip="">Tutorial 2: Tata letak</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_3_navigation" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="2" track-type="navigation" track-name="rightNav" track-metadata-position="2" track-metadata-link-destination="#lesson_3_navigation"><span class="devsite-nav-text" tooltip="">Tutorial 3: Navigasi</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_4_activity_and_fragment_lifecycles" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="3" track-type="navigation" track-name="rightNav" track-metadata-position="3" track-metadata-link-destination="#lesson_4_activity_and_fragment_lifecycles"><span class="devsite-nav-text" tooltip="">Tutorial 4: Siklus proses aktivitas dan fragmen</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_5_architecture_components" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="4" track-type="navigation" track-name="rightNav" track-metadata-position="4" track-metadata-link-destination="#lesson_5_architecture_components"><span class="devsite-nav-text" tooltip="">Tutorial 5: Komponen arsitektur</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_6_room_database_and_coroutines" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="5" track-type="navigation" track-name="rightNav" track-metadata-position="5" track-metadata-link-destination="#lesson_6_room_database_and_coroutines"><span class="devsite-nav-text" tooltip="">Tutorial 6: Database Room dan coroutine</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_7_recyclerview" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="6" track-type="navigation" track-name="rightNav" track-metadata-position="6" track-metadata-link-destination="#lesson_7_recyclerview"><span class="devsite-nav-text" tooltip="">Tutorial 7: RecyclerView</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_8_connecting_to_the_internet" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="7" track-type="navigation" track-name="rightNav" track-metadata-position="7" track-metadata-link-destination="#lesson_8_connecting_to_the_internet"><span class="devsite-nav-text" tooltip="">Tutorial 8: Menyambungkan ke internet</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_9_repository" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="8" track-type="navigation" track-name="rightNav" track-metadata-position="8" track-metadata-link-destination="#lesson_9_repository"><span class="devsite-nav-text" tooltip="">Tutorial 9: Repositori</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_10_designing_for_everyone" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Right nav" data-value="9" track-type="navigation" track-name="rightNav" track-metadata-position="9" track-metadata-link-destination="#lesson_10_designing_for_everyone"><span class="devsite-nav-text" tooltip="">Tutorial 10: Mendesain untuk semua orang</span></a></li></ul></devsite-toc>
+          <devsite-content>
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="devsite-article" has-bookmark="">
+  
+  
+  
+
+  <div class="devsite-article-meta nocontent" role="navigation">
+    
+    
+    <ul class="devsite-breadcrumb-list" aria-label="Breadcrumb">
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+  <a href="https://developer.android.com/" class="devsite-breadcrumb-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Breadcrumbs" data-value="1" track-type="globalNav" track-name="breadcrumb" track-metadata-position="1" track-metadata-eventdetail="Developer Android">
+    
+        Developer Android
+      
+  </a>
+  
+    
+  </li>
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+      
+      <div class="devsite-breadcrumb-guillemet material-icons" aria-hidden="true"></div>
+    
+    
+    
+      
+  <a href="https://developer.android.com/courses" class="devsite-breadcrumb-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Breadcrumbs" data-value="2" track-type="globalNav" track-name="breadcrumb" track-metadata-position="2" track-metadata-eventdetail="Kursus Pelatihan">
+    
+        Pelatihan
+      
+  </a>
+  
+    
+  </li>
+  
+</ul>
+    
+      
+    <devsite-thumb-rating position="header"><div class="devsite-thumb-rating" role="form" aria-labelledby="devsite-thumb-label-header" tabindex="0"><div class="devsite-thumb-label" id="devsite-thumb-label-header">Beri nilai dan ulas</div><div class="devsite-thumbs"><button class="devsite-thumb devsite-thumb-up" data-title="Berguna" aria-label="Berguna"><svg class="devsite-thumb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21,7h-6.31l0.95-4.57l0.03-0.32c0-0.41-0.17-0.79-0.44-1.06L14.17,0c0,0-7.09,6.85-7.17,7H2v13h16 c0.83,0,1.54-0.5,1.84-1.22l3.02-7.05C22.95,11.5,23,11.26,23,11V9C23,7.9,22.1,7,21,7z M7,18H4V9h3V18z M21,11l-3,7H9V8l4.34-4.34 L12,9h9V11z"></path></svg></button><button class="devsite-thumb devsite-thumb-down" data-title="Tidak berguna" aria-label="Tidak berguna"><svg class="devsite-thumb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3,17h6.31l-0.95,4.57l-0.03,0.32c0,0.41,0.17,0.79,0.44,1.06L9.83,24c0,0,7.09-6.85,7.17-7h5V4H6 C5.17,4,4.46,4.5,4.16,5.22l-3.02,7.05C1.05,12.5,1,12.74,1,13v2C1,16.1,1.9,17,3,17z M17,6h3v9h-3V6z M3,13l3-7h9v10l-4.34,4.34 L12,15H3V13z"></path></svg></button></div></div></devsite-thumb-rating>
+  
+    
+  </div>
+  
+  
+    <h1 class="devsite-page-title">Codelab untuk Dasar-Dasar Kotlin Android</h1><devsite-bookmark><input type="checkbox" class="bookmark-checkbox" data-title="Tambahkan bookmark" aria-label="Tambahkan bookmark"></devsite-bookmark>
+  
+
+  <devsite-toc class="devsite-nav devsite-toc-embedded" devsite-toc-embedded="" expandable="" visible=""><ul class="devsite-nav-list" scrollbars=""><li class="devsite-nav-item devsite-nav-heading devsite-toc-toggle" role="heading" aria-level="2"><span class="devsite-nav-title"><span class="devsite-nav-text">Daftar isi</span></span><button type="button" title="Luaskan/ciutkan konten" class="devsite-nav-show-all button-transparent material-icons"></button></li><li class="devsite-nav-item" visible=""><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_1_build_your_first_app" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="0" track-type="navigation" track-name="embeddedNav" track-metadata-position="0" track-metadata-link-destination="#lesson_1_build_your_first_app"><span class="devsite-nav-text" tooltip="">Tutorial 1: Membuat aplikasi pertama Anda</span></a></li><li class="devsite-nav-item" visible=""><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_2_layouts" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="1" track-type="navigation" track-name="embeddedNav" track-metadata-position="1" track-metadata-link-destination="#lesson_2_layouts"><span class="devsite-nav-text" tooltip="">Tutorial 2: Tata letak</span></a></li><li class="devsite-nav-item" visible=""><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_3_navigation" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="2" track-type="navigation" track-name="embeddedNav" track-metadata-position="2" track-metadata-link-destination="#lesson_3_navigation"><span class="devsite-nav-text" tooltip="">Tutorial 3: Navigasi</span></a></li><li class="devsite-nav-item" visible=""><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_4_activity_and_fragment_lifecycles" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="3" track-type="navigation" track-name="embeddedNav" track-metadata-position="3" track-metadata-link-destination="#lesson_4_activity_and_fragment_lifecycles"><span class="devsite-nav-text" tooltip="">Tutorial 4: Siklus proses aktivitas dan fragmen</span></a></li><li class="devsite-nav-item" visible=""><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_5_architecture_components" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="4" track-type="navigation" track-name="embeddedNav" track-metadata-position="4" track-metadata-link-destination="#lesson_5_architecture_components"><span class="devsite-nav-text" tooltip="">Tutorial 5: Komponen arsitektur</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_6_room_database_and_coroutines" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="5" track-type="navigation" track-name="embeddedNav" track-metadata-position="5" track-metadata-link-destination="#lesson_6_room_database_and_coroutines"><span class="devsite-nav-text" tooltip="">Tutorial 6: Database Room dan coroutine</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_7_recyclerview" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="6" track-type="navigation" track-name="embeddedNav" track-metadata-position="6" track-metadata-link-destination="#lesson_7_recyclerview"><span class="devsite-nav-text" tooltip="">Tutorial 7: RecyclerView</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_8_connecting_to_the_internet" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="7" track-type="navigation" track-name="embeddedNav" track-metadata-position="7" track-metadata-link-destination="#lesson_8_connecting_to_the_internet"><span class="devsite-nav-text" tooltip="">Tutorial 8: Menyambungkan ke internet</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_9_repository" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="8" track-type="navigation" track-name="embeddedNav" track-metadata-position="8" track-metadata-link-destination="#lesson_9_repository"><span class="devsite-nav-text" tooltip="">Tutorial 9: Repositori</span></a></li><li class="devsite-nav-item"><a href="https://developer.android.com/courses/kotlin-android-fundamentals/toc#lesson_10_designing_for_everyone" class="devsite-nav-title gc-analytics-event" data-category="Site-Wide Custom Events" data-action="click" data-label="Embedded nav" data-value="9" track-type="navigation" track-name="embeddedNav" track-metadata-position="9" track-metadata-link-destination="#lesson_10_designing_for_everyone"><span class="devsite-nav-text" tooltip="">Tutorial 10: Mendesain untuk semua orang</span></a></li><li class="devsite-toc-toggle"><button type="button" class="button-flat devsite-nav-more-items material-icons" track-type="navigation" track-name="embeddedNavExpand" title="Luaskan/ciutkan konten"></button></li></ul></devsite-toc>
+
+  
+  <devsite-recommendations-dropdown class="nocontent"></devsite-recommendations-dropdown>
+  
+
+  <div class="devsite-article-body clearfix
+    ">
+
+    
+      
+
+<p>Halaman ini berisi daftar codelab yang disertakan dalam kursus Dasar-Dasar
+Android Kotlin. Untuk mengetahui informasi selengkapnya dan link ke aplikasi yang menyertai
+codelab ini, lihat
+<a href="https://developer.android.com/courses/kotlin-android-fundamentals/overview">ringkasan kursus</a>.</p>
+
+<h2 id="lesson_1_build_your_first_app" data-text="Tutorial 1: Membuat aplikasi pertama Anda" role="presentation"><span class="devsite-heading" role="heading" aria-level="2">Tutorial 1: Membuat aplikasi pertama Anda</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Salin link ke bagian ini: Tutorial 1: Membuat aplikasi pertama Anda" data-title="Salin link ke bagian ini: Tutorial 1: Membuat aplikasi pertama Anda" data-id="lesson_1_build_your_first_app"></button></h2>
+
+<ul>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-install-studio/index.html?index=..%2F..android-kotlin-fundamentals#0">1.0 Menginstal Android Studio</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-get-started/index.html?index=..%2F..android-kotlin-fundamentals#0">1.1 Memulai</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-app-anatomy/index.html?index=..%2F..android-kotlin-fundamentals#0">1.2 Anatomi aplikasi dasar</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-images-compat/index.html?index=..%2F..android-kotlin-fundamentals#0">1.3 Resource dan kompatibilitas gambar</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-available-resources/index.html?index=..%2F..android-kotlin-fundamentals#0">1.4 Mempelajari cara membantu diri Anda sendiri</a></li>
+</ul>
+
+<h2 id="lesson_2_layouts" data-text="Tutorial 2: Tata letak" role="presentation"><span class="devsite-heading" role="heading" aria-level="2">Tutorial 2: Tata letak</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Salin link ke bagian ini: Tutorial 2: Tata letak" data-title="Salin link ke bagian ini: Tutorial 2: Tata letak" data-id="lesson_2_layouts"></button></h2>
+
+<ul>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-linear-layout/index.html?index=..%2F..android-kotlin-fundamentals#0">2.1 Tata letak linear menggunakan Layout Editor</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-interactivity/index.html?index=..%2F..android-kotlin-fundamentals#0">2.2 Menambahkan interaktivitas pengguna</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-constraint-layout/index.html?index=..%2F..android-kotlin-fundamentals#0">2.3 Membatasi tata letak menggunakan Layout Editor</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-data-binding-basics/index.html?index=..%2F..android-kotlin-fundamentals#0">2.4 Dasar-dasar data binding</a></li>
+</ul>
+
+<h2 id="lesson_3_navigation" data-text="Tutorial 3: Navigasi" role="presentation"><span class="devsite-heading" role="heading" aria-level="2">Tutorial 3: Navigasi</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Salin link ke bagian ini: Tutorial 3: Navigasi" data-title="Salin link ke bagian ini: Tutorial 3: Navigasi" data-id="lesson_3_navigation"></button></h2>
+
+<ul>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-create-and-add-fragment/index.html?index=..%2F..android-kotlin-fundamentals#0">3.1 Membuat fragmen</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-add-navigation/index.html?index=..%2F..android-kotlin-fundamentals#0">3.2 Menentukan jalur navigasi</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-start-external-activity/index.html?index=..%2F..android-kotlin-fundamentals#0">3.3 Memulai aktivitas eksternal</a></li>
+</ul>
+
+<h2 id="lesson_4_activity_and_fragment_lifecycles" data-text="Tutorial 4: Siklus proses aktivitas dan fragmen" role="presentation"><span class="devsite-heading" role="heading" aria-level="2">Tutorial 4: Siklus proses aktivitas dan fragmen</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Salin link ke bagian ini: Tutorial 4: Siklus proses aktivitas dan fragmen" data-title="Salin link ke bagian ini: Tutorial 4: Siklus proses aktivitas dan fragmen" data-id="lesson_4_activity_and_fragment_lifecycles"></button></h2>
+
+<ul>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-lifecycles-logging/index.html?index=..%2F..android-kotlin-fundamentals#0">4.1 Siklus proses dan logging</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-complex-lifecycle/index.html?index=..%2F..android-kotlin-fundamentals#0">4.2 Situasi siklus proses yang kompleks</a></li>
+</ul>
+
+<h2 id="lesson_5_architecture_components" data-text="Tutorial 5: Komponen arsitektur" role="presentation"><span class="devsite-heading" role="heading" aria-level="2">Tutorial 5: Komponen arsitektur</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Salin link ke bagian ini: Tutorial 5: Komponen arsitektur" data-title="Salin link ke bagian ini: Tutorial 5: Komponen arsitektur" data-id="lesson_5_architecture_components"></button></h2>
+
+<ul>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-view-model/index.html?index=..%2F..android-kotlin-fundamentals#0">5.1 ViewModel dan ViewModelProvider</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data/index.html?index=..%2F..android-kotlin-fundamentals#0">5.2 LiveData dan Pengamat LiveData</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data-data-binding/index.html?index=..%2F..android-kotlin-fundamentals#0">5.3 DataBinding dengan ViewModel dan LiveData</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-live-data-transformations/index.html?index=..%2F..android-kotlin-fundamentals#0">5.4 Transformasi LiveData</a></li>
+</ul>
+
+<h2 id="lesson_6_room_database_and_coroutines" data-text="Tutorial 6: Database Room dan coroutine" role="presentation"><span class="devsite-heading" role="heading" aria-level="2">Tutorial 6: Database Room dan coroutine</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Salin link ke bagian ini: Tutorial 6: Database Room dan coroutine" data-title="Salin link ke bagian ini: Tutorial 6: Database Room dan coroutine" data-id="lesson_6_room_database_and_coroutines"></button></h2>
+
+<ul>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-room-database/index.html?index=..%2F..android-kotlin-fundamentals#0">6.1 Membuat database Room</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-coroutines-and-room/index.html?index=..%2F..android-kotlin-fundamentals#0">6.2 Coroutine dan Room</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-quality-and-states/index.html?index=..%2F..android-kotlin-fundamentals#0">6.3 Merekam kualitas dan status tombol</a></li>
+</ul>
+
+<h2 id="lesson_7_recyclerview" data-text="Tutorial 7: RecyclerView" role="presentation"><span class="devsite-heading" role="heading" aria-level="2">Tutorial 7: RecyclerView</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Salin link ke bagian ini: Tutorial 7: RecyclerView" data-title="Salin link ke bagian ini: Tutorial 7: RecyclerView" data-id="lesson_7_recyclerview"></button></h2>
+
+<ul>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-recyclerview-fundamentals/index.html?index=..%2F..android-kotlin-fundamentals#0">7.1 Dasar-dasar RecyclerView</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-diffutil-databinding/index.html?index=..%2F..android-kotlin-fundamentals#0">7.2 DiffUtil dan data binding dengan RecyclerView</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-grid-layout/index.html?index=..%2F..android-kotlin-fundamentals#0">7.3 GridLayout dengan RecyclerView</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-interacting-with-items/index.html?index=..%2F..android-kotlin-fundamentals#0">7.4 Berinteraksi dengan item RecyclerView</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-headers/index.html?index=..%2F..android-kotlin-fundamentals#0">7.5 Header di RecyclerView</a></li>
+</ul>
+
+<h2 id="lesson_8_connecting_to_the_internet" data-text="Tutorial 8: Menyambungkan ke internet" role="presentation"><span class="devsite-heading" role="heading" aria-level="2">Tutorial 8: Menghubungkan ke internet</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Salin link ke bagian ini: Tutorial 8: Menghubungkan ke internet" data-title="Salin link ke bagian ini: Tutorial 8: Menghubungkan ke internet" data-id="lesson_8_connecting_to_the_internet"></button></h2>
+
+<ul>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-internet-data/index.html?index=..%2F..android-kotlin-fundamentals#0">8.1 Mendapatkan data dari internet</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-internet-images/index.html?index=..%2F..android-kotlin-fundamentals#0">8.2 Memuat dan menampilkan gambar dari internet</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-internet-filtering/index.html?index=..%2F..android-kotlin-fundamentals#0">8.3 Memfilter dan tampilan detail dengan data internet</a></li>
+</ul>
+
+<h2 id="lesson_9_repository" data-text="Tutorial 9: Repositori" role="presentation"><span class="devsite-heading" role="heading" aria-level="2">Tutorial 9: Repositori</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Salin link ke bagian ini: Tutorial 9: Repositori" data-title="Salin link ke bagian ini: Tutorial 9: Repositori" data-id="lesson_9_repository"></button></h2>
+
+<ul>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-repository/index.html?index=..%2F..android-kotlin-fundamentals#0">9.1 Repositori</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-work-manager/index.html?index=..%2F..android-kotlin-fundamentals#0">9.2 WorkManager</a></li>
+</ul>
+
+<h2 id="lesson_10_designing_for_everyone" data-text="Tutorial 10: Mendesain untuk semua orang" role="presentation"><span class="devsite-heading" role="heading" aria-level="2">Tutorial 10: Mendesain untuk semua orang</span><button type="button" class="devsite-heading-link button-flat material-icons" aria-label="Salin link ke bagian ini: Tutorial 10: Mendesain untuk semua orang" data-title="Salin link ke bagian ini: Tutorial 10: Mendesain untuk semua orang" data-id="lesson_10_designing_for_everyone"></button></h2>
+
+<ul>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-styles-and-themes/#0">10.1 Gaya dan tema</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-material-design-dimens-colors/#0">10.2 Desain Material, dimensi, dan warna</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-design-for-everyone/#0">10.3 Desain untuk semua orang</a></li>
+</ul>
+
+
+    
+
+    
+      <devsite-hats-survey class="nocontent" hats-id="onAFgYxTD0kxBYCLVTd0Z41p75CM" listnr-id="5207477"></devsite-hats-survey>
+    
+  </div>
+
+  
+
+  
+    
+      
+    
+    
+      
+    <devsite-thumb-rating position="footer"><div class="devsite-thumb-rating" role="form" aria-labelledby="devsite-thumb-label-footer" tabindex="0"><div class="devsite-thumb-label" id="devsite-thumb-label-footer">Beri nilai dan ulas</div><div class="devsite-thumbs"><button class="devsite-thumb devsite-thumb-up" data-title="Berguna" aria-label="Berguna"><svg class="devsite-thumb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21,7h-6.31l0.95-4.57l0.03-0.32c0-0.41-0.17-0.79-0.44-1.06L14.17,0c0,0-7.09,6.85-7.17,7H2v13h16 c0.83,0,1.54-0.5,1.84-1.22l3.02-7.05C22.95,11.5,23,11.26,23,11V9C23,7.9,22.1,7,21,7z M7,18H4V9h3V18z M21,11l-3,7H9V8l4.34-4.34 L12,9h9V11z"></path></svg></button><button class="devsite-thumb devsite-thumb-down" data-title="Tidak berguna" aria-label="Tidak berguna"><svg class="devsite-thumb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3,17h6.31l-0.95,4.57l-0.03,0.32c0,0.41,0.17,0.79,0.44,1.06L9.83,24c0,0,7.09-6.85,7.17-7h5V4H6 C5.17,4,4.46,4.5,4.16,5.22l-3.02,7.05C1.05,12.5,1,12.74,1,13v2C1,16.1,1.9,17,3,17z M17,6h3v9h-3V6z M3,13l3-7h9v10l-4.34,4.34 L12,15H3V13z"></path></svg></button></div></div></devsite-thumb-rating>
+  
+       
+    
+    
+      
+    
+  
+
+  
+  
+</article>
+
+
+<devsite-content-footer class="nocontent">
+  <p>Content and code samples on this page are subject to the licenses described in the <a href="https://developer.android.com/license">Content License</a>. Java is a registered trademark of Oracle and/or its affiliates.</p>
+  <p>Last updated 2021-05-04 UTC.</p>
+</devsite-content-footer>
+
+
+
+            
+          </devsite-content>
+        </main>
+        <devsite-footer-promos class="devsite-footer">
+          
+            
+
+<nav class="devsite-footer-promos nocontent" aria-label="Promosi">
+  <ul class="devsite-footer-promos-list">
+    
+    <li class="devsite-footer-promo">
+      <a href="https://twitter.com/AndroidDev" class="devsite-footer-promo-title gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Twitter Promo">
+        
+        
+        <img class="devsite-footer-promo-icon" src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/logo-twitter.svg" loading="lazy" alt="Twitter">
+        
+        Twitter
+      </a>
+      <div class="devsite-footer-promo-description">Ikuti @AndroidDev di Twitter</div>
+    </li>
+    
+    <li class="devsite-footer-promo">
+      <a href="https://www.youtube.com/user/androiddevelopers" class="devsite-footer-promo-title gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer YouTube Promo">
+        
+        
+        <img class="devsite-footer-promo-icon" src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/youtube_48dp.png" loading="lazy" alt="YouTube">
+        
+        YouTube
+      </a>
+      <div class="devsite-footer-promo-description">Lihat Developer Android di YouTube</div>
+    </li>
+    
+  </ul>
+</nav>
+
+          
+        </devsite-footer-promos>
+        <devsite-footer-linkboxes class="devsite-footer">
+          
+            
+<nav class="devsite-footer-linkboxes nocontent" aria-label="Link footer">
+  
+  <ul class="devsite-footer-linkboxes-list">
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Selengkapnya tentang Android</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://www.android.com/" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 1)">
+          
+            Android
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://www.android.com/enterprise/" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 2)">
+          
+            Enterprise
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://www.android.com/security-center/" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 3)">
+          
+            Keamanan
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://source.android.com/" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 4)">
+          
+            Source
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dukungan</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://issuetracker.google.com/issues/new?component=190923&amp;template=841312" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 1)">
+          
+            Laporkan bug platform
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://issuetracker.google.com/issues/new?component=192697" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 2)">
+          
+            Laporkan bug dokumentasi
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://support.google.com/googleplay/android-developer" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 3)">
+          
+            Google Play support
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://google.qualtrics.com/jfe/form/SV_ewWXIoEVLBcyp7f??reserved=1&amp;utm_source=FooterLink&amp;Q_Language=en&amp;utm_medium=own_srch&amp;utm_campaign=developer.android.com&amp;utm_term=0&amp;utm_content=0&amp;productTag=reg&amp;campaignDate=may19&amp;pType=devel&amp;referral_code=gV420370" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 4)">
+          
+            Bergabung dengan studi riset
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dokumentasi</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/guide" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 1)">
+          
+            Panduan developer
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/design" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 2)">
+          
+            Panduan desain
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/reference" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 3)">
+          
+            Referensi API
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/samples" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 4)">
+          
+            Sampel
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://developer.android.com/studio/intro" class="devsite-footer-linkbox-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Link (index 5)">
+          
+            Android Studio
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+  
+</nav>
+          
+        </devsite-footer-linkboxes>
+        <devsite-footer-utility class="devsite-footer">
+          
+            
+
+<div class="devsite-footer-utility nocontent">
+  
+  
+  <nav class="devsite-footer-sites" aria-label="Situs Google Developers lain">
+    <a href="https://developers.google.com/" class="devsite-footer-sites-logo-link gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Google Developers Link">
+      <img class="devsite-footer-sites-logo" src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/lockup-developers.svg" loading="lazy" alt="Google Developers">
+    </a>
+    <ul class="devsite-footer-sites-list">
+      
+      <li class="devsite-footer-sites-item">
+        <a href="https://developer.android.com/" class="devsite-footer-sites-link
+                  gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Android Link">
+          Android
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="https://developer.chrome.com/home" class="devsite-footer-sites-link
+                  gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Chrome Link">
+          Chrome
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="https://firebase.google.com/" class="devsite-footer-sites-link
+                  gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Firebase Link">
+          Firebase
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="https://cloud.google.com/" class="devsite-footer-sites-link
+                  gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer Google Cloud Platform Link">
+          Google Cloud Platform
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="https://developers.google.com/products/" class="devsite-footer-sites-link
+                  gc-analytics-event" data-category="Site-Wide Custom Events" data-label="Footer All products Link">
+          Semua produk
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  
+
+  
+  <nav class="devsite-footer-utility-links" aria-label="Link utilitas">
+    
+    <ul class="devsite-footer-utility-list">
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event" href="https://policies.google.com/privacy" data-category="Site-Wide Custom Events" data-label="Footer Privacy link">
+          Privasi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event" href="https://developer.android.com/license" data-category="Site-Wide Custom Events" data-label="Footer License link">
+          Lisensi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event" href="https://developer.android.com/distribute/marketing-tools/brand-guidelines" data-category="Site-Wide Custom Events" data-label="Footer Brand guidelines link">
+          Pedoman brand
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 devsite-footer-utility-button">
+        
+        <span class="devsite-footer-utility-description">Dapatkan berita dan tips melalui email</span>
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event" href="https://developer.android.com/updates" data-category="Site-Wide Custom Events" data-label="Footer Subscribe link">
+          Berlangganan
+        </a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda." class="devsite-language-selector-select" name="language" track-name="click" track-type="languageSelector">
+    
+    
+      <option value="en" lang="en" track-metadata-original-language="id" track-metadata-selected-language="en" track-name="changed" track-type="languageSelector">
+        English
+      </option>
+    
+      <option value="id" lang="id" track-metadata-original-language="id" track-metadata-selected-language="id" track-name="changed" track-type="languageSelector" selected="selected">
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419" lang="es_419" track-metadata-original-language="id" track-metadata-selected-language="es_419" track-name="changed" track-type="languageSelector">
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br" lang="pt_br" track-metadata-original-language="id" track-metadata-selected-language="pt_br" track-name="changed" track-type="languageSelector">
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn" lang="zh_cn" track-metadata-original-language="id" track-metadata-selected-language="zh_cn" track-name="changed" track-type="languageSelector">
+        中文 – 简体
+      </option>
+    
+      <option value="ja" lang="ja" track-metadata-original-language="id" track-metadata-selected-language="ja" track-name="changed" track-type="languageSelector">
+        日本語
+      </option>
+    
+      <option value="ko" lang="ko" track-metadata-original-language="id" track-metadata-selected-language="ko" track-name="changed" track-type="languageSelector">
+        한국어
+      </option>
+    
+    </select>
+  <div class="devsite-select"><label id="devsite-select-28887098105236013-label" style="display:none;" aria-label="Pilih preferensi bahasa Anda.">Pilih opsi</label><button type="button" class="devsite-select-toggle" id="devsite-select-28887098105236013-button" aria-haspopup="true" aria-labelledby="devsite-select-28887098105236013-label devsite-select-28887098105236013-button" aria-controls="devsite-select-28887098105236013-popup"><span class="devsite-select-toggle-label">Bahasa Indonesia</span><span class="devsite-icon devsite-icon-arrow-drop-down devsite-select-toggle-icon" aria-hidden="true"></span></button><ul class="devsite-select-list" id="devsite-select-28887098105236013-popup" tabindex="-1" role="listbox" scrollbars="" aria-labelledby="devsite-select-28887098105236013-button"><li role="option" lang="en" value="en" id="devsite-select-28887098105236013-0" class="devsite-select-item" data-index="0" aria-selected="false" aria-label="English">English</li><li role="option" lang="id" value="id" id="devsite-select-28887098105236013-1" class="devsite-select-item" data-index="1" data-selected="" aria-selected="true" aria-label="Bahasa Indonesia, dipilih">Bahasa Indonesia</li><li role="option" lang="es_419" value="es_419" id="devsite-select-28887098105236013-2" class="devsite-select-item" data-index="2" aria-selected="false" aria-label="Español – América Latina">Español – América Latina</li><li role="option" lang="pt_br" value="pt_br" id="devsite-select-28887098105236013-3" class="devsite-select-item" data-index="3" aria-selected="false" aria-label="Português – Brasil">Português – Brasil</li><li role="option" lang="zh_cn" value="zh_cn" id="devsite-select-28887098105236013-4" class="devsite-select-item" data-index="4" aria-selected="false" aria-label="中文 – 简体">中文 – 简体</li><li role="option" lang="ja" value="ja" id="devsite-select-28887098105236013-5" class="devsite-select-item" data-index="5" aria-selected="false" aria-label="日本語">日本語</li><li role="option" lang="ko" value="ko" id="devsite-select-28887098105236013-6" class="devsite-select-item" data-index="6" aria-selected="false" aria-label="한국어">한국어</li></ul></div></devsite-select>
+</devsite-language-selector>
+
+  </nav>
+</div>
+          
+        </devsite-footer-utility>
+        <devsite-panel></devsite-panel>
+      </section></section>
+    <devsite-sitemask></devsite-sitemask>
+    
+<devsite-snackbar></devsite-snackbar>
+
+    <devsite-tooltip></devsite-tooltip>
+    <devsite-heading-link></devsite-heading-link>
+    <devsite-analytics enable-analytics-iframe="">
+      
+        <script type="application/json" analytics="">[{"gaid": "UA-5831155-1", "dimensions": {"dimension5": "id", "dimension11": false, "dimension6": "id", "dimension3": false, "dimension4": "Kursus Pelatihan", "dimension1": "Signed In"}, "metrics": {"ratings_value": "metric1", "ratings_count": "metric2"}}, {"gaid": "UA-77537058-1", "dimensions": {"dimension5": "id", "dimension11": false, "dimension6": "id", "dimension3": false, "dimension4": "Kursus Pelatihan", "dimension1": "Signed In"}, "metrics": {"ratings_value": "metric1", "ratings_count": "metric2"}}]</script>
+<script type="application/json" gtm="">{"parameters": {"freeTrialEligibleUser": "False", "internalUser": "False", "language": {"machineTranslated": "False", "requested": "id", "served": "id"}, "pageType": "article", "projectName": "Kursus Pelatihan", "signedIn": "True", "tenant": "android", "recommendations": {"sourcePage": "", "sourceType": 0, "sourceRank": 0, "sourceIdenticalDescriptions": 0, "sourceTitleWords": 0, "sourceDescriptionWords": 0, "experiment": ""}}, "tags": ["GTM-KMSWPCJ"]}</script>
+      
+    <iframe src="./Codelab untuk Dasar-Dasar Kotlin Android  _  Kursus Pelatihan_files/analytics-iframe.html"></iframe></devsite-analytics>
+    
+      <devsite-badger></devsite-badger>
+    
+    
+<android-fully-clickable target=".fully-clickable" watch="devsite-content"></android-fully-clickable>
+    <script nonce="">
+  
+  (function(d,e,v,s,i,t,E){d['GoogleDevelopersObject']=i;
+    t=e.createElement(v);t.async=1;t.src=s;E=e.getElementsByTagName(v)[0];
+    E.parentNode.insertBefore(t,E);})(window, document, 'script',
+    'https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/js/app_loader.js', '[3,"id",null,"/js/devsite_app_module.js","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android","https://android-dot-devsite-v2-prod.appspot.com",null,null,["/_pwa/android/manifest.json","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/images/video-placeholder.svg","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg","https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap"],1,null,[1,6,8,12,14,17,21,25,40,50,63,70,75,76,80,87,88,91,92,93,97,98,100,101,102,103,104,105,107,108,111,112,113,115,117,118,120,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,138,147,148],"AIzaSyAP-jjEJBzmIyKR4F-3XITp8yM9T1gEEI8","AIzaSyB6xiKGDR5O3Ak2okS4rLkauxGUG7XP0hg"]')
+  
+</script>
+    <devsite-a11y-announce aria-live="assertive" aria-atomic="true"></devsite-a11y-announce>
+  
+</body></html>

@@ -1,0 +1,2505 @@
+<!doctype html>
+<html 
+      lang="id"
+      dir="ltr">
+  <head>
+    <meta name="google-signin-client-id" content="721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com">
+    <meta name="google-signin-scope"
+          content="profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award">
+    <meta property="og:site_name" content="Android Developers">
+    <meta property="og:type" content="website"><meta name="theme-color" content="#3ddc84"><meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/_pwa/android/manifest.json"
+          crossorigin="use-credentials">
+    <link rel="preconnect" href="//www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="//apis.google.com" crossorigin>
+    <link rel="preconnect" href="//www.google-analytics.com" crossorigin><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap">
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Material+Icons&display=block"><link rel="stylesheet" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/css/app.css">
+      <link rel="shortcut icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/touchicon-180.png"><link rel="canonical" href="https://developer.android.com/codelabs/kotlin-android-training-add-navigation?hl=id"><link rel="search" type="application/opensearchdescription+xml"
+            title="Android Developers" href="https://developer.android.com/s/opensearch.xml">
+      
+
+<title>Android Kotlin Fundamentals: 03.2 Define navigation paths</title>
+
+<meta property="og:title" content="Android Kotlin Fundamentals: 03.2 Define navigation paths"><meta name="description" content="Learn how to use Android Studio’s Navigation Editor to define the flows (navigation paths) through your app. You will understand how to implement an Up button, add an options menu, and create a navigation drawer for your app.">
+  <meta property="og:description" content="Learn how to use Android Studio’s Navigation Editor to define the flows (navigation paths) through your app. You will understand how to implement an Up button, add an options menu, and create a navigation drawer for your app."><meta property="og:url" content="https://developer.android.com/codelabs/kotlin-android-training-add-navigation?hl=id"><meta property="og:image" content="https://developer.android.com/images/social/android-developers.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675"><meta property="og:locale" content="en"><meta name="twitter:card" content="summary_large_image">
+  <meta name="xsrf_token" content="cHrYRgban4_SCJV2dtf5lkR-YIhAVgVWkDfznwNsaY06MTYyNzQ4MTA0MTYzOTc5Mw">
+  
+
+  <meta name="session_expiry" content="1627483460">
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    <meta name="original_source" content="https://docs.google.com/document/d/1hB-EPMaasHsSeRaYz0u6kDeUvq99LQcaStx05tcEGTg/edit" />
+    
+    
+    
+    
+    
+      
+    
+    
+    
+  
+
+    </head>
+  <body class="devsite-full-width-page"
+        template="codelab"
+        theme="android-theme"
+        type="codelab"
+        
+        layout="full"
+        
+        
+        pending>
+    <devsite-progress type="indeterminate" id="app-progress"></devsite-progress>
+  
+    <section class="devsite-wrapper"><devsite-header>
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="devsite-header--inner nocontent">
+  <div class="devsite-top-logo-row-wrapper-wrapper">
+    <div class="devsite-top-logo-row-wrapper">
+      <div class="devsite-top-logo-row">
+        <button type="button" id="devsite-hamburger-menu"
+          class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+          data-category="Site-Wide Custom Events"
+          data-label="Navigation menu button"
+          visually-hidden
+          aria-label="Open menu">
+        </button>
+        <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo"
+       alt="Android Developers">
+
+</a>
+
+
+
+  
+  
+  <span class="devsite-product-name">
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+  </span>
+
+</div>
+        <div class="devsite-top-logo-row-middle">
+          <div class="devsite-header-upper-tabs">
+            
+              
+              
+  <devsite-tabs class="upper-tabs">
+
+    <nav class="devsite-tabs-wrapper" aria-label="Tab atas">
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/about"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="platform"
+   track-metadata-eventdetail="https://developer.android.com/about"
+   track-metadata-position="nav - platform"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Platform"
+   >
+  Platform
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/studio"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="android studio"
+   track-metadata-eventdetail="https://developer.android.com/studio"
+   track-metadata-position="nav - android studio"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Android Studio"
+   >
+  Android Studio
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/distribute"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="google play"
+   track-metadata-eventdetail="https://developer.android.com/distribute"
+   track-metadata-position="nav - google play"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Google Play"
+   >
+  Google Play
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/jetpack"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="jetpack"
+   track-metadata-eventdetail="https://developer.android.com/jetpack"
+   track-metadata-position="nav - jetpack"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Jetpack"
+   >
+  Jetpack
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/kotlin"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="kotlin"
+   track-metadata-eventdetail="https://developer.android.com/kotlin"
+   track-metadata-position="nav - kotlin"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Kotlin"
+   >
+  Kotlin
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/docs"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="dokumen"
+   track-metadata-eventdetail="https://developer.android.com/docs"
+   track-metadata-position="nav - dokumen"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Dokumen"
+   >
+  Dokumen
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/news"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="berita"
+   track-metadata-eventdetail="https://developer.android.com/news"
+   track-metadata-position="nav - berita"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Berita"
+   >
+  Berita
+</a>
+
+          </tab>
+        
+      
+    </nav>
+
+  </devsite-tabs>
+
+            
+           </div>
+          
+<devsite-search
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    enable-signin
+    enable-search
+    enable-suggestions
+      enable-query-completion
+    
+    project-name="Developer Android"
+    tenant-name="Android Developers"
+    
+    
+    
+    
+    
+    role="combobox">
+  <form class="devsite-search-form" action="https://developer.android.com/s/results" method="GET">
+    <div class="devsite-search-container">
+      <div class="devsite-searchbox">
+        <input
+          aria-activedescendant=""
+          aria-autocomplete="list"
+          
+          aria-label="Penelusuran"
+          aria-haspopup="false"
+          aria-multiline="false"
+          aria-label="Kotak penelusuran"
+          autocomplete="off"
+          class="devsite-search-field devsite-search-query"
+          name="q"
+          
+          placeholder="Penelusuran"
+          role="searchbox"
+          type="text"
+          value=""
+          >
+        <div class="devsite-search-image material-icons" aria-hidden="true"></div>
+      </div>
+      <button type="button"
+              search-open
+              class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+              
+              aria-label="Buka penelusuran"></button>
+    </div>
+  </form>
+  <button type="button"
+          search-close
+          class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+          
+          aria-label="Tutup penelusuran"></button>
+</devsite-search>
+
+        </div>
+
+        
+
+        
+
+        
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+
+        
+
+        
+          
+          
+          <devsite-user signed-in
+                        
+                        
+                          enable-profiles
+                        
+                        
+                          
+                        id="devsite-user"></devsite-user>
+           
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="devsite-collapsible-section
+    
+      devsite-header-no-lower-tabs
+    ">
+    <div class="devsite-header-background">
+      
+        
+      
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+  
+</devsite-header>
+      <devsite-book-nav scrollbars hidden>
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="devsite-book-nav devsite-nav nocontent"
+     aria-label="Menu samping">
+  <div class="devsite-mobile-header">
+    <button type="button"
+            id="devsite-close-nav"
+            class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+            data-category="Site-Wide Custom Events"
+            data-label="Close navigation"
+            aria-label="Close navigation">
+    </button>
+    <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+
+</a>
+
+
+  
+      <span class="devsite-product-name">
+        
+        
+        <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+      </span>
+    
+
+</div>
+  </div>
+
+  <div class="devsite-book-nav-wrapper">
+    <div class="devsite-mobile-nav-top">
+      
+        <ul class="devsite-nav-list">
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/about"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Platform"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="platform">
+  
+    <span class="devsite-nav-text" tooltip >
+      Platform
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/studio"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Android Studio"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="androidStudio">
+  
+    <span class="devsite-nav-text" tooltip >
+      Android Studio
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/distribute"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Google Play"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="googlePlay">
+  
+    <span class="devsite-nav-text" tooltip >
+      Google Play
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/jetpack"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Jetpack"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="jetpack">
+  
+    <span class="devsite-nav-text" tooltip >
+      Jetpack
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/kotlin"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Kotlin"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="kotlin">
+  
+    <span class="devsite-nav-text" tooltip >
+      Kotlin
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/docs"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Dokumen"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="dokumen">
+  
+    <span class="devsite-nav-text" tooltip >
+      Dokumen
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/news"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Berita"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="berita">
+  
+    <span class="devsite-nav-text" tooltip >
+      Berita
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+          
+          
+        </ul>
+      
+    </div>
+    
+  </div>
+</nav>
+        
+      </devsite-book-nav>
+      <section id="gc-wrapper">
+        <main role="main" class="devsite-main-content"
+            
+            >
+          
+          <devsite-toc class="devsite-nav"
+                       role="navigation"
+                       aria-label="Daftar isi"
+            disabled></devsite-toc>
+          <devsite-content>
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="devsite-article"><style>
+      body {
+        transition: opacity ease-in 0.2s;
+      }
+
+      body[unresolved] {
+        opacity: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+      </style>
+  
+  
+  
+
+  <div class="devsite-article-meta nocontent" role="navigation">
+    
+    
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+  <a href="https://developer.android.com/"
+      
+        class="devsite-breadcrumb-link gc-analytics-event"
+      
+        data-category="Site-Wide Custom Events"
+      
+        data-label="Breadcrumbs"
+      
+        data-value="1"
+      
+        track-type="globalNav"
+      
+        track-name="breadcrumb"
+      
+        track-metadata-position="1"
+      
+        track-metadata-eventdetail="Developer Android"
+      
+    >
+    
+        Developer Android
+      
+  </a>
+  
+    
+  </li>
+  
+</ul>
+    
+  </div>
+  
+  
+    <h1 class="devsite-page-title">Android Kotlin Fundamentals: 03.2 Define navigation paths</h1><devsite-bookmark></devsite-bookmark>
+  
+
+  <devsite-toc class="devsite-nav" devsite-toc-embedded
+               disabled>
+  </devsite-toc>
+
+  
+
+  <div class="devsite-article-body clearfix
+    ">
+
+    
+      
+    <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+    <google-codelab codelab-gaid="UA-81734179-1"
+                    doc-id="1hB-EPMaasHsSeRaYz0u6kDeUvq99LQcaStx05tcEGTg"
+                    id="kotlin-android-training-add-navigation"
+                    title="Android Kotlin Fundamentals: 03.2 Define navigation paths"
+                    environment="web"
+                    category="android,kotlin"
+                    feedback-link="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/issues/new?assignees=&amp;labels=&amp;template=android-kotlin-fundamentals.md&amp;title=Android&#43;Kotlin&#43;Fundamentals&#43;codelab%3A&#43;"
+                    >
+      
+        <google-codelab-step label="Welcome" duration="0">
+          
+            <google-codelab-about codelab-title="Android Kotlin Fundamentals: 03.2 Define navigation paths"
+                                  authors="Google Developers Training team"
+                                  >
+            </google-codelab-about>
+          
+          <p>This codelab is part of the Android Kotlin Fundamentals course. You&#39;ll get the most value out of this course if you work through the codelabs in sequence. All the course codelabs are listed on the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+<p>In the previous codelab, you modified the AndroidTrivia app to add a Fragment to an existing activity. In this codelab, you add navigation to that app.</p>
+<h2 is-upgraded id="introduction-to-navigation" data-text="Introduction to navigation">Introduction to navigation</h2>
+<p>Structuring the user&#39;s experience of navigating through an app has always been an interesting topic for developers. For Android apps, the  <a href="https://developer.android.com/topic/libraries/architecture/navigation/" target="_blank">Navigation Architecture Component</a> makes it easier to implement navigation.</p>
+<p>A <em>destination</em> is any place inside the app to which a user can navigate. A <em>navigation graph</em> for an app consists of a set of destinations within the app. Navigation graphs allow you to visually define and customize how users navigate among destinations in your app.</p>
+<h2 is-upgraded id="what-you-should-already-know" data-text="What you should already know">What you should already know</h2>
+<ul>
+<li>The fundamentals of Kotlin</li>
+<li>How to create basic Android apps in Kotlin</li>
+<li>How to work with layouts</li>
+</ul>
+<h2 class="checklist" is-upgraded id="what-youll-learn" data-text="What you'll learn">What you'll learn</h2>
+<ul class="checklist">
+<li>How to use navigation graphs</li>
+<li>How to define navigation paths in your app</li>
+<li>What an Up button is, and how to add one</li>
+<li>How to create an options menu</li>
+<li>How to create a navigation drawer</li>
+</ul>
+<h2 is-upgraded id="what-youll-do" data-text="What you'll do">What you'll do</h2>
+<ul>
+<li>Create a navigation graph for your fragments using the navigation library and the Navigation Editor.</li>
+<li>Create navigation paths in your app.</li>
+<li>Add navigation using the options menu.</li>
+<li>Implement an Up button so that the user can navigate back to the title screen from anywhere in the app.</li>
+<li>Add a navigation drawer menu.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="App overview" duration="0">
+          
+          <p>The AndroidTrivia app, which you started working on in the previous codelab, is a game in which users answer questions about Android development. If the user answers three questions correctly, they win the game.</p>
+<p>If you completed the previous codelab, use that code as the starter code for this codelab. Otherwise, download the  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/AndroidTriviaFragment" target="_blank">AndroidTriviaFragment</a> app from GitHub to get the starter code.</p>
+<p>In this codelab, you update the AndroidTrivia app in the following ways:</p>
+<ul>
+<li>You create a navigation graph for the app.</li>
+<li>You add navigation for a title screen and a game screen.</li>
+<li>You connect the screens with an action, and you give the user a way to navigate to the game screen by tapping <strong>Play</strong>.</li>
+<li>You add an Up button, which is shown as the left-arrow at the top of some screens.</li>
+</ul>
+<p class="image-container"><img alt="f5d12f1802429b4d.png" style="width: 187.50px" src="/codelabs/kotlin-android-training-add-navigation/img/f5d12f1802429b4d.png">     <img alt="8f67b0c6679e3ad2.png" style="width: 190.03px" src="/codelabs/kotlin-android-training-add-navigation/img/8f67b0c6679e3ad2.png">     <img alt="70bd954293047b9a.png" style="width: 188.22px" src="/codelabs/kotlin-android-training-add-navigation/img/70bd954293047b9a.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add navigation components to the project" duration="0">
+          
+          <h2 is-upgraded id="step-1:-add-navigation-dependencies" data-text="Step 1: Add navigation dependencies">Step 1: Add navigation dependencies</h2>
+<p>The  <a href="https://developer.android.com/topic/libraries/architecture/navigation" target="_blank">Navigation component</a> is a library that can manage complex navigation, transition animation, deep linking, and compile-time checked argument passing between the screens in your app.</p>
+<p>To use the navigation library, you need to add the navigation dependencies to your Gradle files.</p>
+<ol type="1">
+<li>To get started, download the  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/AndroidTriviaFragment" target="_blank">AndroidTriviaFragment</a> starter app or use your own copy of the AndroidTrivia app from the previous codelab. Open the AndroidTrivia app in Android Studio.</li>
+<li>In the Project: Android pane, open the <strong>Gradle Scripts</strong> folder. Double-click the project-level <strong>build.gradle</strong> file to open the file.</li>
+</ol>
+<p class="image-container"><img alt="b18cbeb80151e422.png" style="width: 329.00px" src="/codelabs/kotlin-android-training-add-navigation/img/b18cbeb80151e422.png"></p>
+<ol type="1" start="3">
+<li>At the top of the project-level <code translate="no" dir="ltr">build.gradle</code> file, along with the other <code translate="no" dir="ltr">ext</code> variables, add a variable for the <code translate="no" dir="ltr">navigationVersion</code>. To find the latest navigation version number, see  <a href="https://developer.android.com/jetpack/androidx/releases/navigation#declaring_dependencies" target="_blank">Declaring dependencies</a> in the Android developer documentation.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">ext {
+        ...
+        navigationVersion = &#34;2.3.0&#34;
+        ...
+    }
+</code></pre>
+<ol type="1" start="4">
+<li>In the <strong>Gradle Scripts</strong> folder, open the module-level <strong>build.gradle</strong> file. Add the dependencies for <code translate="no" dir="ltr">navigation-fragment-ktx</code> and <code translate="no" dir="ltr">navigation-ui-ktx</code>, as shown below:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">dependencies {
+  ...
+  implementation &#34;androidx.navigation:navigation-fragment-ktx:$navigationVersion&#34;
+  implementation &#34;androidx.navigation:navigation-ui-ktx:$navigationVersion&#34;
+  ...
+}
+</code></pre>
+<ol type="1" start="5">
+<li>Rebuild the project.</li>
+</ol>
+<aside class="special"><p><strong>Note</strong>: Android Studio may alert you to new versions of your dependencies.  You may have to update the version-number variables using the <strong>Project Structure</strong> dialog, ie, <strong>File-&gt;Project Structure</strong> and update the number to obtain the latest version.</p>
+</aside>
+<h2 is-upgraded id="step-2:-add-a-navigation-graph-to-the-project" data-text="Step 2: Add a navigation graph to the project">Step 2: Add a navigation graph to the project</h2>
+<ol type="1">
+<li>In the Project: Android pane, right-click the <strong>res</strong> folder and select <strong>New &gt; Android Resource File</strong>.</li>
+<li>In the <strong>New Resource File</strong> dialog, select <strong>Navigation</strong> as the <strong>Resource type</strong>.</li>
+<li>In the <strong>File name</strong> field, name the file <code translate="no" dir="ltr">navigation</code>.</li>
+<li>Make sure the <strong>Chosen qualifiers</strong> box is empty, and click <strong>OK</strong>. A new file, <strong>navigation.xml</strong>, appears in the <strong>res &gt; navigation</strong> folder. <img alt="20dce46c90407e47.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-add-navigation/img/20dce46c90407e47.png"></li>
+<li>Open the <strong>res &gt; navigation &gt; navigation.xml</strong> file and click the <strong>Design</strong> tab to open the  <a href="https://developer.android.com/topic/libraries/architecture/navigation/navigation-implementing#Tour" target="_blank">Navigation Editor</a>. Notice the <strong>No NavHostFragments found</strong> message in the layout editor. You fix this problem in the next task. <img alt="a400b509131dfe7.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-add-navigation/img/a400b509131dfe7.png"></li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Create the NavHostFragment" duration="0">
+          
+          <p>A <em>navigation host fragment</em> acts as a host for the fragments in a navigation graph. The navigation host Fragment is usually named  <a href="https://developer.android.com/reference/androidx/navigation/fragment/NavHostFragment" target="_blank"><code translate="no" dir="ltr">NavHostFragment</code></a>.</p>
+<p>As the user moves between destinations defined in the navigation graph, the navigation host Fragment swaps fragments in and out as necessary. The Fragment also creates and manages the appropriate Fragment back stack.</p>
+<p>In this task, you modify your code to replace the <code translate="no" dir="ltr">TitleFragment</code> with the <code translate="no" dir="ltr">NavHostFragment</code>.</p>
+<ol type="1">
+<li>Open <strong>res &gt; layout &gt; activity_main.xml</strong> and open the <strong>Code</strong> tab.</li>
+<li>In the <code translate="no" dir="ltr">activity_main.xml</code> file, change the name of the existing title Fragment to <code translate="no" dir="ltr">androidx.navigation.fragment.NavHostFragment</code>.</li>
+<li>Change the ID to <code translate="no" dir="ltr">myNavHostFragment</code>.</li>
+<li>The navigation host Fragment needs to know which navigation graph resource to use. Add the <code translate="no" dir="ltr">app:navGraph</code> attribute and set it to the navigation graph resource, which is <code translate="no" dir="ltr">@navigation/navigation</code>.</li>
+<li>Add the <code translate="no" dir="ltr">app:defaultNavHost</code> attribute and set it to <code translate="no" dir="ltr">"true"</code>. Now this navigation host is the default host and will intercept the system Back button.</li>
+</ol>
+<p>Inside the <code translate="no" dir="ltr">activity_main.xml</code> layout file, your <code translate="no" dir="ltr">fragment</code> now looks like the following:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;!-- The NavHostFragment within the activity_main layout --&gt;
+            &lt;fragment
+                android:id=&#34;@+id/myNavHostFragment&#34;
+                android:name=&#34;androidx.navigation.fragment.NavHostFragment&#34;
+                android:layout_width=&#34;match_parent&#34;
+                android:layout_height=&#34;match_parent&#34;
+                app:navGraph=&#34;@navigation/navigation&#34;
+                app:defaultNavHost=&#34;true&#34; /&gt;
+</code></pre>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add fragments to the navigation graph" duration="0">
+          
+          <p>In this task, you add the title Fragment and the game Fragment to the app&#39;s navigation graph. You connect the fragments to each other. Then you add a click handler to the <strong>Play</strong> button so that the user can navigate from the title screen to the game screen.</p>
+<h2 is-upgraded id="step-1:-add-two-fragments-to-the-navigation-graph-and-connect-them-with-an-action" data-text="Step 1: Add two fragments to the navigation graph and connect them with an action">Step 1: Add two fragments to the navigation graph and connect them with an action</h2>
+<ol type="1">
+<li>Open <strong>navigation.xml</strong> from the <strong>navigation</strong> resource folder. In the Navigation Editor, click the <strong>New Destination</strong> button  <img alt="81d275f3f278af81.png" style="width: 26.81px" src="/codelabs/kotlin-android-training-add-navigation/img/81d275f3f278af81.png">. A list of fragments and activities appears.</li>
+</ol>
+<p class="image-container"><img alt="f90c10a57114cf2b.png" style="width: 218.59px" src="/codelabs/kotlin-android-training-add-navigation/img/f90c10a57114cf2b.png"></p>
+<ol type="1" start="2">
+<li>Select <strong>fragment_title</strong>. You add <strong>fragment_title</strong> first because the <code translate="no" dir="ltr">TitleFragment</code> is where app users start when they first open the app.</li>
+</ol>
+<p class="image-container"><img alt="54e5a268b4167c87.png" style="width: 263.90px" src="/codelabs/kotlin-android-training-add-navigation/img/54e5a268b4167c87.png"></p>
+<p class="image-container"><img alt="a881f5057f83b8b9.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-add-navigation/img/a881f5057f83b8b9.png"></p>
+<ol type="1" start="3">
+<li>Use the <strong>New Destination</strong> button to add the <strong>GameFragment</strong>.</li>
+</ol>
+<p>If the preview shows a &#34;Preview Unavailable&#34; message, click the <strong>Code</strong> tab to open the navigation XML. Make sure that the <code translate="no" dir="ltr">fragment</code> element for the <code translate="no" dir="ltr">gameFragment</code> includes <code translate="no" dir="ltr">tools:layout="@layout/fragment_game"</code>, as shown below.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;!-- The game fragment within the navigation XML, complete with tools:layout. --&gt;
+&lt;fragment
+   android:id=&#34;@+id/gameFragment&#34;
+   android:name=&#34;com.example.android.navigation.GameFragment&#34;
+   android:label=&#34;GameFragment&#34;
+   tools:layout=&#34;@layout/fragment_game&#34; /&gt;
+</code></pre>
+<ol type="1" start="4">
+<li>In the layout editor (using the <strong>Design</strong> view), drag the <code translate="no" dir="ltr">gameFragment</code> to the right so it doesn&#39;t overlap with the title Fragment.</li>
+</ol>
+<p class="image-container"><img alt="493b9722841a7742.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-add-navigation/img/493b9722841a7742.png"></p>
+<ol type="1" start="5">
+<li>In the preview, hold the pointer over the title Fragment. A circular connection point appears on the right side of the Fragment view. Click the connection point and drag it to the <code translate="no" dir="ltr">gameFragment</code> or drag it to anywhere in the <code translate="no" dir="ltr">gameFragment</code> preview. An <em>Action</em> is created that connects the two fragments.</li>
+<li>To see the Action&#39;s attributes, click the arrow that connects the two fragments. In the <strong>Attributes</strong> pane, check that the action&#39;s ID is set to <code translate="no" dir="ltr">action_titleFragment_to_gameFragment</code>. <img alt="66b05cb09acab955.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-add-navigation/img/66b05cb09acab955.png"></li>
+</ol>
+<h2 is-upgraded id="step-2:-add-a-click-handler-to-the-play-button" data-text="Step 2: Add a click handler to the Play button">Step 2: Add a click handler to the Play button</h2>
+<p>The title Fragment is connected to the game Fragment by an action. Now you want the <strong>Play</strong> button on the title screen to navigate the user to the game screen.</p>
+<ol type="1">
+<li>In Android Studio, open the <code translate="no" dir="ltr">TitleFragment.kt</code> file. Inside the <code translate="no" dir="ltr">onCreateView()</code> method, add the following code before the <code translate="no" dir="ltr">return</code> statement:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">binding.playButton.setOnClickListener{}
+</code></pre>
+<ol type="1" start="2">
+<li>Inside <code translate="no" dir="ltr">setOnClickListener</code>, add code to access the <strong>Play</strong> button through the binding class and navigate to the game fragment:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">//The complete onClickListener with Navigation
+binding.playButton.setOnClickListener { view : View -&gt;
+       view.findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
+}
+</code></pre>
+<ol type="1" start="3">
+<li>Build the app and make sure that it has all the imports it needs. For example, you might need to add the following line to the <code translate="no" dir="ltr">TitleFragment.kt</code> file:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">import androidx.navigation.findNavController
+</code></pre>
+<ol type="1" start="4">
+<li>Run the app and tap the <strong>Play</strong> button on the title screen. The game screen opens. <img alt="38b676ecf8d6c29a.png" style="width: 406.50px" src="/codelabs/kotlin-android-training-add-navigation/img/38b676ecf8d6c29a.png"></li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add conditional navigation" duration="0">
+          
+          <p>In this step, you add <em>conditional navigation</em>, which is navigation that&#39;s only available to the user in certain contexts. A common use case for conditional navigation is when an app has a different flow, depending on whether the user is logged in.</p>
+<p>Your app is a different case: Your app will navigate to a different Fragment, based on whether the user answers all the questions correctly.</p>
+<p>The starter code contains two fragments for you to use in your conditional navigation:</p>
+<ul>
+<li>The <code translate="no" dir="ltr">GameWonFragment</code> takes the user to a screen that shows a &#34;Congratulations!&#34; message.</li>
+<li>The <code translate="no" dir="ltr">GameOverFragment</code> takes the user to a screen that shows a &#34;Try Again&#34; message.</li>
+</ul>
+<h2 is-upgraded id="step-1:-add-gamewonfragment-and-gameoverfragment-to-the-navigation-graph" data-text="Step 1: Add GameWonFragment and GameOverFragment to the navigation graph">Step 1: Add GameWonFragment and GameOverFragment to the navigation graph</h2>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">navigation.xml</code> file, which is in the <code translate="no" dir="ltr">navigation</code> folder.</li>
+<li>To add the game-over Fragment to the navigation graph, click the <strong>New Destination</strong> button  <img alt="3f7501a427b82d14.png" style="width: 21.00px" src="/codelabs/kotlin-android-training-add-navigation/img/3f7501a427b82d14.png"> in the Navigation Editor and select <strong>fragment_game_over</strong>. <img alt="d9f99185106728bc.png" style="width: 498.71px" src="/codelabs/kotlin-android-training-add-navigation/img/d9f99185106728bc.png"></li>
+<li>In the preview area of the layout editor, drag the game-over Fragment to the right of the game Fragment so the two don&#39;t overlap. Make sure to change the <strong>ID</strong> attribute of the game-over Fragment, to <code translate="no" dir="ltr">gameOverFragment</code>.</li>
+<li>To add the game-won Fragment to the navigation graph, click the <strong>New Destination</strong> button  <img alt="3f7501a427b82d14.png" style="width: 21.00px" src="/codelabs/kotlin-android-training-add-navigation/img/3f7501a427b82d14.png"> and select <strong>fragment_game_won</strong>.</li>
+</ol>
+<p class="image-container"><img alt="8b59562e5ae0df80.png" style="width: 478.74px" src="/codelabs/kotlin-android-training-add-navigation/img/8b59562e5ae0df80.png"></p>
+<ol type="1" start="5">
+<li>Drag the game-won Fragment below the game-over Fragment so the two don&#39;t overlap. Make sure to name the <strong>ID</strong> attribute of the game-won Fragment as <code translate="no" dir="ltr">gameWonFragment</code>.</li>
+</ol>
+<p>The Layout Editor now looks something like the following screenshot: <img alt="d1ce5d45da96549c.png" style="width: 558.50px" src="/codelabs/kotlin-android-training-add-navigation/img/d1ce5d45da96549c.png"></p>
+<h2 is-upgraded id="step-2:-connect-the-game-fragment-to-the-game-result-fragment" data-text="Step 2: Connect the game Fragment to the game-result Fragment">Step 2: Connect the game Fragment to the game-result Fragment</h2>
+<p>In this step, you connect the game Fragment to both the game-won Fragment and the game-over Fragment.</p>
+<ol type="1">
+<li>In the preview area of the Layout Editor, hold the pointer over the game Fragment until the circular connection point appears.</li>
+<li>Click the connection point and drag it to the game-over Fragment. A blue connection arrow appears, representing an Action that now connects the game Fragment to the game-over Fragment.</li>
+<li>In the same way, create an action that connects the game Fragment to the game-won Fragment. The Layout Editor now looks something like the following screenshot: <img alt="d4cc27a71718e742.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-add-navigation/img/d4cc27a71718e742.png"></li>
+<li>In the preview, hold the pointer over the line that connects the game Fragment to the game-won Fragment. Notice that the ID for the Action has been assigned automatically.</li>
+</ol>
+<h2 is-upgraded id="step-3:-add-code-to-navigate-from-one-fragment-to-the-next" data-text="Step 3: Add code to navigate from one Fragment to the next">Step 3: Add code to navigate from one Fragment to the next</h2>
+<p><code translate="no" dir="ltr">GameFragment</code> is a Fragment class that contains questions and answers for the game. The class also includes logic that determines whether the user wins or loses the game. You need to add conditional navigation in the <code translate="no" dir="ltr">GameFragment</code> class, depending on whether the player wins or loses.</p>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">GameFragment.kt</code> file. The <code translate="no" dir="ltr">onCreateView()</code> method defines an <code translate="no" dir="ltr">if</code> / <code translate="no" dir="ltr">else</code> condition that determines whether the player has won or lost:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">binding.submitButton.setOnClickListener @Suppress(&#34;UNUSED_ANONYMOUS_PARAMETER&#34;)
+        { 
+              ...
+                // answer matches, we have the correct answer.
+                if (answers[answerIndex] == currentQuestion.answers[0]) {
+                    questionIndex++
+                    // Advance to the next question
+                    if (questionIndex &lt; numQuestions) {
+                        currentQuestion = questions[questionIndex]
+                        setQuestion()
+                        binding.invalidateAll()
+                    } else {
+                        // We&#39;ve won!  Navigate to the gameWonFragment.
+                    }
+                } else {
+                    // Game over! A wrong answer sends us to the gameOverFragment.
+                }
+            }
+        }
+</code></pre>
+<ol type="1" start="2">
+<li>Inside the <code translate="no" dir="ltr">else</code> condition for winning the game, add the following code, which navigates to the <code translate="no" dir="ltr">gameWonFragment</code>. Make sure that the Action name (<code translate="no" dir="ltr">action_gameFragment_to_gameWonFragment</code> in this example) exactly matches what&#39;s set in the <code translate="no" dir="ltr">navigation.xml</code> file.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">// We&#39;ve won!  Navigate to the gameWonFragment.
+view.findNavController()
+   .navigate(R.id.action_gameFragment_to_gameWonFragment)
+</code></pre>
+<ol type="1" start="3">
+<li>Inside the <code translate="no" dir="ltr">else</code> condition for losing the game, add the following code, which navigates to the <code translate="no" dir="ltr">gameOverFragment</code>:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">// Game over! A wrong answer sends us to the gameOverFragment.
+view.findNavController().
+   navigate(R.id.action_gameFragment_to_gameOverFragment)
+</code></pre>
+<ol type="1" start="4">
+<li>Run the app and play the game by answering the questions. If you answer all three questions correctly, the app navigates to the <code translate="no" dir="ltr">GameWonFragment</code>.</li>
+</ol>
+<p class="image-container"><img alt="60a5222e025dee8a.png" style="width: 179.06px" src="/codelabs/kotlin-android-training-add-navigation/img/60a5222e025dee8a.png"></p>
+<p>If you get any question wrong, the app immediately navigates to the <code translate="no" dir="ltr">GameOverFragment</code>.</p>
+<p class="image-container"><img alt="1c1f2a6ada154c8a.png" style="width: 212.42px" src="/codelabs/kotlin-android-training-add-navigation/img/1c1f2a6ada154c8a.png"></p>
+<p>The Android system&#39;s Back button is shown as 1 in the screenshot above. If the user presses the Back button in the game-won fragment or the game-over Fragment, the app navigates to the question screen. Ideally, the Back button should navigate back to the app&#39;s title screen. You change the destination for the Back button in the next task.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Change the Back button&#39;s destination" duration="0">
+          
+          <p>The Android system keeps track of where users navigate on an Android-powered device. Each time the user goes to a new destination on the device, Android adds that destination to the <em>back stack</em>.</p>
+<p>When the user presses the Back button, the app goes to the destination that&#39;s at the top of the back stack. By default, the top of the back stack is the screen that the user last viewed. The Back button is typically the left-most button at the bottom of the screen, as shown below. (The Back button&#39;s exact appearance is different on different devices.)</p>
+<p class="image-container"><img alt="19d528c831bc36e1.png" style="width: 332.00px" src="/codelabs/kotlin-android-training-add-navigation/img/19d528c831bc36e1.png"></p>
+<p>Until now, you&#39;ve let the navigation controller handle the back stack for you. When the user navigates to a destination in your app, Android adds this destination to the back stack.</p>
+<p>In the AndroidTrivia app, when the user presses the Back button from the <code translate="no" dir="ltr">GameOverFragment</code> or <code translate="no" dir="ltr">GameWonFragment</code> screen, they end up back in the <code translate="no" dir="ltr">GameFragment</code>.  But you don&#39;t want to send the user to the <code translate="no" dir="ltr">GameFragment</code>, because the game is over.  The user could restart the game, but a better experience would be to find themselves back at the title screen.</p>
+<p>A navigation action can modify the back stack. In this task, you change the action that navigates from the game fragment so that the action removes the <code translate="no" dir="ltr">GameFragment</code> from the back stack. When the user wins or loses the game, if they press the Back button, the app skips the <code translate="no" dir="ltr">GameFragment</code> and goes back to the <code translate="no" dir="ltr">TitleFragment</code>.</p>
+<h2 is-upgraded id="step-1:-set-the-pop-behavior-for-the-navigation-actions" data-text="Step 1: Set the pop behavior for the navigation actions">Step 1: Set the pop behavior for the navigation actions</h2>
+<p>In this step, you manage the back stack so that when the user is at the <code translate="no" dir="ltr">GameWon</code> or <code translate="no" dir="ltr">GameOver</code> screen, pressing the Back button returns them to the title screen. You manage the back stack by setting the &#34;pop&#34; behavior for the actions that connect the fragments:</p>
+<ul>
+<li>The <code translate="no" dir="ltr">popUpTo</code> attribute of an action &#34;pops up&#34; the back stack to a given destination before navigating. (Destinations are removed from the back stack.)</li>
+<li>If the <code translate="no" dir="ltr">popUpToInclusive</code> attribute is <code translate="no" dir="ltr">false</code> or is not set, <code translate="no" dir="ltr">popUpTo</code> removes destinations up to the specified destination, but leaves the specified destination in the back stack.</li>
+<li>If <code translate="no" dir="ltr">popUpToInclusive</code> is set to <code translate="no" dir="ltr">true</code>, the <code translate="no" dir="ltr">popUpTo</code> attribute removes all destinations up to and <em>including</em> the given destination from the back stack.</li>
+<li>If <code translate="no" dir="ltr">popUpToInclusive</code> is <code translate="no" dir="ltr">true</code> and <code translate="no" dir="ltr">popUpTo</code> is set to the app&#39;s starting location, the action removes <em>all</em> app destinations from the back stack. The Back button takes the user all the way out of the app.</li>
+</ul>
+<p>In this step, you set the <code translate="no" dir="ltr">popUpTo</code> attribute for the two actions that you created in the previous task. You do this using the <strong>Pop To</strong> field in the <strong>Attributes</strong> pane of the Layout Editor.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">navigation.xml</code> in the <strong>res &gt; navigation</strong> folder. If the navigation graph does not appear in the layout editor, click the <strong>Design</strong> tab.</li>
+<li>Select the action for navigating from the <code translate="no" dir="ltr">gameFragment</code> to the <code translate="no" dir="ltr">gameOverFragment</code>. (In the preview area, the action is represented by a blue line that connects the two fragments.)</li>
+<li>In the <strong>Attributes</strong> pane, set <strong>popUpTo</strong> to <code translate="no" dir="ltr">gameFragment</code>. Select the <strong>popUpToInclusive</strong> checkbox.</li>
+</ol>
+<p class="image-container"><img alt="7a65cf0c73c9904d.png" style="width: 409.00px" src="/codelabs/kotlin-android-training-add-navigation/img/7a65cf0c73c9904d.png"></p>
+<p>This sets the <code translate="no" dir="ltr">popUpTo</code> and <code translate="no" dir="ltr">popUpToInclusive</code> attributes in the XML. The attributes tell the navigation component to remove fragments from the back stack up to and including <code translate="no" dir="ltr">GameFragment</code>. (This has the same effect as setting the <strong>popUpTo</strong> field to <code translate="no" dir="ltr">titleFragment</code> and clearing the <strong>popUpToInclusive</strong> checkbox.)</p>
+<ol type="1" start="4">
+<li>Select the action for navigating from the <code translate="no" dir="ltr">gameFragment</code> to the <code translate="no" dir="ltr">gameWonFragment</code>. Again, set <strong>popUpTo</strong> to <code translate="no" dir="ltr">gameFragment</code> in the <strong>Attributes</strong> pane and select the <strong>popUpToInclusive</strong> checkbox.</li>
+</ol>
+<p class="image-container"><img alt="ca0b60b19e24864f.png" style="width: 405.00px" src="/codelabs/kotlin-android-training-add-navigation/img/ca0b60b19e24864f.png"></p>
+<ol type="1" start="5">
+<li>Run the app and play the game, then press the Back button. Whether you win or lose, the Back button takes you back to the <code translate="no" dir="ltr">TitleFragment</code>.</li>
+</ol>
+<h2 is-upgraded id="step-2:-add-more-navigation-actions-and-add-onclick-handlers" data-text="Step 2: Add more navigation actions and add onClick handlers">Step 2: Add more navigation actions and add onClick handlers</h2>
+<p>Your app currently has the following user flow:</p>
+<ul>
+<li>The user plays the game and wins or loses, and the app navigates to the <code translate="no" dir="ltr">GameWon</code> or <code translate="no" dir="ltr">GameOver</code> screen.</li>
+<li>If the user presses the system Back button at this point, the app navigates to the <code translate="no" dir="ltr">TitleFragment</code>. (You implemented this behavior in Step 1 of this task, above.)</li>
+</ul>
+<p>In this step you implement two more steps of user flow:</p>
+<ul>
+<li>If the user taps the <strong>Next Match</strong> or <strong>Try Again</strong> button, the app navigates to the <code translate="no" dir="ltr">GameFragment</code> screen.</li>
+<li>If the user presses the system Back button at this point, the app navigates to the <code translate="no" dir="ltr">TitleFragment</code> screen (instead of back to the <code translate="no" dir="ltr">GameWon</code> or <code translate="no" dir="ltr">GameOver</code> screen).</li>
+</ul>
+<p>To create this user flow, use the <code translate="no" dir="ltr">popUpTo</code> attribute to manage the back stack:</p>
+<ol type="1">
+<li>Inside the <code translate="no" dir="ltr">navigation.xml</code> file, add a navigation action connecting <code translate="no" dir="ltr">gameOverFragment</code> to <code translate="no" dir="ltr">gameFragment</code>. Make sure that the Fragment names in the action&#39;s ID match the Fragment names that are in the XML. For example, the action ID might be <code translate="no" dir="ltr">action_gameOverFragment_to_gameFragment</code>.</li>
+</ol>
+<p class="image-container"><img alt="b3ba52c4de77caf2.png" style="width: 493.50px" src="/codelabs/kotlin-android-training-add-navigation/img/b3ba52c4de77caf2.png"></p>
+<ol type="1" start="2">
+<li>In the <strong>Attributes</strong> pane, set the action&#39;s <strong>popUpTo</strong> attribute to <code translate="no" dir="ltr">titleFragment</code>.</li>
+<li>Clear the <strong>popUpToInclusive</strong> checkbox, because you do not want the <code translate="no" dir="ltr">titleFragment</code> to be included in the destinations that are removed from the back stack. Instead, you want everything up to the <code translate="no" dir="ltr">titleFragment</code> (but not including it) to be removed from the back stack.</li>
+</ol>
+<p class="image-container"><img alt="f7a3e88d99887fd8.png" style="width: 401.00px" src="/codelabs/kotlin-android-training-add-navigation/img/f7a3e88d99887fd8.png"></p>
+<ol type="1" start="4">
+<li>Inside the <code translate="no" dir="ltr">navigation.xml</code> file, add a navigation action connecting <code translate="no" dir="ltr">gameWonFragment</code> to <code translate="no" dir="ltr">gameFragment</code>.</li>
+</ol>
+<p class="image-container"><img alt="593921dbf00365c1.png" style="width: 494.50px" src="/codelabs/kotlin-android-training-add-navigation/img/593921dbf00365c1.png"></p>
+<ol type="1" start="5">
+<li>For the action you just created, set the <strong>popUpTo</strong> attribute to <code translate="no" dir="ltr">titleFragment</code> and clear the <strong>popUpToInclusive</strong> checkbox.</li>
+</ol>
+<p class="image-container"><img alt="1f8e86b02d795270.png" style="width: 405.00px" src="/codelabs/kotlin-android-training-add-navigation/img/1f8e86b02d795270.png"></p>
+<p>Now add functionality to the <strong>Try Again</strong> and <strong>Next Match</strong> buttons. When the user taps either button, you want the app to navigate to the <code translate="no" dir="ltr">GameFragment</code> screen so that the user can try the game again.</p>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">GameOverFragment.kt</code> Kotlin file. At the end of the <code translate="no" dir="ltr">onCreateView()</code> method, before the <code translate="no" dir="ltr">return</code> statement, add the following code. The code adds a click listener to the <strong>Try Again</strong> button. When the user taps the button, the app navigates to the game Fragment.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">// Add OnClick Handler for Try Again button
+        binding.tryAgainButton.setOnClickListener{view: View-&gt;
+        view.findNavController()
+                .navigate(R.id.action_gameOverFragment_to_gameFragment)}
+</code></pre>
+<ol type="1" start="2">
+<li>Open the <code translate="no" dir="ltr">GameWonFragment.kt</code> Kotlin file. At the end of the <code translate="no" dir="ltr">onCreateView()</code> method, before the <code translate="no" dir="ltr">return</code> statement, add the following code:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">// Add OnClick Handler for Next Match button
+        binding.nextMatchButton.setOnClickListener{view: View-&gt;
+            view.findNavController()
+                    .navigate(R.id.action_gameWonFragment_to_gameFragment)}
+</code></pre>
+<ol type="1" start="3">
+<li>Run your app, play the game, and test the <strong>Next Match</strong> and <strong>Try Again</strong> buttons. Both buttons should take you back to the game screen so that you can try the game again.</li>
+<li>After you win or lose the game, tap <strong>Next Match</strong> or <strong>Try Again</strong>. Now press the system Back button. The app should navigate to the title screen, instead of going back to the screen that you just came from.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add an Up button in the app bar" duration="0">
+          
+          <h2 is-upgraded id="the-app-bar" data-text="The app bar">The app bar</h2>
+<p>The  <a href="https://developer.android.com/training/appbar/" target="_blank"><em>app bar</em></a>, sometimes called the <em>action bar</em>, is a dedicated space for app branding and identity. For example, you can set the app bar&#39;s color. The app bar gives the user access to familiar navigation features such as an options menu. To access the options menu from the app bar, the user taps the icon with the three vertical dots  <img alt="4cdd17fa43bfbe6.png" style="width: 21.44px" src="/codelabs/kotlin-android-training-add-navigation/img/4cdd17fa43bfbe6.png">.</p>
+<p>The app bar displays a title string that can change with each screen. For the title screen of the AndroidTrivia app, the app bar displays &#34;Android Trivia.&#34; On the question screen, the title string also shows which question the user is on (&#34;1/3,&#34; &#34;2/3,&#34; or &#34;3/3.&#34;)</p>
+<h2 is-upgraded id="the-up-button" data-text="The Up button">The Up button</h2>
+<p>Currently in your app, the user uses the system Back button to navigate to previous screens. However, Android apps can also have an on-screen Up button that appears at the top left of the app bar.</p>
+<p>In the AndroidTrivia app, you want the Up button to appear on every screen except the title screen. The Up button should disappear when the user reaches the title screen, because the title screen is at the top of the app&#39;s screen hierarchy.</p>
+<aside class="special"><p><strong>Up button versus Back button:</strong></p>
+<ul>
+<li>The Up button, shown as 1 in the screenshot below, appears in the app bar.</li>
+<li>The Up button navigates within the app, based on the hierarchical relationships between screens. The Up button never navigates the user out of the app.</li>
+<li>The Back button, shown as 2 in the screenshot below, appears in the system navigation bar or as a mechanical button on the device itself, no matter what app is open.</li>
+<li>The Back button navigates backward through screens that the user has recently worked with (the back stack).</li>
+</ul>
+<p>For more details, see  <a href="https://developer.android.com/training/design-navigation/ancestral-temporal" target="_blank">Designing Back and Up navigation</a>.</p>
+<p class="image-container"><img alt="3988417c5a139b82.png" style="width: 284.00px" src="/codelabs/kotlin-android-training-add-navigation/img/3988417c5a139b82.png"></p>
+</aside>
+<h2 is-upgraded id="add-support-for-an-up-button" data-text="Add support for an Up button">Add support for an Up button</h2>
+<p>The navigation components include a UI library called  <a href="https://developer.android.com/topic/libraries/architecture/navigation/navigation-ui" target="_blank"><code translate="no" dir="ltr">NavigationUI</code></a>. The Navigation component includes a  <a href="https://developer.android.com/reference/androidx/navigation/ui/NavigationUI" target="_blank">NavigationUI</a> class. This class contains static methods that manage navigation with the top app bar, the navigation drawer, and bottom navigation. The navigation controller integrates with the app bar to implement the behavior of the Up button, so you don&#39;t have to do it yourself.</p>
+<p>In the following steps, you use the navigation controller to add an Up button to your app:</p>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">MainActivity.kt</code> kotlin file. Inside the <code translate="no" dir="ltr">onCreate()</code> method, add code to find the navigation controller object:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val navController = this.findNavController(R.id.myNavHostFragment)
+</code></pre>
+<ol type="1" start="2">
+<li>Also inside the <code translate="no" dir="ltr">onCreate()</code> method, add code to link the navigation controller to the app bar:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">NavigationUI.setupActionBarWithNavController(this,navController)
+</code></pre>
+<ol type="1" start="3">
+<li>After the <code translate="no" dir="ltr">onCreate()</code> method, override the <code translate="no" dir="ltr">onSupportNavigateUp()</code> method to call <code translate="no" dir="ltr">navigateUp()</code> in the navigation controller:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.myNavHostFragment)
+        return navController.navigateUp()
+    }
+</code></pre>
+<ol type="1" start="4">
+<li>Run the app. The Up button appears in the app bar on every screen except the title screen. No matter where you are in the app, tapping the Up button takes you to the title screen.</li>
+</ol>
+<p>You may see &#34;fragment_title&#34; in the upper left corner. Edit <strong>res&gt;navigation&gt;navigation.xml</strong> and change the label of <code translate="no" dir="ltr">com.example.android.navigation.TitleFragment</code> from &#34;fragment_title&#34; to @string/app_name.  And then define this resource in <strong>res&gt;values&gt;strings.xml</strong> as &#34;Android Trivia&#34; and re-run the app.</p>
+<p class="image-container"><img alt="ede7ea1d73b46ab0.png" style="width: 204.18px" src="/codelabs/kotlin-android-training-add-navigation/img/ede7ea1d73b46ab0.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add an options menu" duration="0">
+          
+          <p>Android has different types of menus, including the <em>options menu</em>. On modern Android devices, the user accesses the options menu by tapping three vertical dots  <img alt="4cdd17fa43bfbe6.png" style="width: 21.44px" src="/codelabs/kotlin-android-training-add-navigation/img/4cdd17fa43bfbe6.png"> that appear in the app bar.</p>
+<p>In this task, you add an <strong>About</strong> menu item to the options menu. When the user taps the <strong>About</strong> menu item, the app navigates to the <code translate="no" dir="ltr">AboutFragment</code>, and the user sees information about how to use the app.</p>
+<h2 is-upgraded id="step-1:-add-the-aboutfragment-to-the-navigation-graph" data-text="Step 1: Add the AboutFragment to the navigation graph">Step 1: Add the AboutFragment to the navigation graph</h2>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">navigation.xml</code> file and click the <strong>Design</strong> tab to see the navigation graph.</li>
+<li>Click the <strong>New Destination</strong> button and select <strong>fragment_about</strong>. <img alt="2d78693674c34dda.png" style="width: 445.50px" src="/codelabs/kotlin-android-training-add-navigation/img/2d78693674c34dda.png"></li>
+<li>In the layout editor, drag the &#34;about&#34; Fragment to the left so it doesn&#39;t overlap with the other fragments. Make sure the Fragment&#39;s <code translate="no" dir="ltr">ID</code> is <code translate="no" dir="ltr">aboutFragment</code>.</li>
+</ol>
+<p class="image-container"><img alt="97459cd8e9616164.png" style="width: 435.50px" src="/codelabs/kotlin-android-training-add-navigation/img/97459cd8e9616164.png"></p>
+<h2 is-upgraded id="step-2:-add-the-options-menu-resource" data-text="Step 2: Add the options-menu resource">Step 2: Add the options-menu resource</h2>
+<ol type="1">
+<li>In the Android Studio Project pane, right-click the <strong>res</strong> folder and select <strong>New &gt; Android Resource File</strong>.</li>
+<li>In the <strong>New Resource File</strong> dialog, name the file <code translate="no" dir="ltr">options_menu</code>.</li>
+<li>Select <strong>Menu</strong> as the <strong>Resource type</strong> and click <strong>OK</strong>. <img alt="3c841c2d34ef8379.png" style="width: 509.50px" src="/codelabs/kotlin-android-training-add-navigation/img/3c841c2d34ef8379.png"></li>
+<li>Open the <code translate="no" dir="ltr">options_menu.xml</code> file from the <strong>res &gt; menu</strong> folder and click the <strong>Design</strong> tab to see the Layout Editor.</li>
+<li>From the <strong>Palette</strong> pane, drag a <strong>Menu Item</strong> (shown as 1 in the screenshot below) and drop it anywhere in the design editor pane (2). A menu item appears in the preview (3) and in the <strong>Component Tree</strong> (4). <img alt="345be27047f9c8ad.png" style="width: 527.00px" src="/codelabs/kotlin-android-training-add-navigation/img/345be27047f9c8ad.png"></li>
+<li>In the preview or in the <strong>Component Tree</strong>, click the menu item to show its attributes in the <strong>Attributes</strong> pane.</li>
+<li>Set the menu item&#39;s ID to <strong>aboutFragment</strong>. Set the title to <strong>@string/about</strong>. <img alt="242ec5091ed2c2a5.png" style="width: 469.50px" src="/codelabs/kotlin-android-training-add-navigation/img/242ec5091ed2c2a5.png"></li>
+</ol>
+<aside class="special"><p><strong>Tip:</strong> Make sure that the <code translate="no" dir="ltr">ID</code> of the menu item that you just added is exactly the same as the <code translate="no" dir="ltr">ID</code> of the <code translate="no" dir="ltr">AboutFragment</code> that you added in the navigation graph. This will make the code for the <code translate="no" dir="ltr">onClick</code> handler much simpler.</p>
+</aside>
+<h2 is-upgraded id="step-3:-add-an-onclick-handler" data-text="Step 3: Add an onClick handler">Step 3: Add an onClick handler</h2>
+<p>In this step, you add code to implement behavior when the user taps the <strong>About</strong> menu item.</p>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">TitleFragment.kt</code> Kotlin file. Inside the <code translate="no" dir="ltr">onCreateView()</code> method, before the <code translate="no" dir="ltr">return</code>, call the  <a href="https://developer.android.com/reference/android/support/v4/app/Fragment#sethasoptionsmenu" target="_blank"><code translate="no" dir="ltr">setHasOptionsMenu()</code></a> method and pass in <code translate="no" dir="ltr">true</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                         savedInstanceState: Bundle?): View? {
+   ...
+   setHasOptionsMenu(true)
+   return binding.root
+}
+</code></pre>
+<ol type="1" start="2">
+<li>After the <code translate="no" dir="ltr">onCreateView()</code> method, override the <code translate="no" dir="ltr">onCreateOptionsMenu()</code> method. In the method, add the options menu and inflate the menu resource file.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+}
+</code></pre>
+<ol type="1" start="3">
+<li>Override the <code translate="no" dir="ltr">onOptionsItemSelected()</code> method to take the appropriate action when the menu item is tapped. In this case, the action is to navigate to the Fragment that has the same <code translate="no" dir="ltr">id</code> as the selected menu item.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onOptionsItemSelected(item: MenuItem): Boolean {
+     return NavigationUI.
+            onNavDestinationSelected(item,requireView().findNavController())
+            || super.onOptionsItemSelected(item)
+}
+</code></pre>
+<ol type="1" start="4">
+<li>If the app doesn&#39;t build, check to see whether you need to import packages to fix unresolved references in the code. For example, you can add <code translate="no" dir="ltr">import android.view.*</code> to resolve several references (and replace more specific imports such as <code translate="no" dir="ltr">import android.view.ViewGroup</code>).</li>
+<li>Run the app and test the <strong>About</strong> menu item that&#39;s in the options menu. When you tap the menu item, the app should navigate to the &#34;about&#34; screen.</li>
+</ol>
+<p class="image-container"><img alt="c1c134d86b99a747.png" style="width: 505.00px" src="/codelabs/kotlin-android-training-add-navigation/img/c1c134d86b99a747.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add the navigation drawer" duration="0">
+          
+          <p>In this task, you add a <em>navigation drawer</em> to the AndroidTrivia app. The navigation drawer is a panel that slides out from the edge of the screen. The drawer typically contains a header and a menu.</p>
+<p>On phone-sized devices, the navigation drawer is hidden when not in use. Two types of user actions can make the navigation drawer appear:</p>
+<ul>
+<li>The drawer appears when the user swipes from the starting edge of the screen toward the ending edge of the screen. In the AndroidTrivia app, the navigation drawer appears when the user swipes from left to right.</li>
+<li>The drawer appears when the user is at the start destination of the app and taps the <em>drawer icon</em> in the app bar. (The drawer icon is sometimes called the <em>nav drawer button</em> or <em>hamburger icon  </em><img alt="7277f85db3a1ad13.png" style="width: 20.00px" src="/codelabs/kotlin-android-training-add-navigation/img/7277f85db3a1ad13.png">.)</li>
+</ul>
+<p>The screenshot below shows an open navigation drawer.</p>
+<p class="image-container"><img alt="4c30d26a5ae3c341.png" style="width: 217.50px" src="/codelabs/kotlin-android-training-add-navigation/img/4c30d26a5ae3c341.png"></p>
+<p>The navigation drawer is part of the  <a href="https://material.io/develop/android/docs/getting-started/" target="_blank">Material Components for Android</a> library, or Material library. You use the Material library to implement patterns that are part of Google&#39;s Material Design guidelines.</p>
+<p>In your AndroidTrivia app, the navigation drawer will contain two menu items. The first item points to the existing &#34;about&#34; Fragment, and the second item will point to a new &#34;rules&#34; Fragment.</p>
+<p class="image-container"><img alt="455051aa6083ccfe.png" style="width: 197.50px" src="/codelabs/kotlin-android-training-add-navigation/img/455051aa6083ccfe.png"></p>
+<h2 is-upgraded id="step-1:-add-the-material-library-to-your-project" data-text="Step 1: Add the Material library to your project">Step 1: Add the Material library to your project</h2>
+<ol type="1">
+<li>In the app-level Gradle build file, add the dependency for the Material library:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">dependencies {
+    ...
+    implementation &#34;com.google.android.material:material:$version&#34;
+    ...
+}
+</code></pre>
+<ol type="1" start="2">
+<li>Sync your project.</li>
+</ol>
+<aside class="special"><p><strong>Note:</strong> You may have to create or update the variable <strong>$version</strong> in your project&#39;s <strong>File&gt;ProjectStructure&gt;Variables</strong> settings to match the latest version.</p>
+</aside>
+<h2 is-upgraded id="step-2:-make-sure-the-destination-fragments-have-ids" data-text="Step 2: Make sure the destination fragments have IDs">Step 2: Make sure the destination fragments have IDs</h2>
+<p>The navigation drawer will have two menu items, each representing a Fragment that can be reached from the navigation drawer. Both destinations must have an ID in the navigation graph.</p>
+<p>The <code translate="no" dir="ltr">AboutFragment</code> already has an <code translate="no" dir="ltr">ID</code> in the navigation graph, but the <code translate="no" dir="ltr">RulesFragment</code> does not, so add it now:</p>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">fragment_rules.xml</code> layout file to see what it looks like. Click the <strong>Design</strong> tab to look at the preview in the design editor.</li>
+<li>Open the <code translate="no" dir="ltr">navigation.xml</code> file in the Navigation Editor. Click the <strong>New Destination</strong> button and add the rules Fragment. Set its <strong>ID</strong> to <strong>rulesFragment</strong>.</li>
+</ol>
+<p class="image-container"><img alt="2417ae056f087b1b.png" style="width: 215.50px" src="/codelabs/kotlin-android-training-add-navigation/img/2417ae056f087b1b.png"></p>
+<p class="image-container"><img alt="22127c2a9dd49b15.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-add-navigation/img/22127c2a9dd49b15.png"></p>
+<h2 is-upgraded id="step-3:-create-the-drawer-menu-and-the-drawer-layout" data-text="Step 3: Create the drawer menu and the drawer layout">Step 3: Create the drawer menu and the drawer layout</h2>
+<p>To create a navigation drawer, you create the navigation menu. You also need to put your views inside a <code translate="no" dir="ltr">DrawerLayout</code> in the layout file.</p>
+<ol type="1">
+<li>Create the menu for the drawer. In the Project pane, right-click the <strong>res</strong> folder and select <strong>New Resource File</strong>. Name the file <code translate="no" dir="ltr">navdrawer_menu</code>, set the resource type to <strong>Menu</strong>, and click <strong>OK</strong>. <img alt="a925786508c5b763.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-add-navigation/img/a925786508c5b763.png"></li>
+<li>Open <code translate="no" dir="ltr">navdrawer_menu.xml</code> from the <strong>res &gt; menu</strong> folder, then click the <strong>Design</strong> tab. Add two menu items by dragging them from the <strong>Palette</strong> pane into the <strong>Component Tree</strong> pane.</li>
+<li>For the first menu item, set the <strong>id</strong> to <strong>rulesFragment.</strong> (The ID for a menu item should be the same as the ID for the Fragment.) Set the <strong>title</strong> to <strong>@string/rules</strong> and the <strong>icon</strong> to <strong>@drawable/rules</strong>.</li>
+</ol>
+<p class="image-container"><img alt="b2e6e3aa1b38f9ae.png" style="width: 214.00px" src="/codelabs/kotlin-android-training-add-navigation/img/b2e6e3aa1b38f9ae.png"></p>
+<ol type="1" start="4">
+<li>For the second menu item, set the <strong>id</strong> to <strong>aboutFragment</strong>, the <strong>title</strong> string to <strong>@string/about</strong>, and the icon to <strong>@drawable/about_android_trivia</strong>.</li>
+</ol>
+<p class="image-container"><img alt="247150f27cfb0ada.png" style="width: 219.00px" src="/codelabs/kotlin-android-training-add-navigation/img/247150f27cfb0ada.png"></p>
+<aside class="special"><p><strong>Note:</strong> If you use the same <code translate="no" dir="ltr">ID</code> for the menu item as for the destination Fragment, you don&#39;t need to write any code at all to implement the <code translate="no" dir="ltr">onClick</code> listener!</p>
+</aside>
+<ol type="1" start="5">
+<li>Open the <code translate="no" dir="ltr">activity_main.xml</code> layout file. To get all the drawer functionality for free, put your views inside a <code translate="no" dir="ltr">DrawerLayout</code>. Wrap the entire <code translate="no" dir="ltr">&lt;LinearLayout&gt;</code> inside a <code translate="no" dir="ltr">&lt;DrawerLayout&gt;</code>. (In other words, add a <code translate="no" dir="ltr">DrawerLayout</code> as the root view.)</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;layout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+   xmlns:app=&#34;http://schemas.android.com/apk/res-auto&#34;&gt;
+   &lt;androidx.drawerlayout.widget.DrawerLayout
+       android:id=&#34;@+id/drawerLayout&#34;
+       android:layout_width=&#34;match_parent&#34;
+       android:layout_height=&#34;match_parent&#34;&gt;
+
+   &lt;LinearLayout
+       . . . 
+       &lt;/LinearLayout&gt;
+   &lt;/androidx.drawerlayout.widget.DrawerLayout&gt;
+&lt;/layout&gt;
+</code></pre>
+<ol type="1" start="6">
+<li>Now add the drawer, which is a <code translate="no" dir="ltr">NavigationView</code> that uses the <code translate="no" dir="ltr">navdrawer_menu</code> that you just defined. Add the following code in the <code translate="no" dir="ltr">DrawerLayout</code>, after the <code translate="no" dir="ltr">&lt;/LinearLayout&gt;</code> element:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;com.google.android.material.navigation.NavigationView
+   android:id=&#34;@+id/navView&#34;
+   android:layout_width=&#34;wrap_content&#34;
+   android:layout_height=&#34;match_parent&#34;
+   android:layout_gravity=&#34;start&#34;
+   app:headerLayout=&#34;@layout/nav_header&#34;
+   app:menu=&#34;@menu/navdrawer_menu&#34; /&gt;
+</code></pre>
+<h2 is-upgraded id="step-4:-display-the-navigation-drawer" data-text="Step 4: Display the navigation drawer">Step 4: Display the navigation drawer</h2>
+<p>You created the menu items for the navigation drawer and the navigation drawer layout. Now you need to connect the navigation drawer to the navigation controller so that when users select items in the navigation drawer, the app navigates to the appropriate Fragment.</p>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">MainActivity.kt</code> Kotlin file. In <code translate="no" dir="ltr">onCreate()</code>, add the code that allows the user to display the navigation drawer. Do this by calling <code translate="no" dir="ltr">setupWithNavController()</code>. Add the following code at the bottom of <code translate="no" dir="ltr">onCreate()</code>:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">NavigationUI.setupWithNavController(binding.navView, navController)
+</code></pre>
+<ol type="1" start="2">
+<li>Run your app. Swipe from the left edge to display the navigation drawer, and make sure each of the menu items in the drawer goes to the right place.</li>
+</ol>
+<p>Although the navigation drawer works, you need to fix one more thing. Typically apps also allow users to display the navigation drawer by tapping the drawer button (three lines)  <img alt="7277f85db3a1ad13.png" style="width: 20.00px" src="/codelabs/kotlin-android-training-add-navigation/img/7277f85db3a1ad13.png"> in the app bar on the home screen. Your app does not yet display the drawer button on the home screen.</p>
+<h2 is-upgraded id="step-5:-display-the-navigation-drawer-from-the-drawer-button" data-text="Step 5: Display the navigation drawer from the drawer button">Step 5: Display the navigation drawer from the drawer button</h2>
+<p>The final step is to enable the user to access the navigation drawer from the drawer button at the top left of the app bar.</p>
+<ol type="1">
+<li>In the <code translate="no" dir="ltr">MainActivity.kt</code> Kotlin file, add the <code translate="no" dir="ltr">lateinit</code> <code translate="no" dir="ltr">drawerLayout</code> member variable to represent the drawer layout:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">    private lateinit var drawerLayout: DrawerLayout
+</code></pre>
+<aside class="special"><p><strong>Note:</strong> Kotlin is a &#34;null safety&#34; language. One of the ways it offers null safety is through the <code translate="no" dir="ltr">lateinit</code> modifier, which lets you delay the initialization of the variable without any danger of returning a null reference.</p>
+<p>In this case, <code translate="no" dir="ltr">drawerLayout</code> is declared with <code translate="no" dir="ltr">lateinit</code> to avoid the need to make it nullable. It will be initialized in <code translate="no" dir="ltr">onCreate()</code>.</p>
+<p>To learn more, see  <a href="https://kotlinlang.org/docs/reference/properties.html#late-initialized-properties-and-variables" target="_blank">Late-Initialized Properties and Variables</a> in the Kotlin documentation.</p>
+</aside>
+<ol type="1" start="2">
+<li>Inside the <code translate="no" dir="ltr">onCreate()</code> method, initialize <code translate="no" dir="ltr">drawerLayout</code> after the <code translate="no" dir="ltr">binding</code> variable has been initialized.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val binding = DataBindingUtil.setContentView&lt;ActivityMainBinding&gt;(this,
+                R.layout.activity_main)
+
+drawerLayout = binding.drawerLayout
+</code></pre>
+<ol type="1" start="3">
+<li>Add the <code translate="no" dir="ltr">drawerLayout</code> as the third parameter to the <code translate="no" dir="ltr">setupActionBarWithNavController()</code> method:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+</code></pre>
+<ol type="1" start="4">
+<li>Edit the <code translate="no" dir="ltr">onSupportNavigateUp()</code> method to return <strong><code translate="no" dir="ltr">NavigationUI</code></strong>.<code translate="no" dir="ltr">navigateUp</code> instead of returning <strong><code translate="no" dir="ltr">navController</code></strong>.<code translate="no" dir="ltr">navigateUp</code>. Pass the navigation controller and the drawer layout to <code translate="no" dir="ltr">navigateUp()</code>. The method will look like as follows:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onSupportNavigateUp(): Boolean {
+   val navController = this.findNavController(R.id.myNavHostFragment)
+   return NavigationUI.navigateUp(navController, drawerLayout)
+}
+</code></pre>
+<ol type="1" start="5">
+<li>You might need to add another import to the file so all the references resolve, for example:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">import androidx.drawerlayout.widget.DrawerLayout
+</code></pre>
+<ol type="1" start="6">
+<li>Run your app. Swipe from the left edge to display the navigation drawer, and make sure each of the menu items in the drawer goes to the right place.</li>
+<li>Go to the home screen and tap the nav drawer button  <img alt="7277f85db3a1ad13.png" style="width: 20.00px" src="/codelabs/kotlin-android-training-add-navigation/img/7277f85db3a1ad13.png"> to make sure the navigation drawer appears. Make sure that clicking the <strong>Rules</strong> or <strong>About</strong> options in the navigation drawer takes you to the right place.</li>
+</ol>
+<p class="image-container"><img alt="85fa13d14ad593d4.png" style="width: 226.37px" src="/codelabs/kotlin-android-training-add-navigation/img/85fa13d14ad593d4.png"></p>
+<h2 is-upgraded id="congratulations" data-text="Congratulations!">Congratulations!</h2>
+<p>You have now added several different navigation options to your app.</p>
+<p>The user can now progress through the app by playing the game. They can get back to the home screen at any time by using the Up button. They can get to the About screen either from the Options menu or from the navigation drawer. Pressing the Back button takes them back through previous screens in a way that makes sense for the app. The user can open the navigation drawer by swiping in from the left on any screen, or by tapping the drawer button in the app bar on the home screen.</p>
+<p>Your app includes robust, logical navigation paths that are intuitive for your user to use. Congratulations!</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Solution code" duration="0">
+          
+          <p>Android Studio project:  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/AndroidTriviaNavigation" target="_blank">AndroidTriviaNavigation</a></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Summary" duration="0">
+          
+          <h2 is-upgraded id="navigation-components" data-text="Navigation components">Navigation components</h2>
+<p>To use the Android <em>navigation library</em>, you need to do some setup:</p>
+<ul>
+<li>Add dependencies for <code translate="no" dir="ltr">navigation-fragment-ktx</code> and <code translate="no" dir="ltr">navigation-ui-ktx</code> in the module-level <code translate="no" dir="ltr">build.gradle</code> file.</li>
+<li>Add an <code translate="no" dir="ltr">ext</code> variable for the <code translate="no" dir="ltr">navigationVersion</code> in the project-level <code translate="no" dir="ltr">build.gradle</code> file.</li>
+</ul>
+<p><em>Navigation destinations</em> are fragments, activities, or other app components that the user navigates to. A <em>navigation graph</em> defines the possible paths from one navigation destination to the next.</p>
+<ul>
+<li>To create a navigation graph, create a new Android resource file of type <strong>Navigation</strong>. This file defines the navigation flow through the app. The file is in the <code translate="no" dir="ltr">res/navigation</code> folder, and it&#39;s typically called <code translate="no" dir="ltr">navigation.xml</code>.</li>
+<li>To see the navigation graph in the Navigation Editor, open the <code translate="no" dir="ltr">navigation.xml</code> file and click the <strong>Design</strong> tab.</li>
+<li>Use the Navigation Editor to add destinations such as fragments to the navigation graph.</li>
+<li>To define the path from one destination to another, use the Navigation Graph to create an action that connects the destinations. In the <code translate="no" dir="ltr">navigation.xml</code> file, each of these connections is represented as an <code translate="no" dir="ltr">action</code> that has an <code translate="no" dir="ltr">ID</code>.</li>
+</ul>
+<p>A <em>navigation host Fragment</em>, usually named <code translate="no" dir="ltr">NavHostFragment</code>, acts as a host for the fragments in the navigation graph:</p>
+<ul>
+<li>As the user moves between destinations defined in the navigation graph, the <code translate="no" dir="ltr">NavHostFragment</code> swaps the fragments in and out and manages the Fragment back stack.</li>
+<li>In the <code translate="no" dir="ltr">activity_main.xml</code> layout file, the <code translate="no" dir="ltr">NavHostFragment</code> is represented by a <code translate="no" dir="ltr">fragment</code> element with the name <code translate="no" dir="ltr">android:name="androidx.navigation.fragment.NavHostFragment"</code>.</li>
+</ul>
+<p>To define which Fragment is displayed when the user taps a view (for example a button), set the <code translate="no" dir="ltr">onClick</code> listener for the view:</p>
+<ul>
+<li>In the <code translate="no" dir="ltr">onClick</code> listener, call <code translate="no" dir="ltr">findNavController().navigate()</code> on the view.</li>
+<li>Specify the <code translate="no" dir="ltr">ID</code> of the <code translate="no" dir="ltr">action</code> that leads to the destination.</li>
+</ul>
+<p><em>Conditional navigation</em> navigates to one screen in one case, and to a different screen in another case. To create conditional navigation:</p>
+<ol type="1">
+<li>Use the Navigation Editor to create a connection from the starting Fragment to each of the possible destination fragments.</li>
+<li>Give each connection a unique ID.</li>
+<li>In the click-listener method for the <code translate="no" dir="ltr">View</code>, add code to detect the conditions. Then call <code translate="no" dir="ltr">findNavController().navigate()</code> on the view, passing in the ID for the appropriate action.</li>
+</ol>
+<h2 is-upgraded id="the-back-button" data-text="The Back button">The Back button</h2>
+<p>The system&#39;s <em>Back button</em> is usually at the bottom of the device. By default, the Back button navigates the user back to the screen they viewed most recently. In some situations, you can control where the Back button takes the user:</p>
+<ul>
+<li>In the Navigation Editor, you can use the <strong>Attributes</strong> pane to change an action&#39;s <strong>popUpTo</strong> setting. This setting removes destinations from the back stack, which has the effect of determining where the Back button takes the user.</li>
+<li>The <strong>popUpTo</strong> setting appears as the <code translate="no" dir="ltr">popUpTo</code> attribute in the <code translate="no" dir="ltr">navigation.xml</code> file.</li>
+</ul>
+<p class="image-container"><img alt="1f8e86b02d795270.png" style="width: 405.00px" src="/codelabs/kotlin-android-training-add-navigation/img/1f8e86b02d795270.png"></p>
+<ul>
+<li>Selecting the <strong>popUpToInclusive</strong> checkbox sets the <code translate="no" dir="ltr">popUpToInclusive</code> attribute to <code translate="no" dir="ltr">true</code>. All destinations up to and <em>including</em> this destination are removed from the back stack.</li>
+<li>If an action&#39;s <code translate="no" dir="ltr">popUpTo</code> attribute is set to the app&#39;s starting destination and <code translate="no" dir="ltr">popUpToInclusive</code> is set to <code translate="no" dir="ltr">true</code>, the Back button takes the user all the way out of the app.</li>
+</ul>
+<h2 is-upgraded id="the-up-button_1" data-text="The Up button">The Up button</h2>
+<p>Screens in an Android app can have an on-screen <em>Up button</em> that appears at the top left of the  <a href="https://developer.android.com/topic/libraries/architecture/navigation/navigation-ui#top_app_bar" target="_blank"><em>app bar</em></a>. (The app bar is sometimes called the <em>action bar.</em>) The Up button navigates &#34;upwards&#34; within the app&#39;s screens, based on the hierarchical relationships between screens.</p>
+<p>The navigation controller&#39;s  <a href="https://developer.android.com/topic/libraries/architecture/navigation/navigation-ui" target="_blank"><code translate="no" dir="ltr">NavigationUI</code></a> library integrates with the app bar to allow the user to tap the Up button on the app bar to get back to the app&#39;s home screen from anywhere in the app.</p>
+<p>To link the navigation controller to the app bar:</p>
+<ol type="1">
+<li>In <code translate="no" dir="ltr">onCreate()</code>, call <code translate="no" dir="ltr">setupActionBarWithNavController()</code> on the <code translate="no" dir="ltr">NavigationUI</code> class, passing in the navigation controller:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val navController = this.findNavController(R.id.myNavHostFragment)
+NavigationUI.setupActionBarWithNavController(this,navController)
+</code></pre>
+<ol type="1" start="2">
+<li>Override the <code translate="no" dir="ltr">onSupportNavigateUp()</code> method to call <code translate="no" dir="ltr">navigateUp()</code> in the navigation controller:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.myNavHostFragment)
+        return navController.navigateUp()
+    }
+}
+</code></pre>
+<h2 is-upgraded id="the-options-menu" data-text="The options menu">The options menu</h2>
+<p>The <em>options menu</em> is a menu that the user accesses from the app bar by tapping the icon with the three vertical dots  <img alt="4cdd17fa43bfbe6.png" style="width: 21.44px" src="/codelabs/kotlin-android-training-add-navigation/img/4cdd17fa43bfbe6.png">. To create an options menu with a menu item that displays a Fragment, make sure the Fragment has an ID. Then define the options menu and code the <code translate="no" dir="ltr">onOptionsItemSelected()</code> handler for the menu items.</p>
+<ol type="1">
+<li>Make sure the Fragment has an ID:</li>
+</ol>
+<ul>
+<li>Add the destination Fragment to the navigation graph and note the ID of the Fragment. (You can change the ID if you like.)</li>
+</ul>
+<ol type="1" start="2">
+<li>Define the options menu:</li>
+</ol>
+<ul>
+<li>Create an Android resource file of type <strong>Menu</strong>, typically named <code translate="no" dir="ltr">options_menu.xml</code>. The file is stored in the <strong>Res &gt; Menu</strong> folder.</li>
+<li>Open the <code translate="no" dir="ltr">options_menu.xml</code> file in the design editor and drag a <strong>Menu Item</strong> widget from the <strong>Palette</strong> pane to the menu.</li>
+<li>For convenience, make the ID of the menu item the same as the ID of the Fragment to display when the user clicks this menu item. This step is not required, but it makes it easier to code the <code translate="no" dir="ltr">onClick</code> behavior for the menu item.</li>
+</ul>
+<ol type="1" start="3">
+<li>Code the <code translate="no" dir="ltr">onClick</code> handler for the menu item:</li>
+</ol>
+<ul>
+<li>In the Fragment or Activity that displays the options menu, in <code translate="no" dir="ltr">onCreateView()</code>, call <code translate="no" dir="ltr">setHasOptionsMenu(true)</code> to enable the options menu.</li>
+<li>Implement <code translate="no" dir="ltr">onCreateOptionsMenu()</code> to inflate the options menu:</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+}
+</code></pre>
+<ul>
+<li>Override the <code translate="no" dir="ltr">onOptionsItemSelected()</code> method to take the appropriate action when the menu item is clicked. The following code displays the Fragment that has the same ID as the menu item. (This code only works if the menu item and the Fragment have identical ID values.)</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onOptionsItemSelected(item: MenuItem): Boolean {
+     return NavigationUI.
+            onNavDestinationSelected(item,requireView().findNavController())
+            || super.onOptionsItemSelected(item)
+}
+</code></pre>
+<h2 is-upgraded id="the-navigation-drawer" data-text="The navigation drawer">The navigation drawer</h2>
+<p>The <em>navigation drawer</em> is a panel that slides out from the edge of the screen. There are two ways for the user to open the navigation drawer:</p>
+<ul>
+<li>Swipe from the starting edge (usually the left) on any screen.</li>
+<li>Use the drawer button (three lines)  <img alt="7277f85db3a1ad13.png" style="width: 20.00px" src="/codelabs/kotlin-android-training-add-navigation/img/7277f85db3a1ad13.png"> on the app bar at the top of the app.</li>
+</ul>
+<p>To add a navigation drawer to your app:</p>
+<ol type="1">
+<li>Add dependencies to <code translate="no" dir="ltr">build.gradle (app)</code>.</li>
+<li>Make sure each destination Fragment has an ID.</li>
+<li>Create the menu for the drawer.</li>
+<li>Add the drawer to the layout for the Fragment.</li>
+<li>Connect the drawer to the navigation controller.</li>
+<li>Set up the drawer button in the app bar.</li>
+</ol>
+<p>These steps are explained in more detail below.</p>
+<ol type="1">
+<li>Add dependencies to <code translate="no" dir="ltr">build.gradle</code>:</li>
+</ol>
+<ul>
+<li>The navigation drawer is part of the Material Components for Android library. Add the Material library to the <code translate="no" dir="ltr">build.gradle (app)</code> file:</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">dependencies {
+    ...
+    implementation &#34;com.google.android.material:material:$supportlibVersion&#34;
+    ...
+}
+</code></pre>
+<ol type="1" start="2">
+<li>Give each destination Fragment an ID:</li>
+</ol>
+<ul>
+<li>If a Fragment is reachable from the navigation drawer, open it in the navigation graph to make sure that it has an ID.</li>
+</ul>
+<ol type="1" start="3">
+<li>Create the menu for the drawer:</li>
+</ol>
+<ul>
+<li>Create an Android resource file of type <strong>Menu</strong> (typically called <code translate="no" dir="ltr">navdrawer_menu</code>) for a navigation drawer menu. This creates a new <code translate="no" dir="ltr">navdrawer_menu.xml</code> file in the <code translate="no" dir="ltr">Res &gt; Menu</code> folder.</li>
+<li>In the design editor, add <strong>Menu Item</strong> widgets to the <strong>Menu</strong>.</li>
+</ul>
+<ol type="1" start="4">
+<li>Add the drawer to the layout for the Fragment:</li>
+</ol>
+<ul>
+<li>In the layout that contains the navigation host Fragment (which is typically the main layout), use <code translate="no" dir="ltr">&lt;androidx.drawerlayout.widget.DrawerLayout&gt;</code> as the root view.</li>
+<li>Add a <code translate="no" dir="ltr">&lt;com.google.android.material.navigation.NavigationView&gt;</code> view to the layout.</li>
+</ul>
+<ol type="1" start="5">
+<li>Connect the drawer to the navigation controller:</li>
+</ol>
+<ul>
+<li>Open the Activity that creates the navigation controller. (The main Activity is typically the one you want here.) In <code translate="no" dir="ltr">onCreate()</code>, use <code translate="no" dir="ltr">NavigationUI.setupWithNavController()</code>to connect the navigation drawer with the navigation controller:</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val binding = DataBindingUtil.setContentView&lt;ActivityMainBinding&gt;(
+       this, R.layout.activity_main)
+NavigationUI.setupWithNavController(binding.navView, navController)
+</code></pre>
+<ol type="1" start="6">
+<li>Set up the drawer button in the app bar:</li>
+</ol>
+<ul>
+<li>In <code translate="no" dir="ltr">onCreate()</code> in the Activity that creates the navigation controller  (which is typically the main Activity), pass the drawer layout as the third parameter to <code translate="no" dir="ltr">NavigationUI.setupActionBarWithNavController</code>:</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val binding = DataBindingUtil.setContentView&lt;ActivityMainBinding&gt;(
+    this, R.layout.activity_main)
+
+NavigationUI.setupActionBarWithNavController(
+    this, navController, binding.drawerLayout)
+</code></pre>
+<ul>
+<li>To make the Up button work with the drawer button, edit <code translate="no" dir="ltr">onSupportNavigateUp()</code> to return <code translate="no" dir="ltr">NavigationUI.navigateUp()</code>. Pass the navigation controller and the drawer layout to <code translate="no" dir="ltr">navigateUp()</code>.</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onSupportNavigateUp(): Boolean {
+   val navController = this.findNavController(R.id.myNavHostFragment)
+   return NavigationUI.navigateUp(navController, drawerLayout)
+}
+</code></pre>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Learn more" duration="0">
+          
+          <p>Udacity course:</p>
+<ul>
+<li><a href="https://www.udacity.com/course/developing-android-apps-with-kotlin--ud9012" target="_blank">Developing Android Apps with Kotlin</a></li>
+</ul>
+<p>Android developer documentation:</p>
+<ul>
+<li><a href="https://developer.android.com/topic/libraries/architecture/navigation/" target="_blank">Navigation Architecture Component</a></li>
+<li><a href="https://developer.android.com/topic/libraries/architecture/navigation/navigation-implementing" target="_blank">Implement navigation with the navigation components</a></li>
+<li><a href="https://developer.android.com/topic/libraries/architecture/navigation/navigation-ui" target="_blank">Update UI components with NavigationUI</a></li>
+<li><a href="https://developer.android.com/reference/androidx/navigation/ui/NavigationUI" target="_blank"><code translate="no" dir="ltr">NavigationUI</code></a></li>
+<li><a href="https://developer.android.com/reference/androidx/navigation/fragment/NavHostFragment" target="_blank"><code translate="no" dir="ltr">NavHostFragment</code></a></li>
+<li><a href="https://developer.android.com/training/design-navigation/ancestral-temporal" target="_blank">Designing Back and Up navigation</a></li>
+<li><a href="https://developer.android.com/training/implementing-navigation/temporal" target="_blank">Providing proper Back navigation</a></li>
+<li><a href="https://developer.android.com/guide/topics/ui/menus#options-menu" target="_blank">Creating an options menu</a></li>
+<li><a href="https://developer.android.com/training/implementing-navigation/nav-drawer" target="_blank">Create a navigation drawer</a></li>
+</ul>
+<p>Material Design documentation:</p>
+<ul>
+<li><a href="https://material.io/design/navigation/understanding-navigation.html" target="_blank">Understanding navigation</a></li>
+<li><a href="https://material.io/design/components/app-bars-top.html" target="_blank">App bars: top</a></li>
+<li><a href="https://material.io/design/components/navigation-drawer.html" target="_blank">Navigation drawer</a></li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Homework" duration="0">
+          
+          <p>This section lists possible homework assignments for students who are working through this codelab as part of a course led by an instructor. It&#39;s up to the instructor to do the following:</p>
+<ul>
+<li>Assign homework if required.</li>
+<li>Communicate to students how to submit homework assignments.</li>
+<li>Grade the homework assignments.</li>
+</ul>
+<p>Instructors can use these suggestions as little or as much as they want, and should feel free to assign any other homework they feel is appropriate.</p>
+<p>If you&#39;re working through this codelab on your own, feel free to use these homework assignments to test your knowledge.</p>
+<h2 is-upgraded id="build-and-run-an-app" data-text="Build and run an app">Build and run an app</h2>
+<p>Add a <strong>Rules</strong> button and an <strong>About</strong> button to the layout for the <code translate="no" dir="ltr">TitleFragment</code> as shown below. When the user taps the <strong>Rules</strong> or <strong>About</strong> button, the app navigates to the <code translate="no" dir="ltr">RulesFragment</code> or <code translate="no" dir="ltr">AboutFragment</code>, as appropriate.</p>
+<p class="image-container"><img alt="ed9821f0f17745bc.png" style="width: 281.00px" src="/codelabs/kotlin-android-training-add-navigation/img/ed9821f0f17745bc.png"></p>
+<h3 is-upgraded id="for-extra-credit:" data-text="For extra credit:">For extra credit:</h3>
+<p>On each of the layouts for the <code translate="no" dir="ltr">RulesFragment</code> and the <code translate="no" dir="ltr">AboutFragment</code>, add a <strong>Play</strong> button that navigates to the <code translate="no" dir="ltr">GameFragment</code> as shown here:</p>
+<p class="image-container"><img alt="ebb54587c3a10afb.png" style="width: 241.79px" src="/codelabs/kotlin-android-training-add-navigation/img/ebb54587c3a10afb.png">   <img alt="dbfcc16f3e3f30b9.png" style="width: 243.01px" src="/codelabs/kotlin-android-training-add-navigation/img/dbfcc16f3e3f30b9.png"></p>
+<p><strong>Hint</strong>: You need to update the layouts for these two fragments to enable data binding.</p>
+<p>Change the back stack to enable the following user flow:</p>
+<ol type="1">
+<li>The user taps the <strong>Play</strong> button to go from the <code translate="no" dir="ltr">RulesFragment</code> screen or the <code translate="no" dir="ltr">AboutFragment</code> screen to the <code translate="no" dir="ltr">GameFragment</code>.</li>
+<li>Then the user taps the Back button at the bottom of the screen.</li>
+<li>The app navigates back to the <code translate="no" dir="ltr">TitleFragment</code>, not to the <code translate="no" dir="ltr">RulesFragment</code> or <code translate="no" dir="ltr">AboutFragment</code>.</li>
+</ol>
+<p>In other words, when the user taps the <strong>Play</strong> button while viewing the rules or the information about the game, then taps the Back button, the <code translate="no" dir="ltr">RulesFragment</code> or the <code translate="no" dir="ltr">AboutFragment</code> is removed from the back stack.</p>
+<h2 is-upgraded id="answer-these-questions" data-text="Answer these questions">Answer these questions</h2>
+<h3 is-upgraded id="question-1" data-text="Question 1">Question 1</h3>
+<p>How do you enable your project to use navigation components?</p>
+<ul>
+<li>Make sure every <code translate="no" dir="ltr">Activity</code> class extends the class <code translate="no" dir="ltr">NavigationActivity</code>.</li>
+<li>Use the <code translate="no" dir="ltr">NavigationController</code> class as the launch Activity.</li>
+<li>Add <code translate="no" dir="ltr">&lt;uses-navigation&gt;</code> to the Android manifest file.</li>
+<li>Add dependencies for <code translate="no" dir="ltr">navigation-fragment-ktx</code> and <code translate="no" dir="ltr">navigation-ui-ktx</code> in the <code translate="no" dir="ltr">build.gradle (module)</code> file.</li>
+</ul>
+<h3 is-upgraded id="question-2" data-text="Question 2">Question 2</h3>
+<p>Where are the possible routes through your app defined?</p>
+<ul>
+<li>In a file (often called <code translate="no" dir="ltr">navigation.xml)</code> in the <strong>res &gt; layout</strong> folder.</li>
+<li>In a file (often called <code translate="no" dir="ltr">navigation.xml)</code> in the <strong>app &gt; navigation</strong> folder.</li>
+<li>In a file (often called <code translate="no" dir="ltr">navigation.xml)</code> in the <strong>res &gt; navigation</strong> folder.</li>
+<li>In the <code translate="no" dir="ltr">android-manifest.xml</code> file in the  <code translate="no" dir="ltr">&lt;navigation&gt;</code> element.</li>
+</ul>
+<h3 is-upgraded id="question-3" data-text="Question 3">Question 3</h3>
+<p>Which of the following statements about the <code translate="no" dir="ltr">NavHostFragment</code> are true? Select all that apply.</p>
+<ul>
+<li>As the user moves between destinations defined in the navigation graph, the <code translate="no" dir="ltr">NavHostFragment</code> swaps the fragments in and out as necessary.</li>
+<li>You can click the <code translate="no" dir="ltr">NavHostFragment</code> in the Project view to open the navigation graph.</li>
+<li>You add the <code translate="no" dir="ltr">NavHostFragment</code> to the main layout by adding a <code translate="no" dir="ltr">&lt;fragment&gt;</code> whose name is <code translate="no" dir="ltr">androidx.navigation.fragment.NavHostFragment</code>.</li>
+<li>You must create a single <code translate="no" dir="ltr">NavHostFragment</code> subclass and implement the <code translate="no" dir="ltr">onNavigate()</code> method to handle different kinds of navigation (such as button clicks).</li>
+</ul>
+<h3 is-upgraded id="question-4" data-text="Question 4">Question 4</h3>
+<p>Which of the following statements about the navigation graph are true? Select all that apply.</p>
+<ul>
+<li>You create a potential path through the app from one Fragment to another by connecting the fragments in the navigation graph.</li>
+<li>The <code translate="no" dir="ltr">type</code> of a connection between fragments is <code translate="no" dir="ltr">Action</code>.</li>
+<li>You must add the <code translate="no" dir="ltr">type="navigation"</code> attribute to every <code translate="no" dir="ltr">&lt;fragment&gt;</code> that is included in the navigation graph.</li>
+<li>To open the navigation graph, you double-click the navigation file (<code translate="no" dir="ltr">navigation.xml</code>) in the Android Studio Project pane, then click the <strong>Design</strong> tab.</li>
+</ul>
+<h3 is-upgraded id="question-5" data-text="Question 5">Question 5</h3>
+<p>Where do you set the ID of a Fragment to be used in navigation?</p>
+<ul>
+<li>In the Fragment&#39;s layout file, either by setting the <code translate="no" dir="ltr">ID</code> attribute in the design editor or in the layout XML file in the <strong>res &gt; layout</strong> folder.</li>
+<li>In the project&#39;s navigation file, either by setting the <code translate="no" dir="ltr">ID</code> attribute in the navigation graph or in the navigation XML file in the <strong>res &gt; navigation</strong> folder.</li>
+<li>You need to set the ID in both the navigation file for the app and the layout file for the Fragment.</li>
+<li>Set the <code translate="no" dir="ltr">ID</code> variable in the relevant <code translate="no" dir="ltr">Fragment</code> class.</li>
+</ul>
+<h3 is-upgraded id="question-6" data-text="Question 6">Question 6</h3>
+<p>The News app has a <code translate="no" dir="ltr">NewsFragment</code>  that displays a <strong>Show headlines</strong> button. The goal is that when the user clicks this button, the app navigates to the <code translate="no" dir="ltr">HeadlinesFragment</code>.</p>
+<p>Assume that you&#39;ve added a connection from the <code translate="no" dir="ltr">NewsFragment</code> to the <code translate="no" dir="ltr">HeadlinesFragment</code> in the navigation graph, as shown here:</p>
+<p class="image-container"><img alt="801ce57177a44b96.png" style="width: 463.00px" src="/codelabs/kotlin-android-training-add-navigation/img/801ce57177a44b96.png"></p>
+<p>What else do you need to do so that when the user taps the <strong>Show headlines</strong> button, the app navigates to the <code translate="no" dir="ltr">HeadlinesFragment</code>?</p>
+<ul>
+<li>Actually, you don&#39;t need to do anything else. It&#39;s enough to set the navigation paths in the navigation graph.</li>
+<li>In the <code translate="no" dir="ltr">onclickListener</code> for the <strong>Show headlines</strong> button, call <code translate="no" dir="ltr">navigate()</code> on the navigation controller, passing the class name of the destination Fragment (in this case <code translate="no" dir="ltr">HeadlinesFragment</code>) .</li>
+<li>In the <code translate="no" dir="ltr">onclickListener</code> for the <strong>Show headlines</strong> button, call <code translate="no" dir="ltr">navigate()</code> on the navigation controller, passing the action that connects the <code translate="no" dir="ltr">NewsFragment</code> to the <code translate="no" dir="ltr">HeadlinesFragment</code>.</li>
+<li>In the <code translate="no" dir="ltr">onclickListener</code> for the <strong>Show headlines</strong> button, call <code translate="no" dir="ltr">navigateTo()</code> on the container Fragment, passing the class name of the destination Fragment (in this case <code translate="no" dir="ltr">HeadlinesFragment</code>) .</li>
+</ul>
+<h3 is-upgraded id="question-7" data-text="Question 7">Question 7</h3>
+<p>When users navigate through an app, sometimes they want to retrace their steps back through the screens they have already visited.</p>
+<p>Assume the following:</p>
+<ul>
+<li><code translate="no" dir="ltr">fragmentA</code> is connected to <code translate="no" dir="ltr">fragmentB</code> by <code translate="no" dir="ltr">action_FragmentA_to_FragmentB</code>.</li>
+<li><code translate="no" dir="ltr">fragmentB</code> is connected to <code translate="no" dir="ltr">fragmentC</code> by <code translate="no" dir="ltr">action_FragmentB_to_FragmentC</code></li>
+</ul>
+<p class="image-container"><img alt="849190b4b57aa001.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-add-navigation/img/849190b4b57aa001.png"></p>
+<p>Which of the following statements are true regarding navigating forward and backward through the app? (Choose all that apply.)</p>
+<ul>
+<li>The destination of the <code translate="no" dir="ltr">action_FragmentA_to_FragmentB</code> action specifies that when the user is at <code translate="no" dir="ltr">FragmentA</code>, the next destination in the app is <code translate="no" dir="ltr">FragmentB</code>.</li>
+<li>The destination of the <code translate="no" dir="ltr">action_FragmentA_to_FragmentB</code> action sets the next destination that the user goes to, whether the user taps a button in the app or taps the Back button at the bottom of the screen.</li>
+<li>The <code translate="no" dir="ltr">popUpTo</code> attribute of the action can modify where the app navigates to if the user taps the system Back button.</li>
+<li>The <code translate="no" dir="ltr">popUpTo</code> attribute of the action can modify where the user goes next as they navigate forward through the app.</li>
+</ul>
+<h3 is-upgraded id="question-8" data-text="Question 8">Question 8</h3>
+<p>When users navigate through an app, sometimes they want to retrace their steps back through the screens they have already visited. However, you can use the <code translate="no" dir="ltr">popUpTo</code> and <code translate="no" dir="ltr">popUpToInclusive</code> attributes of an action to modify the path backward through the app.</p>
+<p>Assume the following:</p>
+<ul>
+<li><code translate="no" dir="ltr">fragmentA</code> is connected to <code translate="no" dir="ltr">fragmentB</code> by <code translate="no" dir="ltr">action_FragmentA_to_FragmentB</code>.</li>
+<li><code translate="no" dir="ltr">fragmentB</code> is connected to <code translate="no" dir="ltr">fragmentC</code> by <code translate="no" dir="ltr">action_FragmentB_to_FragmentC</code>.</li>
+</ul>
+<p class="image-container"><img alt="6cb8e9f498205344.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-add-navigation/img/6cb8e9f498205344.png"></p>
+<p>The user navigates from <code translate="no" dir="ltr">fragmentA</code> to <code translate="no" dir="ltr">fragmentB</code> to <code translate="no" dir="ltr">fragmentC</code>, then taps the system Back button. In this situation, let&#39;s say you want the app to navigate back to <code translate="no" dir="ltr">fragment</code><strong><code translate="no" dir="ltr">A</code></strong> (instead of <code translate="no" dir="ltr">fragmentB</code>). What&#39;s the correct way to set the <code translate="no" dir="ltr">popUpTo</code> and <code translate="no" dir="ltr">popUpToInclusive</code> attributes?</p>
+<ul>
+<li>For <code translate="no" dir="ltr">action_FragmentA_to_FragmentB</code>, set <code translate="no" dir="ltr">popUpTo</code> to <code translate="no" dir="ltr">fragmentB</code> and <code translate="no" dir="ltr">popUpToInclusive</code> to no value. For <code translate="no" dir="ltr">action_FragmentB_to_FragmentC</code>, set <code translate="no" dir="ltr">popUpTo</code> to <code translate="no" dir="ltr">fragmentA</code> and <code translate="no" dir="ltr">popUpToInclusive</code> to <code translate="no" dir="ltr">true</code>.</li>
+<li>For <code translate="no" dir="ltr">action_FragmentA_to_FragmentB</code>, set <code translate="no" dir="ltr">popUpTo</code> to <code translate="no" dir="ltr">fragmentA</code> and <code translate="no" dir="ltr">popUpToInclusive</code> to <code translate="no" dir="ltr">true</code>. For <code translate="no" dir="ltr">action_FragmentB_to_FragmentC</code>, set <code translate="no" dir="ltr">popUpTo</code> to <code translate="no" dir="ltr">fragmentA</code> and <code translate="no" dir="ltr">popUpToInclusive</code> to <code translate="no" dir="ltr">true</code>.</li>
+<li>For <code translate="no" dir="ltr">action_FragmentA_to_FragmentB</code>, set <code translate="no" dir="ltr">popUpTo</code> to none and <code translate="no" dir="ltr">popUpToInclusive</code> to no value. (You can omit both attributes.) For <code translate="no" dir="ltr">action_FragmentB_to_FragmentC</code>, set <code translate="no" dir="ltr">popUpTo</code> to <code translate="no" dir="ltr">fragmentA</code> and <code translate="no" dir="ltr">popUpToInclusive</code> to <code translate="no" dir="ltr">true</code>.</li>
+<li>For <code translate="no" dir="ltr">action_FragmentA_to_FragmentB</code>, set <code translate="no" dir="ltr">popUpTo</code> to none and <code translate="no" dir="ltr">popUpToInclusive</code> to no value. (You can omit both attributes.) For <code translate="no" dir="ltr">action_FragmentB_to_FragmentC</code>, set <code translate="no" dir="ltr">popUpTo</code> to <code translate="no" dir="ltr">fragmentA</code> and <code translate="no" dir="ltr">popUpToInclusive</code> to <code translate="no" dir="ltr">false.</code></li>
+</ul>
+<h3 is-upgraded id="question-9" data-text="Question 9">Question 9</h3>
+<p>Assume that the action <code translate="no" dir="ltr">action_headlinesFragment_to_newsArticle</code> in the destination graph has a <code translate="no" dir="ltr">popUpTo</code> value of <code translate="no" dir="ltr">newsFragment</code>:</p>
+<p class="image-container"><img alt="8857c4801f7483cd.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-add-navigation/img/8857c4801f7483cd.png"></p>
+<p>Assume that the user opens the app and navigates through the screens in the following sequence (without using the Back button):</p>
+<p>Open app into News home &gt; Headlines &gt; News details</p>
+<p>When the user is viewing the <strong>News detail</strong> screen, what happens If they tap the system Back button at the bottom of the screen?</p>
+<p>Select all that apply (remembering that <code translate="no" dir="ltr">popUpTo</code> is <code translate="no" dir="ltr">newsFragment</code>).</p>
+<ul>
+<li>If <code translate="no" dir="ltr">popUpToInclusive</code> is <code translate="no" dir="ltr">true</code>: Android navigates out of the app because there is nothing left in the back stack for this app.</li>
+<li>If <code translate="no" dir="ltr">popUpToInclusive</code> is <code translate="no" dir="ltr">false</code>: The app goes back to the news home screen.</li>
+<li>If <code translate="no" dir="ltr">popUpToInclusive</code> is <code translate="no" dir="ltr">true</code>: The app goes back to the news home screen.</li>
+<li>If <code translate="no" dir="ltr">popUpToInclusive</code> is <code translate="no" dir="ltr">false</code>: The app goes back to the headlines screen.</li>
+</ul>
+<h3 is-upgraded id="question-10" data-text="Question 10">Question 10</h3>
+<p>Where do you define the items for a menu?</p>
+<ul>
+<li>It depends on where the menu will be shown. For a navigation drawer menu, add an <code translate="no" dir="ltr">&lt;item&gt;</code> tag for each menu item in the <em><code translate="no" dir="ltr">menu</code></em><code translate="no" dir="ltr">.xml</code> file in <strong>res &gt; drawer</strong> folder. For the options menu, add an <code translate="no" dir="ltr">&lt;item&gt;</code> tag for each menu item in the <em><code translate="no" dir="ltr">menu</code></em><code translate="no" dir="ltr">.xml</code> file in <strong>res &gt; options</strong> folder.</li>
+<li>In the layout file for the Fragment or Activity that displays the menu, add a <code translate="no" dir="ltr">&lt;menu&gt;</code> tag that contains <code translate="no" dir="ltr">&lt;item&gt;</code> tags for each item.</li>
+<li>In a <em><code translate="no" dir="ltr">menu_name</code></em><code translate="no" dir="ltr">.xml</code> file in the <strong>res &gt; menu</strong> folder, add an <code translate="no" dir="ltr">&lt;item&gt;</code> tag for each menu item. Create separate XML files for each separate menu.</li>
+<li>In the <code translate="no" dir="ltr">android_manifest.xml</code> file, add a <code translate="no" dir="ltr">&lt;menus&gt;</code> tag that contains a <code translate="no" dir="ltr">&lt;menu&gt;</code> tag for each menu. For each <code translate="no" dir="ltr">&lt;menu&gt;</code> tag, add  an <code translate="no" dir="ltr">&lt;item&gt;</code> tag for each menu item.</li>
+</ul>
+<h3 is-upgraded id="question-11" data-text="Question 11">Question 11</h3>
+<p>To enable the options menu in your app, you need to define the menu items. Then what do you need to do in the <code translate="no" dir="ltr">Activity</code> or <code translate="no" dir="ltr">Fragment</code> where the options menu is to appear?</p>
+<p>Select all that apply:</p>
+<ul>
+<li>Call <code translate="no" dir="ltr">setHasOptionsMenu(true)</code> in <code translate="no" dir="ltr">onCreate()</code> for an Activity, or in <code translate="no" dir="ltr">onCreateView()</code> for a Fragment.</li>
+<li>Implement <code translate="no" dir="ltr">onCreateOptionsMenu()</code> in the Activity or Fragment to create the menu.</li>
+<li>Set the <code translate="no" dir="ltr">onClick</code> attribute in the menu&#39;s XML file to <code translate="no" dir="ltr">onShowOptionsMenu</code>, unless you are implementing a custom <code translate="no" dir="ltr">onClick</code> listener for the options menu, in which case specify the name of the custom <code translate="no" dir="ltr">onClick</code> listener instead.</li>
+<li>Implement <code translate="no" dir="ltr">onOptionsItemSelected()</code> in the Activity or Fragment to determine what happens when a user selects a menu item in the options menu.</li>
+</ul>
+<h3 is-upgraded id="question-12" data-text="Question 12">Question 12</h3>
+<p>What do you need to do to enable a navigation drawer in your app? You can assume that your project is using the navigation graph and that you&#39;ve already defined the menu items.</p>
+<p>Select all that apply:</p>
+<ul>
+<li>Use <code translate="no" dir="ltr">&lt;DrawerLayout&gt;</code> as the root view in the relevant layout file, and add a &lt;<code translate="no" dir="ltr">NavigationView&gt;</code> tag to that layout.</li>
+<li>Use <code translate="no" dir="ltr">&lt;Navigation&gt;</code> as the root view in the relevant layout file, and add a &lt;<code translate="no" dir="ltr">NavigationView&gt;</code> tag to that layout.</li>
+<li>In the <code translate="no" dir="ltr">&lt;NavigationView&gt;</code> in the layout, set the <code translate="no" dir="ltr">android:menu</code> attribute to the navigation drawer menu.</li>
+<li>In the navigation XML file, make sure that the navigation menu has an ID.</li>
+</ul>
+<h3 is-upgraded id="question-13" data-text="Question 13"><strong>Question 13</strong></h3>
+<p>Following on from the previous question, you need to write some code to enable the navigation drawer to be displayed when the user swipes in from the left side of the screen?</p>
+<p>In <code translate="no" dir="ltr">onCreate()</code> within the <code translate="no" dir="ltr">Activity</code> that creates the navigation controller, what is the right code to add?</p>
+<ul>
+<li>A:</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">NavigationUI.setupWithNavController(
+    navigationLayoutID, navigationMenuID)
+</code></pre>
+<ul>
+<li>B:</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">NavigationUI.setupWithNavController(
+    navigationView, navigationController)
+</code></pre>
+<ul>
+<li>C:</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">NavigationDrawer.setupWithNavInterface(
+    navigationView, navigationController)
+</code></pre>
+<ul>
+<li>D:</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">NavigationDrawer.setupWithNavController(
+    navigationView, navigationMenuID)
+</code></pre>
+<h3 is-upgraded id="question-14" data-text="Question 14">Question 14</h3>
+<p>How do you add support for the Up button at the top of the screen to enable users to get back to the app&#39;s home screen from anywhere in the app? What do you need to do in the relevant <code translate="no" dir="ltr">Activity</code>?</p>
+<p>Select all that apply:</p>
+<ul>
+<li>In the <code translate="no" dir="ltr">res &gt; menu</code> folder, create the <code translate="no" dir="ltr">up_menu.xml</code> file.</li>
+<li>Link the navigation controller to the app bar using <code translate="no" dir="ltr">NavigationUI.setupActionBarWithNavController(context,navigationController)</code></li>
+<li>Override <code translate="no" dir="ltr">onSupportNavigateUp()</code> method to call <code translate="no" dir="ltr">navigateUp()</code> on the navigation controller.</li>
+<li>In the navigation graph, make sure the starting Fragment has an <code translate="no" dir="ltr">ID</code> of <code translate="no" dir="ltr">HomeFragment</code>.</li>
+</ul>
+<h2 is-upgraded id="submit-your-app-for-grading" data-text="Submit your app for grading">Submit your app for grading</h2>
+<h3 is-upgraded id="guidance-for-graders" data-text="Guidance for graders">Guidance for graders</h3>
+<p>Check that the app has the following features:</p>
+<ul>
+<li>The <code translate="no" dir="ltr">TitleFragment</code> screen has a <strong>Rules</strong> and <strong>About</strong> button as shown below.</li>
+<li>When the user taps the <strong>Rules</strong> or <strong>About</strong> button, the app navigates to the <code translate="no" dir="ltr">RulesFragment</code> or <code translate="no" dir="ltr">AboutFragment</code>, as appropriate.</li>
+</ul>
+<p class="image-container"><img alt="ed9821f0f17745bc.png" style="width: 281.00px" src="/codelabs/kotlin-android-training-add-navigation/img/ed9821f0f17745bc.png"></p>
+<h3 is-upgraded id="for-extra-credit:_1" data-text="For extra credit:">For extra credit:</h3>
+<p>The <code translate="no" dir="ltr">RulesFragment</code> and <code translate="no" dir="ltr">AboutFragment</code> screens both have a <strong>Play</strong> button that navigates to the <code translate="no" dir="ltr">GameFragment</code> as shown here:</p>
+<p class="image-container"><img alt="ebb54587c3a10afb.png" style="width: 241.79px" src="/codelabs/kotlin-android-training-add-navigation/img/ebb54587c3a10afb.png">     <img alt="dbfcc16f3e3f30b9.png" style="width: 243.01px" src="/codelabs/kotlin-android-training-add-navigation/img/dbfcc16f3e3f30b9.png"></p>
+<p>Check that the layouts for these two fragments both have data binding enabled.</p>
+<p>Check the following user flow:</p>
+<ol type="1">
+<li>Tap the <strong>Play</strong> button to go from the rules-fragment screen or the about-fragment screen to the game Fragment.</li>
+<li>Press the system Back button at the bottom of the screen.</li>
+</ol>
+<p>The app should navigate back to the title Fragment, not to the rules Fragment or the about Fragment.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Next codelab" duration="0">
+          
+          <p>Start the next lesson:  <a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-start-external-activity/index.html" target="_blank"><paper-button class="colored" raised>Start an external activity</paper-button></a></p>
+<p>For links to other codelabs in this course, see the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+
+
+        </google-codelab-step>
+      
+    </google-codelab>
+  
+    
+
+    
+  </div>
+
+  
+
+  
+    
+    
+    
+  
+
+  
+  
+</article>
+
+
+
+
+            
+          </devsite-content>
+        </main>
+        <devsite-footer-promos class="devsite-footer">
+          
+            
+
+<nav class="devsite-footer-promos nocontent" aria-label="Promosi">
+  <ul class="devsite-footer-promos-list">
+    
+    <li class="devsite-footer-promo">
+      <a href="//twitter.com/AndroidDev"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer Twitter Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="/_static/android/images/logo-twitter.svg"
+             loading="lazy"
+             alt="Twitter">
+        
+        Twitter
+      </a>
+      <div class="devsite-footer-promo-description">Ikuti @AndroidDev di Twitter</div>
+    </li>
+    
+    <li class="devsite-footer-promo">
+      <a href="//www.youtube.com/user/androiddevelopers"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer YouTube Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="//www.gstatic.com/images/icons/material/product/2x/youtube_48dp.png"
+             loading="lazy"
+             alt="YouTube">
+        
+        YouTube
+      </a>
+      <div class="devsite-footer-promo-description">Lihat Developer Android di YouTube</div>
+    </li>
+    
+  </ul>
+</nav>
+
+          
+        </devsite-footer-promos>
+        <devsite-footer-linkboxes class="devsite-footer">
+          
+            
+<nav class="devsite-footer-linkboxes nocontent" aria-label="Link footer">
+  
+  <ul class="devsite-footer-linkboxes-list">
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Selengkapnya tentang Android</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Android
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/enterprise/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Enterprise
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/security-center/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Keamanan
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//source.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Source
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dukungan</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=190923&amp;template=841312"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Laporkan bug platform
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=192697"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Laporkan bug dokumentasi
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//support.google.com/googleplay/android-developer"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Google Play support
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://google.qualtrics.com/jfe/form/SV_ewWXIoEVLBcyp7f??reserved=1&amp;utm_source=FooterLink&amp;Q_Language=en&amp;utm_medium=own_srch&amp;utm_campaign=developer.android.com&amp;utm_term=0&amp;utm_content=0&amp;productTag=reg&amp;campaignDate=may19&amp;pType=devel&amp;referral_code=gV420370"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Bergabung dengan studi riset
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dokumentasi</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/guide"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Panduan developer
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/design"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Panduan desain
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/reference"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Referensi API
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/samples"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Sampel
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/studio/intro"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 5)"
+            >
+          
+            Android Studio
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+  
+</nav>
+          
+        </devsite-footer-linkboxes>
+        <devsite-footer-utility class="devsite-footer">
+          
+            
+
+<div class="devsite-footer-utility nocontent">
+  
+  
+  <nav class="devsite-footer-sites" aria-label="Situs Google Developers lain">
+    <a href="https://developers.google.com/"
+       class="devsite-footer-sites-logo-link gc-analytics-event"
+       data-category="Site-Wide Custom Events"
+       data-label="Footer Google Developers Link">
+      <img class="devsite-footer-sites-logo"
+           src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup-developers.svg"
+           loading="lazy"
+           alt="Google Developers">
+    </a>
+    <ul class="devsite-footer-sites-list">
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.android.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Android Link"
+         
+         >
+          Android
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.chrome.com/home"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Chrome Link"
+         
+         >
+          Chrome
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//firebase.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Firebase Link"
+         
+         >
+          Firebase
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//cloud.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Google Cloud Platform Link"
+         
+         >
+          Google Cloud Platform
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developers.google.com/products/"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer All products Link"
+         
+         >
+          Semua produk
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  
+
+  
+  <nav class="devsite-footer-utility-links" aria-label="Link utilitas">
+    
+    <ul class="devsite-footer-utility-list">
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="//policies.google.com/privacy"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Privacy link"
+         >
+          Privasi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/license"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer License link"
+         >
+          Lisensi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/distribute/marketing-tools/brand-guidelines"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Brand guidelines link"
+         >
+          Pedoman brand
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 devsite-footer-utility-button">
+        
+        <span class="devsite-footer-utility-description">Dapatkan berita dan tips melalui email</span>
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/updates"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Subscribe link"
+         >
+          Berlangganan
+        </a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+  </nav>
+</div>
+          
+        </devsite-footer-utility>
+        <devsite-panel></devsite-panel>
+      </section></section>
+    <devsite-sitemask></devsite-sitemask>
+    
+<devsite-snackbar 
+                  ></devsite-snackbar>
+
+    <devsite-tooltip ></devsite-tooltip>
+    <devsite-heading-link></devsite-heading-link>
+    <devsite-analytics enable-analytics-iframe>
+      
+        <script type="application/json" analytics>[{"gaid": "UA-5831155-1", "dimensions": {"dimension5": "id", "dimension11": false, "dimension6": "en", "dimension3": false, "dimension4": "Developer Android", "dimension1": "Signed In"}, "metrics": {"ratings_count": "metric2", "ratings_value": "metric1"}}]</script>
+<script type="application/json" gtm>{"parameters": {"freeTrialEligibleUser": "False", "internalUser": "False", "language": {"machineTranslated": "False", "requested": "id", "served": "en"}, "pageType": "codelab", "projectName": "Developer Android", "signedIn": "True", "tenant": "android", "recommendations": {"sourcePage": "", "sourceType": 0, "sourceRank": 0, "sourceIdenticalDescriptions": 0, "sourceTitleWords": 0, "sourceDescriptionWords": 0, "experiment": ""}}, "tags": ["GTM-KMSWPCJ"]}</script>
+      
+    </devsite-analytics>
+    
+      <devsite-badger></devsite-badger>
+    
+    
+<android-fully-clickable target=".fully-clickable" watch="devsite-content"></android-fully-clickable>
+    <script nonce="qH3PXemEvcKMxvI8RnL38pA1jbvt7U">
+  
+  (function(d,e,v,s,i,t,E){d['GoogleDevelopersObject']=i;
+    t=e.createElement(v);t.async=1;t.src=s;E=e.getElementsByTagName(v)[0];
+    E.parentNode.insertBefore(t,E);})(window, document, 'script',
+    'https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/js/app_loader.js', '[3,"id",null,"/js/devsite_app_module.js","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android","https://android-dot-devsite-v2-prod.appspot.com",1,null,["/_pwa/android/manifest.json","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/images/video-placeholder.svg","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg","https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap"],1,null,[1,6,8,12,14,17,21,25,40,50,63,70,75,76,80,87,88,91,92,93,97,98,100,101,102,103,104,105,107,108,111,112,113,115,117,118,120,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,138,147,148,149],"AIzaSyAP-jjEJBzmIyKR4F-3XITp8yM9T1gEEI8","AIzaSyB6xiKGDR5O3Ak2okS4rLkauxGUG7XP0hg"]')
+  
+</script>
+    <devsite-a11y-announce></devsite-a11y-announce>
+  </body>
+</html>

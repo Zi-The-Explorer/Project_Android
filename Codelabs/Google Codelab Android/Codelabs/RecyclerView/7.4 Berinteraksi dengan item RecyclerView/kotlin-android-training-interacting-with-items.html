@@ -1,0 +1,1899 @@
+<!doctype html>
+<html 
+      lang="id"
+      dir="ltr">
+  <head>
+    <meta name="google-signin-client-id" content="721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com">
+    <meta name="google-signin-scope"
+          content="profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award">
+    <meta property="og:site_name" content="Android Developers">
+    <meta property="og:type" content="website"><meta name="robots" content="noindex"><meta name="theme-color" content="#3ddc84"><meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/_pwa/android/manifest.json"
+          crossorigin="use-credentials">
+    <link rel="preconnect" href="//www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="//apis.google.com" crossorigin>
+    <link rel="preconnect" href="//www.google-analytics.com" crossorigin><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap">
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Material+Icons&display=block"><link rel="stylesheet" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/css/app.css">
+      <link rel="shortcut icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/touchicon-180.png"><link rel="canonical" href="https://developer.android.com/codelabs/kotlin-android-training-interacting-with-items?hl=id"><link rel="search" type="application/opensearchdescription+xml"
+            title="Android Developers" href="https://developer.android.com/s/opensearch.xml">
+      
+
+<title>Android Kotlin Fundamentals: Interacting with RecyclerView items</title>
+
+<meta property="og:title" content="Android Kotlin Fundamentals: Interacting with RecyclerView items"><meta name="description" content="Learn how to make items in a RecyclerView clickable in your Android Kotlin app. Implement a click listener and navigate to a different screen when the user clicks an item.">
+  <meta property="og:description" content="Learn how to make items in a RecyclerView clickable in your Android Kotlin app. Implement a click listener and navigate to a different screen when the user clicks an item."><meta property="og:url" content="https://developer.android.com/codelabs/kotlin-android-training-interacting-with-items?hl=id"><meta property="og:image" content="https://developer.android.com/images/social/android-developers.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675"><meta property="og:locale" content="en"><meta name="twitter:card" content="summary_large_image">
+  <meta name="xsrf_token" content="YSM5LahdESuG1He2lmbBWs7CUQS5UCtM9i9GfSiQqOw6MTYyNzQ4MjQwOTg5NDU5NA">
+  
+
+  <meta name="session_expiry" content="1627483460">
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    <meta name="original_source" content="https://docs.google.com/document/d/1WPN_5Y6Ws9VXj1oYOdmiJav_wNoaFQFQywxjXUBZXPA/edit" />
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+  
+
+    </head>
+  <body class="devsite-full-width-page"
+        template="codelab"
+        theme="android-theme"
+        type="codelab"
+        
+        layout="full"
+        
+        
+        pending>
+    <devsite-progress type="indeterminate" id="app-progress"></devsite-progress>
+  
+    <section class="devsite-wrapper"><devsite-header>
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="devsite-header--inner nocontent">
+  <div class="devsite-top-logo-row-wrapper-wrapper">
+    <div class="devsite-top-logo-row-wrapper">
+      <div class="devsite-top-logo-row">
+        <button type="button" id="devsite-hamburger-menu"
+          class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+          data-category="Site-Wide Custom Events"
+          data-label="Navigation menu button"
+          visually-hidden
+          aria-label="Open menu">
+        </button>
+        <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo"
+       alt="Android Developers">
+
+</a>
+
+
+
+  
+  
+  <span class="devsite-product-name">
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+  </span>
+
+</div>
+        <div class="devsite-top-logo-row-middle">
+          <div class="devsite-header-upper-tabs">
+            
+              
+              
+  <devsite-tabs class="upper-tabs">
+
+    <nav class="devsite-tabs-wrapper" aria-label="Tab atas">
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/about"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="platform"
+   track-metadata-eventdetail="https://developer.android.com/about"
+   track-metadata-position="nav - platform"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Platform"
+   >
+  Platform
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/studio"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="android studio"
+   track-metadata-eventdetail="https://developer.android.com/studio"
+   track-metadata-position="nav - android studio"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Android Studio"
+   >
+  Android Studio
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/distribute"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="google play"
+   track-metadata-eventdetail="https://developer.android.com/distribute"
+   track-metadata-position="nav - google play"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Google Play"
+   >
+  Google Play
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/jetpack"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="jetpack"
+   track-metadata-eventdetail="https://developer.android.com/jetpack"
+   track-metadata-position="nav - jetpack"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Jetpack"
+   >
+  Jetpack
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/kotlin"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="kotlin"
+   track-metadata-eventdetail="https://developer.android.com/kotlin"
+   track-metadata-position="nav - kotlin"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Kotlin"
+   >
+  Kotlin
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/docs"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="dokumen"
+   track-metadata-eventdetail="https://developer.android.com/docs"
+   track-metadata-position="nav - dokumen"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Dokumen"
+   >
+  Dokumen
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/news"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="berita"
+   track-metadata-eventdetail="https://developer.android.com/news"
+   track-metadata-position="nav - berita"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Berita"
+   >
+  Berita
+</a>
+
+          </tab>
+        
+      
+    </nav>
+
+  </devsite-tabs>
+
+            
+           </div>
+          
+<devsite-search
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    enable-signin
+    enable-search
+    enable-suggestions
+      enable-query-completion
+    
+    project-name="Developer Android"
+    tenant-name="Android Developers"
+    
+    
+    
+    
+    
+    role="combobox">
+  <form class="devsite-search-form" action="https://developer.android.com/s/results" method="GET">
+    <div class="devsite-search-container">
+      <div class="devsite-searchbox">
+        <input
+          aria-activedescendant=""
+          aria-autocomplete="list"
+          
+          aria-label="Penelusuran"
+          aria-haspopup="false"
+          aria-multiline="false"
+          aria-label="Kotak penelusuran"
+          autocomplete="off"
+          class="devsite-search-field devsite-search-query"
+          name="q"
+          
+          placeholder="Penelusuran"
+          role="searchbox"
+          type="text"
+          value=""
+          >
+        <div class="devsite-search-image material-icons" aria-hidden="true"></div>
+      </div>
+      <button type="button"
+              search-open
+              class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+              
+              aria-label="Buka penelusuran"></button>
+    </div>
+  </form>
+  <button type="button"
+          search-close
+          class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+          
+          aria-label="Tutup penelusuran"></button>
+</devsite-search>
+
+        </div>
+
+        
+
+        
+
+        
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+
+        
+
+        
+          
+          
+          <devsite-user signed-in
+                        
+                        
+                          enable-profiles
+                        
+                        
+                          
+                        id="devsite-user"></devsite-user>
+           
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="devsite-collapsible-section
+    
+      devsite-header-no-lower-tabs
+    ">
+    <div class="devsite-header-background">
+      
+        
+      
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+  
+</devsite-header>
+      <devsite-book-nav scrollbars hidden>
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="devsite-book-nav devsite-nav nocontent"
+     aria-label="Menu samping">
+  <div class="devsite-mobile-header">
+    <button type="button"
+            id="devsite-close-nav"
+            class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+            data-category="Site-Wide Custom Events"
+            data-label="Close navigation"
+            aria-label="Close navigation">
+    </button>
+    <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+
+</a>
+
+
+  
+      <span class="devsite-product-name">
+        
+        
+        <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+      </span>
+    
+
+</div>
+  </div>
+
+  <div class="devsite-book-nav-wrapper">
+    <div class="devsite-mobile-nav-top">
+      
+        <ul class="devsite-nav-list">
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/about"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Platform"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="platform">
+  
+    <span class="devsite-nav-text" tooltip >
+      Platform
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/studio"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Android Studio"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="androidStudio">
+  
+    <span class="devsite-nav-text" tooltip >
+      Android Studio
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/distribute"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Google Play"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="googlePlay">
+  
+    <span class="devsite-nav-text" tooltip >
+      Google Play
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/jetpack"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Jetpack"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="jetpack">
+  
+    <span class="devsite-nav-text" tooltip >
+      Jetpack
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/kotlin"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Kotlin"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="kotlin">
+  
+    <span class="devsite-nav-text" tooltip >
+      Kotlin
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/docs"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Dokumen"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="dokumen">
+  
+    <span class="devsite-nav-text" tooltip >
+      Dokumen
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/news"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Berita"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="berita">
+  
+    <span class="devsite-nav-text" tooltip >
+      Berita
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+          
+          
+        </ul>
+      
+    </div>
+    
+  </div>
+</nav>
+        
+      </devsite-book-nav>
+      <section id="gc-wrapper">
+        <main role="main" class="devsite-main-content"
+            
+            >
+          
+          <devsite-toc class="devsite-nav"
+                       role="navigation"
+                       aria-label="Daftar isi"
+            disabled></devsite-toc>
+          <devsite-content>
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="devsite-article"><style>
+      body {
+        transition: opacity ease-in 0.2s;
+      }
+
+      body[unresolved] {
+        opacity: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+      </style>
+  
+  
+  
+
+  <div class="devsite-article-meta nocontent" role="navigation">
+    
+    
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+  <a href="https://developer.android.com/"
+      
+        class="devsite-breadcrumb-link gc-analytics-event"
+      
+        data-category="Site-Wide Custom Events"
+      
+        data-label="Breadcrumbs"
+      
+        data-value="1"
+      
+        track-type="globalNav"
+      
+        track-name="breadcrumb"
+      
+        track-metadata-position="1"
+      
+        track-metadata-eventdetail="Developer Android"
+      
+    >
+    
+        Developer Android
+      
+  </a>
+  
+    
+  </li>
+  
+</ul>
+    
+  </div>
+  
+  
+    <h1 class="devsite-page-title">Android Kotlin Fundamentals: Interacting with RecyclerView items</h1><devsite-bookmark></devsite-bookmark>
+  
+
+  <devsite-toc class="devsite-nav" devsite-toc-embedded
+               disabled>
+  </devsite-toc>
+
+  
+
+  <div class="devsite-article-body clearfix
+    ">
+
+    
+      
+    <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+    <google-codelab codelab-gaid="UA-81734179-1"
+                    doc-id="1WPN_5Y6Ws9VXj1oYOdmiJav_wNoaFQFQywxjXUBZXPA"
+                    id="kotlin-android-training-interacting-with-items"
+                    title="Android Kotlin Fundamentals: Interacting with RecyclerView items"
+                    environment="web"
+                    category="android,kotlin"
+                    feedback-link="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/issues/new?assignees=&amp;labels=&amp;template=android-kotlin-fundamentals.md&amp;title=Android&#43;Kotlin&#43;Fundamentals&#43;codelab%3A&#43;"
+                    >
+      
+        <google-codelab-step label="Welcome" duration="0">
+          
+            <google-codelab-about codelab-title="Android Kotlin Fundamentals: Interacting with RecyclerView items"
+                                  authors="Google Developers Training team"
+                                  >
+            </google-codelab-about>
+          
+          <p>This codelab is part of the Android Kotlin Fundamentals course. You&#39;ll get the most value out of this course if you work through the codelabs in sequence. All the course codelabs are listed on the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+<h2 is-upgraded id="introduction" data-text="Introduction">Introduction</h2>
+<p>Most apps that use lists and grids to display items allow users to interact with the items. Tapping an item from a list and seeing the item&#39;s details is a very common use case for this type of interaction. To achieve this, you can add click listeners that respond to user taps on items.</p>
+<p>In this codelab, you add this type of interaction to your <code translate="no" dir="ltr">RecyclerView</code>, and build on an extended version of the sleep-tracker app from the previous series of codelabs.</p>
+<h2 is-upgraded id="what-you-should-already-know" data-text="What you should already know">What you should already know</h2>
+<ul>
+<li>Building a basic user interface using an activity, fragments, and views.</li>
+<li>Navigating between fragments, and using <code translate="no" dir="ltr">safeArgs</code> to pass data between fragments.</li>
+<li>View models, view model factories, transformations, and <code translate="no" dir="ltr">LiveData</code> and their observers.</li>
+<li>How to create a <code translate="no" dir="ltr">Room</code> database, create a data access object (DAO), and define entities.</li>
+<li>How to use coroutines for database and other long-running tasks.</li>
+<li>How to implement a basic <code translate="no" dir="ltr">RecyclerView</code> with an <code translate="no" dir="ltr">Adapter</code>, <code translate="no" dir="ltr">ViewHolder</code>, and item layout.</li>
+<li>How to implement data binding for <code translate="no" dir="ltr">RecyclerView</code>.</li>
+<li>How to create and use binding adapters to transform data.</li>
+<li>How to use <code translate="no" dir="ltr">GridLayoutManager</code>.</li>
+</ul>
+<h2 class="checklist" is-upgraded id="what-youll-learn" data-text="What you'll learn">What you'll learn</h2>
+<ul class="checklist">
+<li>How to make items in the <code translate="no" dir="ltr">RecyclerView</code> clickable. Implement a click listener to navigate to a detail view when an item is clicked.</li>
+</ul>
+<h2 is-upgraded id="what-youll-do" data-text="What you'll do">What you'll do</h2>
+<ul>
+<li>Build on an extended version of  the TrackMySleepQuality app from previous codelabs in this series.</li>
+<li>Add a click listener to your list and start listening for user interaction. When a list item is tapped, it triggers navigation to a fragment with details on the clicked item. The starter code provides code for the detail fragment, as well as the navigation code.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="App overview" duration="0">
+          
+          <p>The starting sleep-tracker app has two screens, represented by fragments, as shown in the figure below.</p>
+<table class="vertical-rules">
+<tr><td colspan="1" rowspan="1"><p class="image-container"><img src="/codelabs/kotlin-android-training-interacting-with-items/img/b0abde98c5f99bf6.png"></p>
+</td><td colspan="1" rowspan="1"><p class="image-container"><img src="/codelabs/kotlin-android-training-interacting-with-items/img/43590f0a4c00e138.png"></p>
+</td></tr>
+</table>
+<p>The first screen, shown on the left, has buttons for starting and stopping tracking. The screen shows some of the user&#39;s sleep data. The <strong>Clear</strong> button permanently deletes all the data that the app has collected for the user.  The second screen, shown on the right, is for selecting a sleep-quality rating.</p>
+<p>This app uses a simplified architecture with a UI controller, view model and <code translate="no" dir="ltr">LiveData</code>, and a <code translate="no" dir="ltr">Room</code> database to persist sleep data.</p>
+<p class="image-container"><img alt="49f975f1e5fe689.png" style="width: 257.60px" src="/codelabs/kotlin-android-training-interacting-with-items/img/49f975f1e5fe689.png"></p>
+<p>In this codelab, you add the ability to respond when a user taps an item in the grid, which brings up a detail screen like the one below. The code for this screen (fragment, view model, and navigation) is provided with the starter app, and you will implement the click-handling mechanism.</p>
+<p class="image-container"><img alt="1018f2610bca049.png" style="width: 245.85px" src="/codelabs/kotlin-android-training-interacting-with-items/img/1018f2610bca049.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Get the starter code and inspect the changes to the app" duration="0">
+          
+          <aside class="special"><p><strong>Important:</strong> The starter app for this codelab provides additional layouts, resources, and utilities that are not part of the final TrackMySleepQuality app from the previous codelab. We recommend that you use the provided starter code to work through this codelab.</p>
+</aside>
+<h2 is-upgraded id="step-1:-get-the-starter-app" data-text="Step 1: Get the starter app">Step 1: Get the starter app</h2>
+<ol type="1">
+<li>Download the  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-starter-apps/tree/master/RecyclerViewClickHandler-Starter" target="_blank">RecyclerViewClickHandler-Starter code</a> from GitHub and open the project in Android Studio.</li>
+<li>Build and run the starter sleep-tracker app.</li>
+</ol>
+<h3 is-upgraded id="[optional]-update-your-app-if-you-want-to-use-the-app-from-the-previous-codelab" data-text="[Optional] Update your app if you want to use the app from the previous codelab">[Optional] Update your app if you want to use the app from the previous codelab</h3>
+<p>If you are going to work from the starter app provided in GitHub for this codelab, skip to the next step.</p>
+<p>If you want to continue using your own sleep-tracker app that you built in the previous codelab, follow the instructions below to update your existing app so that it has the code for the details-screen fragment.</p>
+<aside class="special"><p><strong>Tip</strong>: To copy files from the file system to Android Studio, you can copy and paste them, or drag and drop them.</p>
+</aside>
+<ol type="1">
+<li>Even if you are continuing on with your existing app, get the  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-starter-apps/tree/master/RecyclerViewClickHandler-Starter" target="_blank">RecyclerViewClickHandler-Starter code</a> from GitHub so that you can copy the files.</li>
+<li>Copy all the files in the  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-starter-apps/tree/master/RecyclerViewClickHandler-Starter/app/src/main/java/com/example/android/trackmysleepquality/sleepdetail" target="_blank"><code translate="no" dir="ltr">sleepdetail</code></a> package.</li>
+<li>In the <code translate="no" dir="ltr">layout</code> folder, copy the file  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-starter-apps/blob/master/RecyclerViewClickHandler-Starter/app/src/main/res/layout/fragment_sleep_detail.xml" target="_blank"><code translate="no" dir="ltr">fragment_sleep_detail.xml</code></a>.</li>
+<li>Copy the updated contents of  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-starter-apps/blob/master/RecyclerViewClickHandler-Starter/app/src/main/res/navigation/navigation.xml" target="_blank"><code translate="no" dir="ltr">navigation.xml</code></a>, which adds the navigation for the <code translate="no" dir="ltr">sleep_detail_fragment</code>.</li>
+<li>In the <code translate="no" dir="ltr">database</code> package, in the <code translate="no" dir="ltr">SleepDatabaseDao</code>, add the new <code translate="no" dir="ltr">getNightWithId()</code> method:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">/**
+ * Selects and returns the night with given nightId.
+*/
+@Query(&#34;SELECT * from daily_sleep_quality_table WHERE nightId = :key&#34;)
+fun getNightWithId(key: Long): LiveData&lt;SleepNight&gt;
+</code></pre>
+<ol type="1" start="6">
+<li>In <code translate="no" dir="ltr">res/values/strings</code> add the following string resource:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;string name=&#34;close&#34;&gt;Close&lt;/string&gt;
+</code></pre>
+<ol type="1" start="7">
+<li>Clean and rebuild your app to update data binding.</li>
+</ol>
+<h2 is-upgraded id="step-2:-inspect-the-code-for-the-sleep-details-screen" data-text="Step 2: Inspect the code for the sleep details screen">Step 2: Inspect the code for the sleep details screen</h2>
+<p>In this codelab, you implement a click handler for a sleep night.  Once clicked, the app will navigate to a fragment that shows details about that particular sleep night. Your starter code already contains the fragment and navigation graph for this <code translate="no" dir="ltr">SleepDetailFragment</code>, because it&#39;s quite a bit of code (and fragments and navigation are not part of this codelab). Familiarize yourself with the following code details:</p>
+<ol type="1">
+<li>In your app, find the <code translate="no" dir="ltr">sleepdetail</code> package. This package contains the fragment, view model, and view model factory for a fragment that displays details for one night of sleep.</li>
+<li>In the <code translate="no" dir="ltr">sleepdetail</code> package, open and inspect the code for the <code translate="no" dir="ltr">SleepDetailViewModel</code>. This view model takes the key for a <code translate="no" dir="ltr">SleepNight</code> and a DAO in the constructor.</li>
+</ol>
+<p>The body of the class has code to get the <code translate="no" dir="ltr">SleepNight</code> for the given key, and the <code translate="no" dir="ltr">navigateToSleepTracker</code> variable to control navigation back to the <code translate="no" dir="ltr">SleepTrackerFragment</code> when the <strong>Close</strong> button is pressed.</p>
+<p>The  <code translate="no" dir="ltr">getNightWithId()</code> function returns a <code translate="no" dir="ltr">LiveData&lt;SleepNight&gt;</code> and is defined in the <code translate="no" dir="ltr">SleepDatabaseDao</code> (in the <code translate="no" dir="ltr">database</code> package).</p>
+<ol type="1" start="3">
+<li>In the <code translate="no" dir="ltr">sleepdetail</code> package, open and inspect the code for the <code translate="no" dir="ltr">SleepDetailFragment</code>. Notice the setup for data binding, the view model, and the observer for navigation.</li>
+<li>In the <code translate="no" dir="ltr">sleepdetail</code> package, open and inspect the code for the <code translate="no" dir="ltr">SleepDetailViewModelFactory</code>.</li>
+<li>In the layout folder, inspect <code translate="no" dir="ltr">fragment_sleep_detail.xml</code>. Notice the <code translate="no" dir="ltr">sleepDetailViewModel</code> variable defined in the <code translate="no" dir="ltr">&lt;data&gt;</code> tag to get the data to display in each view from the view model.</li>
+</ol>
+<p>The layout contains a <code translate="no" dir="ltr">ConstraintLayout</code> that contains an <code translate="no" dir="ltr">ImageView</code> for the sleep quality, a <code translate="no" dir="ltr">TextView</code> for a quality rating, a <code translate="no" dir="ltr">TextView</code> for the sleep length, and a <code translate="no" dir="ltr">Button</code> to close the detail fragment.</p>
+<ol type="1" start="6">
+<li>Open the <code translate="no" dir="ltr">navigation.xml</code> file. For the <code translate="no" dir="ltr">sleep_tracker_fragment</code>, notice the new action for the <code translate="no" dir="ltr">sleep_detail_fragment</code>.</li>
+</ol>
+<p>The new action, <code translate="no" dir="ltr">action_sleep_tracker_fragment_to_sleepDetailFragment</code>, is the navigation from the sleep tracker fragment to the details screen.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Make items clickable" duration="0">
+          
+          <p>In this task, you update the <code translate="no" dir="ltr">RecyclerView</code> to respond to user taps by showing a details screen for the tapped item.</p>
+<p>Receiving clicks and handling them is a two-part task: First, you listen to and receive the click and determine which item has been clicked. Then, you respond to the click with an action.</p>
+<p>So, where is the best place for adding a click listener for this app?</p>
+<ul>
+<li>The <code translate="no" dir="ltr">SleepTrackerFragment</code> has a large number of different <code translate="no" dir="ltr">Views</code>.  Listening to click events at this fragment level won&#39;t tell you which item was clicked. It won&#39;t even tell you whether an item in a <code translate="no" dir="ltr">RecyclerView</code> was clicked or any other UI element.</li>
+<li>Listening at the <code translate="no" dir="ltr">RecyclerView</code> level, it&#39;s hard to figure out exactly what item in the list the user clicked on.</li>
+<li>The best place to get information from one clicked item is in the <code translate="no" dir="ltr">ViewHolder</code> object, since it represents one list item.</li>
+</ul>
+<p>While the <code translate="no" dir="ltr">ViewHolder</code> is a great place to listen for clicks, it&#39;s not usually the right place to handle them. So, where is the best place to handle the clicks?</p>
+<ul>
+<li>The <code translate="no" dir="ltr">Adapter</code> displays data items in views, so you could handle clicks in the adapter. However, from an architectural point of view, the adapter&#39;s job is to adapt data for display, not deal with app logic.</li>
+<li>You should usually handle clicks in the <code translate="no" dir="ltr">ViewModel.</code> The <code translate="no" dir="ltr">ViewModel</code> has access to the data and logic for determining what needs to happen in response to the click.</li>
+</ul>
+<aside class="special"><p><strong>Tip:</strong> There are other ways for implementing click listeners in <code translate="no" dir="ltr">RecyclerViews.</code> But the one you work with in this codelab is easier to explain and more straightforward to implement. As you get more experience working on production Android apps, you&#39;ll encounter different patterns for using click listeners in <code translate="no" dir="ltr">RecyclerViews</code>. All of these various design patterns have their advantages.</p>
+</aside>
+<h2 is-upgraded id="step-1:-create-a-click-listener-and-trigger-it-from-the-item-layout" data-text="Step 1: Create a click listener and trigger it from the item layout">Step 1: Create a click listener and trigger it from the item layout</h2>
+<ol type="1">
+<li>In the <code translate="no" dir="ltr">sleeptracker</code> package, open <strong>SleepNightAdapter.kt</strong>.</li>
+<li>At the end of the file, at the top level, create a new listener class, <code translate="no" dir="ltr">SleepNightListener</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class SleepNightListener() {
+    
+}
+</code></pre>
+<ol type="1" start="3">
+<li>Inside the <code translate="no" dir="ltr">SleepNightListener</code> class, add an <code translate="no" dir="ltr">onClick()</code> function. When the view that displays a list item is clicked, the view calls this <code translate="no" dir="ltr">onClick()</code> function. You still will have to set the <code translate="no" dir="ltr">android:onClick</code> property of the view later in its layout file which you will add later on in this codelab.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class SleepNightListener() {
+    fun onClick() = ...
+}
+</code></pre>
+<ol type="1" start="4">
+<li>Add a function argument <code translate="no" dir="ltr">night</code> of type <code translate="no" dir="ltr">SleepNight</code> to <code translate="no" dir="ltr">onClick()</code>. The view knows what item it is displaying, and that information needs to be passed on for handling the click.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class SleepNightListener() {
+    fun onClick(night: SleepNight) = 
+}
+</code></pre>
+<ol type="1" start="5">
+<li>To define what <code translate="no" dir="ltr">onClick()</code> does, provide an <code translate="no" dir="ltr">onClickListener</code> callback argument in the constructor of <code translate="no" dir="ltr">SleepNightListener</code> and assign it to <code translate="no" dir="ltr">onClick()</code>.</li>
+</ol>
+<p>Your callback that handles the click should have a useful identifier name.  Use <code translate="no" dir="ltr">clickListener</code> as its name. The <strong><code translate="no" dir="ltr">clickListener</code></strong> callback only needs the <code translate="no" dir="ltr">night.nightId</code> to access data from the database. Your finished <code translate="no" dir="ltr">SleepNightListener</code> class should look like the code below.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class SleepNightListener(val clickListener: (sleepId: Long) -&gt; Unit) {
+   fun onClick(night: SleepNight) = clickListener(night.nightId)
+}
+</code></pre>
+<ol type="1" start="6">
+<li>Open <strong>res &gt; layout &gt; list_item_sleep_night.xml.</strong></li>
+<li>Inside the <code translate="no" dir="ltr">data</code> block, add a new variable to make the <code translate="no" dir="ltr">SleepNightListener</code> class available through data binding. Give the new <code translate="no" dir="ltr">&lt;variable&gt;</code> a <code translate="no" dir="ltr">name</code> of <code translate="no" dir="ltr">clickListener.</code> Set the <code translate="no" dir="ltr">type</code> to the fully qualified name of the class <code translate="no" dir="ltr">com.example.android.trackmysleepquality.sleeptracker.SleepNightListener</code>, as shown below. You can now access the <code translate="no" dir="ltr">onClick()</code> function in <code translate="no" dir="ltr">SleepNightListener</code> from this layout.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;variable
+            name=&#34;clickListener&#34;
+type=&#34;com.example.android.trackmysleepquality.sleeptracker.SleepNightListener&#34; /&gt;
+</code></pre>
+<ol type="1" start="8">
+<li>To listen for clicks on any part of this list item, add the <code translate="no" dir="ltr">android:onClick</code> attribute to the <code translate="no" dir="ltr">ConstraintLayout</code> in the <strong>list_item_sleep_night.xml</strong> layout file..</li>
+</ol>
+<p>Set the attribute to <code translate="no" dir="ltr">clickListener.onClick(sleep)</code> using a data binding lambda, as shown below:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">android:onClick=&#34;@{() -&gt; clickListener.onClick(sleep)}&#34;
+</code></pre>
+<h2 is-upgraded id="step-2:-pass-the-click-listener-to-the-view-holder-and-the-binding-object" data-text="Step 2: Pass the click listener to the view holder and the binding object">Step 2: Pass the click listener to the view holder and the binding object</h2>
+<ol type="1">
+<li>Open <strong>SleepNightAdapter.kt.</strong></li>
+<li>Modify the constructor of the <code translate="no" dir="ltr">SleepNightAdapter</code> class to receive a <code translate="no" dir="ltr">val clickListener: SleepNightListener</code>. When the adapter binds the <code translate="no" dir="ltr">ViewHolder</code>, it will need to provide it with this click listener.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class SleepNightAdapter(val clickListener: SleepNightListener):
+       ListAdapter&lt;SleepNight, SleepNightAdapter.ViewHolder&gt;(SleepNightDiffCallback()) {
+</code></pre>
+<ol type="1" start="3">
+<li>In <code translate="no" dir="ltr">onBindViewHolder()</code>, update the call to <code translate="no" dir="ltr">holder.bind()</code> to also pass the click listener to the <code translate="no" dir="ltr">ViewHolder</code>. You will get a compiler error because you added a parameter to the function call.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">holder.bind(getItem(position)!!, clickListener)
+</code></pre>
+<ol type="1" start="4">
+<li>To fix the compiler error, add the <code translate="no" dir="ltr">clickListener</code> parameter to <code translate="no" dir="ltr">bind()</code>. To do this, put the cursor on the error, and press <code translate="no" dir="ltr">Alt+Enter</code> (Windows) or <code translate="no" dir="ltr">Option+Enter</code> (Mac) on the error to , as shown in the screenshot below.</li>
+</ol>
+<p class="image-container"><img alt="b3997303d8426434.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-interacting-with-items/img/b3997303d8426434.png"></p>
+<ol type="1" start="5">
+<li>Inside the <code translate="no" dir="ltr">ViewHolder</code> class, assign the click listener to the <code translate="no" dir="ltr">binding</code> object inside the <code translate="no" dir="ltr">bind()</code> function. You see an error because you need to update the binding object.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">binding.clickListener = clickListener
+</code></pre>
+<p>You have taken a click listener from the adapter constructor, and passed it all the way to the view holder and into the binding object.</p>
+<ol type="1" start="6">
+<li>To update data binding, <strong>Clean</strong> and <strong>Rebuild</strong> the project.  You may need to invalidate caches as well.  Android Studio may still indicate a compiler error which will be fixed in the next section.</li>
+</ol>
+<h2 is-upgraded id="step-3:-display-a-toast-when-an-item-is-tapped" data-text="Step 3: Display a toast when an item is tapped">Step 3: Display a toast when an item is tapped</h2>
+<p>You now have the code in place to capture a click, but you haven&#39;t implemented what happens when a list item is tapped. The simplest response is to display a toast showing the <code translate="no" dir="ltr">nightId</code> when an item is clicked. This verifies that when a list item is clicked, the correct <code translate="no" dir="ltr">nightId</code> is captured and passed on.</p>
+<ol type="1">
+<li>Open <strong>SleepTrackerFragment.kt.</strong></li>
+<li>In <code translate="no" dir="ltr">onCreateView()</code>, find the <code translate="no" dir="ltr">adapter</code> variable. Notice that it shows an error, because it now expects a click listener parameter.</li>
+<li>Define a click listener by passing in a lambda to the <code translate="no" dir="ltr">SleepNightAdapter</code>. This simple lambda just displays a toast showing the <code translate="no" dir="ltr">nightId</code>, as shown below. You&#39;ll have to import <code translate="no" dir="ltr">Toast</code>. Below is the complete updated definition.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val adapter = SleepNightAdapter(SleepNightListener { nightId -&gt;
+   Toast.makeText(context, &#34;${nightId}&#34;, Toast.LENGTH_LONG).show()
+})
+</code></pre>
+<ol type="1" start="4">
+<li>Run the app, tap items, and verify that they display a toast with the correct <code translate="no" dir="ltr">nightId</code>. Because items have increasing <code translate="no" dir="ltr">nightId</code> values, and the app displays the most recent night first, the item with the lowest <code translate="no" dir="ltr">nightId</code> is at the bottom of the list.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Handle item clicks" duration="0">
+          
+          <p>In this task, you change the behavior when an item in the <code translate="no" dir="ltr">RecyclerView</code> is clicked, so that instead of showing a toast, the app will navigate to a detail fragment that shows more information about the clicked night.</p>
+<h2 is-upgraded id="step-1:-navigate-on-click" data-text="Step 1: Navigate on click">Step 1: Navigate on click</h2>
+<p>In this step, instead of just displaying a toast, you change the click listener lambda in <code translate="no" dir="ltr">onCreateView()</code> of the <code translate="no" dir="ltr">SleepTrackerFragment</code> to pass the <code translate="no" dir="ltr">nightId</code> to the <code translate="no" dir="ltr">SleepTrackerViewModel</code> and trigger navigation to the <code translate="no" dir="ltr">SleepDetailFragment</code>.</p>
+<h3 is-upgraded id="define-the-click-handler-function:" data-text="Define the click handler function:">Define the click handler function:</h3>
+<ol type="1">
+<li>Open <strong>SleepTrackerViewModel.kt</strong>.</li>
+<li>Inside the <code translate="no" dir="ltr">SleepTrackerViewModel</code> class, towards the end of the class definition, create the <code translate="no" dir="ltr">onSleepNightClicked()</code>click handler function.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">fun onSleepNightClicked(id: Long) {
+
+}
+</code></pre>
+<ol type="1" start="3">
+<li>Inside the <code translate="no" dir="ltr">onSleepNightClicked()</code>, trigger navigation by setting <code translate="no" dir="ltr">_navigateToSleepDetail</code> to the passed in <code translate="no" dir="ltr">id</code> of the clicked sleep night.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">fun onSleepNightClicked(id: Long) {
+   _navigateToSleepDetail.value = id
+}
+</code></pre>
+<ol type="1" start="4">
+<li>Implement <code translate="no" dir="ltr">_navigateToSleepDetail</code>. As you&#39;ve done before, define a <code translate="no" dir="ltr">private MutableLiveData</code> for the navigation state. And a public gettable <code translate="no" dir="ltr">val</code> to go with it.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private val _navigateToSleepDetail = MutableLiveData&lt;Long&gt;()
+val navigateToSleepDetail
+   get() = _navigateToSleepDetail
+</code></pre>
+<ol type="1" start="5">
+<li>Define the method to call after the app has finished navigating. Call it <code translate="no" dir="ltr">onSleepDetailNavigated()</code> and set its value to <code translate="no" dir="ltr">null</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">fun onSleepDetailNavigated() {
+    _navigateToSleepDetail.value = null
+}
+</code></pre>
+<h3 is-upgraded id="add-the-code-to-call-the-click-handler:" data-text="Add the code to call the click handler:">Add the code to call the click handler:</h3>
+<ol type="1" start="6">
+<li>Open <strong>SleepTrackerFragment.kt</strong> and scroll down to the code that creates the adapter and defines <code translate="no" dir="ltr">SleepNightListener</code> to show a toast.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val adapter = SleepNightAdapter(SleepNightListener { nightId -&gt;
+   Toast.makeText(context, &#34;${nightId}&#34;, Toast.LENGTH_LONG).show()
+})
+</code></pre>
+<ol type="1" start="7">
+<li>Add the following code below the toast to call a click handler, <code translate="no" dir="ltr">onSleepNightClicked()</code>, in the <code translate="no" dir="ltr">sleepTrackerViewModel</code> when an item is tapped. Pass in the <code translate="no" dir="ltr">nightId</code>, so the view model knows which sleep night to get.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">sleepTrackerViewModel.onSleepNightClicked(nightId)
+</code></pre>
+<h3 is-upgraded id="add-the-code-to-observe-clicks:" data-text="Add the code to observe clicks:">Add the code to observe clicks:</h3>
+<ol type="1" start="8">
+<li>Open <strong>SleepTrackerFragment.kt</strong>.</li>
+<li>In <code translate="no" dir="ltr">onCreateView()</code>, at the bottom of the function, right above the declaration of <code translate="no" dir="ltr">manager</code>,  add code to observe the new <code translate="no" dir="ltr">navigateToSleepDetail</code> <code translate="no" dir="ltr">LiveData</code>. When <code translate="no" dir="ltr">navigateToSleepDetail</code> changes, navigate to the <code translate="no" dir="ltr">SleepDetailFragment</code>, passing in the <code translate="no" dir="ltr">night</code>, then call <code translate="no" dir="ltr">onSleepDetailNavigated()</code> afterwards. Since you have done this before in a previous codelab, here is the code:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">sleepTrackerViewModel.navigateToSleepDetail.observe(viewLifecycleOwner, Observer { night -&gt;
+            night?.let {
+              this.findNavController().navigate(
+                        SleepTrackerFragmentDirections
+                                .actionSleepTrackerFragmentToSleepDetailFragment(night))
+               sleepTrackerViewModel.onSleepDetailNavigated()
+            }
+        })
+</code></pre>
+<ol type="1" start="10">
+<li>Run your code, click on an item, and ... the app crashes.</li>
+</ol>
+<h3 is-upgraded id="handle-null-values-in-the-binding-adapters:" data-text="Handle null values in the binding adapters:">Handle null values in the binding adapters:</h3>
+<ol type="1" start="11">
+<li>Run the app again, in debug mode. Tap an item, and filter the logs to show Errors. It will show a stack trace including something like what&#39;s below.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">Caused by: java.lang.IllegalArgumentException: Parameter specified as non-null is null: method kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull, parameter item
+</code></pre>
+<p>Unfortunately, the stack trace does not make it obvious where this error is triggered. One disadvantage of data binding is that it can make it harder to debug your code. The app crashes when you click an item, and the only new code is for handling the click.</p>
+<p>However, it turns out that with this new click-handling mechanism, it is now possible for the binding adapters to get called with a <code translate="no" dir="ltr">null</code> value for <code translate="no" dir="ltr">item</code>. In particular, when the app starts, the <code translate="no" dir="ltr">LiveData</code> starts as <code translate="no" dir="ltr">null</code>, so you need to add null checks to each of the adapters.</p>
+<ol type="1" start="12">
+<li>In <code translate="no" dir="ltr">BindingUtils.kt</code>, for each of the binding adapters, change the type of the <code translate="no" dir="ltr">item</code> argument to nullable, and wrap the body with <code translate="no" dir="ltr">item?.let{...}</code>. For example, your adapter for <code translate="no" dir="ltr">sleepQualityString</code> will look like this. Change the other adapters likewise.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@BindingAdapter(&#34;sleepQualityString&#34;)
+fun TextView.setSleepQualityString(item: SleepNight?) {
+   item?.let {
+       text = convertNumericQualityToString(item.sleepQuality, context.resources)
+   }
+}
+</code></pre>
+<ol type="1" start="13">
+<li>Run your app. Tap on an item, and a detail view opens.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Solution code" duration="0">
+          
+          <p>Android Studio project:  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/RecyclerViewClickHandler" target="_blank">RecyclerViewClickHandler</a>.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Summary" duration="0">
+          
+          <p>To make items in a <code translate="no" dir="ltr">RecyclerView</code> respond to clicks, attach click listeners to list items in the <code translate="no" dir="ltr">ViewHolder</code>, and handle clicks in the <code translate="no" dir="ltr">ViewModel</code>.</p>
+<p>To make items in a <code translate="no" dir="ltr">RecyclerView</code> respond to clicks, you need to do the following:</p>
+<ul>
+<li>Create a listener class that takes a lambda and assigns it to an <code translate="no" dir="ltr">onClick()</code> function.</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class SleepNightListener(val clickListener: (sleepId: Long) -&gt; Unit) {
+   fun onClick(night: SleepNight) = clickListener(night.nightId)
+}
+</code></pre>
+<ul>
+<li>Set the click listener on the view.</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">android:onClick=&#34;@{() -&gt; clickListener.onClick(sleep)}&#34;
+</code></pre>
+<ul>
+<li>Pass the click listener to the adapter constructor, into the view holder, and add it to the binding object.</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class SleepNightAdapter(val clickListener: SleepNightListener):
+       ListAdapter&lt;DataItem, RecyclerView.ViewHolder&gt;(SleepNightDiffCallback()
+</code></pre>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">holder.bind(getItem(position)!!, clickListener)
+</code></pre>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">binding.clickListener = clickListener
+</code></pre>
+<ul>
+<li>In the fragment that shows the recycler view, where you create the adapter, define a click listener by passing a lambda to the adapter.</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val adapter = SleepNightAdapter(SleepNightListener { nightId -&gt;
+      sleepTrackerViewModel.onSleepNightClicked(nightId)
+})
+</code></pre>
+<ul>
+<li>Implement the click handler in the view model. For clicks on list items, this commonly triggers navigation to a detail fragment.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Learn more" duration="0">
+          
+          <p>Udacity course:</p>
+<ul>
+<li><a href="https://www.udacity.com/course/developing-android-apps-with-kotlin--ud9012" target="_blank">Developing Android Apps with Kotlin</a></li>
+<li><a href="https://www.udacity.com/course/kotlin-bootcamp-for-programmers--ud9011" target="_blank">Kotlin Bootcamp for Programmers</a></li>
+</ul>
+<p>Android developer documentation:</p>
+<ul>
+<li><a href="https://developer.android.com/guide/topics/ui/layout/recyclerview" target="_blank">Create dynamic lists with RecyclerView</a></li>
+<li><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView" target="_blank"><code translate="no" dir="ltr">RecyclerView</code></a></li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Homework" duration="0">
+          
+          <p>This section lists possible homework assignments for students who are working through this codelab as part of a course led by an instructor. It&#39;s up to the instructor to do the following:</p>
+<ul>
+<li>Assign homework if required.</li>
+<li>Communicate to students how to submit homework assignments.</li>
+<li>Grade the homework assignments.</li>
+</ul>
+<p>Instructors can use these suggestions as little or as much as they want, and should feel free to assign any other homework they feel is appropriate.</p>
+<p>If you&#39;re working through this codelab on your own, feel free to use these homework assignments to test your knowledge.</p>
+<h2 is-upgraded id="answer-these-questions" data-text="Answer these questions"><strong>Answer these questions</strong></h2>
+<h3 is-upgraded id="question-1" data-text="Question 1"><strong>Question 1</strong></h3>
+<p>Assume that your app contains a <code translate="no" dir="ltr">RecyclerView</code> that displays items in a shopping list. Your app also defines a click-listener class:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class ShoppingListItemListener(val clickListener: (itemId: Long) -&gt; Unit) {
+    fun onClick(cartItem: CartItem) = clickListener(cartItem.itemId)
+}
+</code></pre>
+<p>How do you make the <code translate="no" dir="ltr">ShoppingListItemListener</code> available to data binding? Select one.</p>
+<p>▢ In the layout file that contains the <code translate="no" dir="ltr">RecyclerView</code> that displays the shopping list, add a <code translate="no" dir="ltr">&lt;data&gt;</code> variable for <code translate="no" dir="ltr">ShoppingListItemListener</code>.</p>
+<p>▢ In the layout file that defines the layout for a single row in the shopping list, add a <code translate="no" dir="ltr">&lt;data&gt;</code> variable for <code translate="no" dir="ltr">ShoppingListItemListener</code>.</p>
+<p>▢ In the <code translate="no" dir="ltr">ShoppingListItemListener</code> class, add a function to enable data binding:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">fun onBinding (cartItem: CartItem) {dataBindingEnable(true)}
+</code></pre>
+<p>▢ In the <code translate="no" dir="ltr">ShoppingListItemListener</code> class, inside the <code translate="no" dir="ltr">onClick()</code> function, add a call to enable data binding:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">fun onClick(cartItem: CartItem) = { 
+    clickListener(cartItem.itemId)
+    dataBindingEnable(true)
+}
+</code></pre>
+<h3 is-upgraded id="question-2" data-text="Question 2"><strong>Question 2</strong></h3>
+<p>Where do you add the <code translate="no" dir="ltr">android:onClick</code> attribute to make items in a <code translate="no" dir="ltr">RecyclerView</code> respond to clicks? Select all that apply.</p>
+<p>▢ In the layout file that displays the <code translate="no" dir="ltr">RecyclerView</code>, add it to <code translate="no" dir="ltr">&lt;androidx.recyclerview.widget.RecyclerView&gt;</code></p>
+<p>▢ Add it to the layout file for an item in the row. If you want the entire item to be clickable, add it to the parent view that contains the items in the row.</p>
+<p>▢ Add it to the layout file for an item in the row. If you want a single <code translate="no" dir="ltr">TextView</code> in the item to be clickable, add it to the <code translate="no" dir="ltr">&lt;TextView&gt;</code>.</p>
+<p>▢ Always add it the layout file for the <code translate="no" dir="ltr">MainActivity</code>.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Next codelab" duration="0">
+          
+          <p>Start the next lesson:  <a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-headers/" target="_blank"><paper-button class="colored" raised>Headers in RecyclerView</paper-button></a></p>
+
+
+        </google-codelab-step>
+      
+    </google-codelab>
+  
+    
+
+    
+  </div>
+
+  
+
+  
+    
+    
+    
+  
+
+  
+  
+</article>
+
+
+
+
+            
+          </devsite-content>
+        </main>
+        <devsite-footer-promos class="devsite-footer">
+          
+            
+
+<nav class="devsite-footer-promos nocontent" aria-label="Promosi">
+  <ul class="devsite-footer-promos-list">
+    
+    <li class="devsite-footer-promo">
+      <a href="//twitter.com/AndroidDev"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer Twitter Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="/_static/android/images/logo-twitter.svg"
+             loading="lazy"
+             alt="Twitter">
+        
+        Twitter
+      </a>
+      <div class="devsite-footer-promo-description">Ikuti @AndroidDev di Twitter</div>
+    </li>
+    
+    <li class="devsite-footer-promo">
+      <a href="//www.youtube.com/user/androiddevelopers"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer YouTube Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="//www.gstatic.com/images/icons/material/product/2x/youtube_48dp.png"
+             loading="lazy"
+             alt="YouTube">
+        
+        YouTube
+      </a>
+      <div class="devsite-footer-promo-description">Lihat Developer Android di YouTube</div>
+    </li>
+    
+  </ul>
+</nav>
+
+          
+        </devsite-footer-promos>
+        <devsite-footer-linkboxes class="devsite-footer">
+          
+            
+<nav class="devsite-footer-linkboxes nocontent" aria-label="Link footer">
+  
+  <ul class="devsite-footer-linkboxes-list">
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Selengkapnya tentang Android</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Android
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/enterprise/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Enterprise
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/security-center/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Keamanan
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//source.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Source
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dukungan</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=190923&amp;template=841312"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Laporkan bug platform
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=192697"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Laporkan bug dokumentasi
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//support.google.com/googleplay/android-developer"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Google Play support
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://google.qualtrics.com/jfe/form/SV_ewWXIoEVLBcyp7f??reserved=1&amp;utm_source=FooterLink&amp;Q_Language=en&amp;utm_medium=own_srch&amp;utm_campaign=developer.android.com&amp;utm_term=0&amp;utm_content=0&amp;productTag=reg&amp;campaignDate=may19&amp;pType=devel&amp;referral_code=gV420370"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Bergabung dengan studi riset
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dokumentasi</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/guide"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Panduan developer
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/design"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Panduan desain
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/reference"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Referensi API
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/samples"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Sampel
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/studio/intro"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 5)"
+            >
+          
+            Android Studio
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+  
+</nav>
+          
+        </devsite-footer-linkboxes>
+        <devsite-footer-utility class="devsite-footer">
+          
+            
+
+<div class="devsite-footer-utility nocontent">
+  
+  
+  <nav class="devsite-footer-sites" aria-label="Situs Google Developers lain">
+    <a href="https://developers.google.com/"
+       class="devsite-footer-sites-logo-link gc-analytics-event"
+       data-category="Site-Wide Custom Events"
+       data-label="Footer Google Developers Link">
+      <img class="devsite-footer-sites-logo"
+           src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup-developers.svg"
+           loading="lazy"
+           alt="Google Developers">
+    </a>
+    <ul class="devsite-footer-sites-list">
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.android.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Android Link"
+         
+         >
+          Android
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.chrome.com/home"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Chrome Link"
+         
+         >
+          Chrome
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//firebase.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Firebase Link"
+         
+         >
+          Firebase
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//cloud.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Google Cloud Platform Link"
+         
+         >
+          Google Cloud Platform
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developers.google.com/products/"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer All products Link"
+         
+         >
+          Semua produk
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  
+
+  
+  <nav class="devsite-footer-utility-links" aria-label="Link utilitas">
+    
+    <ul class="devsite-footer-utility-list">
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="//policies.google.com/privacy"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Privacy link"
+         >
+          Privasi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/license"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer License link"
+         >
+          Lisensi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/distribute/marketing-tools/brand-guidelines"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Brand guidelines link"
+         >
+          Pedoman brand
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 devsite-footer-utility-button">
+        
+        <span class="devsite-footer-utility-description">Dapatkan berita dan tips melalui email</span>
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/updates"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Subscribe link"
+         >
+          Berlangganan
+        </a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+  </nav>
+</div>
+          
+        </devsite-footer-utility>
+        <devsite-panel></devsite-panel>
+      </section></section>
+    <devsite-sitemask></devsite-sitemask>
+    
+<devsite-snackbar 
+                  ></devsite-snackbar>
+
+    <devsite-tooltip ></devsite-tooltip>
+    <devsite-heading-link></devsite-heading-link>
+    <devsite-analytics enable-analytics-iframe>
+      
+        <script type="application/json" analytics>[{"gaid": "UA-5831155-1", "dimensions": {"dimension11": false, "dimension4": "Developer Android", "dimension1": "Signed In", "dimension6": "en", "dimension3": false, "dimension5": "id"}, "metrics": {"ratings_value": "metric1", "ratings_count": "metric2"}}]</script>
+<script type="application/json" gtm>{"parameters": {"freeTrialEligibleUser": "False", "internalUser": "False", "language": {"machineTranslated": "False", "requested": "id", "served": "en"}, "pageType": "codelab", "projectName": "Developer Android", "signedIn": "True", "tenant": "android", "recommendations": {"sourcePage": "", "sourceType": 0, "sourceRank": 0, "sourceIdenticalDescriptions": 0, "sourceTitleWords": 0, "sourceDescriptionWords": 0, "experiment": ""}}, "tags": ["GTM-KMSWPCJ"]}</script>
+      
+    </devsite-analytics>
+    
+      <devsite-badger></devsite-badger>
+    
+    
+<android-fully-clickable target=".fully-clickable" watch="devsite-content"></android-fully-clickable>
+    <script nonce="TVvjg4pr/hebRICs787DkbUKwsrEp5">
+  
+  (function(d,e,v,s,i,t,E){d['GoogleDevelopersObject']=i;
+    t=e.createElement(v);t.async=1;t.src=s;E=e.getElementsByTagName(v)[0];
+    E.parentNode.insertBefore(t,E);})(window, document, 'script',
+    'https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/js/app_loader.js', '[3,"id",null,"/js/devsite_app_module.js","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android","https://android-dot-devsite-v2-prod.appspot.com",1,null,["/_pwa/android/manifest.json","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/images/video-placeholder.svg","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg","https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap"],1,null,[1,6,8,12,14,17,21,25,40,50,63,70,75,76,80,87,88,91,92,93,97,98,100,101,102,103,104,105,107,108,111,112,113,115,116,117,118,120,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,138,147,148],"AIzaSyAP-jjEJBzmIyKR4F-3XITp8yM9T1gEEI8","AIzaSyB6xiKGDR5O3Ak2okS4rLkauxGUG7XP0hg"]')
+  
+</script>
+    <devsite-a11y-announce></devsite-a11y-announce>
+  </body>
+</html>

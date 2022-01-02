@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GojekClone</string>
+    <string name="logo">logo</string>
+    <string name="home">Home</string>
+    <string name="account">Account</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DicodingCodelab_Intent</string>
+    <string name="impli_text">Halaman Implicit!</string>
+    <string name="get_photo">Get Photo from gallery</string>
+    <string name="txt_intent">Intent with data</string>
+    <string name="txt_dial">Dial a number</string>
+</resources>

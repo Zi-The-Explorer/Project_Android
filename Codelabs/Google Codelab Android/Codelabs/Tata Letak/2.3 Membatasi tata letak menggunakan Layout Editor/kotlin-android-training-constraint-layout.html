@@ -1,0 +1,2491 @@
+<!doctype html>
+<html 
+      lang="id"
+      dir="ltr">
+  <head>
+    <meta name="google-signin-client-id" content="721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com">
+    <meta name="google-signin-scope"
+          content="profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award">
+    <meta property="og:site_name" content="Android Developers">
+    <meta property="og:type" content="website"><meta name="theme-color" content="#3ddc84"><meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/_pwa/android/manifest.json"
+          crossorigin="use-credentials">
+    <link rel="preconnect" href="//www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="//apis.google.com" crossorigin>
+    <link rel="preconnect" href="//www.google-analytics.com" crossorigin><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap">
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Material+Icons&display=block"><link rel="stylesheet" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/css/app.css">
+      <link rel="shortcut icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/touchicon-180.png"><link rel="canonical" href="https://developer.android.com/codelabs/kotlin-android-training-constraint-layout?hl=id"><link rel="search" type="application/opensearchdescription+xml"
+            title="Android Developers" href="https://developer.android.com/s/opensearch.xml">
+      
+
+<title>Android Kotlin Fundamentals: 02.3 ConstraintLayout using the Layout Editor</title>
+
+<meta property="og:title" content="Android Kotlin Fundamentals: 02.3 ConstraintLayout using the Layout Editor"><meta name="description" content="In this codelab you learn how to use ConstraintLayout in your Android app to create large and complex layouts with a flat view hierarchy.">
+  <meta property="og:description" content="In this codelab you learn how to use ConstraintLayout in your Android app to create large and complex layouts with a flat view hierarchy."><meta property="og:url" content="https://developer.android.com/codelabs/kotlin-android-training-constraint-layout?hl=id"><meta property="og:image" content="https://developer.android.com/images/social/android-developers.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675"><meta property="og:locale" content="en"><meta name="twitter:card" content="summary_large_image">
+  <meta name="xsrf_token" content="btPZ6XzMTxHm-RI7pRQbQ79ZwRYqHM1m_EkFShtyAQk6MTYyNzQ3ODY1MzQ2OTgzOA">
+  
+
+  <meta name="session_expiry" content="1627479292">
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    <meta name="original_source" content="https://docs.google.com/document/d/1XalICkrq76d4bunNcNj_x1o_hnWu4IlG3r1Sd5WJQyg/edit" />
+    
+    
+    
+    
+    
+      
+    
+    
+    
+  
+
+    </head>
+  <body class="devsite-full-width-page"
+        template="codelab"
+        theme="android-theme"
+        type="codelab"
+        
+        layout="full"
+        
+        
+        pending>
+    <devsite-progress type="indeterminate" id="app-progress"></devsite-progress>
+  
+    <section class="devsite-wrapper"><devsite-header>
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="devsite-header--inner nocontent">
+  <div class="devsite-top-logo-row-wrapper-wrapper">
+    <div class="devsite-top-logo-row-wrapper">
+      <div class="devsite-top-logo-row">
+        <button type="button" id="devsite-hamburger-menu"
+          class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+          data-category="Site-Wide Custom Events"
+          data-label="Navigation menu button"
+          visually-hidden
+          aria-label="Open menu">
+        </button>
+        <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo"
+       alt="Android Developers">
+
+</a>
+
+
+
+  
+  
+  <span class="devsite-product-name">
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+  </span>
+
+</div>
+        <div class="devsite-top-logo-row-middle">
+          <div class="devsite-header-upper-tabs">
+            
+              
+              
+  <devsite-tabs class="upper-tabs">
+
+    <nav class="devsite-tabs-wrapper" aria-label="Tab atas">
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/about"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="platform"
+   track-metadata-eventdetail="https://developer.android.com/about"
+   track-metadata-position="nav - platform"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Platform"
+   >
+  Platform
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/studio"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="android studio"
+   track-metadata-eventdetail="https://developer.android.com/studio"
+   track-metadata-position="nav - android studio"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Android Studio"
+   >
+  Android Studio
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/distribute"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="google play"
+   track-metadata-eventdetail="https://developer.android.com/distribute"
+   track-metadata-position="nav - google play"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Google Play"
+   >
+  Google Play
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/jetpack"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="jetpack"
+   track-metadata-eventdetail="https://developer.android.com/jetpack"
+   track-metadata-position="nav - jetpack"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Jetpack"
+   >
+  Jetpack
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/kotlin"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="kotlin"
+   track-metadata-eventdetail="https://developer.android.com/kotlin"
+   track-metadata-position="nav - kotlin"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Kotlin"
+   >
+  Kotlin
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/docs"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="dokumen"
+   track-metadata-eventdetail="https://developer.android.com/docs"
+   track-metadata-position="nav - dokumen"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Dokumen"
+   >
+  Dokumen
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/news"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="berita"
+   track-metadata-eventdetail="https://developer.android.com/news"
+   track-metadata-position="nav - berita"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Berita"
+   >
+  Berita
+</a>
+
+          </tab>
+        
+      
+    </nav>
+
+  </devsite-tabs>
+
+            
+           </div>
+          
+<devsite-search
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    enable-signin
+    enable-search
+    enable-suggestions
+      enable-query-completion
+    
+    project-name="Developer Android"
+    tenant-name="Android Developers"
+    
+    
+    
+    
+    
+    role="combobox">
+  <form class="devsite-search-form" action="https://developer.android.com/s/results" method="GET">
+    <div class="devsite-search-container">
+      <div class="devsite-searchbox">
+        <input
+          aria-activedescendant=""
+          aria-autocomplete="list"
+          
+          aria-label="Penelusuran"
+          aria-haspopup="false"
+          aria-multiline="false"
+          aria-label="Kotak penelusuran"
+          autocomplete="off"
+          class="devsite-search-field devsite-search-query"
+          name="q"
+          
+          placeholder="Penelusuran"
+          role="searchbox"
+          type="text"
+          value=""
+          >
+        <div class="devsite-search-image material-icons" aria-hidden="true"></div>
+      </div>
+      <button type="button"
+              search-open
+              class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+              
+              aria-label="Buka penelusuran"></button>
+    </div>
+  </form>
+  <button type="button"
+          search-close
+          class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+          
+          aria-label="Tutup penelusuran"></button>
+</devsite-search>
+
+        </div>
+
+        
+
+        
+
+        
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+
+        
+
+        
+          
+          
+          <devsite-user signed-in
+                        
+                        
+                          enable-profiles
+                        
+                        
+                          
+                        id="devsite-user"></devsite-user>
+           
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="devsite-collapsible-section
+    
+      devsite-header-no-lower-tabs
+    ">
+    <div class="devsite-header-background">
+      
+        
+      
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+  
+</devsite-header>
+      <devsite-book-nav scrollbars hidden>
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="devsite-book-nav devsite-nav nocontent"
+     aria-label="Menu samping">
+  <div class="devsite-mobile-header">
+    <button type="button"
+            id="devsite-close-nav"
+            class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+            data-category="Site-Wide Custom Events"
+            data-label="Close navigation"
+            aria-label="Close navigation">
+    </button>
+    <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+
+</a>
+
+
+  
+      <span class="devsite-product-name">
+        
+        
+        <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+      </span>
+    
+
+</div>
+  </div>
+
+  <div class="devsite-book-nav-wrapper">
+    <div class="devsite-mobile-nav-top">
+      
+        <ul class="devsite-nav-list">
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/about"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Platform"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="platform">
+  
+    <span class="devsite-nav-text" tooltip >
+      Platform
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/studio"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Android Studio"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="androidStudio">
+  
+    <span class="devsite-nav-text" tooltip >
+      Android Studio
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/distribute"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Google Play"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="googlePlay">
+  
+    <span class="devsite-nav-text" tooltip >
+      Google Play
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/jetpack"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Jetpack"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="jetpack">
+  
+    <span class="devsite-nav-text" tooltip >
+      Jetpack
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/kotlin"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Kotlin"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="kotlin">
+  
+    <span class="devsite-nav-text" tooltip >
+      Kotlin
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/docs"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Dokumen"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="dokumen">
+  
+    <span class="devsite-nav-text" tooltip >
+      Dokumen
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/news"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Berita"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="berita">
+  
+    <span class="devsite-nav-text" tooltip >
+      Berita
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+          
+          
+        </ul>
+      
+    </div>
+    
+  </div>
+</nav>
+        
+      </devsite-book-nav>
+      <section id="gc-wrapper">
+        <main role="main" class="devsite-main-content"
+            
+            >
+          
+          <devsite-toc class="devsite-nav"
+                       role="navigation"
+                       aria-label="Daftar isi"
+            disabled></devsite-toc>
+          <devsite-content>
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="devsite-article"><style>
+      body {
+        transition: opacity ease-in 0.2s;
+      }
+
+      body[unresolved] {
+        opacity: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+      </style>
+  
+  
+  
+
+  <div class="devsite-article-meta nocontent" role="navigation">
+    
+    
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+  <a href="https://developer.android.com/"
+      
+        class="devsite-breadcrumb-link gc-analytics-event"
+      
+        data-category="Site-Wide Custom Events"
+      
+        data-label="Breadcrumbs"
+      
+        data-value="1"
+      
+        track-type="globalNav"
+      
+        track-name="breadcrumb"
+      
+        track-metadata-position="1"
+      
+        track-metadata-eventdetail="Developer Android"
+      
+    >
+    
+        Developer Android
+      
+  </a>
+  
+    
+  </li>
+  
+</ul>
+    
+  </div>
+  
+  
+    <h1 class="devsite-page-title">Android Kotlin Fundamentals: 02.3 ConstraintLayout using the Layout Editor</h1><devsite-bookmark></devsite-bookmark>
+  
+
+  <devsite-toc class="devsite-nav" devsite-toc-embedded
+               disabled>
+  </devsite-toc>
+
+  
+
+  <div class="devsite-article-body clearfix
+    ">
+
+    
+      
+    <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+    <google-codelab codelab-gaid="UA-81734179-1"
+                    doc-id="1XalICkrq76d4bunNcNj_x1o_hnWu4IlG3r1Sd5WJQyg"
+                    id="kotlin-android-training-constraint-layout"
+                    title="Android Kotlin Fundamentals: 02.3 ConstraintLayout using the Layout Editor"
+                    environment="web"
+                    category="android,kotlin"
+                    feedback-link="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/issues/new?assignees=&amp;labels=&amp;template=android-kotlin-fundamentals.md&amp;title=Android&#43;Kotlin&#43;Fundamentals&#43;codelab%3A&#43;"
+                    >
+      
+        <google-codelab-step label="Introduction" duration="0">
+          
+            <google-codelab-about codelab-title="Android Kotlin Fundamentals: 02.3 ConstraintLayout using the Layout Editor"
+                                  authors="Google Developers Training team"
+                                  >
+            </google-codelab-about>
+          
+          <p>This codelab is part of the Android Kotlin Fundamentals course. You&#39;ll get the most value out of this course if you work through the codelabs in sequence. All the course codelabs are listed on the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+<h2 is-upgraded id="what-you-should-already-know" data-text="What you should already know">What you should already know</h2>
+<p>You should be familiar with:</p>
+<ul>
+<li>Creating a basic Android app in Kotlin.</li>
+<li>Running an Android app on an emulator or on a device.</li>
+<li>Using <code translate="no" dir="ltr">LinearLayout</code> in your app.</li>
+<li>The basics of Android Studio&#39;s Layout Editor.</li>
+</ul>
+<h2 class="checklist" is-upgraded id="what-youll-learn" data-text="What you'll learn">What you'll learn</h2>
+<ul class="checklist">
+<li>How to use <code translate="no" dir="ltr">ConstraintLayout</code> in your app to arrange views.</li>
+<li>How to change a text view&#39;s background color.</li>
+<li>How to align a view with text using a baseline constraint.</li>
+<li>How to create vertical and horizontal chains from a group of views.</li>
+</ul>
+<h2 is-upgraded id="what-youll-do" data-text="What you'll do">What you'll do</h2>
+<ul>
+<li>Create the ColorMyViews app.</li>
+<li>Add click handlers to text views to change the views&#39; color when the user taps them.</li>
+<li>Add text views with different font sizes and align them using a baseline constraint.</li>
+<li>Add a chain of three buttons and constrain the chain to the bottom of the layout.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="App overview" duration="0">
+          
+          <p>The ColorMyViews app is inspired by the Dutch artist, Piet Mondrian. He invented a style of painting style called <em>neoplasticism</em>, which uses only vertical and horizontal lines and rectangular shapes in black, white, gray, and primary colors.</p>
+<p class="image-container"><img alt="7fdda7ddbbb92f51.png" style="width: 269.71px" src="/codelabs/kotlin-android-training-constraint-layout/img/7fdda7ddbbb92f51.png">     <img alt="957c810298666482.png" style="width: 298.22px" src="/codelabs/kotlin-android-training-constraint-layout/img/957c810298666482.png"></p>
+<p>Although paintings are static, your app will be interactive! The app consists of clickable text views that change color when tapped, and button views in a  <a href="https://developer.android.com/reference/android/support/constraint/ConstraintLayout" target="_blank"><code translate="no" dir="ltr">constraintLayout</code></a>.</p>
+<table class="vertical-rules">
+<tr><td colspan="1" rowspan="1"><p class="image-container"><img src="/codelabs/kotlin-android-training-constraint-layout/img/6978e2b5aad2536e.png"></p>
+</td><td colspan="1" rowspan="1"><p class="image-container"><img src="/codelabs/kotlin-android-training-constraint-layout/img/2c563e2d49e54588.png"></p>
+</td><td colspan="1" rowspan="1"><p class="image-container"><img src="/codelabs/kotlin-android-training-constraint-layout/img/41400880c88d3db7.png"></p>
+</td></tr>
+</table>
+<h2 is-upgraded id="constraintlayout" data-text="ConstraintLayout">ConstraintLayout</h2>
+<p>A  <a href="https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html" target="_blank"><code translate="no" dir="ltr">ConstraintLayout</code></a> is a  <a href="http://developer.android.com/reference/android/view/ViewGroup.html" target="_blank"><code translate="no" dir="ltr">ViewGroup</code></a> that allows you to position and size child views in a flexible way.  A ConstraintLayout allows you to create large, complex layouts with flat view hierarchies (no nested view groups). To build a ConstraintLayout, you can use the Layout Editor to add constraints, and to drag-and-drop views. You don&#39;t need to edit the XML.</p>
+<aside class="special"><p><strong>Note: </strong><code translate="no" dir="ltr">ConstraintLayout</code> is available as a support library, which is available in API level 9 and higher.</p>
+</aside>
+<h2 is-upgraded id="constraints" data-text="Constraints">Constraints</h2>
+<p>A  <a href="https://developer.android.com/training/constraint-layout/#constraints-overview" target="_blank">constraint</a> is a connection or alignment between two UI elements. Each constraint connects or aligns one view to another view, to the parent layout, or to an invisible guideline. In a ConstraintLayout, you position a view by defining at least one horizontal and one vertical constraint.</p>
+<p class="image-container"><img alt="be3c775dcb40cfe.png" style="width: 462.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/be3c775dcb40cfe.png"></p>
+<p><img alt="ec6ab16929700158.png" style="width: 34.77px" src="/codelabs/kotlin-android-training-constraint-layout/img/ec6ab16929700158.png">Horizontal constraint: B is constrained to stay to the right of A. (In a finished app, B would need at least one vertical constraint in addition to this horizontal constraint.)</p>
+<p><img alt="b4e089773fc08bd9.png" style="width: 28.50px" src="/codelabs/kotlin-android-training-constraint-layout/img/b4e089773fc08bd9.png"> Vertical constraint: C is constrained to stay below A. (In a finished app, C would need at least one horizontal constraint in addition to this vertical constraint.)</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Create the ColorMyViews project" duration="0">
+          
+          <ol type="1">
+<li>Open Android Studio, if it&#39;s not already open, and create a new project with the following parameters:</li>
+</ol>
+<table class="vertical-rules">
+<tr><td colspan="1" rowspan="1"><p><strong>Attribute</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Value</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Template</p>
+</td><td colspan="1" rowspan="1"><p><strong>Empty Activity</strong> in the <strong>Phone and Tablet</strong> tab</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Application Name</p>
+</td><td colspan="1" rowspan="1"><p>ColorMyViews</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Company Name android</p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">com.android.example.colormyviews</code> (<em>or your own domain</em>)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Language</p>
+</td><td colspan="1" rowspan="1"><p>Kotlin</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Minimum API level</p>
+</td><td colspan="1" rowspan="1"><p>API 19: Android 4.4 (KitKat)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>This project will support instant apps</p>
+</td><td colspan="1" rowspan="1"><p>(<em>Leave this box cleared</em>)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Use AndroidX artifacts</p>
+</td><td colspan="1" rowspan="1"><p>Select this box.</p>
+</td></tr>
+</table>
+<p>The Empty Activity template creates a single empty activity in the <code translate="no" dir="ltr">Mainactivity.kt</code> file. The template also creates a layout file called <code translate="no" dir="ltr">activity_main.xml</code>. The layout uses <code translate="no" dir="ltr">ConstraintLayout</code> as its root view group, with a single <code translate="no" dir="ltr">TextView</code> as the layout&#39;s content.</p>
+<ol type="1" start="2">
+<li>Wait for Android Studio to finish the Gradle build. If you see any errors, select <strong>Build</strong> &gt; <strong>Rebuild Project</strong>.</li>
+<li>Run the app and wait for a few seconds for the build to complete. You should see a screen with &#34;Hello World!&#34; in the middle of it.</li>
+</ol>
+<p class="image-container"><img alt="b91290c0a4d213ba.png" style="width: 270.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/b91290c0a4d213ba.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Use Layout Editor to build a  ConstraintLayout" duration="0">
+          
+          <p>In this task, you use the Android Studio Layout Editor to build a ConstraintLayout for your app.</p>
+<h2 is-upgraded id="step-1:-set-up-your-android-studio-work-area" data-text="Step 1: Set up your Android Studio work area">Step 1: Set up your Android Studio work area</h2>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">activity_main.xml</code> file and click the <strong>Design</strong> tab.</li>
+<li>You&#39;ll add constraints manually, so you want autoconnect turned off. In the toolbar, locate the <strong>Turn Off/On Autoconnect</strong> toggle button, which is shown below. (If you can&#39;t see the toolbar, click inside the design editor area of the Layout Editor.) Make sure autoconnect is off.</li>
+</ol>
+<table class="vertical-rules">
+<tr><td colspan="1" rowspan="1"><p class="image-container"><img src="/codelabs/kotlin-android-training-constraint-layout/img/f66ff1b834a69947.png"></p>
+</td><td colspan="1" rowspan="1"><p>Autoconnect is on.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p class="image-container"><img src="/codelabs/kotlin-android-training-constraint-layout/img/dd30e456c4858de3.png"></p>
+</td><td colspan="1" rowspan="1"><p>Autoconnect is off—this is what you want for this codelab.</p>
+</td></tr>
+</table>
+<ol type="1" start="3">
+<li>Use the toolbar to set the default margins to <code translate="no" dir="ltr">16dp</code>. (The default is <code translate="no" dir="ltr">8dp</code>.)</li>
+</ol>
+<p class="image-container"><img alt="c7debadc31243335.png" style="width: 162.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/c7debadc31243335.png"></p>
+<p>When you set the default margin to <code translate="no" dir="ltr">16dp</code>, new constraints are created with this margin, so you don&#39;t have to add the margin each time you add a constraint.</p>
+<ol type="1" start="4">
+<li>Zoom in using the <strong>+</strong> icon  <img alt="e6686dccd99f45c6.png" style="width: 66.52px" src="/codelabs/kotlin-android-training-constraint-layout/img/e6686dccd99f45c6.png"> on the right side of the toolbar, until the <strong>Hello World</strong> text is visible inside its text view.</li>
+<li>Double-click on the <strong>Hello World</strong> text view to open the <strong>Attributes</strong> pane.</li>
+</ol>
+<p class="image-container"><img alt="1b5c3f9767bdbf26.gif" style="width: 393.50px" src="/codelabs/kotlin-android-training-constraint-layout/img/1b5c3f9767bdbf26.gif"></p>
+<h3 is-upgraded id="the-view-inspector" data-text="The view inspector">The view inspector</h3>
+<p>The view inspector, shown in the screenshot below, is a part of the <strong>Attributes</strong> pane. The view inspector includes controls for layout attributes such as constraints, constraint types, constraint bias, and view margins.</p>
+<p class="image-container"><img alt="fd4bb323c90d70ea.png" style="width: 184.57px" src="/codelabs/kotlin-android-training-constraint-layout/img/fd4bb323c90d70ea.png"></p>
+<aside class="special"><p><strong>Tip:</strong> The view inspector is available <em>only</em> for views that are inside a <code translate="no" dir="ltr">ConstraintLayout</code>.</p>
+</aside>
+<h3 is-upgraded id="constraint-bias" data-text="Constraint bias">Constraint bias</h3>
+<p>Constraint bias positions the view element along the horizontal and vertical axes. By default, the view is centered between the two constraints with a bias of 50%.</p>
+<p>To adjust the bias, you can drag the bias sliders  <img alt="14f369688bbc92a0.png" style="width: 116.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/14f369688bbc92a0.png"> in the view inspector. Dragging a bias slider changes the view&#39;s position along the axis.</p>
+<h2 is-upgraded id="step-2:-add-margins-for-the-hello-world-text-view" data-text="Step 2: Add margins for the Hello World text view">Step 2: Add margins for the Hello World text view</h2>
+<ol type="1">
+<li>Notice that in the view inspector, the left, right, top, and bottom margins for the text view are <code translate="no" dir="ltr">0</code>. The default margin was not automatically added, because this view was created before you changed the default margin.</li>
+<li>For the left, right, and top margins, select <code translate="no" dir="ltr">16dp</code> from the drop-down menu in the view inspector. For example, in the following screenshot you are adding <code translate="no" dir="ltr">layout_marginEnd</code> (<code translate="no" dir="ltr">layout_marginRight</code>).</li>
+</ol>
+<p class="image-container"><img alt="98f63d9564c42f5d.png" style="width: 250.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/98f63d9564c42f5d.png"></p>
+<h2 is-upgraded id="step-3:-adjust-constraints-and-margins-for-the-text-view" data-text="Step 3: Adjust constraints and margins for the text view">Step 3: Adjust constraints and margins for the text view</h2>
+<p>In the view inspector, the arrows  <img alt="f0877ac04bffb878.png" style="width: 30.61px" src="/codelabs/kotlin-android-training-constraint-layout/img/f0877ac04bffb878.png"> inside the square represents the type of the constraint:</p>
+<ul>
+<li><img alt="f0877ac04bffb878.png" style="width: 33.47px" src="/codelabs/kotlin-android-training-constraint-layout/img/f0877ac04bffb878.png"> <strong>Wrap Content</strong>: The view expands only as much as needed to contain its contents.</li>
+<li><img alt="217e6866e21dff0d.png" style="width: 32.13px" src="/codelabs/kotlin-android-training-constraint-layout/img/217e6866e21dff0d.png"> <strong>Fixed</strong>: You can specify a dimension as the view margin in the text box next to the fixed-constraint arrows.</li>
+<li><img alt="9ca6bced19ddc559.png" style="width: 32.85px" src="/codelabs/kotlin-android-training-constraint-layout/img/9ca6bced19ddc559.png"> <strong>Match Constraints</strong>: The view expands as much as possible to meet the constraints on each side, after accounting for the view&#39;s own margins. This constraint is very flexible, because it allows the layout to adapt to different screen sizes and orientations. By letting the view match the constraints, you need fewer layouts for the app you&#39;re building.</li>
+</ul>
+<ol type="1">
+<li>In the view inspector, change the left and right constraints to <strong>Match Constraints  </strong><img alt="9ca6bced19ddc559.png" style="width: 32.85px" src="/codelabs/kotlin-android-training-constraint-layout/img/9ca6bced19ddc559.png">.  (Click the arrow symbol to toggle between the constraint types.)</li>
+</ol>
+<p class="image-container"><img alt="cee5c4478192c328.png" style="width: 235.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/cee5c4478192c328.png"></p>
+<ol type="1" start="2">
+<li>In the view inspector, click the <strong>Delete Bottom Constraint</strong> dot  <img alt="8b8e6d915b2b4a9c.png" style="width: 19.80px" src="/codelabs/kotlin-android-training-constraint-layout/img/8b8e6d915b2b4a9c.png">on the square to delete the bottom constraint.</li>
+<li>Switch to the <strong>Text</strong> tab. Extract the dimension resource for <code translate="no" dir="ltr">layout_marginStart</code>, and set the <strong>Resource name</strong> to <code translate="no" dir="ltr">margin_wide</code>.</li>
+</ol>
+<p class="image-container"><img alt="1fb03cec8f053edf.png" style="width: 272.70px" src="/codelabs/kotlin-android-training-constraint-layout/img/1fb03cec8f053edf.png"></p>
+<ol type="1" start="4">
+<li>Set the same dimension resource, <code translate="no" dir="ltr">@dimen/margin_wide</code>, for the top and end margins.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">android:layout_marginStart=&#34;@dimen/margin_wide&#34;
+android:layout_marginTop=&#34;@dimen/margin_wide&#34;
+android:layout_marginEnd=&#34;@dimen/margin_wide&#34;
+</code></pre>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Style the TextView" duration="0">
+          
+          <h2 is-upgraded id="step-1:-add-a-font" data-text="Step 1: Add a font">Step 1: Add a font</h2>
+<ol type="1">
+<li>In the <strong>Attributes</strong> pane, search for <code translate="no" dir="ltr">fontFamily</code> and select the drop-down arrow  <img alt="904d799c8d121e59.png" style="width: 25.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/904d799c8d121e59.png"> next to it. Scroll down to <strong>More Fonts</strong> and select it. The <strong>Resources</strong> dialog opens.</li>
+</ol>
+<p class="image-container"><img alt="bd10601e8201e4ea.png" style="width: 246.73px" src="/codelabs/kotlin-android-training-constraint-layout/img/bd10601e8201e4ea.png"></p>
+<ol type="1" start="2">
+<li>In the <strong>Resources</strong> dialog, search for <code translate="no" dir="ltr">roboto</code>.</li>
+<li>Click <strong>Roboto</strong> and select <strong>Regular</strong> in the <strong>Preview</strong> list.</li>
+<li>Select the <strong>Add font to project</strong> radio button.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<p class="image-container"><img alt="34d3fac8fd09786b.png" style="width: 461.57px" src="/codelabs/kotlin-android-training-constraint-layout/img/34d3fac8fd09786b.png"></p>
+<p>This adds a <code translate="no" dir="ltr">res/font</code> folder that contains a <code translate="no" dir="ltr">roboto.ttf</code> font file. Also, the <code translate="no" dir="ltr">@font/roboto</code> attribute is set for your text view.</p>
+<h2 is-upgraded id="step-2:-add-a-style" data-text="Step 2: Add a style">Step 2: Add a style</h2>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">res/values/dimens.xml</code>, and add the following dimension resource for the font size.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;dimen name=&#34;box_text_size&#34;&gt;24sp&lt;/dimen&gt;
+</code></pre>
+<ol type="1" start="2">
+<li>Open <code translate="no" dir="ltr">res/values/styles.xml</code> and add the following style, which you will use for the text view.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;style name=&#34;whiteBox&#34;&gt;
+   &lt;item name=&#34;android:background&#34;&gt;@android:color/holo_green_light&lt;/item&gt;
+   &lt;item name=&#34;android:textAlignment&#34;&gt;center&lt;/item&gt;
+   &lt;item name=&#34;android:textSize&#34;&gt;@dimen/box_text_size&lt;/item&gt;
+   &lt;item name=&#34;android:textStyle&#34;&gt;bold&lt;/item&gt;
+   &lt;item name=&#34;android:textColor&#34;&gt;@android:color/white&lt;/item&gt;
+   &lt;item name=&#34;android:fontFamily&#34;&gt;@font/roboto&lt;/item&gt;
+&lt;/style&gt;
+</code></pre>
+<p>In this style, the background color and the text color are set to default Android color resources. The font is set to Roboto. The text is center aligned and bolded, and the text size is set to <code translate="no" dir="ltr">box_text_size</code>.</p>
+<h2 is-upgraded id="step-3:-add-a-string-resource-for-the-text-view" data-text="Step 3: Add a string resource for the text view">Step 3: Add a string resource for the text view</h2>
+<ol type="1">
+<li>In the <strong>Attributes</strong> pane, find the <strong>text</strong> attribute. (You want the one without the wrench icon.)</li>
+<li>Click the <strong>...</strong> (three dots) next to the <strong>text</strong> attribute to open the <strong>Resources</strong> dialog.</li>
+<li>In the <strong>Resources</strong> dialog, select <strong>Add new resource &gt; New string Value</strong>. Set the resource name to <code translate="no" dir="ltr">box_one</code>, and set the value to <code translate="no" dir="ltr">Box One</code>.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<p class="image-container"><img alt="59d31cc58f827c9.png" style="width: 602.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/59d31cc58f827c9.png"></p>
+<h2 is-upgraded id="step-4:-finish-setting-attributes-for-the-text-view" data-text="Step 4: Finish setting attributes for the text view">Step 4: Finish setting attributes for the text view</h2>
+<ol type="1">
+<li>In the <strong>Attributes</strong> pane, set the <code translate="no" dir="ltr">id</code> of the text view to <code translate="no" dir="ltr">box_one_text</code>.</li>
+<li>Set the <code translate="no" dir="ltr">style</code> to <code translate="no" dir="ltr">@style/whiteBox</code>.</li>
+<li>To clean up the code, switch to the <strong>Text</strong> tab and remove the <code translate="no" dir="ltr">android:fontFamily="@font/roboto"</code> attribute, because this font is present in the <code translate="no" dir="ltr">whiteBox</code> style.</li>
+<li>Switch back to the <strong>Design</strong> tab. At the top of the design editor, click the <strong>Device for preview (D)</strong> button. A list of device types with different screen configurations is displayed. The default device is <strong>Pixel</strong>.</li>
+</ol>
+<p class="image-container"><img alt="d8bf1815c1e74f69.png" style="width: 166.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/d8bf1815c1e74f69.png"></p>
+<ol type="1" start="5">
+<li>Select different devices from the list and see how the <code translate="no" dir="ltr">TextView</code> adapts to the different screen configurations.</li>
+<li>Run your app. You see a styled green text view with the text &#34;Box One&#34;.</li>
+</ol>
+<p class="image-container"><img alt="7ab575ecda8ea251.png" style="width: 230.76px" src="/codelabs/kotlin-android-training-constraint-layout/img/7ab575ecda8ea251.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add a second TextView and add constraints" duration="0">
+          
+          <p>In this task, you add another text view below the <code translate="no" dir="ltr">box_one_text</code>. You constrain the new text view to <code translate="no" dir="ltr">box_one_text</code> and the layout&#39;s parent element.</p>
+<h2 is-upgraded id="step-1:-add-a-new-text-view" data-text="Step 1: Add a new text view">Step 1: Add a new text view</h2>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">activity_main.xml</code> file and switch to the <strong>Design</strong> tab.</li>
+<li>Drag a <code translate="no" dir="ltr">TextView</code> from the <strong>Palette</strong> pane directly into the design editor preview, as shown below. Place the text view below the <code translate="no" dir="ltr">box_one_text</code>, aligned with the left margin.</li>
+</ol>
+<p class="image-container"><img alt="fbfcfd3b50143beb.gif" style="width: 602.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/fbfcfd3b50143beb.gif"></p>
+<ol type="1" start="3">
+<li>In the design editor, click the new text view, then hold the pointer over the dot on the top side of the text view. This dot, shown below, is called a <em>constraint handle</em>.</li>
+</ol>
+<p class="image-container"><img alt="e6d06f567bfd56e.png" style="width: 220.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/e6d06f567bfd56e.png"></p>
+<p>Notice that when you hold the pointer over the constraint handle, the handle turns green and blinks.</p>
+<h2 is-upgraded id="step-2:-add-constraints-to-the-new-text-view" data-text="Step 2: Add constraints to the new text view">Step 2: Add constraints to the new text view</h2>
+<p>Create a constraint that connects the top of the new text view to the bottom of the <strong>Box One</strong> text view:</p>
+<ol type="1">
+<li>Hold the pointer over the top constraint handle on the new text view.</li>
+<li>Click the top constraint handle of the view and drag it up. A constraint line appears. Connect the constraint line to the bottom of the <strong>Box One</strong> textview, as shown below.</li>
+</ol>
+<p class="image-container"><img alt="75bc5ad6c0003376.png" style="width: 370.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/75bc5ad6c0003376.png"></p>
+<p>As you release the click, the constraint is created, and the new text view jumps to within 16dp of the bottom of the <strong>Box One</strong>. (The new text view has a top margin of 16dp because that&#39;s the default you set earlier.)</p>
+<p>Now create a left constraint:</p>
+<ol type="1">
+<li>Click the constraint handle on the left side of the new view.</li>
+<li>Drag the constraint line to the left edge of the layout. <img alt="954c246ce6b8bd29.png" style="width: 373.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/954c246ce6b8bd29.png"></li>
+</ol>
+<aside class="special"><p><strong>Tip:</strong> You can also create constraints using the view inspector. For example, to create a left constraint on the new text box:</p>
+<ol type="1">
+<li>In the preview, click the new text box to select it.</li>
+<li>In the view inspector, click the <strong>+</strong> icon  <img alt="8a6adaed2b4f0760.png" style="width: 28.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/8a6adaed2b4f0760.png"> on the left side of the box, as shown below.</li>
+</ol>
+<p class="image-container"><img alt="b684fbf661f2bf3d.png" style="width: 258.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/b684fbf661f2bf3d.png"></p>
+<p>When you create a constraint this way, the constraint is attached to the parent or to a view closer to it.</p>
+</aside>
+<h2 is-upgraded id="step-3:-set-attributes-for-the-new-text-view" data-text="Step 3: Set attributes for the new text view">Step 3: Set attributes for the new text view</h2>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">res/values/strings.xml</code>. Add a new string resource with the following code:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;string name=&#34;box_two&#34;&gt;Box Two&lt;/string&gt;
+</code></pre>
+<ol type="1" start="2">
+<li>Open <code translate="no" dir="ltr">activity_main.xml</code> and click the <strong>Design</strong> tab. Use the <strong>Attributes</strong> pane to set the following attributes on the new text view:</li>
+</ol>
+<table class="vertical-rules">
+<tr><td colspan="1" rowspan="1"><p><strong>Attribute</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>value</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">id</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">box_two_text</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">layout_height</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">130dp</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">layout_width</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">130dp</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">style</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">@style/whiteBox</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">text</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">@string/box_two</code></p>
+</td></tr>
+</table>
+<p>In this case, you&#39;re assigning fixed sizes for the height and width of the text view. Assign fixed sizes for height and width only if your view should always have a fixed size on <em>all</em> devices and layouts.</p>
+<aside class="special"><p><strong>Important:</strong> When developing real-world apps, use flexible constraints for the height and width of your UI elements, whenever possible. For example, use <code translate="no" dir="ltr">match_constraint</code> or <code translate="no" dir="ltr">wrap_content</code>. The more fixed-size UI elements you have in your app, the less adaptive your layout is for different screen configurations.</p>
+</aside>
+<ol type="1" start="3">
+<li>Run your app. You should see two green <code translate="no" dir="ltr">TextView</code> views, one above the other, similar to the following screenshot:</li>
+</ol>
+<p class="image-container"><img alt="ca60a1275d7a4cc.png" style="width: 221.82px" src="/codelabs/kotlin-android-training-constraint-layout/img/ca60a1275d7a4cc.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Create a chain of TextView views" duration="0">
+          
+          <p>In this task, you add three <code translate="no" dir="ltr">TextView</code> views. The text views are vertically aligned with each other, and horizontally aligned with the <strong>Box Two</strong> text view. The views will be in a <em>chain</em>.</p>
+<h2 is-upgraded id="chains" data-text="Chains">Chains</h2>
+<p>A  <a href="https://developer.android.com/training/constraint-layout/#constrain-chain" target="_blank">chain</a> is a group of views that are linked to each other with bidirectional constraints. The views within a chain can be distributed either vertically or horizontally. For example, the following diagram shows two views that are constrained to each other, which creates a horizontal chain.</p>
+<p class="image-container"><img alt="914983aad71d311b.png" style="width: 284.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/914983aad71d311b.png"></p>
+<h3 is-upgraded id="head-of-the-chain" data-text="Head of the chain">Head of the chain</h3>
+<p>The first view in a chain is called the <em>head</em> of the chain. The attributes that are set on the head of the chain control, position, and distribute all the views in the chain. For horizontal chains, the head is the left-most view. For vertical chains, the head is the top-most view. In each of the two diagrams below, &#34;A&#34; is the head of the chain.</p>
+<table class="vertical-rules">
+<tr><td colspan="1" rowspan="1"><p class="image-container"><img src="/codelabs/kotlin-android-training-constraint-layout/img/e822baed8a72bf3a.png"></p>
+</td><td colspan="1" rowspan="1"><p class="image-container"><img src="/codelabs/kotlin-android-training-constraint-layout/img/559c8ae4c80cc90f.png"></p>
+</td></tr>
+</table>
+<h3 is-upgraded id="chain-styles" data-text="Chain styles">Chain styles</h3>
+<p>Chain styles define the way the chained views are spread out and aligned. You style a chain by assigning a chain style attribute, adding weight, or setting bias on the views.</p>
+<p>There are three chains styles:</p>
+<ul>
+<li><strong>Spread:</strong> This is the default style. Views are evenly spread in the available space, after margins are accounted for.</li>
+</ul>
+<p class="image-container"><img alt="d57e8cdbe225181f.png" style="width: 317.38px" src="/codelabs/kotlin-android-training-constraint-layout/img/d57e8cdbe225181f.png"></p>
+<ul>
+<li><strong>Spread inside:</strong> The first and the last views are attached to the parent on each end of the chain. The rest of the views are evenly spread in the available space.</li>
+</ul>
+<p class="image-container"><img alt="8ee14c6b5164afef.png" style="width: 316.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/8ee14c6b5164afef.png"></p>
+<ul>
+<li><strong>Packed:</strong> The views are packed together, after margins are accounted for. You can then adjust the position of the whole chain by changing the bias of the chain&#39;s head view.</li>
+</ul>
+<p><img alt="16bb057b065865c6.png" style="width: 276.66px" src="/codelabs/kotlin-android-training-constraint-layout/img/16bb057b065865c6.png"> Packed chain</p>
+<p><img alt="c893437f3a9c3f06.png" style="width: 276.66px" src="/codelabs/kotlin-android-training-constraint-layout/img/c893437f3a9c3f06.png"> Packed chain with bias</p>
+<ul>
+<li><strong>Weighted:</strong> The views are resized to fill up all the space, based on the values set in the  <a href="https://developer.android.com/reference/android/support/constraint/ConstraintLayout" target="_blank"><code translate="no" dir="ltr">layout_constraintHorizontal_weight</code></a> or <code translate="no" dir="ltr">layout_constraintVertical_weight</code> attributes. For example, imagine a chain containing three views, A, B, and C. View A uses a weight of 1. Views B and C each use a weight of 2. The space occupied by views B and C is twice that of view A, as shown below.</li>
+</ul>
+<p class="image-container"><img alt="91ca5b204a0141ed.png" style="width: 327.48px" src="/codelabs/kotlin-android-training-constraint-layout/img/91ca5b204a0141ed.png"></p>
+<p>To add a chain style to a chain, set the  <a href="https://developer.android.com/reference/android/support/constraint/ConstraintLayout#developer-guide" target="_blank"><code translate="no" dir="ltr">layout_constraintHorizontal_chainStyle</code></a> or the <code translate="no" dir="ltr">layout_constraintVertical_chainStyle</code> attribute for the head of the chain. You can add chain styles in the Layout Editor, which you learn in this task.</p>
+<p>Alternatively, you can add chain styles in the XML code. For example:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">// Horizontal spread chain
+app:layout_constraintHorizontal_chainStyle=&#34;spread&#34;
+
+// Vertical spread inside chain
+app:layout_constraintVertical_chainStyle=&#34;spread_inside&#34;
+
+// Horizontal packed chain
+app:layout_constraintHorizontal_chainStyle=&#34;packed&#34;
+</code></pre>
+<h2 is-upgraded id="step-1:-add-three-text-views-and-create-a-vertical-chain" data-text="Step 1: Add three text views and create a vertical chain">Step 1: Add three text views and create a vertical chain</h2>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">activity_main.xml</code> file in the <strong>Design</strong> tab. Drag three <code translate="no" dir="ltr">TextView</code> views from the <strong>Palette</strong> pane into the design editor. Put all three new text views to the right of the <strong>Box Two</strong> text view, as shown below.</li>
+</ol>
+<p class="image-container"><img alt="36b4f0d7ebb2f39d.png" style="width: 258.26px" src="/codelabs/kotlin-android-training-constraint-layout/img/36b4f0d7ebb2f39d.png"></p>
+<ol type="1" start="2">
+<li>In the <code translate="no" dir="ltr">strings.xml</code> file, add the following string resources for the names of the new text views:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;string name=&#34;box_three&#34;&gt;Box Three&lt;/string&gt;
+&lt;string name=&#34;box_four&#34;&gt;Box Four&lt;/string&gt;
+&lt;string name=&#34;box_five&#34;&gt;Box Five&lt;/string&gt;
+</code></pre>
+<ol type="1" start="3">
+<li>Set the following attributes for the new text views:</li>
+</ol>
+<table class="vertical-rules">
+<tr><td colspan="1" rowspan="1"><p><strong>Attribute</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Top text view</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Middle text view</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Bottom text view</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">ID</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">box_three_text</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">box_four_text</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">box_five_text</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">text</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">@string/box_three</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">@string/box_four</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">@string/box_five</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">style</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">@style/whiteBox</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">@style/whiteBox</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">@style/whiteBox</code></p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="1a3dd819d3f985a5.png" style="width: 317.70px" src="/codelabs/kotlin-android-training-constraint-layout/img/1a3dd819d3f985a5.png"></p>
+<p>In the <strong>Component Tree,</strong> you see errors about missing constraints. You fix these errors later.</p>
+<h2 is-upgraded id="step-2:-create-a-chain-and-constrain-it-to-the-height-of-box-two" data-text="Step 2: Create a chain and constrain it to the height of Box Two">Step 2: Create a chain and constrain it to the height of Box Two</h2>
+<ol type="1">
+<li>Select all three new text views, right-click, and select <strong>Chains</strong> &gt; <strong>Create Vertical Chain</strong>.</li>
+</ol>
+<p class="image-container"><img alt="1303fa08f51e3a78.png" style="width: 602.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/1303fa08f51e3a78.png"></p>
+<p>This creates a vertical chain that extends from <strong>Box One</strong> to the end of the layout.</p>
+<ol type="1" start="2">
+<li>Add a constraint that extends from the top of <strong>Box Three</strong> to the top of <strong>Box Two.</strong> This removes the existing top constraint and replaces it with the new constraint. You don&#39;t have to delete the constraint explicitly.</li>
+</ol>
+<p class="image-container"><img alt="8bf2cf78d0557691.png" style="width: 306.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/8bf2cf78d0557691.png"></p>
+<ol type="1" start="3">
+<li>Add a constraint from the bottom of <strong>Box Five</strong> to the bottom of <strong>Box Two</strong>.</li>
+</ol>
+<p class="image-container"><img alt="5b7cff6d32a2526f.png" style="width: 204.20px" src="/codelabs/kotlin-android-training-constraint-layout/img/5b7cff6d32a2526f.png"></p>
+<p>Observe that the three text views are now constrained to the top and bottom of <strong>Box Two</strong>.</p>
+<h2 is-upgraded id="step-3:-add-left-and-right-constraints" data-text="Step 3: Add left and right constraints">Step 3: Add left and right constraints</h2>
+<ol type="1">
+<li>Constrain the left side of <strong>Box Three</strong> to the right side of <strong>Box Two</strong>. Repeat for <strong>Box Four</strong> and <strong>Box Five</strong>, constraining the left side of each to the right side of <strong>Box Two</strong>.</li>
+</ol>
+<p class="image-container"><img alt="f4864c716bf57f67.png" style="width: 380.85px" src="/codelabs/kotlin-android-training-constraint-layout/img/f4864c716bf57f67.png"></p>
+<ol type="1" start="2">
+<li>Constrain the right side of each of the three text views to the right side of the layout.</li>
+</ol>
+<p class="image-container"><img alt="9d69129fc6d543de.png" style="width: 337.72px" src="/codelabs/kotlin-android-training-constraint-layout/img/9d69129fc6d543de.png"></p>
+<ol type="1" start="3">
+<li>For each of the three text views, change the <code translate="no" dir="ltr">layout_width</code> attribute <code translate="no" dir="ltr">0dp</code>, which is equivalent to changing the constraint type to <strong>Match Constraints</strong>.</li>
+</ol>
+<p class="image-container"><img alt="fa084fcb1c6cc47d.png" style="width: 300.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/fa084fcb1c6cc47d.png"></p>
+<h2 is-upgraded id="step-4:-add-margin" data-text="Step 4: Add margin">Step 4: Add margin</h2>
+<p>Use the <strong>Attributes</strong> pane to set <strong>Layout_margin</strong> attributes on the three text views to add spacing between them.</p>
+<ol type="1">
+<li>For <strong>Box Three</strong>, use <code translate="no" dir="ltr">@dimen/margin_wide</code> for the <strong>start</strong> and <strong>end</strong> margins. Remove the other margins.</li>
+<li>For <strong>Box Four</strong>, use <code translate="no" dir="ltr">@dimen/margin_wide</code> for the <strong>start</strong>, <strong>end</strong>, <strong>top</strong>, and <strong>bottom</strong> margins. Remove the other margins.</li>
+<li>For <strong>Box Five</strong>, use <code translate="no" dir="ltr">@dimen/margin_wide</code> for the <strong>start</strong> and <strong>end</strong> margins. Remove the other margins.</li>
+<li>To see how the text views in your app adapt to device-configuration changes, change the orientation of the preview. To do this, click the <strong>Orientation for Preview (O)</strong> icon <img alt="2eb21a66f61c9a94.png" style="width: 43.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/2eb21a66f61c9a94.png"> in the toolbar and select <strong>Landscape</strong>.</li>
+</ol>
+<p class="image-container"><img alt="6d7021d538791e6.png" style="width: 228.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/6d7021d538791e6.png"></p>
+<ol type="1" start="5">
+<li>Run the app. You should see five styled <code translate="no" dir="ltr">TextView</code> views. To see how the constraints behave on a wider screen, try running the app on a larger device or emulator, such as a Nexus 10.</li>
+</ol>
+<table class="vertical-rules">
+<tr><td colspan="1" rowspan="1"><p class="image-container"><img src="/codelabs/kotlin-android-training-constraint-layout/img/6e967fca39323004.png"></p>
+</td><td colspan="1" rowspan="1"><p class="image-container"><img src="/codelabs/kotlin-android-training-constraint-layout/img/e5e9e3765492579b.png"></p>
+</td></tr>
+</table>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add clickHandlers to the text views" duration="0">
+          
+          <p>In this task, you make the ColorMyViews app a little more colorful. First you change the color of all the text views to white. Then you add a click handler that changes the view&#39;s color and the layout background color when the user taps it.</p>
+<ol type="1">
+<li>In <code translate="no" dir="ltr">styles.xml</code>, inside the <code translate="no" dir="ltr">whiteBox</code> style, change the background color to white. The text views will start out white with white font, then change colors when the user taps them.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;item name=&#34;android:background&#34;&gt;@android:color/white&lt;/item&gt;
+</code></pre>
+<ol type="1" start="2">
+<li>In <code translate="no" dir="ltr">MainActivity.kt</code>, after the <code translate="no" dir="ltr">onCreate()</code> function, add a function called <code translate="no" dir="ltr">makeColored()</code>. Use <code translate="no" dir="ltr">View</code> as the function&#39;s parameter. This view is the one whose color will change.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private fun makeColored(view: View) {
+}
+</code></pre>
+<p>Every view has a resource ID. The resource ID is the value assigned to the view&#39;s <code translate="no" dir="ltr">id</code> attribute in the layout file, <code translate="no" dir="ltr">activity_main.xml</code>. To set a color, the code will switch using a <code translate="no" dir="ltr">when</code> statement on the view&#39;s resource ID. It&#39;s a common pattern to use one click-handler function for many views when the click action is the same.</p>
+<ol type="1" start="3">
+<li>Implement the <code translate="no" dir="ltr">makeColored()</code> function: Add a <code translate="no" dir="ltr">when</code> block to check the view&#39;s resource ID. Call the  <a href="https://developer.android.com/reference/android/view/View#setBackgroundColor(int)" target="_blank"><code translate="no" dir="ltr">setBackgroundColor()</code></a> function on each view&#39;s <code translate="no" dir="ltr">id</code> to change the view&#39;s background color using the  <a href="https://developer.android.com/reference/kotlin/android/graphics/Color" target="_blank"><code translate="no" dir="ltr">Color</code></a> class  <a href="https://developer.android.com/reference/kotlin/android/graphics/Color#constants" target="_blank">constants</a>. To fix the code indentation, choose <strong>Code &gt; Reformat code</strong>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private fun makeColored(view: View) {
+   when (view.id) {
+      
+       // Boxes using Color class colors for the background
+       R.id.box_one_text -&gt; view.setBackgroundColor(Color.DKGRAY)
+       R.id.box_two_text -&gt; view.setBackgroundColor(Color.GRAY)
+       R.id.box_three_text -&gt; view.setBackgroundColor(Color.BLUE)
+       R.id.box_four_text -&gt; view.setBackgroundColor(Color.MAGENTA)
+       R.id.box_five_text -&gt; view.setBackgroundColor(Color.BLUE) 
+   }
+}
+</code></pre>
+<ol type="1" start="4">
+<li>To run, the code that you just added needs the <code translate="no" dir="ltr">android.graphics.Color</code> library. If Android Studio hasn&#39;t imported this library automatically, use an <code translate="no" dir="ltr">import</code> statement to add the library before the <code translate="no" dir="ltr">MainActivity</code> class definition.</li>
+<li>If the user taps the background, you want the background color to change to light gray. A light background will reveal the outlines of the views and give the user a hint about where to tap next.</li>
+</ol>
+<p>If the <code translate="no" dir="ltr">id</code> doesn&#39;t match any of the views, you know that the user has tapped the background. At the end of the <code translate="no" dir="ltr">when</code> statement, add an <code translate="no" dir="ltr">else</code> statement. Inside the <code translate="no" dir="ltr">else</code>, set the background color to light gray.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">else -&gt; view.setBackgroundColor(Color.LTGRAY)
+</code></pre>
+<ol type="1" start="6">
+<li>In <code translate="no" dir="ltr">activity_main.xml</code>, add an <code translate="no" dir="ltr">id</code> to the root ConstraintLayout. The Android system needs an identifier in order to change its color.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">android:id=&#34;@+id/constraint_layout&#34;
+</code></pre>
+<ol type="1" start="7">
+<li>In <code translate="no" dir="ltr">MainActivity.kt</code>,  add a function called <code translate="no" dir="ltr">setListeners()</code> to set the click-listener function, <code translate="no" dir="ltr">makeColored()</code>, on each view. Use <code translate="no" dir="ltr">findViewByID</code> to get a reference for each text view, and for the root layout. Assign each reference to a variable.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private fun setListeners() {
+
+   val boxOneText = findViewById&lt;TextView&gt;(R.id.box_one_text)
+   val boxTwoText = findViewById&lt;TextView&gt;(R.id.box_two_text)
+   val boxThreeText = findViewById&lt;TextView&gt;(R.id.box_three_text)
+   val boxFourText = findViewById&lt;TextView&gt;(R.id.box_four_text)
+   val boxFiveText = findViewById&lt;TextView&gt;(R.id.box_five_text)
+
+   val rootConstraintLayout = findViewById&lt;View&gt;(R.id.constraint_layout)
+}
+</code></pre>
+<p>For this code to run, it needs the <code translate="no" dir="ltr">android.widget.TextView</code> library. If Android Studio doesn&#39;t import this library automatically, use an <code translate="no" dir="ltr">import</code> statement to add the library before the <code translate="no" dir="ltr">MainActivity</code> class definition.</p>
+<ol type="1" start="8">
+<li>At the end of <code translate="no" dir="ltr">setListeners()</code> function, define a  <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html" target="_blank"><code translate="no" dir="ltr">List</code></a> of views. Name the list <code translate="no" dir="ltr">clickableViews</code> and add all the view instances to the list.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">fun setListeners() {
+...
+   val clickableViews: List&lt;View&gt; =
+       listOf(boxOneText, boxTwoText, boxThreeText,
+              boxFourText, boxFiveText, rootConstraintLayout)
+  }
+</code></pre>
+<ol type="1" start="9">
+<li>At the end of the <code translate="no" dir="ltr">setListeners()</code> function, set the listener for each view. Use a <code translate="no" dir="ltr">for</code> loop and the  <a href="https://developer.android.com/reference/kotlin/android/view/View#setOnClickListener%28android.view.View.OnClickListener%29" target="_blank"><code translate="no" dir="ltr">setOnClickListener()</code></a> function.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">   for (item in clickableViews) {
+       item.setOnClickListener { makeColored(it) }
+</code></pre>
+<ol type="1" start="10">
+<li>In <code translate="no" dir="ltr">MainActivity.kt</code>, at the end of the <code translate="no" dir="ltr">onCreate()</code> function, make a call to <code translate="no" dir="ltr">setListeners()</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onCreate(savedInstanceState: Bundle?) {
+...
+   setListeners()
+}
+</code></pre>
+<ol type="1" start="11">
+<li>Run your app. At first you see a blank screen. Tap the screen to reveal the boxes and the background. Go ahead and experiment more with more views and colors on your own.</li>
+</ol>
+<table class="vertical-rules">
+<tr><td colspan="1" rowspan="1"><p class="image-container"><img src="/codelabs/kotlin-android-training-constraint-layout/img/bb3e8d9160561b5.png"></p>
+</td><td colspan="1" rowspan="1"><p class="image-container"><img src="/codelabs/kotlin-android-training-constraint-layout/img/7bca2553a09819ae.png"></p>
+</td></tr>
+</table>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Coding challenge" duration="0">
+          
+          <p>Use images instead of colors and text as backgrounds for all the views. The app should reveal the images when the user taps the text views.</p>
+<p><strong>Hint:</strong> Add images to the app as drawable resources. Use the  <a href="https://developer.android.com/reference/kotlin/android/view/View#setBackgroundResource%28kotlin.Int%29" target="_blank"><code translate="no" dir="ltr">setBackgroundResource()</code></a> function to set an image as a view&#39;s background.</p>
+<p>Example:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">R.id.box_two_text -&gt; view.setBackgroundResource(R.drawable.image_two)
+</code></pre>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add a baseline constraint" duration="0">
+          
+          <h2 is-upgraded id="baseline-constraint" data-text="Baseline constraint">Baseline constraint</h2>
+<p>The baseline constraint aligns the baseline of a view&#39;s text with the baseline of another view&#39;s text. Aligning views that contain text can be a challenge, especially if the fonts are differently sized. Baseline constraint does the alignment work for you.</p>
+<p class="image-container"><img alt="7eca5c45d4b85a9.png" style="width: 331.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/7eca5c45d4b85a9.png"></p>
+<p>You can create baseline constraints in the Layout Editor by using the <strong>Edit Baseline**  </strong><img alt="f6f12698635fad5a.png" style="width: 17.12px" src="/codelabs/kotlin-android-training-constraint-layout/img/f6f12698635fad5a.png"><strong> icon, which is displayed below the view when you hold the pointer over it. The equivalent XML code for the baseline constraint has the ConstraintLayout attribute,  </strong><code translate="no" dir="ltr">layout_constraintBaseline_toBaselineOf</code>**<a href="https://developer.android.com/reference/android/support/constraint/ConstraintLayout#developer-guide" target="_blank"></a>.</p>
+<p>Sample XML code for the baseline constraint:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;Button
+   android:id=&#34;@+id/buttonB&#34;
+   ...   
+   android:text=&#34;B&#34;
+   app:layout_constraintBaseline_toBaselineOf=&#34;@+id/buttonA&#34; /&gt;
+</code></pre>
+<p>In this task, you add instructions that tell the user how to use the app. You create two <code translate="no" dir="ltr">TextView</code> views, one for a label and one for the instructions information. The text views have different font sizes, and you align their baselines.</p>
+<h2 is-upgraded id="step-1:-add-a-text-view-for-the-label" data-text="Step 1: Add a text view for the label">Step 1: Add a text view for the label</h2>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">activity_main.xml</code> in <strong>Design</strong> tab and drag a text view from the <strong>Palette</strong> pane into the design editor. Put the text view below <strong>Box Two</strong>. This text view will hold the text that labels the instructions.</li>
+</ol>
+<p class="image-container"><img alt="62f78644afbc91d7.png" style="width: 245.02px" src="/codelabs/kotlin-android-training-constraint-layout/img/62f78644afbc91d7.png"></p>
+<ol type="1" start="2">
+<li>In <code translate="no" dir="ltr">strings.xml</code>, create a string resource for the label <code translate="no" dir="ltr">TextView</code> view.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;string name=&#34;how_to_play&#34;&gt;How to play:&lt;/string&gt;
+</code></pre>
+<ol type="1" start="3">
+<li>Use the <strong>Attributes</strong> pane to set the following attributes to the newly added label <code translate="no" dir="ltr">TextView</code>:</li>
+</ol>
+<table class="vertical-rules">
+<tr><td colspan="1" rowspan="1"><p><strong>Attribute</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Value</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">ID</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">label_text</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">fontFamily</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">roboto</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">text</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">@string/how_to_play</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">textSize</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">24sp</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">textStyle </code></p>
+</td><td colspan="1" rowspan="1"><p><strong>B </strong><em>(bold)</em></p>
+</td></tr>
+</table>
+<ol type="1" start="4">
+<li>Use the <strong>Default Margins </strong><img alt="17b81722b8328eb8.png" style="width: 115.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/17b81722b8328eb8.png"> icon in the toolbar to set the default margins to <code translate="no" dir="ltr">16dp</code>.</li>
+<li>Constrain the <code translate="no" dir="ltr">label_text</code> view&#39;s left side to the layout&#39;s parent element.</li>
+</ol>
+<p class="image-container"><img alt="11b15ee4e3931b5d.png" style="width: 385.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/11b15ee4e3931b5d.png"></p>
+<ol type="1" start="6">
+<li>In the <code translate="no" dir="ltr">activity_main.xml</code> file, the Layout Editor adds the <strong><code translate="no" dir="ltr">layout_marginStart</code></strong> attribute with a hard-coded value of <code translate="no" dir="ltr">16dp</code>. Replace <code translate="no" dir="ltr">16dp</code> with <strong><code translate="no" dir="ltr">@dimen/margin_wide</code></strong>. The XML code now looks similar to this:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;TextView
+   android:id=&#34;@+id/label_text&#34;
+   android:layout_width=&#34;wrap_content&#34;
+   android:layout_height=&#34;wrap_content&#34;
+   android:layout_marginStart=&#34;@dimen/margin_wide&#34;
+   android:fontFamily=&#34;@font/roboto&#34;
+   android:text=&#34;@string/how_to_play&#34;
+   android:textSize=&#34;24sp&#34;
+   android:textStyle=&#34;bold&#34;
+   app:layout_constraintStart_toStartOf=&#34;parent&#34;
+   tools:layout_editor_absoluteY=&#34;287dp&#34;/&gt; &lt;!--Designtime attribute--&gt;
+</code></pre>
+<h2 is-upgraded id="design-time-attributes" data-text="Design-time attributes">Design-time attributes</h2>
+<p>Design-time attributes are used and applied only during the layout design, not at runtime. When you run the app, the design-time attributes are ignored.</p>
+<p>Design-time attributes are prefixed with the <code translate="no" dir="ltr">tools</code> namespace, for example, <strong><code translate="no" dir="ltr">tools:layout_editor_absoluteY</code></strong> in the generated code snippet shown above. This line of code is added because you haven&#39;t yet added a vertical constraint.</p>
+<p>All views in a <code translate="no" dir="ltr">ConstraintLayout</code> need to be constrained horizontally and vertically, or else the views jump to an edge of the parent when you run the app. This is why the Layout Editor adds <code translate="no" dir="ltr">tools:layout_editor_absoluteX</code> if the view is not horizontally constrained. Layout Editor gives the design-time attribute the value of the view&#39;s current position in the layout, to keep the views in place during design. You can safely ignore these <code translate="no" dir="ltr">tools</code> attributes, because Android Studio removes them after you create the constraints.</p>
+<p>Using design-time attributes, you can also add sample preview data to a text view or image view from within the Layout Editor.</p>
+<p>Try experimenting with sample data:</p>
+<ol type="1">
+<li>Add a new text view to your layout.</li>
+<li>In the design editor, hold the pointer over the new view. The <strong>constraint_layout</strong> icon  <img alt="97b2fcbc53f10ad.png" style="width: 25.49px" src="/codelabs/kotlin-android-training-constraint-layout/img/97b2fcbc53f10ad.png"> appears below the view. Click the icon to display the <strong>Design-time View Attributes</strong> drop-down menu, as shown below:</li>
+</ol>
+<p class="image-container"><img alt="376eb751498a02fa.png" style="width: 278.89px" src="/codelabs/kotlin-android-training-constraint-layout/img/376eb751498a02fa.png"></p>
+<ol type="1" start="3">
+<li>Select a type of the sample data from the drop-down list. For example, if you set text sample data to <strong>date/mmddyy,</strong> today&#39;s date is displayed in the design.</li>
+<li>Delete the text view that you just created.</li>
+</ol>
+<h2 is-upgraded id="step-2:-add-a-text-view-for-the-info-text" data-text="Step 2: Add a text view for the info text">Step 2: Add a text view for the info text</h2>
+<ol type="1">
+<li>Drag another text view from the <strong>Palette</strong> pane into the design editor. Place the view next to and below the <code translate="no" dir="ltr">label_text</code> text view, as shown below. This new text view is for the help info that the user will see. Make sure that the new view is vertically offset from the <code translate="no" dir="ltr">label_text</code> view, so that you can see what happens when you create the baseline constraint.</li>
+</ol>
+<p class="image-container"><img alt="66b4a60b6eeeb2e.png" style="width: 269.03px" src="/codelabs/kotlin-android-training-constraint-layout/img/66b4a60b6eeeb2e.png"></p>
+<ol type="1" start="2">
+<li>In <code translate="no" dir="ltr">strings.xml</code>, create a string resource for the new text view.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;string name=&#34;tap_the_boxes_and_buttons&#34;&gt;Tap the screen and buttons.&lt;/string&gt;
+</code></pre>
+<ol type="1" start="3">
+<li>Use the <strong>Attributes</strong> pane to set the following attributes to the new text view:</li>
+</ol>
+<table class="vertical-rules">
+<tr><td colspan="1" rowspan="1"><p><strong>Attribute</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Value</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">ID</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">info_text</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">layout_width</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">0dp</code> (which is equivalent to <code translate="no" dir="ltr">match_constraint</code>)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">fontFamily</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">roboto</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">text</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">@string/tap_the_boxes_and_buttons</code></p>
+</td></tr>
+</table>
+<ol type="1" start="4">
+<li>Constrain the right side of the <code translate="no" dir="ltr">info_text</code> to the right edge of the parent element. Constrain the left side of the <code translate="no" dir="ltr">info_text</code> to the right (end) of the <code translate="no" dir="ltr">label_text</code>.</li>
+</ol>
+<p class="image-container"><img alt="5908c9afe0a23155.png" style="width: 370.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/5908c9afe0a23155.png"></p>
+<h2 is-upgraded id="step-3:-align-the-baselines-of-the-two-text-views" data-text="Step 3: Align the baselines of the two text views">Step 3: Align the baselines of the two text views</h2>
+<ol type="1">
+<li>Click the <code translate="no" dir="ltr">label_text</code>. The <strong>Edit Baseline</strong> icon  <img alt="709b485353dff1c.png" style="width: 24.01px" src="/codelabs/kotlin-android-training-constraint-layout/img/709b485353dff1c.png"> appears below the view. Click the  <img alt="709b485353dff1c.png" style="width: 23.04px" src="/codelabs/kotlin-android-training-constraint-layout/img/709b485353dff1c.png"> icon. Alternatively, you can also right-click, and select <strong>Show Baseline</strong>. (The view might jump to a new location in your layout.)</li>
+<li>Hold the pointer over the label text view until the green baseline blinks, as shown below.</li>
+</ol>
+<p class="image-container"><img alt="571f9a663bfad4a1.gif" style="width: 228.00px" src="/codelabs/kotlin-android-training-constraint-layout/img/571f9a663bfad4a1.gif"></p>
+<ol type="1" start="3">
+<li>Click the green baseline and drag it. Connect the baseline to the bottom of the green blinking baseline on the info text view.</li>
+</ol>
+<p class="image-container"><img alt="558b0f909c5027de.gif" style="width: 512.11px" src="/codelabs/kotlin-android-training-constraint-layout/img/558b0f909c5027de.gif"></p>
+<aside class="special"><p><strong>Tip</strong></p>
+<p>To delete all the constraints that are set on a view:</p>
+<ol type="1">
+<li>In the <strong>Design</strong> tab, click on the view.</li>
+<li>Click the <strong>Delete Constraints</strong> icon  <img alt="2c96caa3df2fa84b.png" style="width: 17.08px" src="/codelabs/kotlin-android-training-constraint-layout/img/2c96caa3df2fa84b.png"> that appears below the view.</li>
+</ol>
+<p>To delete a particular constraint:</p>
+<ol type="1">
+<li>Hold the pointer over the constraint handle for the constraint you want to delete. The constraint handle (the dot) turns red. <img alt="b20946f6c04bac7.png" style="width: 122.59px" src="/codelabs/kotlin-android-training-constraint-layout/img/b20946f6c04bac7.png"></li>
+<li>Click the red constraint handle.</li>
+</ol>
+</aside>
+<h2 is-upgraded id="step-4:-add-vertical-constraints-to-the-two-text-views" data-text="Step 4: Add vertical constraints to the two text views">Step 4: Add vertical constraints to the two text views</h2>
+<p>Without vertical constraints, views go to the top of the screen (vertical 0) at runtime. Adding vertical constraints will keep the two text views in place when you run the app.</p>
+<ol type="1">
+<li>Constrain the bottom of the <code translate="no" dir="ltr">info_text</code> to the bottom of the layout.</li>
+<li>Attach the top of the <code translate="no" dir="ltr">info_text</code> to the bottom of the <code translate="no" dir="ltr">box_two_text</code>.</li>
+</ol>
+<p class="image-container"><img alt="1c09c80b2b582950.gif" style="width: 426.11px" src="/codelabs/kotlin-android-training-constraint-layout/img/1c09c80b2b582950.gif"></p>
+<p class="image-container"><img alt="f916a97af843795e.png" style="width: 196.63px" src="/codelabs/kotlin-android-training-constraint-layout/img/f916a97af843795e.png"></p>
+<p>Try moving the <code translate="no" dir="ltr">info_text</code> view up or down. Notice that the <code translate="no" dir="ltr">label_text</code> view follows, and stays aligned at the baseline.</p>
+<ol type="1" start="3">
+<li>In the view inspector, change the vertical bias of the <code translate="no" dir="ltr">info_text</code> view to <code translate="no" dir="ltr">0</code>. This keeps the text views closer to the top constrained view, <strong>Box Two</strong>. (If the view inspector isn&#39;t visible in the <strong>Attributes</strong> pane when you click on the view in the design editor, close and reopen Android Studio.)</li>
+<li>The generated XML code should look similar to this:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;TextView
+   android:id=&#34;@+id/label_text&#34;
+   android:layout_width=&#34;wrap_content&#34;
+   android:layout_height=&#34;wrap_content&#34;
+   android:layout_marginStart=&#34;@dimen/margin_wide&#34;
+   android:text=&#34;@string/how_to_play&#34;
+   android:textSize=&#34;24sp&#34;
+   android:textStyle=&#34;bold&#34;
+   app:layout_constraintBaseline_toBaselineOf=&#34;@+id/info_text&#34;
+   app:layout_constraintStart_toStartOf=&#34;parent&#34; /&gt;
+
+&lt;TextView
+   android:id=&#34;@+id/info_text&#34;
+   android:layout_width=&#34;0dp&#34;
+   android:layout_height=&#34;wrap_content&#34;
+   android:layout_marginStart=&#34;@dimen/margin_wide&#34;
+   android:layout_marginTop=&#34;@dimen/margin_wide&#34;
+   android:layout_marginEnd=&#34;@dimen/margin_wide&#34;
+   android:layout_marginBottom=&#34;@dimen/margin_wide&#34;
+   android:text=&#34;@string/tap_the_boxes_and_buttons&#34;
+   app:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+   app:layout_constraintEnd_toEndOf=&#34;parent&#34;
+   app:layout_constraintHorizontal_bias=&#34;0.0&#34;
+   app:layout_constraintStart_toEndOf=&#34;@+id/label_text&#34;
+   app:layout_constraintTop_toBottomOf=&#34;@+id/box_two_text&#34;
+   app:layout_constraintVertical_bias=&#34;0.0&#34; /&gt;
+</code></pre>
+<ol type="1" start="5">
+<li>Run your app. Your screen should look similar to the screenshot below.</li>
+</ol>
+<p class="image-container"><img alt="c830e0f0756d60e4.png" style="width: 270.51px" src="/codelabs/kotlin-android-training-constraint-layout/img/c830e0f0756d60e4.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add a chain of buttons" duration="0">
+          
+          <p>In this task, you add three <code translate="no" dir="ltr">Button</code> views and chain them together.</p>
+<h2 is-upgraded id="step-1:-add-three-buttons" data-text="Step 1: Add three buttons">Step 1: Add three buttons</h2>
+<ol type="1">
+<li>Open the <code translate="no" dir="ltr">activity_main.xml</code> file in the <strong>Design</strong> tab. Drag three buttons from the <strong>Palette</strong> pane onto the bottom of the layout.</li>
+</ol>
+<p class="image-container"><img alt="bab7448e6c1002b2.png" style="width: 252.75px" src="/codelabs/kotlin-android-training-constraint-layout/img/bab7448e6c1002b2.png"></p>
+<ol type="1" start="2">
+<li>In the <code translate="no" dir="ltr">strings.xml</code> file, add the following string resources for the <code translate="no" dir="ltr">Button</code> views:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;string name=&#34;button_red&#34;&gt;RED&lt;/string&gt;
+&lt;string name=&#34;button_yellow&#34;&gt;YELLOW&lt;/string&gt;
+&lt;string name=&#34;button_green&#34;&gt;GREEN&lt;/string&gt;
+</code></pre>
+<ol type="1" start="3">
+<li>Set the following attributes to the button views:</li>
+</ol>
+<table class="vertical-rules">
+<tr><td colspan="1" rowspan="1"><p><strong>Attribute</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Left button</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Middle button</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Right button</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">ID</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">red_button</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">yellow_button</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">green_button</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">text</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">@string/button_red</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">@string/button_yellow</code></p>
+</td><td colspan="1" rowspan="1"><p><code translate="no" dir="ltr">@string/button_green</code></p>
+</td></tr>
+</table>
+<ol type="1" start="4">
+<li>Align the button labels vertically with each other. To do this, constrain the baselines of <code translate="no" dir="ltr">red_button</code> and <code translate="no" dir="ltr">green_button</code> to the baseline of the <code translate="no" dir="ltr">yellow_button</code>. (To add a baseline constraint to a view, click on the view and use the <strong>Edit Baseline</strong> icon  <img alt="709b485353dff1c.png" style="width: 24.01px" src="/codelabs/kotlin-android-training-constraint-layout/img/709b485353dff1c.png"> that appears below the view.)</li>
+</ol>
+<p class="image-container"><img alt="d1eb49ba1e3780c6.png" style="width: 328.49px" src="/codelabs/kotlin-android-training-constraint-layout/img/d1eb49ba1e3780c6.png"></p>
+<aside class="special"><p><strong>Tip:</strong> Baseline constraint and the bottom constraint are mutually exclusive, so you can&#39;t create both for the same view. If you add a bottom constraint and then a baseline constraint, the Layout Editor removes the bottom constraint.</p>
+</aside>
+<h2 is-upgraded id="step-2:-create-a-horizontal-chain-and-constrain-it" data-text="Step 2: Create a horizontal chain and constrain it">Step 2: Create a horizontal chain and constrain it</h2>
+<ol type="1">
+<li>In the design editor or in the <strong>Component Tree</strong> pane select all three button views and right-click. Select <strong>Chains &gt; Create Horizontal chain</strong>.</li>
+</ol>
+<p class="image-container"><img alt="4363bc92b42fe56e.png" style="width: 458.22px" src="/codelabs/kotlin-android-training-constraint-layout/img/4363bc92b42fe56e.png"></p>
+<ol type="1" start="2">
+<li>Use the view inspector to set right and left margins of <code translate="no" dir="ltr">16dp</code> for the <code translate="no" dir="ltr">yellow_button</code>, if these margins aren&#39;t already set.</li>
+</ol>
+<p class="image-container"><img alt="200745aa601766db.png" style="width: 221.25px" src="/codelabs/kotlin-android-training-constraint-layout/img/200745aa601766db.png"></p>
+<ol type="1" start="3">
+<li>Using the view inspector, set the left margin of the <code translate="no" dir="ltr">red_button</code> to <code translate="no" dir="ltr">16dp</code>. Set the right margin of the <code translate="no" dir="ltr">green_button</code> to <code translate="no" dir="ltr">16dp</code>.</li>
+<li>Constrain the top of the <code translate="no" dir="ltr">yellow_button</code> to the bottom of the <code translate="no" dir="ltr">info_text</code>.</li>
+<li>Constrain the bottom of the <code translate="no" dir="ltr">yellow_button</code> to the bottom of the layout.</li>
+</ol>
+<p class="image-container"><img alt="af1db48f24e2bcc2.png" style="width: 245.92px" src="/codelabs/kotlin-android-training-constraint-layout/img/af1db48f24e2bcc2.png"></p>
+<ol type="1" start="6">
+<li>Change the vertical bias of the <code translate="no" dir="ltr">yellow_button</code> to <code translate="no" dir="ltr">100</code> (<code translate="no" dir="ltr">1.0</code> in the XML), to drop down the buttons to the bottom of the layout.</li>
+<li>Test your layout for different devices and orientations. The layout may not work for all devices and orientations, but should work for most of them.</li>
+</ol>
+<p>The generated XML code for the <code translate="no" dir="ltr">Button</code> views will be similar to the following:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;Button
+   android:id=&#34;@+id/red_button&#34;
+   android:layout_width=&#34;wrap_content&#34;
+   android:layout_height=&#34;wrap_content&#34;
+   android:layout_marginStart=&#34;@dimen/margin_wide&#34;
+   android:text=&#34;@string/button_red&#34;
+   android:visibility=&#34;visible&#34;
+   app:layout_constraintBaseline_toBaselineOf=&#34;@+id/yellow_button&#34;
+   app:layout_constraintEnd_toStartOf=&#34;@+id/yellow_button&#34;
+   app:layout_constraintHorizontal_bias=&#34;0.5&#34;
+   app:layout_constraintStart_toStartOf=&#34;parent&#34; /&gt;
+
+&lt;Button
+   android:id=&#34;@+id/yellow_button&#34;
+   android:layout_width=&#34;wrap_content&#34;
+   android:layout_height=&#34;wrap_content&#34;
+   android:layout_marginStart=&#34;@dimen/margin_wide&#34;
+   android:layout_marginTop=&#34;@dimen/margin_wide&#34;
+   android:layout_marginBottom=&#34;@dimen/margin_wide&#34;
+   android:text=&#34;@string/button_yellow&#34;
+   android:visibility=&#34;visible&#34;
+   app:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+   app:layout_constraintEnd_toStartOf=&#34;@+id/green_button&#34;
+   app:layout_constraintHorizontal_bias=&#34;0.5&#34;
+   app:layout_constraintStart_toEndOf=&#34;@+id/red_button&#34;
+   app:layout_constraintTop_toBottomOf=&#34;@+id/info_text&#34;
+   app:layout_constraintVertical_bias=&#34;1.0&#34; /&gt;
+
+&lt;Button
+   android:id=&#34;@+id/green_button&#34;
+   android:layout_width=&#34;wrap_content&#34;
+   android:layout_height=&#34;wrap_content&#34;
+   android:layout_marginEnd=&#34;16dp&#34;
+   android:text=&#34;@string/button_green&#34;
+   app:layout_constraintBaseline_toBaselineOf=&#34;@+id/yellow_button&#34;
+   app:layout_constraintEnd_toEndOf=&#34;parent&#34;
+   app:layout_constraintHorizontal_bias=&#34;0.5&#34;
+   app:layout_constraintStart_toEndOf=&#34;@+id/yellow_button&#34; /&gt;
+</code></pre>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add click handlers to the buttons" duration="0">
+          
+          <p>In this task, you add a click handler to each <code translate="no" dir="ltr">Button</code> view. The click handler changes the color of the <code translate="no" dir="ltr">TextView</code> views.</p>
+<ol type="1">
+<li>Add the following colors to the <code translate="no" dir="ltr">res/values/colors.xml</code> file:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;color name=&#34;my_green&#34;&gt;#12C700&lt;/color&gt;
+&lt;color name=&#34;my_red&#34;&gt;#E54304&lt;/color&gt;
+&lt;color name=&#34;my_yellow&#34;&gt;#FFC107&lt;/color&gt;
+</code></pre>
+<ol type="1" start="2">
+<li>In <code translate="no" dir="ltr">MainActivity.kt</code>, use <code translate="no" dir="ltr">findViewById</code> to get references for the button views. To do this, put the following code inside the <code translate="no" dir="ltr">setListeners()</code> click-handler function, above the <code translate="no" dir="ltr">clickableViews</code> declaration:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val redButton = findViewById&lt;Button&gt;(R.id.red_button)
+val greenButton = findViewById&lt;Button&gt;(R.id.green_button)
+val yellowButton = findViewById&lt;Button&gt;(R.id.yellow_button)
+</code></pre>
+<ol type="1" start="3">
+<li>Inside <code translate="no" dir="ltr">setListeners()</code>, add the references of the <code translate="no" dir="ltr">Button</code> views to the list of clickable views.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private fun setListeners() {
+   ...
+   val clickableViews: List&lt;View&gt; =
+       listOf(boxOneText, boxTwoText, boxThreeText,
+boxFourText, boxFiveText, rootConstraintLayout,
+redButton, greenButton, yellowButton
+)
+   ... 
+}
+</code></pre>
+<ol type="1" start="4">
+<li>Inside the <code translate="no" dir="ltr">makeColored()</code> function, add code to change the text views&#39; colors when the user taps the buttons. Use the  <a href="https://developer.android.com/reference/kotlin/android/view/View#setBackgroundResource%28kotlin.Int%29" target="_blank"><code translate="no" dir="ltr">setBackgroundResource()</code></a> function to set a custom color, defined in the resources as a view&#39;s background. Use the  <a href="https://developer.android.com/reference/android/view/View#setBackgroundColor(int)" target="_blank"><code translate="no" dir="ltr">setBackgroundColor()</code></a>function to set predefined colors as view&#39;s background Add the new code above the <code translate="no" dir="ltr">else</code> statement, as shown:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private fun makeColored(view: View) {
+   when (view.id) {
+
+      ...
+
+       // Boxes using custom colors for background
+       R.id.red_button -&gt; box_three_text.setBackgroundResource(R.color.my_red)
+       R.id.yellow_button -&gt; box_four_text.setBackgroundResource(R.color.my_yellow)
+       R.id.green_button -&gt; box_five_text.setBackgroundResource(R.color.my_green)
+
+       else -&gt; view.setBackgroundColor(Color.LTGRAY)
+   }
+}
+</code></pre>
+<ol type="1" start="5">
+<li>Run your final app. Click on the text views and the buttons. Your screen will look something like this.</li>
+</ol>
+<p class="image-container"><img alt="e98f4018d3b033a.png" style="width: 193.84px" src="/codelabs/kotlin-android-training-constraint-layout/img/e98f4018d3b033a.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Coding challenge" duration="0">
+          
+          <p>Remove the text and buttons from your app and fill the entire layout with color boxes (<code translate="no" dir="ltr">TextView</code> views). Your app should toggle or change the colors when the user taps on the screen.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Solution code" duration="0">
+          
+          <p>Android Studio project:  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/ColorMyViews" target="_blank">ColorMyViews</a></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Summary" duration="0">
+          
+          <ul>
+<li>A  <a href="https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html" target="_blank"><code translate="no" dir="ltr">ConstraintLayout</code></a> is a  <a href="http://developer.android.com/reference/android/view/ViewGroup.html" target="_blank"><code translate="no" dir="ltr">ViewGroup</code></a> that allows you to position and size the layout&#39;s child views in a flexible way.</li>
+<li>In a ConstraintLayout, each view&#39;s position is defined using at least one horizontal constraint, and at least one vertical constraint*.*</li>
+<li>A  <a href="https://developer.android.com/training/constraint-layout/#constraints-overview" target="_blank">constraint</a> connects or aligns a view to another UI element, to the parent layout, or to an invisible guideline.</li>
+</ul>
+<p>Advantages of using <code translate="no" dir="ltr">ConstraintLayout</code>:</p>
+<ul>
+<li>You can make a ConstraintLayout responsive to devices that have different screen sizes and resolutions.</li>
+<li><code translate="no" dir="ltr">ConstraintLayout</code> usually results in a flatter view hierarchy than <code translate="no" dir="ltr">LinearLayout</code>.</li>
+<li>The design editor and the view inspector in Android Studio help you add and configure constraints.</li>
+</ul>
+<p>Chains:</p>
+<ul>
+<li>A  <a href="https://developer.android.com/training/constraint-layout/#constrain-chain" target="_blank">chain</a> is a group of views that are linked to each other with bidirectional constraints.</li>
+<li>The views within a chain can be distributed either vertically or horizontally.</li>
+</ul>
+<p>Design-time attributes:</p>
+<ul>
+<li>Design-time attributes are used and applied only during the layout design, not at runtime. When you run the app, design-time attributes are ignored.</li>
+<li>Design-time attributes are prefixed with the <code translate="no" dir="ltr">tools</code> namespace. For example, the <code translate="no" dir="ltr">tools:layout_editor_absoluteY</code> and <code translate="no" dir="ltr">tools:text</code> attributes are design-time attributes.</li>
+</ul>
+<p>Baseline constraints:</p>
+<ul>
+<li>A baseline constraint aligns a view&#39;s text baseline to the text baseline of another view that has text.</li>
+<li>Baseline constraints are helpful when views have different font sizes.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Learn more" duration="0">
+          
+          <p>Udacity course:</p>
+<ul>
+<li><a href="https://www.udacity.com/course/developing-android-apps-with-kotlin--ud9012" target="_blank">Developing Android Apps with Kotlin</a></li>
+</ul>
+<p>Android developer documentation:</p>
+<ul>
+<li><a href="https://developer.android.com/training/constraint-layout/" target="_blank">Build a Responsive UI with ConstraintLayout</a></li>
+<li><a href="https://developer.android.com/reference/android/support/constraint/ConstraintLayout" target="_blank"><code translate="no" dir="ltr">ConstraintLayout</code></a></li>
+<li><a href="https://developer.android.com/studio/write/layout-editor" target="_blank">Build a UI with Layout Editor</a></li>
+<li><a href="https://android-developers.googleblog.com/2017/08/understanding-performance-benefits-of.html" target="_blank">Understanding the performance benefits of ConstraintLayout</a></li>
+</ul>
+<p>Videos:</p>
+<ul>
+<li><a href="https://youtu.be/P9Zstbk0lPw" target="_blank">ConstraintLayout Deep Dive (Android Dev Summit ‘18)</a></li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Homework" duration="0">
+          
+          <p>This section lists possible homework assignments for students who are working through this codelab as part of a course led by an instructor. It&#39;s up to the instructor to do the following:</p>
+<ul>
+<li>Assign homework if required.</li>
+<li>Communicate to students how to submit homework assignments.</li>
+<li>Grade the homework assignments.</li>
+</ul>
+<p>Instructors can use these suggestions as little or as much as they want, and should feel free to assign any other homework they feel is appropriate.</p>
+<p>If you&#39;re working through this codelab on your own, feel free to use these homework assignments to test your knowledge.</p>
+<h2 is-upgraded id="answer-these-questions" data-text="Answer these questions"><strong>Answer these questions</strong></h2>
+<h3 is-upgraded id="question-1" data-text="Question 1"><strong>Question 1</strong></h3>
+<p>In a ConstraintLayout, which of the following choices describes the constraints needed to keep a view in place during runtime?</p>
+<ul>
+<li>Two horizontal constraints.</li>
+<li>One vertical constraint.</li>
+<li>At least one horizontal and one vertical constraint.</li>
+<li>There is no need to constrain the view.</li>
+</ul>
+<h3 is-upgraded id="question-2" data-text="Question 2"><strong>Question 2</strong></h3>
+<p>Which of the following constraint types expands a view only as much as needed to fit its contents?</p>
+<ul>
+<li>Wrap content</li>
+<li>Match constraint</li>
+<li>Fixed constraint</li>
+<li>Baseline constraint</li>
+</ul>
+<h3 is-upgraded id="question-3" data-text="Question 3"><strong>Question 3</strong></h3>
+<p>The baseline constraint aligns the text baseline of a view to the text baseline of another view. True or false?</p>
+<ul>
+<li>True</li>
+<li>False</li>
+</ul>
+<h3 is-upgraded id="question-4" data-text="Question 4"><strong>Question 4</strong></h3>
+<p>The view inspector is available only for views in _______ .</p>
+<ul>
+<li>A <code translate="no" dir="ltr">ConstraintLayout</code></li>
+<li>A <code translate="no" dir="ltr">ConstraintLayout</code> or a <code translate="no" dir="ltr">LinearLayout</code></li>
+<li>Any <code translate="no" dir="ltr">ViewGroup</code></li>
+<li>A <code translate="no" dir="ltr">LinearLayout</code></li>
+</ul>
+<h3 is-upgraded id="question-5" data-text="Question 5"><strong>Question 5</strong></h3>
+<p>A  <a href="https://developer.android.com/training/constraint-layout/#constrain-chain" target="_blank">chain</a> is a group of views that are linked to each other with ________ .</p>
+<ul>
+<li>Top and bottom constraints</li>
+<li>Bidirectional constraints</li>
+<li>Right and left constraints</li>
+<li>Baseline constraints</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Next codelab" duration="0">
+          
+          <p>Start the next lesson:  <a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-data-binding-basics/index.html" target="_blank"><paper-button class="colored" raised>Data binding basics</paper-button></a></p>
+<p>For links to other codelabs in this course, see the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+
+
+        </google-codelab-step>
+      
+    </google-codelab>
+  
+    
+
+    
+  </div>
+
+  
+
+  
+    
+    
+    
+  
+
+  
+  
+</article>
+
+
+
+
+            
+          </devsite-content>
+        </main>
+        <devsite-footer-promos class="devsite-footer">
+          
+            
+
+<nav class="devsite-footer-promos nocontent" aria-label="Promosi">
+  <ul class="devsite-footer-promos-list">
+    
+    <li class="devsite-footer-promo">
+      <a href="//twitter.com/AndroidDev"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer Twitter Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="/_static/android/images/logo-twitter.svg"
+             loading="lazy"
+             alt="Twitter">
+        
+        Twitter
+      </a>
+      <div class="devsite-footer-promo-description">Ikuti @AndroidDev di Twitter</div>
+    </li>
+    
+    <li class="devsite-footer-promo">
+      <a href="//www.youtube.com/user/androiddevelopers"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer YouTube Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="//www.gstatic.com/images/icons/material/product/2x/youtube_48dp.png"
+             loading="lazy"
+             alt="YouTube">
+        
+        YouTube
+      </a>
+      <div class="devsite-footer-promo-description">Lihat Developer Android di YouTube</div>
+    </li>
+    
+  </ul>
+</nav>
+
+          
+        </devsite-footer-promos>
+        <devsite-footer-linkboxes class="devsite-footer">
+          
+            
+<nav class="devsite-footer-linkboxes nocontent" aria-label="Link footer">
+  
+  <ul class="devsite-footer-linkboxes-list">
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Selengkapnya tentang Android</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Android
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/enterprise/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Enterprise
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/security-center/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Keamanan
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//source.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Source
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dukungan</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=190923&amp;template=841312"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Laporkan bug platform
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=192697"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Laporkan bug dokumentasi
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//support.google.com/googleplay/android-developer"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Google Play support
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://google.qualtrics.com/jfe/form/SV_ewWXIoEVLBcyp7f??reserved=1&amp;utm_source=FooterLink&amp;Q_Language=en&amp;utm_medium=own_srch&amp;utm_campaign=developer.android.com&amp;utm_term=0&amp;utm_content=0&amp;productTag=reg&amp;campaignDate=may19&amp;pType=devel&amp;referral_code=gV420370"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Bergabung dengan studi riset
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dokumentasi</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/guide"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Panduan developer
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/design"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Panduan desain
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/reference"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Referensi API
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/samples"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Sampel
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/studio/intro"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 5)"
+            >
+          
+            Android Studio
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+  
+</nav>
+          
+        </devsite-footer-linkboxes>
+        <devsite-footer-utility class="devsite-footer">
+          
+            
+
+<div class="devsite-footer-utility nocontent">
+  
+  
+  <nav class="devsite-footer-sites" aria-label="Situs Google Developers lain">
+    <a href="https://developers.google.com/"
+       class="devsite-footer-sites-logo-link gc-analytics-event"
+       data-category="Site-Wide Custom Events"
+       data-label="Footer Google Developers Link">
+      <img class="devsite-footer-sites-logo"
+           src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup-developers.svg"
+           loading="lazy"
+           alt="Google Developers">
+    </a>
+    <ul class="devsite-footer-sites-list">
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.android.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Android Link"
+         
+         >
+          Android
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.chrome.com/home"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Chrome Link"
+         
+         >
+          Chrome
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//firebase.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Firebase Link"
+         
+         >
+          Firebase
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//cloud.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Google Cloud Platform Link"
+         
+         >
+          Google Cloud Platform
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developers.google.com/products/"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer All products Link"
+         
+         >
+          Semua produk
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  
+
+  
+  <nav class="devsite-footer-utility-links" aria-label="Link utilitas">
+    
+    <ul class="devsite-footer-utility-list">
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="//policies.google.com/privacy"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Privacy link"
+         >
+          Privasi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/license"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer License link"
+         >
+          Lisensi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/distribute/marketing-tools/brand-guidelines"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Brand guidelines link"
+         >
+          Pedoman brand
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 devsite-footer-utility-button">
+        
+        <span class="devsite-footer-utility-description">Dapatkan berita dan tips melalui email</span>
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/updates"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Subscribe link"
+         >
+          Berlangganan
+        </a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+  </nav>
+</div>
+          
+        </devsite-footer-utility>
+        <devsite-panel></devsite-panel>
+      </section></section>
+    <devsite-sitemask></devsite-sitemask>
+    
+<devsite-snackbar 
+                  ></devsite-snackbar>
+
+    <devsite-tooltip ></devsite-tooltip>
+    <devsite-heading-link></devsite-heading-link>
+    <devsite-analytics enable-analytics-iframe>
+      
+        <script type="application/json" analytics>[{"gaid": "UA-5831155-1", "dimensions": {"dimension11": false, "dimension5": "id", "dimension3": false, "dimension6": "en", "dimension1": "Signed In", "dimension4": "Developer Android"}, "metrics": {"ratings_value": "metric1", "ratings_count": "metric2"}}]</script>
+<script type="application/json" gtm>{"parameters": {"freeTrialEligibleUser": "False", "internalUser": "False", "language": {"machineTranslated": "False", "requested": "id", "served": "en"}, "pageType": "codelab", "projectName": "Developer Android", "signedIn": "True", "tenant": "android", "recommendations": {"sourcePage": "", "sourceType": 0, "sourceRank": 0, "sourceIdenticalDescriptions": 0, "sourceTitleWords": 0, "sourceDescriptionWords": 0, "experiment": ""}}, "tags": ["GTM-KMSWPCJ"]}</script>
+      
+    </devsite-analytics>
+    
+      <devsite-badger></devsite-badger>
+    
+    
+<android-fully-clickable target=".fully-clickable" watch="devsite-content"></android-fully-clickable>
+    <script nonce="BvqLKAUypKNi7bdrreS2Bz1/z7DDNM">
+  
+  (function(d,e,v,s,i,t,E){d['GoogleDevelopersObject']=i;
+    t=e.createElement(v);t.async=1;t.src=s;E=e.getElementsByTagName(v)[0];
+    E.parentNode.insertBefore(t,E);})(window, document, 'script',
+    'https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/js/app_loader.js', '[3,"id",null,"/js/devsite_app_module.js","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android","https://android-dot-devsite-v2-prod.appspot.com",1,null,["/_pwa/android/manifest.json","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/images/video-placeholder.svg","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg","https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap"],1,null,[1,6,8,12,14,17,21,25,40,50,63,70,75,76,80,87,88,91,92,93,97,98,100,101,102,103,104,105,107,108,111,112,113,115,117,118,120,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,138,147,148],"AIzaSyAP-jjEJBzmIyKR4F-3XITp8yM9T1gEEI8","AIzaSyB6xiKGDR5O3Ak2okS4rLkauxGUG7XP0hg"]')
+  
+</script>
+    <devsite-a11y-announce></devsite-a11y-announce>
+  </body>
+</html>

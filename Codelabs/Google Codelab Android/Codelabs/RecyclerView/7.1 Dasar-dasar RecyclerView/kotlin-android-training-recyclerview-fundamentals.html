@@ -1,0 +1,2172 @@
+<!doctype html>
+<html 
+      lang="id"
+      dir="ltr">
+  <head>
+    <meta name="google-signin-client-id" content="721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com">
+    <meta name="google-signin-scope"
+          content="profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award">
+    <meta property="og:site_name" content="Android Developers">
+    <meta property="og:type" content="website"><meta name="robots" content="noindex"><meta name="theme-color" content="#3ddc84"><meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/_pwa/android/manifest.json"
+          crossorigin="use-credentials">
+    <link rel="preconnect" href="//www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="//apis.google.com" crossorigin>
+    <link rel="preconnect" href="//www.google-analytics.com" crossorigin><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap">
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Material+Icons&display=block"><link rel="stylesheet" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/css/app.css">
+      <link rel="shortcut icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/touchicon-180.png"><link rel="canonical" href="https://developer.android.com/codelabs/kotlin-android-training-recyclerview-fundamentals?hl=id"><link rel="search" type="application/opensearchdescription+xml"
+            title="Android Developers" href="https://developer.android.com/s/opensearch.xml">
+      
+
+<title>Android Kotlin Fundamentals: RecyclerView fundamentals</title>
+
+<meta property="og:title" content="Android Kotlin Fundamentals: RecyclerView fundamentals"><meta name="description" content="Learn how to use a RecyclerView in your Android Kotlin app to efficiently display lists of items.">
+  <meta property="og:description" content="Learn how to use a RecyclerView in your Android Kotlin app to efficiently display lists of items."><meta property="og:url" content="https://developer.android.com/codelabs/kotlin-android-training-recyclerview-fundamentals?hl=id"><meta property="og:image" content="https://developer.android.com/images/social/android-developers.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675"><meta property="og:locale" content="en"><meta name="twitter:card" content="summary_large_image">
+  <meta name="xsrf_token" content="EEcFGunJSW2ns18aUpvMkiwwJCpCHB6P6MN2FKNI8CU6MTYyNzQ4MjMwNjM1NTEzMw">
+  
+
+  <meta name="session_expiry" content="1627483460">
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    <meta name="original_source" content="https://docs.google.com/document/d/1VyCC6ilaFKEhwpmVHSpqxUtlDl32JHzq48Ra8J9a_RM/edit" />
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+  
+
+    </head>
+  <body class="devsite-full-width-page"
+        template="codelab"
+        theme="android-theme"
+        type="codelab"
+        
+        layout="full"
+        
+        
+        pending>
+    <devsite-progress type="indeterminate" id="app-progress"></devsite-progress>
+  
+    <section class="devsite-wrapper"><devsite-header>
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="devsite-header--inner nocontent">
+  <div class="devsite-top-logo-row-wrapper-wrapper">
+    <div class="devsite-top-logo-row-wrapper">
+      <div class="devsite-top-logo-row">
+        <button type="button" id="devsite-hamburger-menu"
+          class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+          data-category="Site-Wide Custom Events"
+          data-label="Navigation menu button"
+          visually-hidden
+          aria-label="Open menu">
+        </button>
+        <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo"
+       alt="Android Developers">
+
+</a>
+
+
+
+  
+  
+  <span class="devsite-product-name">
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+  </span>
+
+</div>
+        <div class="devsite-top-logo-row-middle">
+          <div class="devsite-header-upper-tabs">
+            
+              
+              
+  <devsite-tabs class="upper-tabs">
+
+    <nav class="devsite-tabs-wrapper" aria-label="Tab atas">
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/about"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="platform"
+   track-metadata-eventdetail="https://developer.android.com/about"
+   track-metadata-position="nav - platform"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Platform"
+   >
+  Platform
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/studio"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="android studio"
+   track-metadata-eventdetail="https://developer.android.com/studio"
+   track-metadata-position="nav - android studio"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Android Studio"
+   >
+  Android Studio
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/distribute"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="google play"
+   track-metadata-eventdetail="https://developer.android.com/distribute"
+   track-metadata-position="nav - google play"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Google Play"
+   >
+  Google Play
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/jetpack"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="jetpack"
+   track-metadata-eventdetail="https://developer.android.com/jetpack"
+   track-metadata-position="nav - jetpack"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Jetpack"
+   >
+  Jetpack
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/kotlin"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="kotlin"
+   track-metadata-eventdetail="https://developer.android.com/kotlin"
+   track-metadata-position="nav - kotlin"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Kotlin"
+   >
+  Kotlin
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/docs"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="dokumen"
+   track-metadata-eventdetail="https://developer.android.com/docs"
+   track-metadata-position="nav - dokumen"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Dokumen"
+   >
+  Dokumen
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/news"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="berita"
+   track-metadata-eventdetail="https://developer.android.com/news"
+   track-metadata-position="nav - berita"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Berita"
+   >
+  Berita
+</a>
+
+          </tab>
+        
+      
+    </nav>
+
+  </devsite-tabs>
+
+            
+           </div>
+          
+<devsite-search
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    enable-signin
+    enable-search
+    enable-suggestions
+      enable-query-completion
+    
+    project-name="Developer Android"
+    tenant-name="Android Developers"
+    
+    
+    
+    
+    
+    role="combobox">
+  <form class="devsite-search-form" action="https://developer.android.com/s/results" method="GET">
+    <div class="devsite-search-container">
+      <div class="devsite-searchbox">
+        <input
+          aria-activedescendant=""
+          aria-autocomplete="list"
+          
+          aria-label="Penelusuran"
+          aria-haspopup="false"
+          aria-multiline="false"
+          aria-label="Kotak penelusuran"
+          autocomplete="off"
+          class="devsite-search-field devsite-search-query"
+          name="q"
+          
+          placeholder="Penelusuran"
+          role="searchbox"
+          type="text"
+          value=""
+          >
+        <div class="devsite-search-image material-icons" aria-hidden="true"></div>
+      </div>
+      <button type="button"
+              search-open
+              class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+              
+              aria-label="Buka penelusuran"></button>
+    </div>
+  </form>
+  <button type="button"
+          search-close
+          class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+          
+          aria-label="Tutup penelusuran"></button>
+</devsite-search>
+
+        </div>
+
+        
+
+        
+
+        
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+
+        
+
+        
+          
+          
+          <devsite-user signed-in
+                        
+                        
+                          enable-profiles
+                        
+                        
+                          
+                        id="devsite-user"></devsite-user>
+           
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="devsite-collapsible-section
+    
+      devsite-header-no-lower-tabs
+    ">
+    <div class="devsite-header-background">
+      
+        
+      
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+  
+</devsite-header>
+      <devsite-book-nav scrollbars hidden>
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="devsite-book-nav devsite-nav nocontent"
+     aria-label="Menu samping">
+  <div class="devsite-mobile-header">
+    <button type="button"
+            id="devsite-close-nav"
+            class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+            data-category="Site-Wide Custom Events"
+            data-label="Close navigation"
+            aria-label="Close navigation">
+    </button>
+    <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+
+</a>
+
+
+  
+      <span class="devsite-product-name">
+        
+        
+        <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+      </span>
+    
+
+</div>
+  </div>
+
+  <div class="devsite-book-nav-wrapper">
+    <div class="devsite-mobile-nav-top">
+      
+        <ul class="devsite-nav-list">
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/about"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Platform"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="platform">
+  
+    <span class="devsite-nav-text" tooltip >
+      Platform
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/studio"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Android Studio"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="androidStudio">
+  
+    <span class="devsite-nav-text" tooltip >
+      Android Studio
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/distribute"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Google Play"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="googlePlay">
+  
+    <span class="devsite-nav-text" tooltip >
+      Google Play
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/jetpack"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Jetpack"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="jetpack">
+  
+    <span class="devsite-nav-text" tooltip >
+      Jetpack
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/kotlin"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Kotlin"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="kotlin">
+  
+    <span class="devsite-nav-text" tooltip >
+      Kotlin
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/docs"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Dokumen"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="dokumen">
+  
+    <span class="devsite-nav-text" tooltip >
+      Dokumen
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/news"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Berita"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="berita">
+  
+    <span class="devsite-nav-text" tooltip >
+      Berita
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+          
+          
+        </ul>
+      
+    </div>
+    
+  </div>
+</nav>
+        
+      </devsite-book-nav>
+      <section id="gc-wrapper">
+        <main role="main" class="devsite-main-content"
+            
+            >
+          
+          <devsite-toc class="devsite-nav"
+                       role="navigation"
+                       aria-label="Daftar isi"
+            disabled></devsite-toc>
+          <devsite-content>
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="devsite-article"><style>
+      body {
+        transition: opacity ease-in 0.2s;
+      }
+
+      body[unresolved] {
+        opacity: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+      </style>
+  
+  
+  
+
+  <div class="devsite-article-meta nocontent" role="navigation">
+    
+    
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+  <a href="https://developer.android.com/"
+      
+        class="devsite-breadcrumb-link gc-analytics-event"
+      
+        data-category="Site-Wide Custom Events"
+      
+        data-label="Breadcrumbs"
+      
+        data-value="1"
+      
+        track-type="globalNav"
+      
+        track-name="breadcrumb"
+      
+        track-metadata-position="1"
+      
+        track-metadata-eventdetail="Developer Android"
+      
+    >
+    
+        Developer Android
+      
+  </a>
+  
+    
+  </li>
+  
+</ul>
+    
+  </div>
+  
+  
+    <h1 class="devsite-page-title">Android Kotlin Fundamentals: RecyclerView fundamentals</h1><devsite-bookmark></devsite-bookmark>
+  
+
+  <devsite-toc class="devsite-nav" devsite-toc-embedded
+               disabled>
+  </devsite-toc>
+
+  
+
+  <div class="devsite-article-body clearfix
+    ">
+
+    
+      
+    <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+    <google-codelab codelab-gaid="UA-81734179-1"
+                    doc-id="1VyCC6ilaFKEhwpmVHSpqxUtlDl32JHzq48Ra8J9a_RM"
+                    id="kotlin-android-training-recyclerview-fundamentals"
+                    title="Android Kotlin Fundamentals: RecyclerView fundamentals"
+                    environment="web"
+                    category="android,kotlin"
+                    feedback-link="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/issues/new?assignees=&amp;labels=&amp;template=android-kotlin-fundamentals.md&amp;title=Android&#43;Kotlin&#43;Fundamentals&#43;codelab%3A&#43;"
+                    >
+      
+        <google-codelab-step label="Welcome" duration="0">
+          
+            <google-codelab-about codelab-title="Android Kotlin Fundamentals: RecyclerView fundamentals"
+                                  authors="Google Developers Training team"
+                                  >
+            </google-codelab-about>
+          
+          <p>This codelab is part of the Android Kotlin Fundamentals course. You&#39;ll get the most value out of this course if you work through the codelabs in sequence. All the course codelabs are listed on the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+<h2 is-upgraded id="introduction" data-text="Introduction">Introduction</h2>
+<p>This codelab teaches you how to use a <code translate="no" dir="ltr">RecyclerView</code> to display lists of items. Building on the concepts learned in the sleep-tracker app from the previous series of codelabs, you learn a better and more versatile way to display data. Your new app will update the sleep-tracker to use a <code translate="no" dir="ltr">RecyclerView</code> with a recommended architecture.</p>
+<h2 is-upgraded id="what-you-should-already-know" data-text="What you should already know">What you should already know</h2>
+<p>You should be familiar with:</p>
+<ul>
+<li>Building a basic user interface (UI) using an activity, fragments, and views.</li>
+<li>Navigating between fragments, and using <code translate="no" dir="ltr">safeArgs</code> to pass data between fragments.</li>
+<li>Using view models, transformations, and <code translate="no" dir="ltr">LiveData</code> and their observers.</li>
+<li>Creating a <code translate="no" dir="ltr">Room</code> database, creating a DAO, and defining entities.</li>
+<li>Using coroutines for database tasks and other long-running tasks.</li>
+</ul>
+<h2 class="checklist" is-upgraded id="what-youll-learn" data-text="What you'll learn">What you'll learn</h2>
+<ul class="checklist">
+<li>How to use a <code translate="no" dir="ltr">RecyclerView</code> with an <code translate="no" dir="ltr">Adapter</code> and a <code translate="no" dir="ltr">ViewHolder</code> to display a list of items.</li>
+</ul>
+<h2 is-upgraded id="what-youll-do" data-text="What you'll do">What you'll do</h2>
+<ul>
+<li>Change the TrackMySleepQuality app from the previous lesson to use a <code translate="no" dir="ltr">RecyclerView</code> to display sleep-quality data.</li>
+</ul>
+<aside class="warning"><p><strong>Important:</strong> The starter app for this codelab provides layouts, resources, and utilities that are not part of the final TrackMySleepQuality app from the previous codelab. Use the provided starter code to work through this codelab.</p>
+</aside>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="App overview" duration="0">
+          
+          <aside class="special"><p><strong>Note:</strong> If you worked through the previous codelab, you&#39;ll find the starter app for this codelab very familiar. The starter app displays sleep-night data in a scrolling text view like the app you built in the previous codelab. However, the starter app for this codelab includes additional assets and utilities to save you a lot of work not directly relevant for implementing a <code translate="no" dir="ltr">Recyclerview</code>. Make sure to download and use the starter app for this lesson.</p>
+</aside>
+<p>In this codelab, you build the <code translate="no" dir="ltr">RecyclerView</code> portion of an app that tracks sleep quality. The app uses a <code translate="no" dir="ltr">Room</code> database to store sleep data over time.</p>
+<p>The starter sleep-tracker app has two screens, represented by fragments, as shown in the figure below.</p>
+<p class="image-container"><img alt="e28eb795b6812ee4.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-recyclerview-fundamentals/img/e28eb795b6812ee4.png"></p>
+<p>The first screen, shown on the left, has buttons to start and stop tracking. This screen also shows all the user&#39;s sleep data. The <strong>Clear</strong> button permanently deletes all the data that the app has collected for the user.  The second screen, shown on the right, is for selecting a sleep-quality rating.</p>
+<p>This  app uses a simplified architecture with a UI controller, <code translate="no" dir="ltr">ViewModel</code>, and <code translate="no" dir="ltr">LiveData</code>. The app also uses a <code translate="no" dir="ltr">Room</code> database to make sleep data persistent.</p>
+<p class="image-container"><img alt="49f975f1e5fe689.png" style="width: 257.60px" src="/codelabs/kotlin-android-training-recyclerview-fundamentals/img/49f975f1e5fe689.png"></p>
+<p>The list of sleep nights displayed in the first screen is functional, but not pretty. The app uses a complex formatter to create text strings for the text view and numbers for the quality. Also, this design is a bit complex which decreases our scalability. After you fix all these problems in this codelab, the final app has the same functionality as the original app but the improved main screen is easier to read:</p>
+<p class="image-container"><img alt="76d78f63f88c3c86.png" style="width: 206.50px" src="/codelabs/kotlin-android-training-recyclerview-fundamentals/img/76d78f63f88c3c86.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Concept: RecyclerView" duration="0">
+          
+          <p>Displaying a list or grid of data is one of the most common UI tasks in Android. Lists vary from simple to very complex. A list of text views might show simple data, such as a shopping list. A complex list, such as an annotated list of vacation destinations, might show the user many details inside a scrolling grid with headers.</p>
+<p>To support all these use cases, Android provides the <code translate="no" dir="ltr">RecyclerView</code> widget.</p>
+<p class="image-container"><img alt="643a2240444361ad.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-recyclerview-fundamentals/img/643a2240444361ad.png"></p>
+<p>The greatest benefit of <code translate="no" dir="ltr">RecyclerView</code> is that it is very efficient for large lists:</p>
+<ul>
+<li>By default, <code translate="no" dir="ltr">RecyclerView</code> only does work to process or draw items that are currently visible on the screen. For example, if your list has a thousand elements but only 10 elements are visible, <code translate="no" dir="ltr">RecyclerView</code> does only enough work to draw 10 items on the screen. When the user scrolls, <code translate="no" dir="ltr">RecyclerView</code> figures out what new items should be on the screen and does just enough work to display those items.</li>
+<li>When an item scrolls off the screen, the item&#39;s views are recycled. That means the item is filled with new content as it scrolls onto the screen. This <code translate="no" dir="ltr">RecyclerView</code> behavior saves a lot of processing time and helps lists scroll smoothly.</li>
+<li>When an item changes, instead of redrawing the entire list, <code translate="no" dir="ltr">RecyclerView</code> can update that one item. This is a huge efficiency gain when displaying long lists of complex items!</li>
+</ul>
+<p>In the sequence shown below, you can see that one view has been filled with data, <code translate="no" dir="ltr">ABC</code>. After that view scrolls off the screen, <code translate="no" dir="ltr">RecyclerView</code> reuses the view for new data, <code translate="no" dir="ltr">XYZ</code>.</p>
+<p class="image-container"><img alt="dcf4599789b9c2a1.png" style="width: 429.50px" src="/codelabs/kotlin-android-training-recyclerview-fundamentals/img/dcf4599789b9c2a1.png"></p>
+<h2 is-upgraded id="the-adapter-pattern" data-text="The adapter pattern">The adapter pattern</h2>
+<p>If you ever travel between countries that use different electric sockets, you probably know how you can plug your devices into foreign outlets by using an adapter. The adapter lets you convert one type of plug to another, which is really converting one interface into another.</p>
+<p>The  <a href="https://en.wikipedia.org/wiki/Adapter_pattern" target="_blank">adapter pattern</a> in software engineering uses a similar concept. This pattern allows the API of one class to be used as another API. <code translate="no" dir="ltr">RecyclerView</code> uses an adapter to transform app data into something the <code translate="no" dir="ltr">RecyclerView</code> can display, without changing how the app stores and processes the data. For the sleep-tracker app, you build an adapter that adapts data from the <code translate="no" dir="ltr">Room</code> database into something that <code translate="no" dir="ltr">RecyclerView</code> knows how to display, without changing the <code translate="no" dir="ltr">ViewModel</code>.</p>
+<h2 is-upgraded id="implementing-a-recyclerview" data-text="Implementing a RecyclerView">Implementing a RecyclerView</h2>
+<p class="image-container"><img alt="4e9c18b463f00bf7.png" style="width: 419.50px" src="/codelabs/kotlin-android-training-recyclerview-fundamentals/img/4e9c18b463f00bf7.png"></p>
+<p>To display your data in a <code translate="no" dir="ltr">RecyclerView</code>, you need the following parts:</p>
+<ul>
+<li>Data to display.</li>
+<li>A  <a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView" target="_blank"><code translate="no" dir="ltr">RecyclerView</code></a> instance defined in your layout file, to act as the container for the views.</li>
+<li>A layout for one item of data. If all the list items look the same, you can use the same layout for all of them, but that is not mandatory. The item layout has to be created separately from the fragment&#39;s layout, so that one item view at a time can be created and filled with data.</li>
+<li>A layout manager. The layout manager handles the organization (the layout) of UI components in a view.</li>
+<li>A view holder. The view holder extends the <code translate="no" dir="ltr">ViewHolder</code> class. It contains the view information for displaying one item from the item&#39;s layout. View holders also add information that <code translate="no" dir="ltr">RecyclerView</code> uses to efficiently move views around the screen.</li>
+<li>An adapter. The adapter connects your data to the <code translate="no" dir="ltr">RecyclerView</code>. It adapts the data so that it can be displayed in a <code translate="no" dir="ltr">ViewHolder</code>. A <code translate="no" dir="ltr">RecyclerView</code> uses the adapter to figure out how to display the data on the screen.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Implement RecyclerView and an Adapter" duration="0">
+          
+          <p>In this task, you add a <code translate="no" dir="ltr">RecyclerView</code> to your layout file and set up an <code translate="no" dir="ltr">Adapter</code> to expose sleep data to the <code translate="no" dir="ltr">RecyclerView</code>.</p>
+<h2 is-upgraded id="step-1:-add-recyclerview-with-layoutmanager" data-text="Step 1: Add RecyclerView with LayoutManager">Step 1: Add RecyclerView with LayoutManager</h2>
+<p>In this step, you replace the <code translate="no" dir="ltr">ScrollView</code> with a <code translate="no" dir="ltr">RecyclerView</code> in the <code translate="no" dir="ltr">fragment_sleep_tracker.xml</code> file.</p>
+<ol type="1">
+<li>Download the  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-starter-apps/tree/master/RecyclerViewFundamentals-Starter" target="_blank">RecyclerViewFundamentals-Starter</a> app from GitHub.</li>
+<li>Build and run the app. Notice how the data is displayed as simple text.</li>
+<li>Open the <code translate="no" dir="ltr">fragment_sleep_tracker.xml</code> layout file in the <strong>Design</strong> tab in Android Studio.</li>
+<li>In the <strong>Component Tree</strong> pane, delete the <code translate="no" dir="ltr">ScrollView</code>. This action also deletes the <code translate="no" dir="ltr">TextView</code> that&#39;s inside the <code translate="no" dir="ltr">ScrollView</code>.</li>
+<li>In the <strong>Palette</strong> pane, scroll through the list of component types on the left to find <strong>Containers</strong>, then select it.</li>
+<li>Drag a <code translate="no" dir="ltr">RecyclerView</code> from the <strong>Palette</strong> pane to the <strong>Component Tree</strong> pane. Place the <code translate="no" dir="ltr">RecyclerView</code> inside the <code translate="no" dir="ltr">ConstraintLayout</code>.</li>
+</ol>
+<p class="image-container"><img alt="8c6cfd99d4237c7d.png" style="width: 453.50px" src="/codelabs/kotlin-android-training-recyclerview-fundamentals/img/8c6cfd99d4237c7d.png"></p>
+<ol type="1" start="7">
+<li>If a dialog opens asking whether you want to add a dependency, click <strong>OK</strong> to let Android Studio add the <code translate="no" dir="ltr">recyclerview</code> dependency to your Gradle file. It may take a few seconds, and then your app syncs.</li>
+</ol>
+<p class="image-container"><img alt="828133c3a2314dc7.png" style="width: 392.00px" src="/codelabs/kotlin-android-training-recyclerview-fundamentals/img/828133c3a2314dc7.png"></p>
+<ol type="1" start="8">
+<li>Open the module <code translate="no" dir="ltr">build.gradle</code> file, scroll to the end, and take note of the new dependency, which looks similar to the code below:</li>
+</ol>
+<pre translate="no" dir="ltr">implementation &#39;androidx.recyclerview:recyclerview:1.0.0&#39;
+</pre>
+<ol type="1" start="9">
+<li>Switch back to <code translate="no" dir="ltr">fragment_sleep_tracker.xml</code>.</li>
+<li>In the <strong>Code</strong> tab, look for the <code translate="no" dir="ltr">RecyclerView</code> code shown below:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;androidx.recyclerview.widget.RecyclerView
+   android:layout_width=&#34;match_parent&#34;
+   android:layout_height=&#34;match_parent&#34; /&gt;
+</code></pre>
+<ol type="1" start="11">
+<li>Give the <code translate="no" dir="ltr">RecyclerView</code> an <code translate="no" dir="ltr">id</code> of <code translate="no" dir="ltr">sleep_list</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">android:id=&#34;@+id/sleep_list&#34;
+</code></pre>
+<ol type="1" start="12">
+<li>Position the <code translate="no" dir="ltr">RecyclerView</code> to take up the remaining portion of the screen inside the <code translate="no" dir="ltr">ConstraintLayout</code>. To do this, constrain the top of the <code translate="no" dir="ltr">RecyclerView</code> to the <strong>Start</strong> button, the bottom to the <strong>Clear</strong> button, and each side to the parent. Set the layout width and height to 0 dp in the Layout Editor or in XML, using the following code:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">    android:layout_width=&#34;0dp&#34;
+    android:layout_height=&#34;0dp&#34;
+    app:layout_constraintBottom_toTopOf=&#34;@+id/clear_button&#34;
+    app:layout_constraintEnd_toEndOf=&#34;parent&#34;
+    app:layout_constraintStart_toStartOf=&#34;parent&#34;
+    app:layout_constraintTop_toBottomOf=&#34;@+id/stop_button&#34;
+</code></pre>
+<ol type="1" start="13">
+<li>Add a layout manager to the <code translate="no" dir="ltr">RecyclerView</code> XML. Every <code translate="no" dir="ltr">RecyclerView</code> needs a layout manager that tells it how to position items in the list. Android provides a <code translate="no" dir="ltr">LinearLayoutManager</code>, which by default lays out the items in a vertical list of full width rows.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">app:layoutManager=&#34;androidx.recyclerview.widget.LinearLayoutManager&#34;
+</code></pre>
+<ol type="1" start="14">
+<li>Switch to the <strong>Design</strong> tab and notice the added constraints have caused the <code translate="no" dir="ltr">RecyclerView</code> to expand to fill the available space.</li>
+</ol>
+<p class="image-container"><img alt="eef3940d35065b97.png" style="width: 188.50px" src="/codelabs/kotlin-android-training-recyclerview-fundamentals/img/eef3940d35065b97.png"></p>
+<h2 is-upgraded id="step-2:-create-the-list-item-layout-and-text-view-holder" data-text="Step 2: Create the list item layout and text view holder">Step 2: Create the list item layout and text view holder</h2>
+<p>The <code translate="no" dir="ltr">RecyclerView</code> is only a container. In this step, you create the layout and infrastructure for the items to be displayed inside the <code translate="no" dir="ltr">RecyclerView</code>.</p>
+<p>To get to a working <code translate="no" dir="ltr">RecyclerView</code> as quickly as possible, at first you use a simplistic list item that only displays the sleep quality as a number. For this, you need a view holder, <code translate="no" dir="ltr">TextItemViewHolder</code>. You also need a view, a <code translate="no" dir="ltr">TextView</code>, for the data. (In a later step, you learn more about view holders and how to lay out all the sleep data.)</p>
+<ol type="1">
+<li>Create a layout file called <code translate="no" dir="ltr">text_item_view.xml</code>. It doesn&#39;t matter what you use as the root element, because you&#39;ll replace the template code.</li>
+<li>In <code translate="no" dir="ltr">text_item_view.xml</code>, delete all the given code.</li>
+<li>Add a <code translate="no" dir="ltr">TextView</code> with <code translate="no" dir="ltr">16dp</code> padding at the start and end, and a text size of <code translate="no" dir="ltr">24sp</code>. Let the width match the parent, and the height wrap the content. Because this view is displayed inside the <code translate="no" dir="ltr">RecyclerView</code>, you don&#39;t have to place the view inside a <code translate="no" dir="ltr">ViewGroup</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+&lt;TextView xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+    android:textSize=&#34;24sp&#34;
+    android:paddingStart=&#34;16dp&#34;
+    android:paddingEnd=&#34;16dp&#34;
+    android:layout_width=&#34;match_parent&#34;       
+    android:layout_height=&#34;wrap_content&#34; /&gt;
+</code></pre>
+<ol type="1" start="4">
+<li>Open <code translate="no" dir="ltr">Util.kt</code>. Scroll to the end and add the definition that&#39;s shown below, which creates the <code translate="no" dir="ltr">TextItemViewHolder</code> class. Put the code at the bottom of the file, after the last closing brace. The code goes in <code translate="no" dir="ltr">Util.kt</code> because this view holder is temporary, and you replace it later.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class TextItemViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView)
+</code></pre>
+<ol type="1" start="5">
+<li>If you are prompted, import <code translate="no" dir="ltr">android.widget.TextView</code> and <code translate="no" dir="ltr">androidx.recyclerview.widget.RecyclerView</code>.</li>
+</ol>
+<h2 is-upgraded id="step-3:-create-sleepnightadapter" data-text="Step 3: Create SleepNightAdapter">Step 3: Create SleepNightAdapter</h2>
+<p>The core task in implementing a <code translate="no" dir="ltr">RecyclerView</code> is creating the adapter.</p>
+<p>You have a simple view holder for the item view, and a layout for each item. With both of these pieces, you can now create an adapter. The adapter creates a view holder and fills it with data for the <code translate="no" dir="ltr">RecyclerView</code> to display.</p>
+<ol type="1">
+<li>In the <code translate="no" dir="ltr">sleeptracker</code> package, create a new Kotlin class called <code translate="no" dir="ltr">SleepNightAdapter</code>.</li>
+<li>Make the <code translate="no" dir="ltr">SleepNightAdapter</code> class extend <code translate="no" dir="ltr">RecyclerView.Adapter</code>. The class is called <code translate="no" dir="ltr">SleepNightAdapter</code> because it adapts a <code translate="no" dir="ltr">SleepNight</code> object into something that <code translate="no" dir="ltr">RecyclerView</code> can use. The adapter needs to know what view holder to use, so pass in <code translate="no" dir="ltr">TextItemViewHolder</code>. Import necessary components when prompted, and then you&#39;ll see an error, because there are mandatory methods to implement.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class SleepNightAdapter: RecyclerView.Adapter&lt;TextItemViewHolder&gt;() {}
+</code></pre>
+<ol type="1" start="3">
+<li>At the top level of <code translate="no" dir="ltr">SleepNightAdapter</code>, create a <code translate="no" dir="ltr">listOf</code> <code translate="no" dir="ltr">SleepNight</code> variable to hold the data.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">var data =  listOf&lt;SleepNight&gt;()
+</code></pre>
+<ol type="1" start="4">
+<li>In <code translate="no" dir="ltr">SleepNightAdapter</code>, override <code translate="no" dir="ltr">getItemCount()</code> to return the size of the list of sleep nights in <code translate="no" dir="ltr">data</code>. The <code translate="no" dir="ltr">RecyclerView</code> needs to know how many items the adapter has for it to display, and it does that by calling <code translate="no" dir="ltr">getItemCount()</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun getItemCount() = data.size
+</code></pre>
+<ol type="1" start="5">
+<li>In <code translate="no" dir="ltr">SleepNightAdapter</code>, override the <code translate="no" dir="ltr">onBindViewHolder()</code> function, as shown below.</li>
+</ol>
+<p>The <code translate="no" dir="ltr">onBindViewHolder()</code>function is called by <code translate="no" dir="ltr">RecyclerView</code> to display the data for one list item at the specified position. So the <code translate="no" dir="ltr">onBindViewHolder()</code> method takes two arguments: a view holder, and a position of the data to bind. For this app, the holder is the <code translate="no" dir="ltr">TextItemViewHolder</code>, and the position is the position in the list.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onBindViewHolder(holder: TextItemViewHolder, position: Int) {
+}
+</code></pre>
+<ol type="1" start="6">
+<li>Inside <code translate="no" dir="ltr">onBindViewHolder()</code>, create a variable for one item at a given position in the data.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr"> val item = data[position]
+</code></pre>
+<ol type="1" start="7">
+<li>The <code translate="no" dir="ltr">ViewHolder</code> you just created has a property called <code translate="no" dir="ltr">textView</code>. Inside <code translate="no" dir="ltr">onBindViewHolder()</code>, set the <code translate="no" dir="ltr">text</code> of the <code translate="no" dir="ltr">textView</code> to the sleep-quality number. This code displays only a list of numbers, but this simple example lets you see how the adapter gets the data into the view holder and onto the screen.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">holder.textView.text = item.sleepQuality.toString()
+</code></pre>
+<ol type="1" start="8">
+<li>In <code translate="no" dir="ltr">SleepNightAdapter</code>, override and implement <code translate="no" dir="ltr">onCreateViewHolder()</code>, which is called when the <code translate="no" dir="ltr">RecyclerView</code> needs a view holder.</li>
+</ol>
+<p>This function takes two parameters and returns a <code translate="no" dir="ltr">ViewHolder</code>. The <code translate="no" dir="ltr">parent</code> parameter, which is the view group that holds the view holder, is always the <code translate="no" dir="ltr">RecyclerView</code>. The <code translate="no" dir="ltr">viewType</code> parameter is used when there are multiple views in the same <code translate="no" dir="ltr">RecyclerView</code>. For example, if you put a list of text views, an image, and a video all in the same <code translate="no" dir="ltr">RecyclerView</code>, the <code translate="no" dir="ltr">onCreateViewHolder()</code> function would need to know what type of view to use.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextItemViewHolder {
+}
+</code></pre>
+<ol type="1" start="9">
+<li>In <code translate="no" dir="ltr">onCreateViewHolder()</code>, create an instance of <code translate="no" dir="ltr">LayoutInflater</code>.</li>
+</ol>
+<p>The layout inflater knows how to create views from XML layouts. The <code translate="no" dir="ltr">context</code> contains information on how to correctly inflate the view. In an adapter for a recycler view, you always pass in the context of the <code translate="no" dir="ltr">parent</code> view group, which is the <code translate="no" dir="ltr">RecyclerView</code>.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val layoutInflater = LayoutInflater.from(parent.context)
+</code></pre>
+<ol type="1" start="10">
+<li>In <code translate="no" dir="ltr">onCreateViewHolder()</code>, create the <code translate="no" dir="ltr">view</code> by asking the <code translate="no" dir="ltr">layoutinflater</code> to inflate it.</li>
+</ol>
+<p>Pass in the XML layout for the view, and the <code translate="no" dir="ltr">parent</code> view group for the view. The third, boolean, argument is <code translate="no" dir="ltr">attachToRoot</code>. This argument needs to be <code translate="no" dir="ltr">false</code>, because <code translate="no" dir="ltr">RecyclerView</code> adds this item to the view hierarchy for you when it&#39;s time.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val view = layoutInflater
+       .inflate(R.layout.text_item_view, parent, false) as TextView
+</code></pre>
+<ol type="1" start="11">
+<li>In <code translate="no" dir="ltr">onCreateViewHolder()</code>, return a <code translate="no" dir="ltr">TextItemViewHolder</code> made with <code translate="no" dir="ltr">view</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">return TextItemViewHolder(view)
+</code></pre>
+<ol type="1" start="12">
+<li>The adapter needs to let the <code translate="no" dir="ltr">RecyclerView</code> know when the <code translate="no" dir="ltr">data</code> has changed, because the <code translate="no" dir="ltr">RecyclerView</code> knows nothing about the data. It only knows about the view holders that the adapter gives to it.</li>
+</ol>
+<p>To tell the <code translate="no" dir="ltr">RecyclerView</code> when the data that it&#39;s displaying has changed, add a custom setter to the <code translate="no" dir="ltr">data</code> variable that&#39;s at the top of the <code translate="no" dir="ltr">SleepNightAdapter</code> class. In the setter, give <code translate="no" dir="ltr">data</code> a new value, then call <code translate="no" dir="ltr">notifyDataSetChanged()</code> to trigger redrawing the list with the new data.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">var data =  listOf&lt;SleepNight&gt;()
+   set(value) {
+       field = value
+       notifyDataSetChanged()
+   }
+</code></pre>
+<aside class="special"><p><strong>Note:</strong> When <code translate="no" dir="ltr">notifyDataSetChanged()</code> is called, the <code translate="no" dir="ltr">RecyclerView</code> redraws the whole list, not just the changed items. This is simple, and it works for now. You improve on this code later in this series of codelabs.</p>
+</aside>
+<h2 is-upgraded id="step-4:-tell-recyclerview-about-the-adapter" data-text="Step 4: Tell RecyclerView about the Adapter">Step 4: Tell RecyclerView about the Adapter</h2>
+<p>The <code translate="no" dir="ltr">RecyclerView</code> needs to know about the adapter to use to get view holders.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">SleepTrackerFragment.kt</code>.</li>
+<li>In <code translate="no" dir="ltr">onCreateview()</code>, create an adapter. Put this code after the creation of the <code translate="no" dir="ltr">ViewModel</code> model, and before the <code translate="no" dir="ltr">return</code> statement.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val adapter = SleepNightAdapter()
+</code></pre>
+<ol type="1" start="3">
+<li>After you get a reference to the binding object, associate the <code translate="no" dir="ltr">adapter</code> with the <code translate="no" dir="ltr">RecyclerView</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">binding.sleepList.adapter = adapter
+</code></pre>
+<ol type="1" start="4">
+<li>Clean and rebuild your project to update the <code translate="no" dir="ltr">binding</code> object.</li>
+</ol>
+<p>If you still see errors around <code translate="no" dir="ltr">binding.sleepList</code> or <code translate="no" dir="ltr">binding.FragmentSleepTrackerBinding</code>, invalidate caches and restart. (Select <strong>File &gt; Invalidate Caches / Restart</strong>.)</p>
+<p>If you run the app now, there are no errors, but you won&#39;t see any data displayed when you tap <strong>Start</strong>, then <strong>Stop</strong>.</p>
+<h2 is-upgraded id="step-5:-get-data-into-the-adapter" data-text="Step 5: Get data into the adapter">Step 5: Get data into the adapter</h2>
+<p>So far you have an adapter, and a way to get data from the adapter into the <code translate="no" dir="ltr">RecyclerView</code>. Now you need to get data into the adapter from the <code translate="no" dir="ltr">ViewModel</code>.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">SleepTrackerViewModel</code>.</li>
+<li>Find the <code translate="no" dir="ltr">nights</code> variable, which stores all the sleep nights, which is the data to display. The <code translate="no" dir="ltr">nights</code> variable is set by calling <code translate="no" dir="ltr">getAllNights()</code> on the database.</li>
+<li>Remove <code translate="no" dir="ltr">private</code> from <code translate="no" dir="ltr">nights</code>, because you will create an observer that needs to access this variable. Your declaration should look like this:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val nights = database.getAllNights()
+</code></pre>
+<ol type="1" start="4">
+<li>In the <code translate="no" dir="ltr">database</code> package, open the <code translate="no" dir="ltr">SleepDatabaseDao</code>.</li>
+<li>Find the <code translate="no" dir="ltr">getAllNights()</code> function. Notice this function returns a list of <code translate="no" dir="ltr">SleepNight</code> values as <code translate="no" dir="ltr">LiveData</code>. This means that the <code translate="no" dir="ltr">nights</code> variable contains <code translate="no" dir="ltr">LiveData</code> that is kept updated by <code translate="no" dir="ltr">Room</code>, and you can observe <code translate="no" dir="ltr">nights</code> to know when it changes.</li>
+<li>Open <code translate="no" dir="ltr">SleepTrackerFragment</code>.</li>
+<li>In <code translate="no" dir="ltr">onCreateView()</code>, after the ViewModel is instantiated and you have its reference,, create an observer on the <code translate="no" dir="ltr">nights</code> variable.</li>
+</ol>
+<p>By supplying the fragment&#39;s <code translate="no" dir="ltr">viewLifecycleOwner</code> as the lifecycle owner, you can make sure this observer is only active when the <code translate="no" dir="ltr">RecyclerView</code> is on the screen.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
+   })
+</code></pre>
+<ol type="1" start="8">
+<li>Inside the observer, whenever you get a non-null value (for <code translate="no" dir="ltr">nights</code>), assign the value to the adapter&#39;s <code translate="no" dir="ltr">data</code>. This is the completed code for the observer and setting the data:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
+   it?.let {
+       adapter.data = it
+   }
+})
+</code></pre>
+<ol type="1" start="9">
+<li>Build and run your code.</li>
+</ol>
+<p>You&#39;ll see the sleep-quality numbers as a list, if your adapter is working. The screenshot on the left shows -1 after you tap <strong>Start</strong>. The screenshot on the right shows the updated sleep-quality number after you tap <strong>Stop</strong> and select a quality rating.</p>
+<p class="image-container"><img alt="89f71f10deda270.png" style="width: 432.50px" src="/codelabs/kotlin-android-training-recyclerview-fundamentals/img/89f71f10deda270.png"></p>
+<h2 is-upgraded id="step-6:-explore-how-view-holders-are-recycled" data-text="Step 6: Explore how view holders are recycled">Step 6: Explore how view holders are recycled</h2>
+<p><code translate="no" dir="ltr">RecyclerView</code> <em>recycles</em> view holders, which means that it reuses them. As a view scrolls off the screen, <code translate="no" dir="ltr">RecyclerView</code> reuses the view for the item that&#39;s about to scroll onto the screen.</p>
+<p>Because these view holders are recycled, make sure <code translate="no" dir="ltr">onBindViewHolder()</code> sets or resets any customizations that previous items might have set on a view holder.</p>
+<p>For example, you could set the text color to red in view holders that hold quality ratings that are less than or equal to 1 and represent poor sleep.</p>
+<ol type="1">
+<li>In the <code translate="no" dir="ltr">SleepNightAdapter</code> class, add the following code at the end of <code translate="no" dir="ltr">onBindViewHolder()</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">if (item.sleepQuality &lt;= 1) {
+   holder.textView.setTextColor(Color.RED) // red
+}
+</code></pre>
+<ol type="1" start="2">
+<li>Run the app.</li>
+<li>Add some low sleep-quality data, and the number is red.</li>
+<li>Add high ratings for sleep quality until you see a red high number on the screen.</li>
+</ol>
+<p>As <code translate="no" dir="ltr">RecyclerView</code> reuses view holders, it eventually reuses one of the red view holders for a high quality rating. The high rating is erroneously displayed in red.</p>
+<p class="image-container"><img alt="b57e7915d6dd3c78.png" style="width: 257.00px" src="/codelabs/kotlin-android-training-recyclerview-fundamentals/img/b57e7915d6dd3c78.png"></p>
+<ol type="1" start="5">
+<li>To fix this, add an <code translate="no" dir="ltr">else</code> statement to set the color to black if the quality is not less than or equal to one.</li>
+</ol>
+<p>With both conditions explicit, the view holder will use the correct text color for each item.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">if (item.sleepQuality &lt;= 1) {
+   holder.textView.setTextColor(Color.RED) // red
+} else {
+   // reset
+   holder.textView.setTextColor(Color.BLACK) // black
+}
+</code></pre>
+<ol type="1" start="6">
+<li>Run the app, and the numbers should always have the correct color.</li>
+</ol>
+<p>Congratulations! You now have a fully functional basic <code translate="no" dir="ltr">RecyclerView</code>.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Create a ViewHolder for all the sleep data" duration="0">
+          
+          <p>In this task, you replace the simple view holder with one that can display more data for a sleep night.</p>
+<p>The simple <code translate="no" dir="ltr">ViewHolder</code> that you added to <code translate="no" dir="ltr">Util.kt</code> just wraps a <code translate="no" dir="ltr">TextView</code> in a <code translate="no" dir="ltr">TextItemViewHolder</code>.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class TextItemViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView)
+</code></pre>
+<p>So why does <code translate="no" dir="ltr">RecyclerView</code> not just use a <code translate="no" dir="ltr">TextView</code> directly? This one line of code provides a lot of functionality. A <code translate="no" dir="ltr">ViewHolder</code> describes an item view and metadata about its place within the <code translate="no" dir="ltr">RecyclerView</code>. <code translate="no" dir="ltr">RecyclerView</code> relies on this functionality to correctly position the view as the list scrolls, and to do interesting things like animate views when items are added or removed in the <code translate="no" dir="ltr">Adapter</code>.</p>
+<p>If <code translate="no" dir="ltr">RecyclerView</code> does need to access the views stored in the <code translate="no" dir="ltr">ViewHolder</code>, it can do so using the view holder&#39;s  <a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.ViewHolder#fields_1" target="_blank"><code translate="no" dir="ltr">itemView</code></a> property. <code translate="no" dir="ltr">RecyclerView</code> uses <code translate="no" dir="ltr">itemView</code> when it&#39;s binding an item to display on the screen, when drawing decorations around a view like a border, and for implementing accessibility.</p>
+<h2 is-upgraded id="step-1:-create-the-item-layout" data-text="Step 1: Create the item layout">Step 1: Create the item layout</h2>
+<p>In this step, you create the layout file for one item. The layout consists of a <code translate="no" dir="ltr">ConstraintLayout</code> with an <code translate="no" dir="ltr">ImageView</code> for the sleep quality, a <code translate="no" dir="ltr">TextView</code> for the sleep length, and a <code translate="no" dir="ltr">TextView</code> for the quality as text. Because you&#39;ve done layouts before, copy and paste the provided XML code.</p>
+<ol type="1">
+<li>Create a new layout resource file and name it <code translate="no" dir="ltr">list_item_sleep_night</code>.</li>
+<li>Replace all the code in the file with the code below. Then familiarize yourself with the layout you just created.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+&lt;androidx.constraintlayout.widget.ConstraintLayout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;
+   xmlns:app=&#34;http://schemas.android.com/apk/res-auto&#34;
+   xmlns:tools=&#34;http://schemas.android.com/tools&#34;
+   android:layout_width=&#34;match_parent&#34;
+   android:layout_height=&#34;wrap_content&#34;&gt;
+
+   &lt;ImageView
+       android:id=&#34;@+id/quality_image&#34;
+       android:layout_width=&#34;@dimen/icon_size&#34;
+       android:layout_height=&#34;60dp&#34;
+       android:layout_marginStart=&#34;16dp&#34;
+       android:layout_marginTop=&#34;8dp&#34;
+       android:layout_marginBottom=&#34;8dp&#34;
+       app:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+       app:layout_constraintStart_toStartOf=&#34;parent&#34;
+       app:layout_constraintTop_toTopOf=&#34;parent&#34;
+       tools:srcCompat=&#34;@drawable/ic_sleep_5&#34; /&gt;
+
+   &lt;TextView
+       android:id=&#34;@+id/sleep_length&#34;
+       android:layout_width=&#34;0dp&#34;
+       android:layout_height=&#34;20dp&#34;
+       android:layout_marginStart=&#34;8dp&#34;
+       android:layout_marginTop=&#34;8dp&#34;
+       android:layout_marginEnd=&#34;16dp&#34;
+       app:layout_constraintEnd_toEndOf=&#34;parent&#34;
+       app:layout_constraintStart_toEndOf=&#34;@+id/quality_image&#34;
+       app:layout_constraintTop_toTopOf=&#34;@+id/quality_image&#34;
+       tools:text=&#34;Wednesday&#34; /&gt;
+
+   &lt;TextView
+       android:id=&#34;@+id/quality_string&#34;
+       android:layout_width=&#34;0dp&#34;
+       android:layout_height=&#34;20dp&#34;
+       android:layout_marginTop=&#34;8dp&#34;
+       app:layout_constraintEnd_toEndOf=&#34;@+id/sleep_length&#34;
+       app:layout_constraintHorizontal_bias=&#34;0.0&#34;
+       app:layout_constraintStart_toStartOf=&#34;@+id/sleep_length&#34;
+       app:layout_constraintTop_toBottomOf=&#34;@+id/sleep_length&#34;
+       tools:text=&#34;Excellent!!!&#34; /&gt;
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;
+</code></pre>
+<ol type="1" start="3">
+<li>Switch to the <strong>Design</strong> tab in Android Studio. In <strong>Design</strong> view, your layout looks like the screenshot on the left below. In <strong>Blueprint</strong> view, it looks like the screenshot on the right.</li>
+</ol>
+<p class="image-container"><img alt="8240174f46c2c380.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-recyclerview-fundamentals/img/8240174f46c2c380.png"></p>
+<h2 is-upgraded id="step-2:-create-viewholder" data-text="Step 2: Create ViewHolder">Step 2: Create ViewHolder</h2>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">SleepNightAdapter.kt</code>.</li>
+<li>Make a class inside the <code translate="no" dir="ltr">SleepNightAdapter</code> called <code translate="no" dir="ltr">ViewHolder</code> and make it extend <code translate="no" dir="ltr">RecyclerView.ViewHolder</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){}
+</code></pre>
+<ol type="1" start="3">
+<li>Inside <code translate="no" dir="ltr">ViewHolder</code>, get references to the views. You need a reference to the views that this <code translate="no" dir="ltr">ViewHolder</code> will update. Every time you bind this <code translate="no" dir="ltr">ViewHolder</code>, you need to access the image and both text views. (You convert this code to use data binding later.)</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val sleepLength: TextView = itemView.findViewById(R.id.sleep_length)
+val quality: TextView = itemView.findViewById(R.id.quality_string)
+val qualityImage: ImageView = itemView.findViewById(R.id.quality_image)
+</code></pre>
+<h2 is-upgraded id="step-3:-use-the-viewholder-in-sleepnightadapter" data-text="Step 3: Use the ViewHolder in SleepNightAdapter">Step 3: Use the ViewHolder in SleepNightAdapter</h2>
+<ol type="1">
+<li>In the <code translate="no" dir="ltr">SleepNightAdapter</code> class signature definition, instead of <code translate="no" dir="ltr">TextItemViewHolder</code>, use the <code translate="no" dir="ltr">SleepNightAdapter.ViewHolder</code> that you just created.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class SleepNightAdapter: RecyclerView.Adapter&lt;SleepNightAdapter.ViewHolder&gt;() {
+</code></pre>
+<p>Update <code translate="no" dir="ltr">onCreateViewHolder()</code>:</p>
+<ol type="1" start="2">
+<li>Change the signature of <code translate="no" dir="ltr">onCreateViewHolder()</code> to return the <code translate="no" dir="ltr">ViewHolder</code>.</li>
+<li>Change the layout inflator to use the correct layout resource, <code translate="no" dir="ltr">list_item_sleep_night</code><em>.</em></li>
+<li>Remove the cast to <code translate="no" dir="ltr">TextView</code>.</li>
+<li>Instead of returning a <code translate="no" dir="ltr">TextItemViewHolder</code>, return a <code translate="no" dir="ltr">ViewHolder</code>.</li>
+</ol>
+<p>Here is the finished updated <code translate="no" dir="ltr">onCreateViewHolder()</code> function:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">    override fun onCreateViewHolder(
+            parent: ViewGroup, viewType: Int): ViewHolder {
+        val layoutInflater = 
+            LayoutInflater.from(parent.context)
+        val view = layoutInflater
+                .inflate(R.layout.list_item_sleep_night, 
+                         parent, false)
+        return ViewHolder(view)
+    }
+</code></pre>
+<p>Update <code translate="no" dir="ltr">onBindViewHolder()</code>:</p>
+<ol type="1" start="6">
+<li>Change the signature of <code translate="no" dir="ltr">onBindViewHolder()</code> so that the <code translate="no" dir="ltr">holder</code> parameter is a <code translate="no" dir="ltr">ViewHolder</code> instead of a <code translate="no" dir="ltr">TextItemViewHolder</code>.</li>
+<li>Inside <code translate="no" dir="ltr">onBindViewHolder()</code>, delete all the code, except for the definition of <code translate="no" dir="ltr">item</code>.</li>
+<li>Define a <code translate="no" dir="ltr">val</code> <code translate="no" dir="ltr">res</code> that holds a reference to the <code translate="no" dir="ltr">resources</code> for this view.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val res = holder.itemView.context.resources
+</code></pre>
+<ol type="1" start="9">
+<li>Set the text of the <code translate="no" dir="ltr">sleepLength</code> text view to the duration. Copy the code below, which calls a formatting function that&#39;s provided with the starter code.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">holder.sleepLength.text = convertDurationToFormatted(item.startTimeMilli, item.endTimeMilli, res)
+</code></pre>
+<ol type="1" start="10">
+<li>This gives an error, because <code translate="no" dir="ltr">convertDurationToFormatted()</code> needs to be defined. Open <code translate="no" dir="ltr">Util.kt</code> and uncomment the code and associated imports for it. (Select <strong>Code &gt; Comment with Line comments</strong>.)</li>
+<li>Back in <code translate="no" dir="ltr">onBindViewHolder()</code>in <code translate="no" dir="ltr">SleepNightAdapter.kt</code>, use <code translate="no" dir="ltr">convertNumericQualityToString()</code> to set the quality.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">holder.quality.text= convertNumericQualityToString(item.sleepQuality, res)
+</code></pre>
+<ol type="1" start="12">
+<li>You may need to manually import these functions.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">import com.example.android.trackmysleepquality.convertDurationToFormatted
+import com.example.android.trackmysleepquality.convertNumericQualityToString
+</code></pre>
+<ol type="1" start="13">
+<li>Immediately after you set the quality, set the correct icon for the quality. The new <code translate="no" dir="ltr">ic_sleep_active</code> icon is provided for you in the starter code.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">holder.qualityImage.setImageResource(when (item.sleepQuality) {
+   0 -&gt; R.drawable.ic_sleep_0
+   1 -&gt; R.drawable.ic_sleep_1
+   2 -&gt; R.drawable.ic_sleep_2
+   3 -&gt; R.drawable.ic_sleep_3
+   4 -&gt; R.drawable.ic_sleep_4
+   5 -&gt; R.drawable.ic_sleep_5
+   else -&gt; R.drawable.ic_sleep_active
+})
+</code></pre>
+<ol type="1" start="14">
+<li>Here is the finished updated <code translate="no" dir="ltr">onBindViewHolder()</code> function, setting all the data for the <code translate="no" dir="ltr">ViewHolder</code>:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = data[position]
+        val res = holder.itemView.context.resources
+        holder.sleepLength.text = convertDurationToFormatted(item.startTimeMilli, item.endTimeMilli, res)
+        holder.quality.text= convertNumericQualityToString(item.sleepQuality, res)
+        holder.qualityImage.setImageResource(when (item.sleepQuality) {
+            0 -&gt; R.drawable.ic_sleep_0
+            1 -&gt; R.drawable.ic_sleep_1
+            2 -&gt; R.drawable.ic_sleep_2
+            3 -&gt; R.drawable.ic_sleep_3
+            4 -&gt; R.drawable.ic_sleep_4
+            5 -&gt; R.drawable.ic_sleep_5
+            else -&gt; R.drawable.ic_sleep_active
+        })
+    }
+</code></pre>
+<ol type="1" start="15">
+<li>Run your app. Your display should look like the screenshot below, showing the sleep-quality icon, along with text for the sleep duration and the sleep quality.</li>
+</ol>
+<p class="image-container"><img alt="d5deef86fa39fbfc.png" style="width: 257.50px" src="/codelabs/kotlin-android-training-recyclerview-fundamentals/img/d5deef86fa39fbfc.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Improve your code" duration="0">
+          
+          <p>Your <code translate="no" dir="ltr">RecyclerView</code> is now complete! You learned how to implement an <code translate="no" dir="ltr">Adapter</code> and a <code translate="no" dir="ltr">ViewHolder</code>, and you put them together to display a list with a <code translate="no" dir="ltr">RecyclerView</code> <code translate="no" dir="ltr">Adapter</code>.</p>
+<p>Your code so far shows the process of creating an adapter and view holder. However, you can improve this code. The code to display and the code to manage view holders is mixed up, and <code translate="no" dir="ltr">onBindViewHolder()</code> knows details about how to update the <code translate="no" dir="ltr">ViewHolder</code>.</p>
+<p>In a production app, you might have multiple view holders, more complex adapters, and multiple developers making changes. You should structure your code so that everything related to a view holder is only in the view holder.</p>
+<h2 is-upgraded id="step-1:-refactor-onbindviewholder" data-text="Step 1: Refactor onBindViewHolder()">Step 1: Refactor onBindViewHolder()</h2>
+<p>In this step, you refactor the code and move all the view holder functionality into the <code translate="no" dir="ltr">ViewHolder</code>. The purpose of this refactoring is not to change how the app looks to the user, but make it easier and safer for developers to work on the code. Fortunately, Android Studio has tools to help.</p>
+<ol type="1">
+<li>In <code translate="no" dir="ltr">SleepNightAdapter.kt</code>, in the function <code translate="no" dir="ltr">onBindViewHolder()</code>, select everything except the statement to declare the variable <code translate="no" dir="ltr">item</code>.</li>
+<li>Right-click, then select <strong>Refactor &gt; Extract &gt; Function</strong>.</li>
+<li>Name the function <code translate="no" dir="ltr">bind</code> and accept the suggested parameters. Click <strong>OK</strong>.</li>
+</ol>
+<p>The <code translate="no" dir="ltr">bind()</code> function is placed below <code translate="no" dir="ltr">onBindViewHolder()</code>.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">    private fun bind(holder: ViewHolder, item: SleepNight) {
+        val res = holder.itemView.context.resources
+        holder.sleepLength.text = convertDurationToFormatted(item.startTimeMilli, item.endTimeMilli, res)
+        holder.quality.text = convertNumericQualityToString(item.sleepQuality, res)
+        holder.qualityImage.setImageResource(when (item.sleepQuality) {
+            0 -&gt; R.drawable.ic_sleep_0
+            1 -&gt; R.drawable.ic_sleep_1
+            2 -&gt; R.drawable.ic_sleep_2
+            3 -&gt; R.drawable.ic_sleep_3
+            4 -&gt; R.drawable.ic_sleep_4
+            5 -&gt; R.drawable.ic_sleep_5
+            else -&gt; R.drawable.ic_sleep_active
+        })
+    }
+</code></pre>
+<ol type="1" start="4">
+<li>Create an  <a href="https://kotlinlang.org/docs/reference/extensions.html" target="_blank">extension function</a> with the following signature:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private fun ViewHolder.bind(item: SleepNight) {...}
+</code></pre>
+<ol type="1" start="5">
+<li>Cut and paste this <code translate="no" dir="ltr">ViewHolder.bind()</code> function into the <code translate="no" dir="ltr">ViewHolder</code> inner class at the bottom of <code translate="no" dir="ltr">SleepNightAdapter.kt</code>.</li>
+<li>Make <code translate="no" dir="ltr">bind()</code> public.</li>
+<li>Import <code translate="no" dir="ltr">bind()</code> into the adapter, if necessary.</li>
+<li>Because it&#39;s now in the <code translate="no" dir="ltr">ViewHolder</code>, you can remove the <code translate="no" dir="ltr">ViewHolder</code> part of the signature. Here is the final code for the <code translate="no" dir="ltr">bind()</code> function in the <code translate="no" dir="ltr">ViewHolder</code> class.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">fun bind(item: SleepNight) {
+   val res = itemView.context.resources
+   sleepLength.text = convertDurationToFormatted(
+           item.startTimeMilli, item.endTimeMilli, res)
+   quality.text = convertNumericQualityToString(
+           item.sleepQuality, res)
+   qualityImage.setImageResource(when (item.sleepQuality) {
+       0 -&gt; R.drawable.ic_sleep_0
+       1 -&gt; R.drawable.ic_sleep_1
+       2 -&gt; R.drawable.ic_sleep_2
+       3 -&gt; R.drawable.ic_sleep_3
+       4 -&gt; R.drawable.ic_sleep_4
+       5 -&gt; R.drawable.ic_sleep_5
+       else -&gt; R.drawable.ic_sleep_active
+   })
+}
+</code></pre>
+<p>Now in <code translate="no" dir="ltr">SleepNightAdapter.kt</code>, the <code translate="no" dir="ltr">onBindViewHolder()</code> function shows an unresolved reference error on <code translate="no" dir="ltr">bind(holder, item)</code>.  This function is now part of the ViewHolder inner class so we need to specify the specific ViewHolder.  This also means we can remove the first argument.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+   val item = data[position]
+   holder.bind(item)
+}
+</code></pre>
+<h2 is-upgraded id="step-2:-refactor-oncreateviewholder" data-text="Step 2: Refactor onCreateViewHolder">Step 2: Refactor onCreateViewHolder</h2>
+<p>The <code translate="no" dir="ltr">onCreateViewHolder()</code> method in the adapter currently inflates the view from the layout resource for the <code translate="no" dir="ltr">ViewHolder</code>. However, inflation has nothing to do with the adapter, and everything to do with the <code translate="no" dir="ltr">ViewHolder</code>. Inflation should happen in the <code translate="no" dir="ltr">ViewHolder</code>.</p>
+<ol type="1">
+<li>In <code translate="no" dir="ltr">onCreateViewHolder()</code>, select all the code in the body of the function.</li>
+<li>Right-click, then select <strong>Refactor &gt; Extract &gt; Function</strong>.</li>
+<li>Name the function <code translate="no" dir="ltr">from</code> and accept the suggested parameters. Click <strong>OK</strong>.</li>
+<li>Put the cursor on the function name <code translate="no" dir="ltr">from</code>. Press <code translate="no" dir="ltr">Alt+Enter</code> (<code translate="no" dir="ltr">Option+Enter</code> on a Mac) to open the intention menu.</li>
+<li>Select <strong>Move to companion object</strong>. The <code translate="no" dir="ltr">from()</code> function needs to be in a companion object so it can be called on the <code translate="no" dir="ltr">ViewHolder</code> class, not called on a <code translate="no" dir="ltr">ViewHolder</code> instance.</li>
+<li>Move the <code translate="no" dir="ltr">companion</code> object into the <code translate="no" dir="ltr">ViewHolder</code> class.</li>
+<li>Make <code translate="no" dir="ltr">from()</code> public.</li>
+<li>In <code translate="no" dir="ltr">onCreateViewHolder()</code>, change the <code translate="no" dir="ltr">return</code> statement to return the result of calling <code translate="no" dir="ltr">from()</code> in the <code translate="no" dir="ltr">ViewHolder</code> class.</li>
+</ol>
+<p>Your completed <code translate="no" dir="ltr">onCreateViewHolder()</code> and <code translate="no" dir="ltr">from()</code> methods should look like the code below, and your code should build and run without errors.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">    override fun onCreateViewHolder(parent: ViewGroup, viewType: 
+Int): ViewHolder {
+        return ViewHolder.from(parent)
+    }
+</code></pre>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">companion object {
+   fun from(parent: ViewGroup): ViewHolder {
+       val layoutInflater = LayoutInflater.from(parent.context)
+       val view = layoutInflater
+               .inflate(R.layout.list_item_sleep_night, parent, false)
+       return ViewHolder(view)
+   }
+}
+</code></pre>
+<ol type="1" start="9">
+<li>Change the signature of the <code translate="no" dir="ltr">ViewHolder</code> class so that the constructor is private. Because <code translate="no" dir="ltr">from()</code> is now a method that returns a new <code translate="no" dir="ltr">ViewHolder</code> instance, there&#39;s no reason for anyone to call the constructor of <code translate="no" dir="ltr">ViewHolder</code> anymore.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView){
+</code></pre>
+<ol type="1" start="10">
+<li>Run the app. Your app should build and run the same as before, which is the desired result after refactoring.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Solution code" duration="0">
+          
+          <p>Android Studio project:  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/RecyclerViewFundamentals" target="_blank">RecyclerViewFundamentals</a></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Summary" duration="0">
+          
+          <ul>
+<li>Displaying a list or grid of data is one of the most common UI tasks in Android. <code translate="no" dir="ltr">RecyclerView</code> is designed to be efficient even when displaying extremely large lists.</li>
+<li><code translate="no" dir="ltr">RecyclerView</code> does only the work necessary to process or draw items that are currently visible on the screen.</li>
+<li>When an item scrolls off the screen, its views are recycled. That means the item is filled with new content that scrolls onto the screen.</li>
+<li>The  <a href="https://en.wikipedia.org/wiki/Adapter_pattern" target="_blank">adapter pattern</a> in software engineering helps an object work together with another API. <code translate="no" dir="ltr">RecyclerView</code> uses an adapter to transform app data into something it can display, without the need for changing how the app stores and processes data.</li>
+</ul>
+<p>To display your data in a <code translate="no" dir="ltr">RecyclerView</code>, you need the following parts:</p>
+<ul>
+<li><strong>RecyclerView</strong> To create an instance of  <a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView" target="_blank"><code translate="no" dir="ltr">RecyclerView</code></a>, define a <code translate="no" dir="ltr">&lt;RecyclerView&gt;</code> element in the layout file.</li>
+<li><strong>LayoutManager</strong> A <code translate="no" dir="ltr">RecyclerView</code> uses a <code translate="no" dir="ltr">LayoutManager</code> to organize the layout of the items in the <code translate="no" dir="ltr">RecyclerView</code>, such as laying them out in a grid or in a linear list.</li>
+</ul>
+<p>In the <code translate="no" dir="ltr">&lt;RecyclerView&gt;</code> in the layout file, set the <code translate="no" dir="ltr">app:layoutManager</code> attribute to the layout manager (such as <code translate="no" dir="ltr">LinearLayoutManager</code> or <code translate="no" dir="ltr">GridLayoutManager</code>).</p>
+<p>You can also set the <code translate="no" dir="ltr">LayoutManager</code> for a <code translate="no" dir="ltr">RecyclerView</code> programmatically. (This technique is covered in a later codelab.)</p>
+<ul>
+<li><strong>Layout for each item</strong> Create a layout for one item of data in an XML layout file.</li>
+<li><strong>Adapter</strong> Create an adapter that prepares the data and how it will be displayed in a <code translate="no" dir="ltr">ViewHolder</code>. Associate the adapter with the <code translate="no" dir="ltr">RecyclerView</code>.</li>
+</ul>
+<p>When <code translate="no" dir="ltr">RecyclerView</code> runs, it will use the adapter to figure out how to display the data on the screen.</p>
+<p>The adapter requires you to implement the following methods: – <code translate="no" dir="ltr">getItemCount()</code> to return the number of items. – <code translate="no" dir="ltr">onCreateViewHolder()</code> to return the <code translate="no" dir="ltr">ViewHolder</code> for an item in the list. – <code translate="no" dir="ltr">onBindViewHolder()</code> to adapt the data to the views for an item in the list.</p>
+<ul>
+<li><strong>ViewHolder</strong> A <code translate="no" dir="ltr">ViewHolder</code> contains the view information for displaying one item from the item&#39;s layout.</li>
+<li>The <code translate="no" dir="ltr">onBindViewHolder()</code> method in the adapter adapts the data to the views. You always override this method. Typically, <code translate="no" dir="ltr">onBindViewHolder()</code> inflates the layout for an item, and puts the data in the views in the layout.</li>
+<li>Because the <code translate="no" dir="ltr">RecyclerView</code> knows nothing about the data, the <code translate="no" dir="ltr">Adapter</code> needs to inform the <code translate="no" dir="ltr">RecyclerView</code> when that data changes. Use <code translate="no" dir="ltr">notifyDataSetChanged()</code>to notify the <code translate="no" dir="ltr">Adapter</code> that the data has changed.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Learn more" duration="0">
+          
+          <p>Udacity course:</p>
+<ul>
+<li><a href="https://www.udacity.com/course/developing-android-apps-with-kotlin--ud9012" target="_blank">Developing Android Apps with Kotlin</a></li>
+</ul>
+<p>Android developer documentation:</p>
+<ul>
+<li><a href="https://developer.android.com/guide/topics/ui/layout/recyclerview" target="_blank">Create a List with RecyclerView</a></li>
+<li><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView" target="_blank"><code translate="no" dir="ltr">RecyclerView</code></a></li>
+<li><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter.html" target="_blank"><code translate="no" dir="ltr">Adapter</code></a></li>
+<li><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.ViewHolder.html" target="_blank"><code translate="no" dir="ltr">RecyclerView.ViewHolder</code></a></li>
+<li>The  <a href="https://en.wikipedia.org/wiki/Adapter_pattern" target="_blank">adapter pattern</a></li>
+<li><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.LayoutManager" target="_blank"><code translate="no" dir="ltr">LayoutManager</code></a></li>
+<li><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/LinearLayoutManager.html" target="_blank"><code translate="no" dir="ltr">LinearLayoutManager</code></a></li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Homework" duration="0">
+          
+          <p>This section lists possible homework assignments for students who are working through this codelab as part of a course led by an instructor. It&#39;s up to the instructor to do the following:</p>
+<ul>
+<li>Assign homework if required.</li>
+<li>Communicate to students how to submit homework assignments.</li>
+<li>Grade the homework assignments.</li>
+</ul>
+<p>Instructors can use these suggestions as little or as much as they want, and should feel free to assign any other homework they feel is appropriate.</p>
+<p>If you&#39;re working through this codelab on your own, feel free to use these homework assignments to test your knowledge.</p>
+<h2 is-upgraded id="answer-these-questions" data-text="Answer these questions"><strong>Answer these questions</strong></h2>
+<h3 is-upgraded id="question-1" data-text="Question 1"><strong>Question 1</strong></h3>
+<p>How does <code translate="no" dir="ltr">RecyclerView</code> display items? Select all that apply.</p>
+<p>▢ Displays items in a list or a grid.</p>
+<p>▢ Scrolls vertically or horizontally.</p>
+<p>▢ Scrolls diagonally on larger devices such as tablets.</p>
+<p>▢ Allows custom layouts when a list or a grid is not enough for the use case.</p>
+<h3 is-upgraded id="question-2" data-text="Question 2"><strong>Question 2</strong></h3>
+<p>What are the benefits of using <code translate="no" dir="ltr">RecyclerView</code>? Select all that apply.</p>
+<p>▢ Efficiently displays large lists.</p>
+<p>▢ Automatically updates the data.</p>
+<p>▢ Minimizes the need for refreshes when an item is updated, deleted, or added to the list.</p>
+<p>▢ Reuses view that scrolls off screen to display the next item that scrolls on screen.</p>
+<h3 is-upgraded id="question-3" data-text="Question 3"><strong>Question 3</strong></h3>
+<p>What are some of the reasons for using adapters? Select all that apply.</p>
+<p>▢ Separation of concerns makes it easier to change and test code.</p>
+<p>▢ <code translate="no" dir="ltr">RecyclerView</code> is agnostic to the data that is being displayed.</p>
+<p>▢ Data processing layers do not have to concern themselves with how data will be displayed.</p>
+<p>▢ The app will run faster.</p>
+<h3 is-upgraded id="question-4" data-text="Question 4"><strong>Question 4</strong></h3>
+<p>Which of the following are true of <code translate="no" dir="ltr">ViewHolder</code>? Select all that apply.</p>
+<p>▢ The <code translate="no" dir="ltr">ViewHolder</code> layout is defined in XML layout files.</p>
+<p>▢ There is one <code translate="no" dir="ltr">ViewHolder</code> for each unit of data in the dataset.</p>
+<p>▢ You can have more than one <code translate="no" dir="ltr">ViewHolder</code> in a <code translate="no" dir="ltr">RecyclerView</code>.</p>
+<p>▢ The <code translate="no" dir="ltr">Adapter</code> binds data to the <code translate="no" dir="ltr">ViewHolder</code>.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Next codelab" duration="0">
+          
+          <p>Start the next lesson:  <a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-diffutil-databinding/" target="_blank"><paper-button class="colored" raised>DiffUtil and data binding with RecyclerView</paper-button></a></p>
+
+
+        </google-codelab-step>
+      
+    </google-codelab>
+  
+    
+
+    
+  </div>
+
+  
+
+  
+    
+    
+    
+  
+
+  
+  
+</article>
+
+
+
+
+            
+          </devsite-content>
+        </main>
+        <devsite-footer-promos class="devsite-footer">
+          
+            
+
+<nav class="devsite-footer-promos nocontent" aria-label="Promosi">
+  <ul class="devsite-footer-promos-list">
+    
+    <li class="devsite-footer-promo">
+      <a href="//twitter.com/AndroidDev"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer Twitter Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="/_static/android/images/logo-twitter.svg"
+             loading="lazy"
+             alt="Twitter">
+        
+        Twitter
+      </a>
+      <div class="devsite-footer-promo-description">Ikuti @AndroidDev di Twitter</div>
+    </li>
+    
+    <li class="devsite-footer-promo">
+      <a href="//www.youtube.com/user/androiddevelopers"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer YouTube Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="//www.gstatic.com/images/icons/material/product/2x/youtube_48dp.png"
+             loading="lazy"
+             alt="YouTube">
+        
+        YouTube
+      </a>
+      <div class="devsite-footer-promo-description">Lihat Developer Android di YouTube</div>
+    </li>
+    
+  </ul>
+</nav>
+
+          
+        </devsite-footer-promos>
+        <devsite-footer-linkboxes class="devsite-footer">
+          
+            
+<nav class="devsite-footer-linkboxes nocontent" aria-label="Link footer">
+  
+  <ul class="devsite-footer-linkboxes-list">
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Selengkapnya tentang Android</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Android
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/enterprise/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Enterprise
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/security-center/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Keamanan
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//source.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Source
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dukungan</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=190923&amp;template=841312"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Laporkan bug platform
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=192697"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Laporkan bug dokumentasi
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//support.google.com/googleplay/android-developer"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Google Play support
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://google.qualtrics.com/jfe/form/SV_ewWXIoEVLBcyp7f??reserved=1&amp;utm_source=FooterLink&amp;Q_Language=en&amp;utm_medium=own_srch&amp;utm_campaign=developer.android.com&amp;utm_term=0&amp;utm_content=0&amp;productTag=reg&amp;campaignDate=may19&amp;pType=devel&amp;referral_code=gV420370"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Bergabung dengan studi riset
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dokumentasi</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/guide"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Panduan developer
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/design"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Panduan desain
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/reference"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Referensi API
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/samples"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Sampel
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/studio/intro"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 5)"
+            >
+          
+            Android Studio
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+  
+</nav>
+          
+        </devsite-footer-linkboxes>
+        <devsite-footer-utility class="devsite-footer">
+          
+            
+
+<div class="devsite-footer-utility nocontent">
+  
+  
+  <nav class="devsite-footer-sites" aria-label="Situs Google Developers lain">
+    <a href="https://developers.google.com/"
+       class="devsite-footer-sites-logo-link gc-analytics-event"
+       data-category="Site-Wide Custom Events"
+       data-label="Footer Google Developers Link">
+      <img class="devsite-footer-sites-logo"
+           src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup-developers.svg"
+           loading="lazy"
+           alt="Google Developers">
+    </a>
+    <ul class="devsite-footer-sites-list">
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.android.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Android Link"
+         
+         >
+          Android
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.chrome.com/home"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Chrome Link"
+         
+         >
+          Chrome
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//firebase.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Firebase Link"
+         
+         >
+          Firebase
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//cloud.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Google Cloud Platform Link"
+         
+         >
+          Google Cloud Platform
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developers.google.com/products/"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer All products Link"
+         
+         >
+          Semua produk
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  
+
+  
+  <nav class="devsite-footer-utility-links" aria-label="Link utilitas">
+    
+    <ul class="devsite-footer-utility-list">
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="//policies.google.com/privacy"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Privacy link"
+         >
+          Privasi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/license"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer License link"
+         >
+          Lisensi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/distribute/marketing-tools/brand-guidelines"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Brand guidelines link"
+         >
+          Pedoman brand
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 devsite-footer-utility-button">
+        
+        <span class="devsite-footer-utility-description">Dapatkan berita dan tips melalui email</span>
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/updates"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Subscribe link"
+         >
+          Berlangganan
+        </a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+  </nav>
+</div>
+          
+        </devsite-footer-utility>
+        <devsite-panel></devsite-panel>
+      </section></section>
+    <devsite-sitemask></devsite-sitemask>
+    
+<devsite-snackbar 
+                  ></devsite-snackbar>
+
+    <devsite-tooltip ></devsite-tooltip>
+    <devsite-heading-link></devsite-heading-link>
+    <devsite-analytics enable-analytics-iframe>
+      
+        <script type="application/json" analytics>[{"gaid": "UA-5831155-1", "dimensions": {"dimension3": false, "dimension5": "id", "dimension4": "Developer Android", "dimension11": false, "dimension1": "Signed In", "dimension6": "en"}, "metrics": {"ratings_count": "metric2", "ratings_value": "metric1"}}]</script>
+<script type="application/json" gtm>{"parameters": {"freeTrialEligibleUser": "False", "internalUser": "False", "language": {"machineTranslated": "False", "requested": "id", "served": "en"}, "pageType": "codelab", "projectName": "Developer Android", "signedIn": "True", "tenant": "android", "recommendations": {"sourcePage": "", "sourceType": 0, "sourceRank": 0, "sourceIdenticalDescriptions": 0, "sourceTitleWords": 0, "sourceDescriptionWords": 0, "experiment": ""}}, "tags": ["GTM-KMSWPCJ"]}</script>
+      
+    </devsite-analytics>
+    
+      <devsite-badger></devsite-badger>
+    
+    
+<android-fully-clickable target=".fully-clickable" watch="devsite-content"></android-fully-clickable>
+    <script nonce="IC/U5TL4cN6f0sqz7dcmtkYqgOHzF6">
+  
+  (function(d,e,v,s,i,t,E){d['GoogleDevelopersObject']=i;
+    t=e.createElement(v);t.async=1;t.src=s;E=e.getElementsByTagName(v)[0];
+    E.parentNode.insertBefore(t,E);})(window, document, 'script',
+    'https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/js/app_loader.js', '[3,"id",null,"/js/devsite_app_module.js","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android","https://android-dot-devsite-v2-prod.appspot.com",1,null,["/_pwa/android/manifest.json","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/images/video-placeholder.svg","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg","https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap"],1,null,[1,6,8,12,14,17,21,25,40,50,63,70,75,76,80,87,88,91,92,93,97,98,100,101,102,103,104,105,107,108,111,112,113,115,116,117,118,120,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,138,147,148],"AIzaSyAP-jjEJBzmIyKR4F-3XITp8yM9T1gEEI8","AIzaSyB6xiKGDR5O3Ak2okS4rLkauxGUG7XP0hg"]')
+  
+</script>
+    <devsite-a11y-announce></devsite-a11y-announce>
+  </body>
+</html>

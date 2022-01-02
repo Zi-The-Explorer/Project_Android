@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/text_header_reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_header_reply"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:layout_editor_absoluteX="184dp"
+        tools:layout_editor_absoluteY="175dp" />
+    <TextView
+        android:id="@+id/text_message_reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_header_reply"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:layout_editor_absoluteX="184dp"
+        tools:layout_editor_absoluteY="175dp" />
+
+    <EditText
+        android:id="@+id/edit_text_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/button_main"
+        android:layout_toStartOf="@id/button_main"
+        android:layout_alignParentBottom="true"
+        android:hint="@string/edit_text_main"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:backgroundTint="@color/sekal_farros_yellow"
+        android:text="@string/send"
+        android:onClick="launchSecondActivity"
+        tools:ignore="UsingOnClickInXml" />
+</RelativeLayout>

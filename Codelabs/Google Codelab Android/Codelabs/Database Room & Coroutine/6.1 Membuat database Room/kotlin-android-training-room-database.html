@@ -1,0 +1,2035 @@
+<!doctype html>
+<html 
+      lang="id"
+      dir="ltr">
+  <head>
+    <meta name="google-signin-client-id" content="721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com">
+    <meta name="google-signin-scope"
+          content="profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award">
+    <meta property="og:site_name" content="Android Developers">
+    <meta property="og:type" content="website"><meta name="theme-color" content="#3ddc84"><meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/_pwa/android/manifest.json"
+          crossorigin="use-credentials">
+    <link rel="preconnect" href="//www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="//apis.google.com" crossorigin>
+    <link rel="preconnect" href="//www.google-analytics.com" crossorigin><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap">
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Material+Icons&display=block"><link rel="stylesheet" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/css/app.css">
+      <link rel="shortcut icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/touchicon-180.png"><link rel="canonical" href="https://developer.android.com/codelabs/kotlin-android-training-room-database?hl=id"><link rel="search" type="application/opensearchdescription+xml"
+            title="Android Developers" href="https://developer.android.com/s/opensearch.xml">
+      
+
+<title>Android Kotlin Fundamentals: Create a Room Database</title>
+
+<meta property="og:title" content="Android Kotlin Fundamentals: Create a Room Database"><meta name="description" content="Learn how to use Room in your Android Kotlin apps. Room is a database library that’s part of Android Jetpack. Room takes care of many of the chores of setting up and configuring a database, and makes it possible for your app to interact with the database using ordinary function calls.">
+  <meta property="og:description" content="Learn how to use Room in your Android Kotlin apps. Room is a database library that’s part of Android Jetpack. Room takes care of many of the chores of setting up and configuring a database, and makes it possible for your app to interact with the database using ordinary function calls."><meta property="og:url" content="https://developer.android.com/codelabs/kotlin-android-training-room-database?hl=id"><meta property="og:image" content="https://developer.android.com/images/social/android-developers.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675"><meta property="og:locale" content="en"><meta name="twitter:card" content="summary_large_image">
+  <meta name="xsrf_token" content="50XDkyg8Pc5saAHW57Mo6zz7YSifPrC9yx6LhJWhoDY6MTYyNzQ4MjEwNjMwOTM3Ng">
+  
+
+  <meta name="session_expiry" content="1627483460">
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    <meta name="original_source" content="https://docs.google.com/document/d/1jVKF-FaM4X-WIl7Zggdn2pRmsxVzywFfv3vrr6vpKdk/edit" />
+    
+    
+    
+    
+    
+      
+    
+    
+    
+  
+
+    </head>
+  <body class="devsite-full-width-page"
+        template="codelab"
+        theme="android-theme"
+        type="codelab"
+        
+        layout="full"
+        
+        
+        pending>
+    <devsite-progress type="indeterminate" id="app-progress"></devsite-progress>
+  
+    <section class="devsite-wrapper"><devsite-header>
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="devsite-header--inner nocontent">
+  <div class="devsite-top-logo-row-wrapper-wrapper">
+    <div class="devsite-top-logo-row-wrapper">
+      <div class="devsite-top-logo-row">
+        <button type="button" id="devsite-hamburger-menu"
+          class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+          data-category="Site-Wide Custom Events"
+          data-label="Navigation menu button"
+          visually-hidden
+          aria-label="Open menu">
+        </button>
+        <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo"
+       alt="Android Developers">
+
+</a>
+
+
+
+  
+  
+  <span class="devsite-product-name">
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+  </span>
+
+</div>
+        <div class="devsite-top-logo-row-middle">
+          <div class="devsite-header-upper-tabs">
+            
+              
+              
+  <devsite-tabs class="upper-tabs">
+
+    <nav class="devsite-tabs-wrapper" aria-label="Tab atas">
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/about"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="platform"
+   track-metadata-eventdetail="https://developer.android.com/about"
+   track-metadata-position="nav - platform"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Platform"
+   >
+  Platform
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/studio"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="android studio"
+   track-metadata-eventdetail="https://developer.android.com/studio"
+   track-metadata-position="nav - android studio"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Android Studio"
+   >
+  Android Studio
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/distribute"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="google play"
+   track-metadata-eventdetail="https://developer.android.com/distribute"
+   track-metadata-position="nav - google play"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Google Play"
+   >
+  Google Play
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/jetpack"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="jetpack"
+   track-metadata-eventdetail="https://developer.android.com/jetpack"
+   track-metadata-position="nav - jetpack"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Jetpack"
+   >
+  Jetpack
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/kotlin"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="kotlin"
+   track-metadata-eventdetail="https://developer.android.com/kotlin"
+   track-metadata-position="nav - kotlin"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Kotlin"
+   >
+  Kotlin
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/docs"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="dokumen"
+   track-metadata-eventdetail="https://developer.android.com/docs"
+   track-metadata-position="nav - dokumen"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Dokumen"
+   >
+  Dokumen
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/news"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="berita"
+   track-metadata-eventdetail="https://developer.android.com/news"
+   track-metadata-position="nav - berita"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Berita"
+   >
+  Berita
+</a>
+
+          </tab>
+        
+      
+    </nav>
+
+  </devsite-tabs>
+
+            
+           </div>
+          
+<devsite-search
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    enable-signin
+    enable-search
+    enable-suggestions
+      enable-query-completion
+    
+    project-name="Developer Android"
+    tenant-name="Android Developers"
+    
+    
+    
+    
+    
+    role="combobox">
+  <form class="devsite-search-form" action="https://developer.android.com/s/results" method="GET">
+    <div class="devsite-search-container">
+      <div class="devsite-searchbox">
+        <input
+          aria-activedescendant=""
+          aria-autocomplete="list"
+          
+          aria-label="Penelusuran"
+          aria-haspopup="false"
+          aria-multiline="false"
+          aria-label="Kotak penelusuran"
+          autocomplete="off"
+          class="devsite-search-field devsite-search-query"
+          name="q"
+          
+          placeholder="Penelusuran"
+          role="searchbox"
+          type="text"
+          value=""
+          >
+        <div class="devsite-search-image material-icons" aria-hidden="true"></div>
+      </div>
+      <button type="button"
+              search-open
+              class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+              
+              aria-label="Buka penelusuran"></button>
+    </div>
+  </form>
+  <button type="button"
+          search-close
+          class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+          
+          aria-label="Tutup penelusuran"></button>
+</devsite-search>
+
+        </div>
+
+        
+
+        
+
+        
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+
+        
+
+        
+          
+          
+          <devsite-user signed-in
+                        
+                        
+                          enable-profiles
+                        
+                        
+                          
+                        id="devsite-user"></devsite-user>
+           
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="devsite-collapsible-section
+    
+      devsite-header-no-lower-tabs
+    ">
+    <div class="devsite-header-background">
+      
+        
+      
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+  
+</devsite-header>
+      <devsite-book-nav scrollbars hidden>
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="devsite-book-nav devsite-nav nocontent"
+     aria-label="Menu samping">
+  <div class="devsite-mobile-header">
+    <button type="button"
+            id="devsite-close-nav"
+            class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+            data-category="Site-Wide Custom Events"
+            data-label="Close navigation"
+            aria-label="Close navigation">
+    </button>
+    <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+
+</a>
+
+
+  
+      <span class="devsite-product-name">
+        
+        
+        <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+      </span>
+    
+
+</div>
+  </div>
+
+  <div class="devsite-book-nav-wrapper">
+    <div class="devsite-mobile-nav-top">
+      
+        <ul class="devsite-nav-list">
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/about"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Platform"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="platform">
+  
+    <span class="devsite-nav-text" tooltip >
+      Platform
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/studio"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Android Studio"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="androidStudio">
+  
+    <span class="devsite-nav-text" tooltip >
+      Android Studio
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/distribute"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Google Play"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="googlePlay">
+  
+    <span class="devsite-nav-text" tooltip >
+      Google Play
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/jetpack"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Jetpack"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="jetpack">
+  
+    <span class="devsite-nav-text" tooltip >
+      Jetpack
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/kotlin"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Kotlin"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="kotlin">
+  
+    <span class="devsite-nav-text" tooltip >
+      Kotlin
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/docs"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Dokumen"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="dokumen">
+  
+    <span class="devsite-nav-text" tooltip >
+      Dokumen
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/news"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Berita"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="berita">
+  
+    <span class="devsite-nav-text" tooltip >
+      Berita
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+          
+          
+        </ul>
+      
+    </div>
+    
+  </div>
+</nav>
+        
+      </devsite-book-nav>
+      <section id="gc-wrapper">
+        <main role="main" class="devsite-main-content"
+            
+            >
+          
+          <devsite-toc class="devsite-nav"
+                       role="navigation"
+                       aria-label="Daftar isi"
+            disabled></devsite-toc>
+          <devsite-content>
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="devsite-article"><style>
+      body {
+        transition: opacity ease-in 0.2s;
+      }
+
+      body[unresolved] {
+        opacity: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+      </style>
+  
+  
+  
+
+  <div class="devsite-article-meta nocontent" role="navigation">
+    
+    
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+  <a href="https://developer.android.com/"
+      
+        class="devsite-breadcrumb-link gc-analytics-event"
+      
+        data-category="Site-Wide Custom Events"
+      
+        data-label="Breadcrumbs"
+      
+        data-value="1"
+      
+        track-type="globalNav"
+      
+        track-name="breadcrumb"
+      
+        track-metadata-position="1"
+      
+        track-metadata-eventdetail="Developer Android"
+      
+    >
+    
+        Developer Android
+      
+  </a>
+  
+    
+  </li>
+  
+</ul>
+    
+  </div>
+  
+  
+    <h1 class="devsite-page-title">Android Kotlin Fundamentals: Create a Room Database</h1><devsite-bookmark></devsite-bookmark>
+  
+
+  <devsite-toc class="devsite-nav" devsite-toc-embedded
+               disabled>
+  </devsite-toc>
+
+  
+
+  <div class="devsite-article-body clearfix
+    ">
+
+    
+      
+    <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+    <google-codelab codelab-gaid="UA-81734179-1"
+                    doc-id="1jVKF-FaM4X-WIl7Zggdn2pRmsxVzywFfv3vrr6vpKdk"
+                    id="kotlin-android-training-room-database"
+                    title="Android Kotlin Fundamentals: Create a Room Database"
+                    environment="web"
+                    category="android,kotlin"
+                    feedback-link="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/issues/new?assignees=&amp;labels=&amp;template=android-kotlin-fundamentals.md&amp;title=Android&#43;Kotlin&#43;Fundamentals&#43;codelab%3A&#43;"
+                    >
+      
+        <google-codelab-step label="Welcome" duration="0">
+          
+            <google-codelab-about codelab-title="Android Kotlin Fundamentals: Create a Room Database"
+                                  authors="Google Developers Training team"
+                                  >
+            </google-codelab-about>
+          
+          <p>This codelab is part of the Android Kotlin Fundamentals course. You&#39;ll get the most value out of this course if you work through the codelabs in sequence. All the course codelabs are listed on the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+<h2 is-upgraded id="introduction" data-text="Introduction">Introduction</h2>
+<p>Most apps have data that needs to be saved, even after the user closes the app. For example, the app might store a playlist of songs, an inventory of game items, records of expenses and income, a catalog of constellations, or a history of personal sleep data.  For most of these cases, you use a database to store this persistent data.</p>
+<p><a href="https://developer.android.com/topic/libraries/architecture/room" target="_blank"><code translate="no" dir="ltr">Room</code></a> is a database library that&#39;s part of Android  <a href="https://developer.android.com/jetpack/" target="_blank">Jetpack</a>. Under the hood, the Room <code translate="no" dir="ltr">library</code> is an abstraction layer on top of a  <a href="https://developer.android.com/training/data-storage/sqlite" target="_blank">SQLite</a> database. SQLite uses a specialized language (SQL) to perform database operations. Instead of using SQLite directly,  Room simplifies the chores of setting up, configuring, and interacting with the database.  It also makes it possible for your app to interact with the database using ordinary function calls. Room also has a query syntax allowing you to search for data.</p>
+<p>The image below shows how the <code translate="no" dir="ltr">Room</code> database fits in with the overall architecture recommended in this course.</p>
+<p class="image-container"><img alt="f6a3960a0d1a7912.png" style="width: 314.50px" src="/codelabs/kotlin-android-training-room-database/img/f6a3960a0d1a7912.png"></p>
+<h2 is-upgraded id="what-you-should-already-know" data-text="What you should already know">What you should already know</h2>
+<p>You should be familiar with:</p>
+<ul>
+<li>Building a basic user interface (UI) for an Android app</li>
+<li>Using activities, fragments, and views.</li>
+<li>Navigating between fragments and using Safe Args (a Gradle plugin) to pass data between fragments.</li>
+<li>View models, view-model factories, <code translate="no" dir="ltr">LiveData</code> and its observers. These Architecture Components topics are covered in other codelabs in this course.</li>
+<li>Basic knowledge of concurrency fundamentals.  See &#34; <a href="https://developer.android.com/courses/extras/multithreading" target="_blank">Multithreaded &amp; callbacks primer</a>&#34; for an introductory overview.</li>
+<li>A basic understanding of SQL databases and the SQLite language. See the  <a href="https://developer.android.com/courses/extras/sql-primer" target="_blank">SQLite Primer</a> for a quick overview or refresher.</li>
+</ul>
+<h2 class="checklist" is-upgraded id="what-youll-learn" data-text="What you'll learn">What you'll learn</h2>
+<ul class="checklist">
+<li>How to create and interact with a <code translate="no" dir="ltr">Room</code> database to persist data.</li>
+<li>How to create a data class that defines a table in the database.</li>
+<li>How to use a data access object (DAO) to map Kotlin functions to SQL queries.</li>
+<li>How to test whether your database is working.</li>
+</ul>
+<h2 is-upgraded id="what-youll-do" data-text="What you'll do">What you'll do</h2>
+<ul>
+<li>Create a <code translate="no" dir="ltr">Room</code> database with an interface for nightly sleep data.</li>
+<li>Test the database using the provided tests.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="App overview" duration="0">
+          
+          <p>In this codelab, you build the database portion of an app that tracks sleep quality. The app uses a database to store sleep data over time.</p>
+<p>The app has two screens, represented by fragments, as shown in the figure below.</p>
+<p class="image-container"><img alt="e28eb795b6812ee4.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-room-database/img/e28eb795b6812ee4.png"></p>
+<p>The first screen, shown on the left, has buttons to start and stop tracking. The screen shows all the user&#39;s sleep data. The <strong>Clear</strong> button permanently deletes all the data that the app has collected for the user.</p>
+<p>The second screen, shown on the right, is for selecting a sleep-quality rating. In the app, the rating is represented numerically. For development purposes, the app shows both the face icons and their numerical equivalents.</p>
+<p>The user&#39;s flow is as follows:</p>
+<ul>
+<li>User opens the app and is presented with the sleep-tracking screen.</li>
+<li>User taps the <strong>Start</strong> button. This records the starting time and displays it. The <strong>Start</strong> button is disabled, and the <strong>Stop</strong> button is enabled.</li>
+<li>User taps the <strong>Stop</strong> button. This records the ending time and opens the sleep-quality screen.</li>
+<li>User selects a sleep-quality icon. The screen closes, and the tracking screen displays the sleep-ending time and sleep quality. The <strong>Stop</strong> button is disabled and the <strong>Start</strong> button is enabled. The app is ready for another night.</li>
+<li>The <strong>Clear</strong> button is enabled whenever there is data in the database. When the user taps the <strong>Clear</strong> button, all their data is erased without recourse—there is no &#34;Are you sure?&#34; message.</li>
+</ul>
+<p>This app uses a simplified architecture, as shown below in the context of the full architecture. The app uses only the following components:</p>
+<ul>
+<li>UI controller</li>
+<li>View model and <code translate="no" dir="ltr">LiveData</code></li>
+<li>A Room database</li>
+</ul>
+<p class="image-container"><img alt="2268f8ae35a8c715.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-room-database/img/2268f8ae35a8c715.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Download and inspect the starter app" duration="0">
+          
+          <h2 is-upgraded id="step-1:-download-and-run-the-starter-app" data-text="Step 1: Download and run the starter app">Step 1: Download and run the starter app</h2>
+<ol type="1">
+<li>Download the  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-starter-apps/tree/master/TrackMySleepQuality-Starter" target="_blank">TrackMySleepQuality-Starter</a> app from GitHub.</li>
+<li>Build and run the app. The app shows the UI for the <code translate="no" dir="ltr">SleepTrackerFragment</code> fragment, but no data. The buttons do not respond to taps.</li>
+</ol>
+<h2 is-upgraded id="step-2:-inspect-the-starter-app" data-text="Step 2: Inspect the starter app">Step 2: Inspect the starter app</h2>
+<aside class="special"><p><strong>Tip:</strong> Being familiar with your starter app will make it easier to identify and fix problems, should you run into any.</p>
+</aside>
+<ol type="1">
+<li>Take a look at the Gradle files:</li>
+</ol>
+<ul>
+<li><strong>The project Gradle file</strong> In the project-level <code translate="no" dir="ltr">build.gradle</code> file, notice the variables that specify library versions. The versions used in the starter app work well together, and work well with this app. By the time you finish this codelab, Android Studio might prompt you to update some of the versions. It&#39;s up to you whether you want to update or stay with the versions that are in the app. If you run into &#34;strange&#34; compilation errors, try using the combination of library versions that the  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/TrackMySleepQualityFinal" target="_blank">final solution app</a> uses.</li>
+<li><strong>The module Gradle file.</strong> Notice the provided dependencies for all the Android Jetpack libraries, including <code translate="no" dir="ltr">Room</code>, and the dependencies for coroutines.</li>
+</ul>
+<ol type="1" start="2">
+<li>In the Project window, notice the different packages. The app is structured by functionality. The packages contain placeholder files where you will add code.</li>
+</ol>
+<ul>
+<li>The <strong><code translate="no" dir="ltr">database</code></strong> package, for all code relating to the <code translate="no" dir="ltr">Room</code> database.</li>
+<li>The <strong><code translate="no" dir="ltr">sleepquality</code></strong> and <strong><code translate="no" dir="ltr">sleeptracker</code></strong> packages contain the fragment, view model, and view model factory for each screen.</li>
+</ul>
+<ol type="1" start="3">
+<li>Take a look at the <strong><code translate="no" dir="ltr">Util.kt</code></strong> file.  This file contains functions to help display sleep-quality data. Some code is commented out because it references a view model that you will create later.</li>
+<li>Take a look at the <strong>androidTest</strong> folder and notice the <strong><code translate="no" dir="ltr">SleepDatabaseTest.kt</code></strong> file. You will use this test to verify the database works as intended.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Create the SleepNight entity" duration="0">
+          
+          <p>In Android, data is represented in data classes. This data is accessed and possibly modified using function calls. However, in the database world, you need <em>entities</em> and <em>queries</em> to access and modify data.</p>
+<ul>
+<li>An <em>entity</em> represents an object or a concept, along with its properties, to store in the database. In our application code, we need an entity class that defines a table, and each instance of that class represents a row in that table. The entity class has mappings to tell Room how it intends to present and interact with the information in the database. In your app, the entity is going to hold information about a night of sleep.</li>
+<li>A <em>query</em> is a request for data or information from a database table or combination of tables, or a request to perform an action on the data. Common queries are for creating, reading, updating and deleting entities. For example, you could execute a query to read all the sleep nights on record, sorted by start time.</li>
+</ul>
+<p>Your app&#39;s user experience (similar to other common use cases)  can benefit greatly from persisting some data locally.  Caching relevant pieces of data can allow a user to enjoy your app even if offline. If your app relies on a server, caching allows users to modify locally persisted content while they are offline. When the app regains connectivity, those cached changes can be synced to the server seamlessly in the background.</p>
+<p><code translate="no" dir="ltr">Room</code> does all the hard work to get from Kotlin data classes to entities that can be stored in SQLite tables, and from function declarations to SQL queries.</p>
+<p>You must define each entity as an annotated data class, and the interactions with that entity as an annotated interface, called a <em>data access object (DAO)</em>. <code translate="no" dir="ltr">Room</code> uses these annotated classes to create tables in the database, and to create queries that act on the database.</p>
+<p class="image-container"><img alt="c4a598be115aa77a.png" style="width: 226.50px" src="/codelabs/kotlin-android-training-room-database/img/c4a598be115aa77a.png"></p>
+<h2 is-upgraded id="step-1:-create-the-sleepnight-entity" data-text="Step 1: Create the SleepNight entity">Step 1: Create the SleepNight entity</h2>
+<p>In this task, you define one night of sleep as an annotated data class which represents a database entity.</p>
+<p>For one night of sleep, you need to record the start time, end time, and a quality rating.</p>
+<p>And you need an ID to uniquely identify that one night.</p>
+<ol type="1">
+<li>In the <code translate="no" dir="ltr">database</code> package, find and open the <code translate="no" dir="ltr">SleepNight.kt</code> file.</li>
+<li>Create the <code translate="no" dir="ltr">SleepNight</code> data class with parameters for an ID, a start time (in milliseconds), an end time (in milliseconds), and a numerical sleep-quality rating.</li>
+</ol>
+<ul>
+<li>You have to initialize the <code translate="no" dir="ltr">sleepQuality</code>, so set it to <code translate="no" dir="ltr">-1</code>, indicating that no quality data has been collected.</li>
+<li>Initialize the start time to a known valid time.  A good value to choose is the current time in milliseconds.</li>
+<li>You also have to initialize the end time. Set it to the start time to indicate no end time has been recorded yet.</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">data class SleepNight(
+       var nightId: Long = 0L,
+       val startTimeMilli: Long = System.currentTimeMillis(),
+       var endTimeMilli: Long = startTimeMilli,
+       var sleepQuality: Int = -1
+)
+</code></pre>
+<ol type="1" start="3">
+<li>Before the class declaration, annotate the data class with <code translate="no" dir="ltr">@Entity</code>. This annotation has several possible arguments. By default (no arguments to <code translate="no" dir="ltr">@Entity</code>), the table name will be the same as the class. But let&#39;s use a helpful table name of  <code translate="no" dir="ltr">daily_sleep_quality_table</code>. This argument for the <code translate="no" dir="ltr">tableName</code> is optional, but highly recommended. There are several other arguments for <code translate="no" dir="ltr">@Entity</code> you can investigate in the documentation.</li>
+</ol>
+<p>If prompted by Android Studio, import <code translate="no" dir="ltr">Entity</code> and all other annotations  from the <code translate="no" dir="ltr">androidx</code> library.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Entity(tableName = &#34;daily_sleep_quality_table&#34;)
+data class SleepNight(...)
+</code></pre>
+<ol type="1" start="4">
+<li>To identify the <code translate="no" dir="ltr">nightId</code> as the primary key, annotate the <code translate="no" dir="ltr">nightId</code> property with <code translate="no" dir="ltr">@PrimaryKey</code>. Set the parameter <code translate="no" dir="ltr">autoGenerate</code> to <code translate="no" dir="ltr">true</code> so that <code translate="no" dir="ltr">Room</code> generates the ID for each entity. This guarantees that the ID for each night is unique.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@PrimaryKey(autoGenerate = true)
+var nightId: Long = 0L,...
+</code></pre>
+<ol type="1" start="5">
+<li>Annotate the remaining properties with <code translate="no" dir="ltr">@ColumnInfo</code>. Customize the property names using parameters as shown below.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = &#34;daily_sleep_quality_table&#34;)
+data class SleepNight(
+       @PrimaryKey(autoGenerate = true)
+       var nightId: Long = 0L,
+
+       @ColumnInfo(name = &#34;start_time_milli&#34;)
+       val startTimeMilli: Long = System.currentTimeMillis(),
+
+       @ColumnInfo(name = &#34;end_time_milli&#34;)
+       var endTimeMilli: Long = startTimeMilli,
+
+       @ColumnInfo(name = &#34;quality_rating&#34;)
+       var sleepQuality: Int = -1
+)
+</code></pre>
+<ol type="1" start="6">
+<li>Build and run your code to make sure it has no errors.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Create the DAO" duration="0">
+          
+          <p>In this task, you define a data access object (DAO). On Android, the DAO provides convenience methods for inserting, deleting, and updating the database.</p>
+<p>When you use a <code translate="no" dir="ltr">Room</code> database, you query the database by defining and calling Kotlin functions in your code. These Kotlin functions map to SQL queries. You define those mappings in a DAO using annotations, and <code translate="no" dir="ltr">Room</code> creates the necessary code.</p>
+<p>Think of a DAO as defining a custom interface for accessing your database.</p>
+<p>For common database operations, the <code translate="no" dir="ltr">Room</code> library provides convenience annotations, such as <code translate="no" dir="ltr">@Insert</code>, <code translate="no" dir="ltr">@Delete</code>, and <code translate="no" dir="ltr">@Update</code>. For everything else, there is the <code translate="no" dir="ltr">@Query</code> annotation. You can write any query that&#39;s supported by SQLite.</p>
+<p>As an added bonus, as you create your queries in Android Studio, the compiler checks your SQL queries for syntax errors.</p>
+<p>For the sleep-tracker database of sleep nights, you need to be able to do the following:</p>
+<ul>
+<li><strong>Insert</strong> new nights.</li>
+<li><strong>Update</strong> an existing night to update an end time and a quality rating.</li>
+<li><strong>Get</strong> a specific night based on its key.</li>
+<li><strong>Get all nights</strong>, so you can display them.</li>
+<li><strong>Get the most recent night.</strong></li>
+<li><strong>Delete</strong> all entries in the database.</li>
+</ul>
+<h2 is-upgraded id="step-1:-create-the-sleepdatabase-dao" data-text="Step 1: Create the SleepDatabase DAO">Step 1: Create the SleepDatabase DAO</h2>
+<ol type="1">
+<li>In the <code translate="no" dir="ltr">database</code> package, open <code translate="no" dir="ltr">SleepDatabaseDao.kt</code>.</li>
+<li>Notice that <code translate="no" dir="ltr">interface</code> <code translate="no" dir="ltr">SleepDatabaseDao</code> is annotated with <code translate="no" dir="ltr">@Dao</code>. All DAOs need to be annotated with the <code translate="no" dir="ltr">@Dao</code> keyword.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Dao
+interface SleepDatabaseDao {}
+</code></pre>
+<ol type="1" start="3">
+<li>Inside the body of the interface, add an <code translate="no" dir="ltr">@Insert</code> annotation. Below the <code translate="no" dir="ltr">@Insert</code>, add an <code translate="no" dir="ltr">insert()</code> function that takes an instance of the <code translate="no" dir="ltr">Entity</code> class <code translate="no" dir="ltr">SleepNight</code> as its argument.</li>
+</ol>
+<p>That&#39;s it. <code translate="no" dir="ltr">Room</code> will generate all the necessary code to insert the <code translate="no" dir="ltr">SleepNight</code> into the database. When you call <code translate="no" dir="ltr">insert()</code> from your Kotlin code, <code translate="no" dir="ltr">Room</code> executes a SQL query to insert the entity into the database. (Note: You can call the function anything you want.)</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Insert
+fun insert(night: SleepNight)
+</code></pre>
+<ol type="1" start="4">
+<li>Add an <code translate="no" dir="ltr">@Update</code> annotation with an <code translate="no" dir="ltr">update()</code> function for one <code translate="no" dir="ltr">SleepNight</code>. The entity that&#39;s updated is the entity that has the same key as the one that&#39;s passed in. You can update some or all of the entity&#39;s other properties.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Update
+fun update(night: SleepNight)
+</code></pre>
+<p>There is no convenience annotation for the remaining functionality, so you have to use the <code translate="no" dir="ltr">@Query</code> annotation and supply SQLite queries.</p>
+<ol type="1" start="5">
+<li>Add a <code translate="no" dir="ltr">@Query</code> annotation with a <code translate="no" dir="ltr">get()</code> function that takes a <code translate="no" dir="ltr">Long</code> <code translate="no" dir="ltr">key</code> argument and returns a nullable <code translate="no" dir="ltr">SleepNight</code>. You&#39;ll see an error for a missing parameter.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Query
+fun get(key: Long): SleepNight?
+</code></pre>
+<ol type="1" start="6">
+<li>The query is supplied as a string parameter to the <code translate="no" dir="ltr">@Query</code> annotation. Add a <code translate="no" dir="ltr">String</code> parameter to <code translate="no" dir="ltr">@Query</code> that is an SQLite query to retrieve all the columns from a particular <strong><code translate="no" dir="ltr">SleepNight</code></strong> entry.</li>
+</ol>
+<ul>
+<li>Select all columns from the <code translate="no" dir="ltr">daily_sleep_quality_table</code></li>
+<li><code translate="no" dir="ltr">WHERE</code> the <code translate="no" dir="ltr">nightId</code> matches the :<code translate="no" dir="ltr">key</code> argument.</li>
+</ul>
+<p>Notice the <code translate="no" dir="ltr">:key</code>. You use the colon notation in the query to reference arguments in the function.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">(&#34;SELECT * from daily_sleep_quality_table WHERE nightId = :key&#34;)
+</code></pre>
+<ol type="1" start="7">
+<li>Add another <code translate="no" dir="ltr">@Query</code> with a <code translate="no" dir="ltr">clear()</code> function and a SQLite query to <code translate="no" dir="ltr">DELETE</code> everything from the <code translate="no" dir="ltr">daily_sleep_quality_table</code>. This query does not delete the table itself.</li>
+</ol>
+<p>The <code translate="no" dir="ltr">@Delete</code> annotation deletes one item, and you could use <code translate="no" dir="ltr">@Delete</code> and supply a list of nights to delete. The drawback is that you need to fetch or know what&#39;s in the table. The <code translate="no" dir="ltr">@Delete</code> annotation is great for deleting specific entries, but not efficient for clearing all entries from a table.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Query(&#34;DELETE FROM daily_sleep_quality_table&#34;)
+fun clear()
+</code></pre>
+<ol type="1" start="8">
+<li>Add a <code translate="no" dir="ltr">@Query</code> with a <code translate="no" dir="ltr">getTonight()</code> function. Make the <code translate="no" dir="ltr">SleepNight</code> returned by <code translate="no" dir="ltr">getTonight()</code> nullable, so that the function can handle the case where the table is empty. (The table is empty at the beginning, and after the data is cleared.)</li>
+</ol>
+<p>To get &#34;tonight&#34; from the database, write a SQLite query that returns the first element of a list of results ordered by <code translate="no" dir="ltr">nightId</code> in descending order. Use <code translate="no" dir="ltr">LIMIT 1</code> to return only one element.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Query(&#34;SELECT * FROM daily_sleep_quality_table ORDER BY nightId DESC LIMIT 1&#34;)
+fun getTonight(): SleepNight?
+</code></pre>
+<ol type="1" start="9">
+<li>Add a <code translate="no" dir="ltr">@Query</code> with a <code translate="no" dir="ltr">getAllNights()</code> function:</li>
+</ol>
+<ul>
+<li>Have the SQLite query return all columns from the <code translate="no" dir="ltr">daily_sleep_quality_table</code>, ordered in descending order.</li>
+<li>Have <code translate="no" dir="ltr">getAllNights()</code> return a list of <code translate="no" dir="ltr">SleepNight</code> entities as <code translate="no" dir="ltr">LiveData</code>. <code translate="no" dir="ltr">Room</code> keeps this <code translate="no" dir="ltr">LiveData</code> updated for you, which means you only need to explicitly get the data once.</li>
+<li>You may need to import <code translate="no" dir="ltr">LiveData</code> from <code translate="no" dir="ltr">androidx.lifecycle.LiveData</code>.</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Query(&#34;SELECT * FROM daily_sleep_quality_table ORDER BY nightId DESC&#34;)
+fun getAllNights(): LiveData&lt;List&lt;SleepNight&gt;&gt;
+</code></pre>
+<ol type="1" start="10">
+<li>Though you won&#39;t see any visible changes, run your app to make sure it has no errors.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Create and test a Room database" duration="0">
+          
+          <p>In this task, you create a <code translate="no" dir="ltr">Room</code> database that uses the <code translate="no" dir="ltr">Entity</code> and DAO that you created in the previous task.</p>
+<p>You need to create an abstract database holder class, annotated with <code translate="no" dir="ltr">@Database</code>. This class has one method that either creates an instance of the database if the database doesn&#39;t exist, or returns a reference to an existing database.</p>
+<p>Getting a <code translate="no" dir="ltr">Room</code> database is a bit involved, so here&#39;s the general process before you start with the code:</p>
+<ul>
+<li>Create a  <code translate="no" dir="ltr">public abstract</code> class that <code translate="no" dir="ltr">extends RoomDatabase</code>. This class is to act as a database holder. The class is abstract, because <code translate="no" dir="ltr">Room</code> creates the implementation for you.</li>
+<li>Annotate the class with <code translate="no" dir="ltr">@Database</code>. In the arguments, declare the entities for the database and set the version number.</li>
+<li>Inside a <code translate="no" dir="ltr">companion</code> object, define an abstract method or property that returns a <code translate="no" dir="ltr">SleepDatabaseDao</code>. <code translate="no" dir="ltr">Room</code> will generate the body for you.</li>
+<li>You only need one instance of the <code translate="no" dir="ltr">Room</code> database for the whole app, so make the <code translate="no" dir="ltr">RoomDatabase</code> a singleton.</li>
+<li>Use <code translate="no" dir="ltr">Room</code>&#39;s database builder to create the database only if the database doesn&#39;t exist. Otherwise, return the existing database.</li>
+</ul>
+<aside class="special"><p><strong>Tip:</strong> The code will be much the same for any <code translate="no" dir="ltr">Room</code> database, so you can use this code as a template.</p>
+</aside>
+<h2 is-upgraded id="step-1:-create-the-database" data-text="Step 1: Create the database">Step 1: Create the database</h2>
+<ol type="1">
+<li>In the <code translate="no" dir="ltr">database</code> package, open <code translate="no" dir="ltr">SleepDatabase.kt</code>.</li>
+<li>In the file, create an <code translate="no" dir="ltr">abstract</code> class called <code translate="no" dir="ltr">SleepDatabase</code> that extends <code translate="no" dir="ltr">RoomDatabase</code>.</li>
+</ol>
+<p>Annotate the class with <code translate="no" dir="ltr">@Database</code>.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Database()
+abstract class SleepDatabase : RoomDatabase() {}
+</code></pre>
+<ol type="1" start="3">
+<li>You&#39;ll see an error for missing entities and version parameters. The <code translate="no" dir="ltr">@Database</code> annotation requires several arguments, so that <code translate="no" dir="ltr">Room</code> can build the database.</li>
+</ol>
+<ul>
+<li>Supply the <code translate="no" dir="ltr">SleepNight</code> as the only item with the list of <code translate="no" dir="ltr">entities</code>.</li>
+<li>Set the <code translate="no" dir="ltr">version</code> as <code translate="no" dir="ltr">1</code><strong>.</strong>  Whenever you change the schema, you&#39;ll have to increase the version number.</li>
+<li>Set <code translate="no" dir="ltr">exportSchema</code> to <code translate="no" dir="ltr">false</code>, so as not to keep schema version history backups.</li>
+</ul>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Database(entities = [SleepNight::class], version = 1, exportSchema = false)
+</code></pre>
+<ol type="1" start="4">
+<li>The database needs to know about the DAO. Inside the body of the class, declare an abstract value that returns the <code translate="no" dir="ltr">SleepDatabaseDao</code>. You can have multiple DAOs.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">abstract val sleepDatabaseDao: SleepDatabaseDao
+</code></pre>
+<ol type="1" start="5">
+<li>Below this abstract value, define a <code translate="no" dir="ltr">companion</code> object. The companion object allows clients to access the methods for creating or getting the database without instantiating the class. Since the only purpose of this class is to provide a database, there is no reason to ever instantiate it.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr"> companion object {}
+</code></pre>
+<ol type="1" start="6">
+<li>Inside the <code translate="no" dir="ltr">companion</code> object, declare a private nullable variable <code translate="no" dir="ltr">INSTANCE</code> for the database and initialize it to <code translate="no" dir="ltr">null</code>. The <code translate="no" dir="ltr">INSTANCE</code> variable will keep a reference to the database, when one has been created. This helps you avoid repeatedly opening connections to the database, which is computationally expensive.</li>
+</ol>
+<p>Annotate <code translate="no" dir="ltr">INSTANCE</code> with <code translate="no" dir="ltr">@Volatile</code>. The value of a volatile variable will never be cached, and all writes and reads will be done to and from the main memory. This helps  make sure the value of <code translate="no" dir="ltr">INSTANCE</code> is always up-to-date and the same to all execution threads. It means that changes made by one thread to <code translate="no" dir="ltr">INSTANCE</code> are visible to all other threads immediately, and you don&#39;t get a situation where, say, two threads each update the same entity in a cache, which would create a problem.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Volatile
+private var INSTANCE: SleepDatabase? = null
+</code></pre>
+<ol type="1" start="7">
+<li>Below <code translate="no" dir="ltr">INSTANCE</code>, still inside the <code translate="no" dir="ltr">companion</code> object, define a <code translate="no" dir="ltr">getInstance()</code>method with a <code translate="no" dir="ltr">Context</code> parameter that the database builder will need. Return a type <code translate="no" dir="ltr">SleepDatabase</code>. You&#39;ll see an error because <code translate="no" dir="ltr">getInstance()</code> isn&#39;t returning anything yet.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">fun getInstance(context: Context): SleepDatabase {}
+</code></pre>
+<ol type="1" start="8">
+<li>Inside <code translate="no" dir="ltr">getInstance()</code>, add a <code translate="no" dir="ltr">synchronized{}</code> block. Pass in <code translate="no" dir="ltr">this</code> so that you can access the context.</li>
+</ol>
+<p>Multiple threads can potentially ask for a database instance at the same time, resulting in two databases instead of one. This problem is not likely to happen in this sample app, but it&#39;s possible for a more complex app. Wrapping the code to get the database into <code translate="no" dir="ltr">synchronized</code> means that only one thread of execution at a time can enter this block of code, which makes sure the database only gets initialized once.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">synchronized(this) {}
+</code></pre>
+<ol type="1" start="9">
+<li>Inside the synchronized block, copy the current value of <code translate="no" dir="ltr">INSTANCE</code> to a local variable <code translate="no" dir="ltr">instance</code>.  This is to take advantage of Kotlin&#39;s  <a href="https://kotlinlang.org/docs/reference/typecasts.html" target="_blank">smart cast</a> feature, which is only available to local variables.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">var instance = INSTANCE
+</code></pre>
+<ol type="1" start="10">
+<li>Inside the <code translate="no" dir="ltr">synchronized</code> block, <code translate="no" dir="ltr">return instance</code> at the end of the <code translate="no" dir="ltr">synchronized</code> block. Ignore the return type mismatch error; you won&#39;t ever return null once you are done.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">return instance
+</code></pre>
+<ol type="1" start="11">
+<li>Above the <code translate="no" dir="ltr">return</code> statement,  add an <code translate="no" dir="ltr">if</code> statement to check whether <code translate="no" dir="ltr">instance</code> is null, that is, there is no database yet.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">if (instance == null) {}
+</code></pre>
+<ol type="1" start="12">
+<li>If <code translate="no" dir="ltr">instance</code> is <code translate="no" dir="ltr">null</code>, use the database builder to get a database. In the body of the <code translate="no" dir="ltr">if</code> statement, invoke <code translate="no" dir="ltr">Room.databaseBuilder</code> and supply the context that you passed in, the database class, and a name for the database, <code translate="no" dir="ltr">sleep_history_database</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">instance = Room.databaseBuilder(
+                           context.applicationContext,
+                           SleepDatabase::class.java,
+                           &#34;sleep_history_database&#34;)
+</code></pre>
+<p>Android Studio will generate a Type Mismatch error. To remove this error, you&#39;ll have to add a migration strategy and <code translate="no" dir="ltr">build()</code> in the following steps.</p>
+<ol type="1" start="13">
+<li>Add the required migration strategy to the builder. Use <code translate="no" dir="ltr">.fallbackToDestructiveMigration()</code>.</li>
+</ol>
+<p>Normally, you would have to provide a migration object with a migration strategy for when the schema changes. A <em>migration object</em> is an object that defines how you take all rows with the old schema and convert them to rows in the new schema, so that no data is lost.  <a href="https://medium.com/androiddevelopers/understanding-migrations-with-room-f01e04b07929" target="_blank">Migration</a> is beyond the scope of this codelab. A simple solution is to destroy and rebuild the database, which means that the data is lost.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">.fallbackToDestructiveMigration()
+</code></pre>
+<ol type="1" start="14">
+<li>Finally, call <code translate="no" dir="ltr">.build()</code>.  This should remove the Android Studio errors.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">.build()
+</code></pre>
+<ol type="1" start="15">
+<li>Assign <code translate="no" dir="ltr">INSTANCE = instance</code> as the final step inside the <code translate="no" dir="ltr">if</code> statement.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">INSTANCE = instance
+</code></pre>
+<ol type="1" start="16">
+<li>Your final code should look like this:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@Database(entities = [SleepNight::class], version = 1, exportSchema = false)
+abstract class SleepDatabase : RoomDatabase() {
+
+   abstract val sleepDatabaseDao: SleepDatabaseDao
+
+   companion object {
+
+       @Volatile
+       private var INSTANCE: SleepDatabase? = null
+
+       fun getInstance(context: Context): SleepDatabase {
+           synchronized(this) {
+               var instance = INSTANCE
+
+               if (instance == null) {
+                   instance = Room.databaseBuilder(
+                           context.applicationContext,
+                           SleepDatabase::class.java,
+                           &#34;sleep_history_database&#34;
+                   )
+                           .fallbackToDestructiveMigration()
+                           .build()
+                   INSTANCE = instance
+               }
+               return instance
+           }
+       }
+   }
+}
+</code></pre>
+<ol type="1" start="17">
+<li>Build and run your code.</li>
+</ol>
+<p>You now have all the building blocks for working with your <code translate="no" dir="ltr">Room</code> database. This code compiles and runs, but you have no way of telling if it actually works. So, this is a good time to add some basic tests.</p>
+<h2 is-upgraded id="step-2:-test-the-sleepdatabase" data-text="Step 2: Test the SleepDatabase">Step 2: Test the SleepDatabase</h2>
+<p>In this step, you run provided tests to verify that your database works. This helps ensure that the database works before you build onto it. The provided tests are basic. For a production app, you would exercise all of the functions and queries in all the DAOs.</p>
+<p>The starter app contains an <strong>androidTest</strong> folder. This <strong>androidTest</strong> folder contains unit tests that involve Android instrumentation, which is a fancy way of saying that the tests need the Android framework, so you need to run the tests on a physical or virtual device. Of course, you can also create and run pure unit tests that do not involve the Android framework.</p>
+<ol type="1">
+<li>In Android Studio, in the <strong>androidTest</strong> folder, open the <strong>SleepDatabaseTest</strong> file.</li>
+<li>To uncomment the code, select all the commented code and press the <code translate="no" dir="ltr">Cmd+/</code> or <code translate="no" dir="ltr">Control+/</code> keyboard shortcut.</li>
+<li>Take a look at the file.</li>
+</ol>
+<p>Here&#39;s a quick run-through of the testing code, because it&#39;s another piece of code that you can reuse:</p>
+<ul>
+<li><code translate="no" dir="ltr">SleepDabaseTest</code> is a test class.</li>
+<li>The <code translate="no" dir="ltr">@RunWith</code> annotation identifies the test runner, which is the program that sets up and executes the tests.</li>
+<li>During setup, the function annotated with <code translate="no" dir="ltr">@Before</code> is executed, and it creates an in-memory <code translate="no" dir="ltr">SleepDatabase</code> with the <code translate="no" dir="ltr">SleepDatabaseDao</code>. &#34;In-memory&#34; means that this database is not saved on the file system and will be deleted after the tests run.</li>
+<li>Also when building the in-memory database, the code calls another test-specific method, <code translate="no" dir="ltr">allowMainThreadQueries</code>. By default, you get an error if you try to run queries on the main thread. This method allows you to run tests on the main thread, which you should only do during testing.</li>
+<li>In a test method annotated with <code translate="no" dir="ltr">@Test</code>, you create, insert, and retrieve a <code translate="no" dir="ltr">SleepNight</code>, and assert that they are the same. If anything goes wrong, throw an exception. In a real test, you would have multiple <code translate="no" dir="ltr">@Test</code> methods.</li>
+<li>When testing is done, the function annotated with <code translate="no" dir="ltr">@After</code> executes to close the database.</li>
+</ul>
+<ol type="1" start="4">
+<li>Right-click on the test file in the <strong>Project</strong> pane and select <strong>Run ‘SleepDatabaseTest&#39;</strong>.</li>
+<li>After the tests run, verify in the <strong>SleepDatabaseTest</strong> pane that all the tests have passed.</li>
+</ol>
+<p class="image-container"><img alt="f02d9e6e1f41aee9.png" style="width: 346.00px" src="/codelabs/kotlin-android-training-room-database/img/f02d9e6e1f41aee9.png"></p>
+<p>Because all the tests passed, you now know several things:</p>
+<ul>
+<li>The database gets created correctly.</li>
+<li>You can insert a <code translate="no" dir="ltr">SleepNight</code> into the database.</li>
+<li>You can get back the <code translate="no" dir="ltr">SleepNight</code>.</li>
+<li>The <code translate="no" dir="ltr">SleepNight</code> has the correct value for the quality.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Solution code" duration="0">
+          
+          <p>Android Studio project:  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/TrackMySleepQualityRoomAndTesting" target="_blank">TrackMySleepQualityRoomAndTesting</a></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Coding challenge" duration="0">
+          
+          <aside class="special"><p><strong>Note:</strong> All coding challenges are optional.</p>
+</aside>
+<p>When testing a database, you need to exercise all the methods defined in the DAO. To complete testing, add and execute tests to exercise the other DAO methods.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Summary" duration="0">
+          
+          <ul>
+<li>Define your tables as data classes annotated with <code translate="no" dir="ltr">@Entity</code>. Define properties annotated with <code translate="no" dir="ltr">@ColumnInfo</code> as columns in the tables.</li>
+<li>Define a data access object (DAO) as an interface annotated with <code translate="no" dir="ltr">@Dao</code>. The DAO maps Kotlin functions to database queries.</li>
+<li>Use annotations to define <code translate="no" dir="ltr">@Insert</code>, <code translate="no" dir="ltr">@Delete</code>, and <code translate="no" dir="ltr">@Update</code> functions.</li>
+<li>Use the <code translate="no" dir="ltr">@Query</code> annotation with an SQLite query string as a parameter for any other queries.</li>
+<li>Create an abstract class that has a <code translate="no" dir="ltr">getInstance()</code> function that returns a database.</li>
+<li>Use instrumented tests to test that your database and DAO are working as expected. You can use the provided tests as a template.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Learn more" duration="0">
+          
+          <p>Udacity course:</p>
+<ul>
+<li><a href="https://www.udacity.com/course/developing-android-apps-with-kotlin--ud9012" target="_blank">Developing Android Apps with Kotlin</a></li>
+</ul>
+<p>Android Developer Documentation:</p>
+<ul>
+<li><a href="https://developer.android.com/reference/android/arch/persistence/room/RoomDatabase" target="_blank"><code translate="no" dir="ltr">RoomDatabase</code></a></li>
+<li><a href="https://developer.android.com/reference/android/arch/persistence/room/Database" target="_blank"><code translate="no" dir="ltr">Database</code></a> (annotations)</li>
+<li><a href="https://developer.android.com/reference/android/arch/persistence/room/RawQuery" target="_blank">You can use raw queries with <code translate="no" dir="ltr">Room</code></a></li>
+<li><a href="https://developer.android.com/reference/android/arch/persistence/room/RoomDatabase.Builder" target="_blank"><code translate="no" dir="ltr">Roomdatabase.Builder</code></a></li>
+<li><a href="https://developer.android.com/training/testing" target="_blank">Testing</a> training</li>
+<li><a href="https://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html" target="_blank"><code translate="no" dir="ltr">SQLiteDatabase</code></a> class</li>
+<li><a href="https://developer.android.com/reference/android/arch/persistence/room/Dao.html" target="_blank"><code translate="no" dir="ltr">Dao</code></a></li>
+<li><a href="https://developer.android.com/training/data-storage/room/index.html" target="_blank"><code translate="no" dir="ltr">Room</code> persistence library</a></li>
+</ul>
+<p>Other documentation and articles:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Singleton_pattern" target="_blank">Singleton pattern</a></li>
+<li>From Google Developer Experts:  <a href="https://medium.com/google-developer-experts/on-properly-using-volatile-and-synchronized-702fc05faac2" target="_blank">On properly using volatile and synchronized</a></li>
+<li><a href="https://kotlinlang.org/docs/reference/object-declarations.html" target="_blank">Companion objects</a></li>
+<li><a href="https://medium.com/androiddevelopers/understanding-migrations-with-room-f01e04b07929" target="_blank">Understanding migrations with Room</a></li>
+<li><a href="https://medium.com/androiddevelopers/testing-room-migrations-be93cdb0d975" target="_blank">Testing Room migrations</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Database" target="_blank">History of databases</a></li>
+<li><a href="https://www.sqlite.org/about.html" target="_blank">SQLite website</a></li>
+<li><a href="https://www.sqlite.org/lang.html" target="_blank">Full description of SQL as understood by SQLite</a></li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Homework" duration="0">
+          
+          <p>This section lists possible homework assignments for students who are working through this codelab as part of a course led by an instructor. It&#39;s up to the instructor to do the following:</p>
+<ul>
+<li>Assign homework if required.</li>
+<li>Communicate to students how to submit homework assignments.</li>
+<li>Grade the homework assignments.</li>
+</ul>
+<p>Instructors can use these suggestions as little or as much as they want, and should feel free to assign any other homework they feel is appropriate.</p>
+<p>If you&#39;re working through this codelab on your own, feel free to use these homework assignments to test your knowledge.</p>
+<h2 is-upgraded id="answer-these-questions" data-text="Answer these questions"><strong>Answer these questions</strong></h2>
+<h3 is-upgraded id="question-1" data-text="Question 1"><strong>Question 1</strong></h3>
+<p>How do you indicate that a class represents an entity to store in a <code translate="no" dir="ltr">Room</code> database?</p>
+<ul>
+<li>Make the class extend <code translate="no" dir="ltr">DatabaseEntity</code>.</li>
+<li>Annotate the class with <code translate="no" dir="ltr">@Entity</code>.</li>
+<li>Annotate the class with <code translate="no" dir="ltr">@Database</code>.</li>
+<li>Make the class extend <code translate="no" dir="ltr">RoomEntity</code> and also annotate the class with <code translate="no" dir="ltr">@Room</code>.</li>
+</ul>
+<h3 is-upgraded id="question-2" data-text="Question 2"><strong>Question 2</strong></h3>
+<p>The DAO (data access object) is an interface that <code translate="no" dir="ltr">Room</code> uses to map Kotlin functions to database queries.</p>
+<p>How do you indicate that an interface represents a DAO for a <code translate="no" dir="ltr">Room</code> database?</p>
+<ul>
+<li>Make the interface extend <code translate="no" dir="ltr">RoomDAO</code>.</li>
+<li>Make the interface extend <code translate="no" dir="ltr">EntityDao</code>, then implement the <code translate="no" dir="ltr">DaoConnection()</code> method.</li>
+<li>Annotate the interface with <code translate="no" dir="ltr">@Dao</code>.</li>
+<li>Annotate the interface with <code translate="no" dir="ltr">@RoomConnection</code>.</li>
+</ul>
+<h3 is-upgraded id="question-3" data-text="Question 3"><strong>Question 3</strong></h3>
+<p>Which of the following statements are true about the <code translate="no" dir="ltr">Room</code> database? Choose all that apply.</p>
+<ul>
+<li>You can define tables for a <code translate="no" dir="ltr">Room</code> database as annotated data classes.</li>
+<li>If you return <code translate="no" dir="ltr">LiveData</code> from a query, <code translate="no" dir="ltr">Room</code> will keep the <code translate="no" dir="ltr">LiveData</code> updated for you if the <code translate="no" dir="ltr">LiveData</code> changes.</li>
+<li>Each <code translate="no" dir="ltr">Room</code> database must have one, and only one, DAO.</li>
+<li>To identify a class as a <code translate="no" dir="ltr">Room</code> database, make it a subclass of <code translate="no" dir="ltr">RoomDatabase</code> and annotate it with <code translate="no" dir="ltr">@Database</code>.</li>
+</ul>
+<h3 is-upgraded id="question-4" data-text="Question 4"><strong>Question 4</strong></h3>
+<p>Which of the following annotations can you use in your <code translate="no" dir="ltr">@Dao</code> interface? Choose all that apply.</p>
+<ul>
+<li><code translate="no" dir="ltr">@Get</code></li>
+<li><code translate="no" dir="ltr">@Update</code></li>
+<li><code translate="no" dir="ltr">@Insert</code></li>
+<li><code translate="no" dir="ltr">@Query</code></li>
+</ul>
+<h3 is-upgraded id="question-5" data-text="Question 5"><strong>Question 5</strong></h3>
+<p>How can you verify that your database is working? Select all that apply.</p>
+<ul>
+<li>Write instrumented tests.</li>
+<li>Continue writing and running the app until it displays the data.</li>
+<li>Replace the calls to the methods in the DAO interface by calls to equivalent methods in the <code translate="no" dir="ltr">Entity</code> class.</li>
+<li>Run the <code translate="no" dir="ltr">verifyDatabase()</code> function provided by the <code translate="no" dir="ltr">Room</code> library.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Next codelab" duration="0">
+          
+          <p>Start to the next lesson:  <a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-coroutines-and-room" target="_blank"><paper-button class="colored" raised>Coroutines and Room</paper-button></a></p>
+<p>For links to other codelabs in this course, see the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+
+
+        </google-codelab-step>
+      
+    </google-codelab>
+  
+    
+
+    
+  </div>
+
+  
+
+  
+    
+    
+    
+  
+
+  
+  
+</article>
+
+
+
+
+            
+          </devsite-content>
+        </main>
+        <devsite-footer-promos class="devsite-footer">
+          
+            
+
+<nav class="devsite-footer-promos nocontent" aria-label="Promosi">
+  <ul class="devsite-footer-promos-list">
+    
+    <li class="devsite-footer-promo">
+      <a href="//twitter.com/AndroidDev"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer Twitter Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="/_static/android/images/logo-twitter.svg"
+             loading="lazy"
+             alt="Twitter">
+        
+        Twitter
+      </a>
+      <div class="devsite-footer-promo-description">Ikuti @AndroidDev di Twitter</div>
+    </li>
+    
+    <li class="devsite-footer-promo">
+      <a href="//www.youtube.com/user/androiddevelopers"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer YouTube Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="//www.gstatic.com/images/icons/material/product/2x/youtube_48dp.png"
+             loading="lazy"
+             alt="YouTube">
+        
+        YouTube
+      </a>
+      <div class="devsite-footer-promo-description">Lihat Developer Android di YouTube</div>
+    </li>
+    
+  </ul>
+</nav>
+
+          
+        </devsite-footer-promos>
+        <devsite-footer-linkboxes class="devsite-footer">
+          
+            
+<nav class="devsite-footer-linkboxes nocontent" aria-label="Link footer">
+  
+  <ul class="devsite-footer-linkboxes-list">
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Selengkapnya tentang Android</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Android
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/enterprise/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Enterprise
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/security-center/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Keamanan
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//source.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Source
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dukungan</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=190923&amp;template=841312"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Laporkan bug platform
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=192697"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Laporkan bug dokumentasi
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//support.google.com/googleplay/android-developer"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Google Play support
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://google.qualtrics.com/jfe/form/SV_ewWXIoEVLBcyp7f??reserved=1&amp;utm_source=FooterLink&amp;Q_Language=en&amp;utm_medium=own_srch&amp;utm_campaign=developer.android.com&amp;utm_term=0&amp;utm_content=0&amp;productTag=reg&amp;campaignDate=may19&amp;pType=devel&amp;referral_code=gV420370"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Bergabung dengan studi riset
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dokumentasi</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/guide"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Panduan developer
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/design"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Panduan desain
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/reference"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Referensi API
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/samples"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Sampel
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/studio/intro"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 5)"
+            >
+          
+            Android Studio
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+  
+</nav>
+          
+        </devsite-footer-linkboxes>
+        <devsite-footer-utility class="devsite-footer">
+          
+            
+
+<div class="devsite-footer-utility nocontent">
+  
+  
+  <nav class="devsite-footer-sites" aria-label="Situs Google Developers lain">
+    <a href="https://developers.google.com/"
+       class="devsite-footer-sites-logo-link gc-analytics-event"
+       data-category="Site-Wide Custom Events"
+       data-label="Footer Google Developers Link">
+      <img class="devsite-footer-sites-logo"
+           src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup-developers.svg"
+           loading="lazy"
+           alt="Google Developers">
+    </a>
+    <ul class="devsite-footer-sites-list">
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.android.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Android Link"
+         
+         >
+          Android
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.chrome.com/home"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Chrome Link"
+         
+         >
+          Chrome
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//firebase.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Firebase Link"
+         
+         >
+          Firebase
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//cloud.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Google Cloud Platform Link"
+         
+         >
+          Google Cloud Platform
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developers.google.com/products/"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer All products Link"
+         
+         >
+          Semua produk
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  
+
+  
+  <nav class="devsite-footer-utility-links" aria-label="Link utilitas">
+    
+    <ul class="devsite-footer-utility-list">
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="//policies.google.com/privacy"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Privacy link"
+         >
+          Privasi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/license"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer License link"
+         >
+          Lisensi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/distribute/marketing-tools/brand-guidelines"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Brand guidelines link"
+         >
+          Pedoman brand
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 devsite-footer-utility-button">
+        
+        <span class="devsite-footer-utility-description">Dapatkan berita dan tips melalui email</span>
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/updates"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Subscribe link"
+         >
+          Berlangganan
+        </a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+  </nav>
+</div>
+          
+        </devsite-footer-utility>
+        <devsite-panel></devsite-panel>
+      </section></section>
+    <devsite-sitemask></devsite-sitemask>
+    
+<devsite-snackbar 
+                  ></devsite-snackbar>
+
+    <devsite-tooltip ></devsite-tooltip>
+    <devsite-heading-link></devsite-heading-link>
+    <devsite-analytics enable-analytics-iframe>
+      
+        <script type="application/json" analytics>[{"gaid": "UA-5831155-1", "dimensions": {"dimension11": false, "dimension5": "id", "dimension1": "Signed In", "dimension4": "Developer Android", "dimension3": false, "dimension6": "en"}, "metrics": {"ratings_value": "metric1", "ratings_count": "metric2"}}]</script>
+<script type="application/json" gtm>{"parameters": {"freeTrialEligibleUser": "False", "internalUser": "False", "language": {"machineTranslated": "False", "requested": "id", "served": "en"}, "pageType": "codelab", "projectName": "Developer Android", "signedIn": "True", "tenant": "android", "recommendations": {"sourcePage": "", "sourceType": 0, "sourceRank": 0, "sourceIdenticalDescriptions": 0, "sourceTitleWords": 0, "sourceDescriptionWords": 0, "experiment": ""}}, "tags": ["GTM-KMSWPCJ"]}</script>
+      
+    </devsite-analytics>
+    
+      <devsite-badger></devsite-badger>
+    
+    
+<android-fully-clickable target=".fully-clickable" watch="devsite-content"></android-fully-clickable>
+    <script nonce="ItHrGwK6lKrgsJMJC21WNxPtpsYH6B">
+  
+  (function(d,e,v,s,i,t,E){d['GoogleDevelopersObject']=i;
+    t=e.createElement(v);t.async=1;t.src=s;E=e.getElementsByTagName(v)[0];
+    E.parentNode.insertBefore(t,E);})(window, document, 'script',
+    'https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/js/app_loader.js', '[3,"id",null,"/js/devsite_app_module.js","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android","https://android-dot-devsite-v2-prod.appspot.com",1,null,["/_pwa/android/manifest.json","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/images/video-placeholder.svg","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg","https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap"],1,null,[1,6,8,12,14,17,21,25,40,50,63,70,75,76,80,87,88,91,92,93,97,98,100,101,102,103,104,105,107,108,111,112,113,115,116,117,118,120,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,138,147,148,149],"AIzaSyAP-jjEJBzmIyKR4F-3XITp8yM9T1gEEI8","AIzaSyB6xiKGDR5O3Ak2okS4rLkauxGUG7XP0hg"]')
+  
+</script>
+    <devsite-a11y-announce></devsite-a11y-announce>
+  </body>
+</html>

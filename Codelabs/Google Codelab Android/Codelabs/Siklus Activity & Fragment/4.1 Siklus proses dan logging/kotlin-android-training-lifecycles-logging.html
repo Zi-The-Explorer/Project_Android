@@ -1,0 +1,1999 @@
+<!doctype html>
+<html 
+      lang="id"
+      dir="ltr">
+  <head>
+    <meta name="google-signin-client-id" content="721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com">
+    <meta name="google-signin-scope"
+          content="profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award">
+    <meta property="og:site_name" content="Android Developers">
+    <meta property="og:type" content="website"><meta name="theme-color" content="#3ddc84"><meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/_pwa/android/manifest.json"
+          crossorigin="use-credentials">
+    <link rel="preconnect" href="//www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="//apis.google.com" crossorigin>
+    <link rel="preconnect" href="//www.google-analytics.com" crossorigin><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap">
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Material+Icons&display=block"><link rel="stylesheet" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/css/app.css">
+      <link rel="shortcut icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/touchicon-180.png"><link rel="canonical" href="https://developer.android.com/codelabs/kotlin-android-training-lifecycles-logging?hl=id"><link rel="search" type="application/opensearchdescription+xml"
+            title="Android Developers" href="https://developer.android.com/s/opensearch.xml">
+      
+
+<title>Android Kotlin Fundamentals: Lifecycles and logging</title>
+
+<meta property="og:title" content="Android Kotlin Fundamentals: Lifecycles and logging"><meta name="description" content="In this codelab, you learn about the activity and fragment lifecycle.">
+  <meta property="og:description" content="In this codelab, you learn about the activity and fragment lifecycle."><meta property="og:url" content="https://developer.android.com/codelabs/kotlin-android-training-lifecycles-logging?hl=id"><meta property="og:image" content="https://developer.android.com/images/social/android-developers.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675"><meta property="og:locale" content="en"><meta name="twitter:card" content="summary_large_image">
+  <meta name="xsrf_token" content="InAduoziLh7CPzDqYHD7dupMx8InuZ3dyPP_4AMjqQY6MTYyNzQ4MTQ5Nzg1MjQ5Mg">
+  
+
+  <meta name="session_expiry" content="1627483460">
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    <meta name="original_source" content="https://docs.google.com/document/d/17OJuWt0SFQ1DbY3_9y177ypNu-aCkJHXZzujNX1LidM/edit" />
+    
+    
+    
+    
+    
+      
+    
+    
+    
+  
+
+    </head>
+  <body class="devsite-full-width-page"
+        template="codelab"
+        theme="android-theme"
+        type="codelab"
+        
+        layout="full"
+        
+        
+        pending>
+    <devsite-progress type="indeterminate" id="app-progress"></devsite-progress>
+  
+    <section class="devsite-wrapper"><devsite-header>
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="devsite-header--inner nocontent">
+  <div class="devsite-top-logo-row-wrapper-wrapper">
+    <div class="devsite-top-logo-row-wrapper">
+      <div class="devsite-top-logo-row">
+        <button type="button" id="devsite-hamburger-menu"
+          class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+          data-category="Site-Wide Custom Events"
+          data-label="Navigation menu button"
+          visually-hidden
+          aria-label="Open menu">
+        </button>
+        <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo"
+       alt="Android Developers">
+
+</a>
+
+
+
+  
+  
+  <span class="devsite-product-name">
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+  </span>
+
+</div>
+        <div class="devsite-top-logo-row-middle">
+          <div class="devsite-header-upper-tabs">
+            
+              
+              
+  <devsite-tabs class="upper-tabs">
+
+    <nav class="devsite-tabs-wrapper" aria-label="Tab atas">
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/about"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="platform"
+   track-metadata-eventdetail="https://developer.android.com/about"
+   track-metadata-position="nav - platform"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Platform"
+   >
+  Platform
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/studio"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="android studio"
+   track-metadata-eventdetail="https://developer.android.com/studio"
+   track-metadata-position="nav - android studio"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Android Studio"
+   >
+  Android Studio
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/distribute"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="google play"
+   track-metadata-eventdetail="https://developer.android.com/distribute"
+   track-metadata-position="nav - google play"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Google Play"
+   >
+  Google Play
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/jetpack"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="jetpack"
+   track-metadata-eventdetail="https://developer.android.com/jetpack"
+   track-metadata-position="nav - jetpack"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Jetpack"
+   >
+  Jetpack
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/kotlin"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="kotlin"
+   track-metadata-eventdetail="https://developer.android.com/kotlin"
+   track-metadata-position="nav - kotlin"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Kotlin"
+   >
+  Kotlin
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/docs"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="dokumen"
+   track-metadata-eventdetail="https://developer.android.com/docs"
+   track-metadata-position="nav - dokumen"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Dokumen"
+   >
+  Dokumen
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/news"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="berita"
+   track-metadata-eventdetail="https://developer.android.com/news"
+   track-metadata-position="nav - berita"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Berita"
+   >
+  Berita
+</a>
+
+          </tab>
+        
+      
+    </nav>
+
+  </devsite-tabs>
+
+            
+           </div>
+          
+<devsite-search
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    enable-signin
+    enable-search
+    enable-suggestions
+      enable-query-completion
+    
+    project-name="Developer Android"
+    tenant-name="Android Developers"
+    
+    
+    
+    
+    
+    role="combobox">
+  <form class="devsite-search-form" action="https://developer.android.com/s/results" method="GET">
+    <div class="devsite-search-container">
+      <div class="devsite-searchbox">
+        <input
+          aria-activedescendant=""
+          aria-autocomplete="list"
+          
+          aria-label="Penelusuran"
+          aria-haspopup="false"
+          aria-multiline="false"
+          aria-label="Kotak penelusuran"
+          autocomplete="off"
+          class="devsite-search-field devsite-search-query"
+          name="q"
+          
+          placeholder="Penelusuran"
+          role="searchbox"
+          type="text"
+          value=""
+          >
+        <div class="devsite-search-image material-icons" aria-hidden="true"></div>
+      </div>
+      <button type="button"
+              search-open
+              class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+              
+              aria-label="Buka penelusuran"></button>
+    </div>
+  </form>
+  <button type="button"
+          search-close
+          class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+          
+          aria-label="Tutup penelusuran"></button>
+</devsite-search>
+
+        </div>
+
+        
+
+        
+
+        
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+
+        
+
+        
+          
+          
+          <devsite-user signed-in
+                        
+                        
+                          enable-profiles
+                        
+                        
+                          
+                        id="devsite-user"></devsite-user>
+           
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="devsite-collapsible-section
+    
+      devsite-header-no-lower-tabs
+    ">
+    <div class="devsite-header-background">
+      
+        
+      
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+  
+</devsite-header>
+      <devsite-book-nav scrollbars hidden>
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="devsite-book-nav devsite-nav nocontent"
+     aria-label="Menu samping">
+  <div class="devsite-mobile-header">
+    <button type="button"
+            id="devsite-close-nav"
+            class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+            data-category="Site-Wide Custom Events"
+            data-label="Close navigation"
+            aria-label="Close navigation">
+    </button>
+    <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+
+</a>
+
+
+  
+      <span class="devsite-product-name">
+        
+        
+        <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+      </span>
+    
+
+</div>
+  </div>
+
+  <div class="devsite-book-nav-wrapper">
+    <div class="devsite-mobile-nav-top">
+      
+        <ul class="devsite-nav-list">
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/about"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Platform"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="platform">
+  
+    <span class="devsite-nav-text" tooltip >
+      Platform
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/studio"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Android Studio"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="androidStudio">
+  
+    <span class="devsite-nav-text" tooltip >
+      Android Studio
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/distribute"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Google Play"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="googlePlay">
+  
+    <span class="devsite-nav-text" tooltip >
+      Google Play
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/jetpack"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Jetpack"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="jetpack">
+  
+    <span class="devsite-nav-text" tooltip >
+      Jetpack
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/kotlin"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Kotlin"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="kotlin">
+  
+    <span class="devsite-nav-text" tooltip >
+      Kotlin
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/docs"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Dokumen"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="dokumen">
+  
+    <span class="devsite-nav-text" tooltip >
+      Dokumen
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/news"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Berita"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="berita">
+  
+    <span class="devsite-nav-text" tooltip >
+      Berita
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+          
+          
+        </ul>
+      
+    </div>
+    
+  </div>
+</nav>
+        
+      </devsite-book-nav>
+      <section id="gc-wrapper">
+        <main role="main" class="devsite-main-content"
+            
+            >
+          
+          <devsite-toc class="devsite-nav"
+                       role="navigation"
+                       aria-label="Daftar isi"
+            disabled></devsite-toc>
+          <devsite-content>
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="devsite-article"><style>
+      body {
+        transition: opacity ease-in 0.2s;
+      }
+
+      body[unresolved] {
+        opacity: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+      </style>
+  
+  
+  
+
+  <div class="devsite-article-meta nocontent" role="navigation">
+    
+    
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+  <a href="https://developer.android.com/"
+      
+        class="devsite-breadcrumb-link gc-analytics-event"
+      
+        data-category="Site-Wide Custom Events"
+      
+        data-label="Breadcrumbs"
+      
+        data-value="1"
+      
+        track-type="globalNav"
+      
+        track-name="breadcrumb"
+      
+        track-metadata-position="1"
+      
+        track-metadata-eventdetail="Developer Android"
+      
+    >
+    
+        Developer Android
+      
+  </a>
+  
+    
+  </li>
+  
+</ul>
+    
+  </div>
+  
+  
+    <h1 class="devsite-page-title">Android Kotlin Fundamentals: Lifecycles and logging</h1><devsite-bookmark></devsite-bookmark>
+  
+
+  <devsite-toc class="devsite-nav" devsite-toc-embedded
+               disabled>
+  </devsite-toc>
+
+  
+
+  <div class="devsite-article-body clearfix
+    ">
+
+    
+      
+    <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+    <google-codelab codelab-gaid="UA-81734179-1"
+                    doc-id="17OJuWt0SFQ1DbY3_9y177ypNu-aCkJHXZzujNX1LidM"
+                    id="kotlin-android-training-lifecycles-logging"
+                    title="Android Kotlin Fundamentals: Lifecycles and logging"
+                    environment="web"
+                    category="android,kotlin"
+                    feedback-link="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/issues/new?assignees=&amp;labels=&amp;template=android-kotlin-fundamentals.md&amp;title=Android&#43;Kotlin&#43;Fundamentals&#43;codelab%3A&#43;"
+                    >
+      
+        <google-codelab-step label="Welcome" duration="0">
+          
+            <google-codelab-about codelab-title="Android Kotlin Fundamentals: Lifecycles and logging"
+                                  authors="Google Developers Training team"
+                                  >
+            </google-codelab-about>
+          
+          <h2 is-upgraded id="introduction" data-text="Introduction">Introduction</h2>
+<p>In this codelab, you learn about a fundamental part of Android: the activity and fragment lifecycle. The activity lifecycle is the set of states an activity can be in during its lifetime. The lifecycle extends from when the activity is initially created to when it is destroyed and the system reclaims that activity&#39;s resources. As a user navigates between activities in your app (and into and out of your app), those activities each transition between different states in the activity lifecycle.</p>
+<p>The fragment lifecycle is very similar to that of activities. This codelab focuses primarily on activities, with a quick look at fragments toward the end.</p>
+<p>As an Android developer, you need to understand the activity lifecycle. If your activities do not correctly respond to lifecycle state changes, your app could generate strange bugs, confusing behavior for your users, or use too many Android system resources. Understanding the Android lifecycle, and responding correctly to lifecycle state changes, is critical to being a good Android citizen.</p>
+<h2 is-upgraded id="what-you-should-already-know" data-text="What you should already know"><strong>What you should already know</strong></h2>
+<ul>
+<li>What an activity is, and how to create one in your app.</li>
+<li>What the activity&#39;s <code translate="no" dir="ltr">onCreate()</code> method does, and the kind of operations that are performed in that method.</li>
+<li>How to create XML layouts for your activity, and how to update a layout at runtime.</li>
+</ul>
+<h2 class="checklist" is-upgraded id="what-youll-learn" data-text="What you'll learn"><strong>What you'll learn</strong></h2>
+<ul class="checklist">
+<li>How to print logging information to the Android Studio Logcat window (sometimes called the Android console or Android monitor).</li>
+<li>The basics of the <code translate="no" dir="ltr">Activity</code> and <code translate="no" dir="ltr">Fragment</code> lifecycles, and the callbacks that are invoked when the activity moves between lifecycle states.</li>
+<li>How to override lifecycle callback methods to perform operations at different times in the activity lifecycle.</li>
+<li>How to use the  <a href="https://github.com/JakeWharton/timber" target="_blank"><code translate="no" dir="ltr">Timber</code></a> library for logging in your app.</li>
+</ul>
+<h2 is-upgraded id="what-youll-do" data-text="What you'll do"><strong>What you'll do</strong></h2>
+<ul>
+<li>Modify a starter app called DessertClicker to add logging information that&#39;s displayed in the Logcat.</li>
+<li>Override lifecycle callback methods and log changes to the activity state.</li>
+<li>Run the app and note the logging information that appears as the activity is started, stopped, and resumed.</li>
+<li>Modify the app to use the <code translate="no" dir="ltr">Timber</code> library.</li>
+<li>Add logging to the AndroidTrivia app, and monitor changes to fragment states.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="App overview" duration="0">
+          
+          <p>In this codelab, you work with a starter app called DessertClicker. In this app, each time the user taps a dessert on the screen, the app &#34;purchases&#34; the dessert for the user. The app updates values in the layout for the number of desserts that were purchased, and for the total amount the user spent.</p>
+<p class="image-container"><img alt="8216c20f5571fc04.png" style="width: 331.69px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/8216c20f5571fc04.png"></p>
+<p>This app contains several bugs related to the Android lifecycle: For example, in certain circumstances, the app resets the dessert values to 0, and the app continues using system resources even when the app is in the background. Understanding the Android lifecycle will help you understand why these problems happen, and how to fix them.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Explore the lifecycle methods and add basic logging" duration="0">
+          
+          <p>Every activity and every fragment has what is known as a <em>lifecycle</em>. This is an allusion to animal lifecycles, like the lifecycle of this butterfly—the different states of the butterfly show its growth from birth to fully formed adulthood to death.</p>
+<p class="image-container"><img alt="c685f48ff799f0c9.png" style="width: 334.50px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/c685f48ff799f0c9.png"></p>
+<p>Similarly, the activity lifecycle is made up of the different states that an activity can go through, from when the activity is first initialized to when it is finally destroyed and its memory reclaimed by the system. As the user starts your app, navigates between activities, navigates inside and outside of your app, and leaves your app, the activity changes state. The diagram below shows all the activity lifecycle states. As their names indicate, these states represent the status of the activity.</p>
+<p class="image-container"><img alt="c803811f4cb4034b.png" style="width: 285.50px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/c803811f4cb4034b.png"></p>
+<p>Often, you want to change some behavior, or run some code when the activity lifecycle state changes. Therefore the <code translate="no" dir="ltr">Activity</code> class itself, and any subclasses of <code translate="no" dir="ltr">Activity</code> such as <code translate="no" dir="ltr">AppCompatActivity</code>, implement a set of lifecycle callback methods. Android invokes these callbacks when the activity moves from one state to another, and you can override those methods in your own activities to perform tasks in response to those lifecycle state changes. The following diagram shows the lifecycle states along with the available overridable callbacks.</p>
+<p class="image-container"><img alt="f6b25a71cec4e401.png" style="width: 279.50px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/f6b25a71cec4e401.png"></p>
+<p>A fragment also has a lifecycle. A fragment&#39;s lifecycle is similar to an activity&#39;s lifecycle, so a lot of what you learn applies to both. In this codelab, you focus on the activity lifecycle because it&#39;s a fundamental part of Android and the easiest to observe in a simple app. Here is the corresponding diagram for the fragment lifecycle:</p>
+<p class="image-container"><img alt="8494ec955ce0c49d.png" style="width: 285.18px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/8494ec955ce0c49d.png"></p>
+<p>It&#39;s important to know when these callbacks are invoked and what to do in each callback method. But both of these diagrams are complex and can be confusing. In this codelab, instead of just reading what each state and callback means, you&#39;re going to do some detective work and build your understanding of what&#39;s going on.</p>
+<h2 is-upgraded id="step-1:-examine-the-oncreate-method-and-add-logging" data-text="Step 1: Examine the onCreate() method and add logging"><strong>Step 1: Examine the onCreate() method and add logging</strong></h2>
+<p>To figure out what&#39;s going on with the Android lifecycle, it&#39;s helpful to know when the various lifecycle methods are called. This will help you hunt down where things are going wrong in DessertClicker.</p>
+<p>A simple way to do that is to use the Android logging API. Logging enables you to write short messages to a console while the app runs, and you can use it to show you when different callbacks are triggered.</p>
+<ol type="1">
+<li>Download the  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-starter-apps/tree/master/DessertClicker-Starter" target="_blank">DessertClicker starter app</a> and open it in Android Studio.</li>
+<li>Compile and run the app, and tap several times on the picture of the dessert. Note how the value for <strong>Desserts Sold</strong> and the total dollar amount changes.</li>
+<li>Open <code translate="no" dir="ltr">MainActivity.kt</code> and examine the <code translate="no" dir="ltr">onCreate()</code> method for this activity</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onCreate(savedInstanceState: Bundle?) {
+...
+}
+</code></pre>
+<p>In the activity lifecycle diagram, you may have recognized the <code translate="no" dir="ltr">onCreate()</code> method, because you&#39;ve used this callback before. It&#39;s the one method every activity must implement. The <code translate="no" dir="ltr">onCreate()</code> method is where you should do any one-time initializations for your activity. For example, in <code translate="no" dir="ltr">onCreate()</code> you inflate the layout, define click listeners, or set up data binding.</p>
+<p class="image-container"><img alt="9be2255ff49e0af8.png" style="width: 359.50px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/9be2255ff49e0af8.png"></p>
+<p>The <code translate="no" dir="ltr">onCreate()</code> lifecycle method is called once, just after the activity is initialized (when the new <code translate="no" dir="ltr">Activity</code> object is created in memory). After <code translate="no" dir="ltr">onCreate()</code> executes, the activity is considered <em>created</em>.</p>
+<aside class="special"><p><strong>Note:</strong> The <code translate="no" dir="ltr">onCreate()</code> method is an override.  If you override any lifecycle methods, you must immediately call <code translate="no" dir="ltr">super.onCreate()</code>.</p>
+</aside>
+<ol type="1" start="4">
+<li>In the <code translate="no" dir="ltr">onCreate()</code> method, just after the call to <code translate="no" dir="ltr">super.onCreate()</code>, add the following line. Import the <code translate="no" dir="ltr">Log</code> class if necessary.  (Press <code translate="no" dir="ltr">Alt+Enter</code>, or <code translate="no" dir="ltr">Option+Enter</code> on a Mac, and select <strong>Import</strong>.)</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">Log.i(&#34;MainActivity&#34;, &#34;onCreate Called&#34;)
+</code></pre>
+<p>The  <a href="https://developer.android.com/reference/kotlin/android/util/Log" target="_blank"><code translate="no" dir="ltr">Log</code></a> class writes messages to the Logcat. There are three parts to this command:</p>
+<ul>
+<li>The <em>severity</em> of the log message, that is, how important the message is. In this case, the  <a href="https://developer.android.com/reference/kotlin/android/util/Log#i(kotlin.String,%20kotlin.String)" target="_blank"><code translate="no" dir="ltr">Log.i()</code></a> method writes an informational message. Other methods in the <code translate="no" dir="ltr">Log</code> class include  <a href="https://developer.android.com/reference/kotlin/android/util/Log#e(kotlin.String,%20kotlin.String)" target="_blank"><code translate="no" dir="ltr">Log.e()</code></a> for errors, or  <a href="https://developer.android.com/reference/kotlin/android/util/Log#w(kotlin.String,%20kotlin.String)" target="_blank"><code translate="no" dir="ltr">Log.w()</code></a> for warnings.</li>
+<li>The log <em>tag</em>, in this case <code translate="no" dir="ltr">"MainActivity"</code>. The tag is a string that lets you more easily find your log messages in the Logcat. The tag is typically the name of the class.</li>
+<li>The actual log <em>message</em>, a short string, which in this case is <code translate="no" dir="ltr">"onCreate called"</code>.</li>
+</ul>
+<ol type="1" start="5">
+<li>Compile and run the DessertClicker app. You don&#39;t see any behavior differences in the app when you tap the dessert. In Android Studio, at the bottom of the screen, click the <strong>Logcat</strong> tab.</li>
+</ol>
+<p class="image-container"><img alt="ff9c50376701877f.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/ff9c50376701877f.png"></p>
+<p>The Logcat is the console for logging messages. Messages from Android about your app appear here, including the messages you explicitly send to the log with the <code translate="no" dir="ltr">Log.i()</code> method or other <code translate="no" dir="ltr">Log</code> class methods. 6. In the <strong>Logcat</strong> pane, type <code translate="no" dir="ltr">I/MainActivity</code> into the search field. <img alt="f5c091e2b480edf8.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/f5c091e2b480edf8.png"></p>
+<p>The Logcat can contain many messages, most of which aren&#39;t useful to you. You can filter the Logcat entries in many ways, but searching is the easiest. Because you used <code translate="no" dir="ltr">MainActivity</code> as the log tag in your code, you can use that tag to filter the log. Adding <code translate="no" dir="ltr">I/</code> at the start means that this is an informational message, created by <code translate="no" dir="ltr">Log.i()</code>.</p>
+<p>Your log message includes the date and time, the name of the package (<code translate="no" dir="ltr">com.example.android.dessertclicker</code>), your log tag (with <code translate="no" dir="ltr">I/</code> at the start), and the actual message. Because this message appears in the log, you know that <code translate="no" dir="ltr">onCreate()</code> has been executed.</p>
+<h2 is-upgraded id="step-2:-implement-the-onstart-method" data-text="Step 2: Implement the onStart() method"><strong>Step 2: Implement the onStart() method</strong></h2>
+<p>The <code translate="no" dir="ltr">onStart()</code> lifecycle method is called just after <code translate="no" dir="ltr">onCreate()</code>. After <code translate="no" dir="ltr">onStart()</code> runs, your activity is visible on the screen. Unlike <code translate="no" dir="ltr">onCreate()</code>, which is called only once to initialize your activity, <code translate="no" dir="ltr">onStart()</code> can be called many times in the lifecycle of your activity.</p>
+<p class="image-container"><img alt="385df4ce82ae2de9.png" style="width: 379.50px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/385df4ce82ae2de9.png"></p>
+<p>Note that <code translate="no" dir="ltr">onStart()</code> is paired with a corresponding <code translate="no" dir="ltr">onStop()</code> lifecycle method. If the user starts your app and then returns to the device&#39;s home screen, the activity is stopped and is no longer visible on screen.</p>
+<ol type="1">
+<li>In Android Studio, with <code translate="no" dir="ltr">MainActivity.kt</code> open, select <strong>Code &gt; Override Methods</strong> or press <code translate="no" dir="ltr">Control+o</code>. A dialog appears with a huge list of all the methods you can override in this class. <img alt="e1f2460242b2ae.png" style="width: 340.48px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/e1f2460242b2ae.png"></li>
+<li>Start entering <code translate="no" dir="ltr">onStart</code> to search for the right method. To scroll to the next matching item, use the down arrow. Choose <code translate="no" dir="ltr">onStart()</code> from the list, and click <strong>OK</strong> to insert the boilerplate override code. The code looks like this:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onStart() {
+   super.onStart()
+}
+</code></pre>
+<aside class="special"><p><strong>Tip</strong>: Android Studio inserts your overridden method code in the next available appropriate place in the class. If you&#39;d like to put your lifecycle overrides in a specific place (like at the end of the class), set the insertion point before you use <strong>Override Methods</strong>.</p>
+</aside>
+<ol type="1" start="3">
+<li>Inside the <code translate="no" dir="ltr">onStart()</code> method, add a log message:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onStart() {
+   super.onStart()
+
+   Log.i(&#34;MainActivity&#34;, &#34;onStart Called&#34;)
+}
+</code></pre>
+<ol type="1" start="4">
+<li>Compile and run the DessertClicker app, and open the <strong>Logcat</strong> pane. Type <code translate="no" dir="ltr">I/MainActivity</code> into the search field to filter the log. Notice that both the <code translate="no" dir="ltr">onCreate()</code> and <code translate="no" dir="ltr">onStart()</code> methods were called one after the other, and that your activity is visible on screen.</li>
+<li>Press the Home button on the device, and then use the recents screen to return to the activity. Notice that the activity resumes where it left off, with all the same values, and that <code translate="no" dir="ltr">onStart()</code> is logged a second time to Logcat. Notice also that the <code translate="no" dir="ltr">onCreate()</code> method is usually not called again.</li>
+</ol>
+<aside class="special"><p><strong>Note:</strong> As you experiment with your device and observe the lifecycle callbacks, you might notice unusual behavior when you rotate your device.  You&#39;ll learn about that behavior in the next codelab.</p>
+</aside>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Use Timber for logging" duration="0">
+          
+          <p>In this task, you modify your app to use a popular logging library called <code translate="no" dir="ltr">Timber</code>. <code translate="no" dir="ltr">Timber</code> has several advantages over the built-in Android <code translate="no" dir="ltr">Log</code> class. In particular, the <code translate="no" dir="ltr">Timber</code> library:</p>
+<ul>
+<li>Generates the log tag for you based on the class name.</li>
+<li>Helps you avoid showing logs in a release version of your Android app.</li>
+<li>Allows for integration with crash-reporting libraries.</li>
+</ul>
+<p>You&#39;ll see the first benefit immediately; the others you&#39;ll appreciate as you make and ship bigger apps.</p>
+<h2 is-upgraded id="step-1:-add-timber-to-gradle" data-text="Step 1:  Add Timber to Gradle"><strong>Step 1:  Add Timber to Gradle</strong></h2>
+<ol type="1">
+<li>Visit this link to the  <a href="https://github.com/JakeWharton/timber#download" target="_blank">Timber project</a> on GitHub, and copy the line of code under the <strong>Download</strong> heading that starts with the word <code translate="no" dir="ltr">implementation</code>. The line of code will look something like this, although the version number may be different.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">implementation &#39;com.jakewharton.timber:timber:4.7.1&#39;
+</code></pre>
+<ol type="1" start="2">
+<li>In Android Studio, in the Project: Android view, expand <strong>Gradle Scripts</strong> and open the <strong>build.gradle (Module: app)</strong> file.</li>
+<li>Inside the dependencies section, paste the line of code that you copied.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">dependencies {
+   ...
+   implementation &#39;com.jakewharton.timber:timber:4.7.1&#39;
+}
+</code></pre>
+<ol type="1" start="4">
+<li>Click the <strong>Sync Now</strong> link in the top right of Android Studio to rebuild Gradle. The build should execute without errors.</li>
+</ol>
+<h2 is-upgraded id="step-2:-create-an-application-class-and-initialize-timber" data-text="Step 2:  Create an Application class and initialize Timber"><strong>Step 2:  Create an Application class and initialize Timber</strong></h2>
+<p>In this step, you create an <code translate="no" dir="ltr">Application</code> class. <code translate="no" dir="ltr">Application</code> is a base class that contains global application state for your entire app. It&#39;s also the main object that the operating system uses to interact with your app. There is a default <code translate="no" dir="ltr">Application</code> class that Android uses if you don&#39;t specify one, so there&#39;s always an <code translate="no" dir="ltr">Application</code> object created for your app, without you needing to do anything special to create it.</p>
+<p><code translate="no" dir="ltr">Timber</code> uses the <code translate="no" dir="ltr">Application</code> class because the whole app will be using this logging library, and the library needs to be initialized once, before everything else is set up. In cases like this, you can subclass the <code translate="no" dir="ltr">Application</code> class and override the defaults with your own custom implementation.</p>
+<aside class="warning"><p><strong>Warning</strong>: It might be tempting to add your own code to the <code translate="no" dir="ltr">Application</code> class, because the class is created before all of your activities and can hold global state. But just as it&#39;s error-prone to make readable and writable static variables that are globally available, it&#39;s easy to abuse the <code translate="no" dir="ltr">Application</code> class. Avoid putting any activity code in the <code translate="no" dir="ltr">Application</code> class unless the code is really needed.</p>
+</aside>
+<p>After you create your <code translate="no" dir="ltr">Application</code> class, you need to specify the class in the Android manifest.</p>
+<ol type="1">
+<li>In the <code translate="no" dir="ltr">dessertclicker</code> package, create a new Kotlin class called <code translate="no" dir="ltr">ClickerApplication</code>. To do this, expand <strong>app &gt; java</strong> and right-click on <strong>com.example.android.dessertclicker</strong>. Select <strong>New &gt; Kotlin File/Class</strong>.</li>
+<li>Name the class <strong>ClickerApplication</strong> and set the <strong>Kind</strong> to <strong>Class</strong>. Click <strong>OK</strong>.</li>
+</ol>
+<p>Android Studio creates a new <code translate="no" dir="ltr">ClickerApplication</code> class, and opens it in the code editor. The code looks like this:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">package com.example.android.dessertclicker
+
+class ClickerApplication {
+}
+</code></pre>
+<ol type="1" start="3">
+<li>Change the class definition to be a subclass of <code translate="no" dir="ltr">Application</code> and import the <code translate="no" dir="ltr">Application</code> class if necessary.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class ClickerApplication : Application() {
+</code></pre>
+<ol type="1" start="4">
+<li>To override the <code translate="no" dir="ltr">onCreate()</code> method, select <strong>Code &gt; Override Methods</strong> or press <code translate="no" dir="ltr">Control+o</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class ClickerApplication : Application() {
+   override fun onCreate() {
+       super.onCreate()
+   }
+}
+</code></pre>
+<ol type="1" start="5">
+<li>Inside that <code translate="no" dir="ltr">onCreate()</code> method, initialize the <code translate="no" dir="ltr">Timber</code> library:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onCreate() {
+    super.onCreate()
+
+    Timber.plant(Timber.DebugTree())
+}
+</code></pre>
+<p>This line of code initializes the <code translate="no" dir="ltr">Timber</code> library for your app so that you can use the library in your activities.</p>
+<ol type="1" start="6">
+<li>Open <strong>AndroidManifest.xml</strong>.</li>
+<li>At the top of the <code translate="no" dir="ltr">&lt;application&gt;</code> element, add a new attribute for the <code translate="no" dir="ltr">ClickerApplication</code> class, so that Android knows to use your <code translate="no" dir="ltr">Application</code> class instead of the default one.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;application
+   android:name=&#34;.ClickerApplication&#34;
+...
+</code></pre>
+<aside class="special"><p><strong>Note:</strong> If you don&#39;t add your custom <code translate="no" dir="ltr">Application</code> class to the Android manifest, your app will run without errors. However, the app won&#39;t use your class, and you&#39;ll never see any logging information from <code translate="no" dir="ltr">Timber</code>.</p>
+</aside>
+<h2 is-upgraded id="step-3:-add-timber-log-statements" data-text="Step 3: Add Timber log statements"><strong>Step 3: Add Timber log statements</strong></h2>
+<p>In this step, you change your <code translate="no" dir="ltr">Log.i()</code> calls to use <code translate="no" dir="ltr">Timber</code>, then you implement logging for all the other lifecycle methods.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">MainActivity</code> and scroll to <code translate="no" dir="ltr">onCreate()</code>. Replace <code translate="no" dir="ltr">Log.i()</code> with <code translate="no" dir="ltr">Timber.i()</code> and remove the log tag.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">Timber.i(&#34;onCreate called&#34;)
+</code></pre>
+<p>Like the <code translate="no" dir="ltr">Log</code> class, <code translate="no" dir="ltr">Timber</code> also uses the <code translate="no" dir="ltr">i()</code> method for informational messages. Notice that with <code translate="no" dir="ltr">Timber</code> you don&#39;t need to add a log tag; <code translate="no" dir="ltr">Timber</code> automatically uses the name of the class as the log tag.</p>
+<ol type="1" start="2">
+<li>Similarly, change the <code translate="no" dir="ltr">Log</code> call in <code translate="no" dir="ltr">onStart()</code>:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onStart() {
+   super.onStart()
+
+   Timber.i(&#34;onStart Called&#34;)
+}
+</code></pre>
+<ol type="1" start="3">
+<li>Compile and run the DessertClicker app, and open Logcat. Notice that you still see the same log messages for <code translate="no" dir="ltr">onCreate()</code> and <code translate="no" dir="ltr">onStart()</code>, only now it&#39;s <code translate="no" dir="ltr">Timber</code> generating those messages, not the <code translate="no" dir="ltr">Log</code> class.</li>
+<li>Override the remainder of the lifecycle methods in your <code translate="no" dir="ltr">MainActivity</code>, and add <code translate="no" dir="ltr">Timber</code> log statements for each one. Here&#39;s the code:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onResume() {
+   super.onResume()
+   Timber.i(&#34;onResume Called&#34;)
+}
+
+override fun onPause() {
+   super.onPause()
+   Timber.i(&#34;onPause Called&#34;)
+}
+
+override fun onStop() {
+   super.onStop()
+   Timber.i(&#34;onStop Called&#34;)
+}
+
+override fun onDestroy() {
+   super.onDestroy()
+   Timber.i(&#34;onDestroy Called&#34;)
+}
+
+override fun onRestart() {
+   super.onRestart()
+   Timber.i(&#34;onRestart Called&#34;)
+}
+</code></pre>
+<ol type="1" start="5">
+<li>Compile and run DessertClicker again and examine Logcat. This time notice that in addition to <code translate="no" dir="ltr">onCreate()</code> and <code translate="no" dir="ltr">onStart()</code>, there&#39;s a log message for the <code translate="no" dir="ltr">onResume()</code> lifecycle callback.</li>
+</ol>
+<p class="image-container"><img alt="3b61071b3c4334a4.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/3b61071b3c4334a4.png"></p>
+<p>When an activity starts from scratch, you see all three of these lifecycle callbacks called in order:</p>
+<ul>
+<li><code translate="no" dir="ltr">onCreate()</code> to create the app.</li>
+<li><code translate="no" dir="ltr">onStart()</code> to start it and make it visible on the screen.</li>
+<li><code translate="no" dir="ltr">onResume()</code> to give the activity focus and make it ready for the user to interact with it.</li>
+</ul>
+<p>Despite the name, the <code translate="no" dir="ltr">onResume()</code> method is called at startup, even if there is nothing to resume.</p>
+<p class="image-container"><img alt="160054d59f67519.png" style="width: 373.50px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/160054d59f67519.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Explore lifecycle use cases" duration="0">
+          
+          <p>Now that the DessertClicker app is set up for logging, you&#39;re ready to start using the app in various ways, and ready to explore how the lifecycle callbacks are triggered in response to those uses.</p>
+<h2 is-upgraded id="use-case-1:-opening-and-closing-the-activity" data-text="Use case 1: Opening and closing the activity"><strong>Use case 1: Opening and closing the activity</strong></h2>
+<p>You start with the most basic use case, which is to start your app for the first time, then close the app down completely.</p>
+<ol type="1">
+<li>Compile and run the DessertClicker app, if it is not already running. As you&#39;ve seen, the <code translate="no" dir="ltr">onCreate()</code>, <code translate="no" dir="ltr">onStart()</code>, and <code translate="no" dir="ltr">onResume()</code> callbacks are called when the activity starts for the first time. <img alt="3b61071b3c4334a4.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/3b61071b3c4334a4.png"></li>
+<li>Tap the cupcake a few times.</li>
+<li>Tap the Back button on the device. Notice in Logcat that <code translate="no" dir="ltr">onPause()</code>, <code translate="no" dir="ltr">onStop()</code>, and <code translate="no" dir="ltr">onDestroy()</code> are called, in that order.</li>
+</ol>
+<p class="image-container"><img alt="524b1d0c9a584f37.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/524b1d0c9a584f37.png"></p>
+<p>In this case, using the Back button causes the activity (and the app) to be entirely closed. The execution of the <code translate="no" dir="ltr">onDestroy()</code> method means that the activity was fully shut down and can be garbage-collected.  <a href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)" target="_blank">Garbage collection</a> refers to the automatic cleanup of objects that you&#39;ll no longer use. After <code translate="no" dir="ltr">onDestroy()</code> is called, the OS knows that those resources are discardable, and it starts cleaning up that memory.</p>
+<p class="image-container"><img alt="2dcc4d9c6478a9f4.png" style="width: 322.02px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/2dcc4d9c6478a9f4.png"></p>
+<p>Your activity may also be completely shut down if your code manually calls the activity&#39;s  <a href="https://developer.android.com/reference/android/app/Activity.html#finish()" target="_blank"><code translate="no" dir="ltr">finish()</code></a> method, or if the user force-quits the app. (For example, the user can force-quit the app in the recents screen by clicking the <strong>X</strong> in the corner of the window.) The Android system may also shut down your activity on its own if your app has not been on-screen for a long time. Android does this to preserve battery, and to allow your app&#39;s resources to be used by other apps.</p>
+<ol type="1" start="4">
+<li>Use the recents screen to return to the app. Here&#39;s the Logcat: <img alt="fb7d1239f699fba4.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/fb7d1239f699fba4.png"></li>
+</ol>
+<p>The activity was destroyed in the previous step, so when you return to the app, Android starts up a new activity and calls the <code translate="no" dir="ltr">onCreate()</code>, <code translate="no" dir="ltr">onStart()</code>, and <code translate="no" dir="ltr">onResume()</code> methods. Notice that the number and total price of your ordered dessert items  from the previous activity have not been retained.  They are reset to zero.   You may not want this behavior in your app.  We will fix this issue in a future codelab.</p>
+<p>The key point here is that <code translate="no" dir="ltr">onCreate()</code> and <code translate="no" dir="ltr">onDestroy()</code> are only called once during the lifetime of a single activity instance: <code translate="no" dir="ltr">onCreate()</code> to initialize the app for the very first time, and <code translate="no" dir="ltr">onDestroy()</code> to clean up the resources used by your app.</p>
+<p>The <code translate="no" dir="ltr">onCreate()</code> method is an important step; this is where all your first-time initialization goes, where you set up the layout for the first time by inflating it, and where you initialize your variables.</p>
+<h2 is-upgraded id="use-case-2:-navigating-away-from-and-back-to-the-activity" data-text="Use case 2: Navigating away from and back to the activity"><strong>Use case 2: Navigating away from and back to the activity</strong></h2>
+<p>Now that you&#39;ve started the app and completely closed it, you&#39;ve seen most of the lifecycle states for when the activity gets created for the first time. You&#39;ve also seen all the lifecycle states that the activity goes through when it gets completely shut down and destroyed. But as users interact with their Android-powered devices, they perform a variety of actions such as switching between apps, returning home, starting new apps, and handling interruptions by other external activities such as phone calls.</p>
+<p>Your activity does not close down entirely every time the user navigates away from that activity:</p>
+<ul>
+<li>When your activity is no longer visible on screen, this is known as putting the activity into the <em>background</em>. (The opposite of this is when the activity is in the <em>foreground</em>, or on screen.)</li>
+<li>When the user returns to your app, that same activity is restarted and becomes visible again. This part of the lifecycle is called the app&#39;s <em>visible</em> lifecycle.</li>
+</ul>
+<p>When your app is in the background, it should not be actively running, to preserve system resources and battery life. You use the <code translate="no" dir="ltr">Activity</code> lifecycle and its callbacks to know when your app is moving to the background so that you can pause any ongoing operations. Then you restart those operations when your app comes into the foreground.</p>
+<p>For example, consider an app that is heavily dependent on computing resources. This app may have many calculations using your device&#39;s CPU.  Processing power and battery life is typically limited on a mobile device, so the Android runtime system needs to balance resources.  Since background processes may slow the performance or prematurely drain the battery of the phone, Android may stop resource usage for those apps not running in the foreground.</p>
+<p>In this next step, you look at the activity lifecycle when the app goes into the background and returns again to the foreground.</p>
+<ol type="1">
+<li>With the DessertClicker app running, click the cupcake a few times.</li>
+<li>Press the Home button on your device and observe the Logcat in Android Studio.  Notice that the <code translate="no" dir="ltr">onPause()</code> method and <code translate="no" dir="ltr">onStop()</code> methods are called, but <code translate="no" dir="ltr">onDestroy()</code> is not. Returning to the home screen puts your app into the background rather than shutting down the app altogether. <img alt="38710e0d2c4d1910.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/38710e0d2c4d1910.png"></li>
+</ol>
+<p>When <code translate="no" dir="ltr">onPause()</code> is called, the app no longer has focus. After <code translate="no" dir="ltr">onStop()</code>, the app is no longer visible on screen. Although the activity has been stopped, the <code translate="no" dir="ltr">Activity</code> object is still in memory, in the background. The activity has not been destroyed. The user might return to the app, so Android keeps your activity resources around.</p>
+<p class="image-container"><img alt="b488b32801220b79.png" style="width: 285.50px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/b488b32801220b79.png"></p>
+<ol type="1" start="3">
+<li>Use the recents screen to return to the app. Notice in Logcat that the activity is restarted with <code translate="no" dir="ltr">onRestart()</code> and <code translate="no" dir="ltr">onStart()</code>, then resumed with <code translate="no" dir="ltr">onResume()</code>.</li>
+</ol>
+<p class="image-container"><img alt="f6275abeaa53abe4.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/f6275abeaa53abe4.png"></p>
+<p>When the activity returns to the foreground, the <code translate="no" dir="ltr">onCreate()</code> method is not called again. The activity object was not destroyed, so it doesn&#39;t need to be created again. Instead of <code translate="no" dir="ltr">onCreate()</code>, the <code translate="no" dir="ltr">onRestart()</code> method is called. Notice that this time when the activity returns to the foreground, the <strong>Desserts Sold</strong> number is retained.</p>
+<ol type="1" start="4">
+<li>Start at least one app other than DessertClicker so that the device has a few apps in its recents screen.</li>
+<li>Bring up the recents screen and open another recent activity. Then go back to recent apps and bring DessertClicker back to the foreground.</li>
+</ol>
+<p>Notice that you see the same callbacks in Logcat here as when you pressed the Home button. <code translate="no" dir="ltr">onPause()</code> and <code translate="no" dir="ltr">onStop()</code> are called when the app goes into the background, and then <code translate="no" dir="ltr">onRestart()</code>, <code translate="no" dir="ltr">onStart()</code>, and <code translate="no" dir="ltr">onResume()</code> when it comes back.</p>
+<p>The important point here is that <code translate="no" dir="ltr">onStart()</code> and <code translate="no" dir="ltr">onStop()</code> are called multiple times as the user navigates to and from the activity. You should override these methods to stop the app when it moves into the background, or start it up again when it returns to the foreground.</p>
+<p>So what about <code translate="no" dir="ltr">onRestart()</code>? The <code translate="no" dir="ltr">onRestart()</code> method is much like <code translate="no" dir="ltr">onCreate()</code>. Either <code translate="no" dir="ltr">onCreate()</code> or <code translate="no" dir="ltr">onRestart()</code> is called before the activity becomes visible. The <code translate="no" dir="ltr">onCreate()</code> method is called only the first time, and <code translate="no" dir="ltr">onRestart()</code> is called after that. The <code translate="no" dir="ltr">onRestart()</code> method is a place to put code that you only want to call if your activity is <strong>not</strong> being started for the first time.</p>
+<h2 is-upgraded id="use-case-3:-partially-hide-the-activity" data-text="Use case 3: Partially hide the activity"><strong>Use case 3: Partially hide the activity</strong></h2>
+<p>You&#39;ve learned that when an app is started and <code translate="no" dir="ltr">onStart()</code> is called, the app becomes visible on the screen.  When the app is resumed and <code translate="no" dir="ltr">onResume()</code> is called, the app gains the user focus. The part of the lifecycle in which the app is fully on-screen and has user focus is called the <em>interactive</em> lifecycle.</p>
+<p>When the app goes into the background, the focus is lost after <code translate="no" dir="ltr">onPause()</code>, and the app is no longer visible after <code translate="no" dir="ltr">onStop()</code>.</p>
+<p>The difference between focus and visibility is important because it is possible for an activity to be <em>partially</em> visible on the screen, but not have the user focus. In this step, you look at one case where an activity is partially visible, but doesn&#39;t have user focus.</p>
+<ol type="1">
+<li>With the DessertClicker app running, click the <strong>Share</strong> button in the top right of the screen.</li>
+</ol>
+<p class="image-container"><img alt="e2319779260eb5ee.png" style="width: 349.50px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/e2319779260eb5ee.png"></p>
+<p class="image-container"><img alt="9ddc8b1dc79b1bff.png" style="width: 287.50px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/9ddc8b1dc79b1bff.png"></p>
+<p>The sharing activity appears in the lower half of the screen, but the activity is still visible in the top half.</p>
+<ol type="1" start="2">
+<li>Examine Logcat and note that only <code translate="no" dir="ltr">onPause()</code> was called. <img alt="cf96ef14999a9a3c.png" style="width: 624.00px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/cf96ef14999a9a3c.png"></li>
+</ol>
+<p>In this use case, <code translate="no" dir="ltr">onStop()</code> is not called, because the activity is still partially visible. But the activity does not have user focus, and the user can&#39;t interact with it. The &#34;share&#34; activity that&#39;s in the foreground has the user focus.</p>
+<p>Why is this difference important? Consider our computationally intensive app from before. You might want the app to stop when it is in the background but keep running when the app is partially obscured. In this case you would terminate it in <code translate="no" dir="ltr">onStop()</code>. If you wanted the app to also stop when the activity is partially obscured, you would put the code to terminate the app in <code translate="no" dir="ltr">onPause()</code>.</p>
+<p>Whatever code runs in <code translate="no" dir="ltr">onPause()</code> blocks other things from displaying, so keep the code in <code translate="no" dir="ltr">onPause()</code> lightweight. For example, if a phone call comes in, the code in <code translate="no" dir="ltr">onPause()</code> may delay the incoming-call notification.</p>
+<ol type="1" start="3">
+<li>Click outside the share dialog to return to the app, and notice that <code translate="no" dir="ltr">onResume()</code> is called.</li>
+</ol>
+<p>Both <code translate="no" dir="ltr">onResume()</code> and <code translate="no" dir="ltr">onPause()</code> have to do with focus. The <code translate="no" dir="ltr">onResume()</code> method is called when the activity has focus, and <code translate="no" dir="ltr">onPause()</code> is called when the activity loses focus.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Explore the fragment lifecycle" duration="0">
+          
+          <p>The Android fragment lifecycle is similar to the activity lifecycle, plus several fragment-specific methods.</p>
+<p class="image-container"><img alt="8494ec955ce0c49d.png" style="width: 285.18px" src="/codelabs/kotlin-android-training-lifecycles-logging/img/8494ec955ce0c49d.png"></p>
+<p>In this task, you look at the AndroidTrivia app that you built in previous codelabs, and you add some logging to explore the fragment lifecycle. The AndroidTrivia app lets you answer questions about Android development; if you answer three in a row correctly you win the game.</p>
+<p>Each screen in the AndroidTrivia app is a <code translate="no" dir="ltr">Fragment</code>.</p>
+<p>To keep things simple, you use the Android logging API in this task, rather than the Timber library.</p>
+<ol type="1">
+<li>Open the AndroidTriviaNavigation app from one of our previous codelabs, or download the  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/AndroidTriviaNavigation" target="_blank">AndroidTriviaNavigation </a>solution code from GitHub.</li>
+<li>Open the <code translate="no" dir="ltr">TitleFragment.kt</code> file. Note that Android Studio may show binding errors and unresolved-reference errors until you rebuild the app.</li>
+<li>Scroll down to the <code translate="no" dir="ltr">onCreateView()</code> method. Notice that here is where the fragment&#39;s layout is inflated and data binding occurs.</li>
+<li>Add a logging statement to the <code translate="no" dir="ltr">onCreateView()</code> method, in between the line to <code translate="no" dir="ltr">setHasOptionsMenu()</code> and the final call to return:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">setHasOptionsMenu(true)
+
+Log.i(&#34;TitleFragment&#34;, &#34;onCreateView called&#34;)
+
+return binding.root
+</code></pre>
+<ol type="1" start="5">
+<li>Just below the <code translate="no" dir="ltr">onCreateView()</code> method, add logging statements for each of the remaining fragment lifecycle methods. Here is the code:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onAttach(context: Context) {
+   super.onAttach(context)
+   Log.i(&#34;TitleFragment&#34;, &#34;onAttach called&#34;)
+}
+override fun onCreate(savedInstanceState: Bundle?) {
+   super.onCreate(savedInstanceState)
+   Log.i(&#34;TitleFragment&#34;, &#34;onCreate called&#34;)
+}
+
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    Log.i(&#34;TitleFragment&#34;, &#34;onViewCreated called&#34;)
+}
+
+override fun onStart() {
+   super.onStart()
+   Log.i(&#34;TitleFragment&#34;, &#34;onStart called&#34;)
+}
+override fun onResume() {
+   super.onResume()
+   Log.i(&#34;TitleFragment&#34;, &#34;onResume called&#34;)
+}
+override fun onPause() {
+   super.onPause()
+   Log.i(&#34;TitleFragment&#34;, &#34;onPause called&#34;)
+}
+override fun onStop() {
+   super.onStop()
+   Log.i(&#34;TitleFragment&#34;, &#34;onStop called&#34;)
+}
+override fun onDestroyView() {
+   super.onDestroyView()
+   Log.i(&#34;TitleFragment&#34;, &#34;onDestroyView called&#34;)
+}
+override fun onDetach() {
+   super.onDetach()
+   Log.i(&#34;TitleFragment&#34;, &#34;onDetach called&#34;)
+}
+</code></pre>
+<ol type="1" start="6">
+<li>Compile and run the app, and open Logcat.</li>
+<li>Type <code translate="no" dir="ltr">I/TitleFragment</code> in the search field to filter the log. When the app starts, the Logcat will look something like the following:</li>
+</ol>
+<pre translate="no" dir="ltr">21933-21933/com.example.android.navigation I/TitleFragment: onAttach called
+21933-21933/com.example.android.navigation I/TitleFragment: onCreate called
+21933-21933/com.example.android.navigation I/TitleFragment: onCreateView called
+21933-21933/com.example.android.navigation I/TitleFragment: onViewCreated called
+21933-21933/com.example.android.navigation I/TitleFragment: onStart called
+21933-21933/com.example.android.navigation I/TitleFragment: onResume called
+</pre>
+<p>Here you can see the entire startup lifecycle of the fragment, including these callbacks:</p>
+<ul>
+<li><code translate="no" dir="ltr">onAttach()</code>: Called when the fragment is associated with its owner activity.</li>
+<li><code translate="no" dir="ltr">onCreate()</code>: Similarly to <code translate="no" dir="ltr">onCreate()</code> for the activity, <code translate="no" dir="ltr">onCreate()</code> for the fragment is called to do initial fragment creation (other than layout).</li>
+<li><code translate="no" dir="ltr">onCreateView()</code>: Called to inflate the fragment&#39;s layout.</li>
+<li><code translate="no" dir="ltr">onViewCreated()</code>: Called immediately after <code translate="no" dir="ltr">onCreateView()</code> has returned, but before any saved state has been restored into the view.</li>
+<li><code translate="no" dir="ltr">onStart()</code>: Called when the fragment becomes visible; parallel to the activity&#39;s <code translate="no" dir="ltr">onStart()</code>.</li>
+<li><code translate="no" dir="ltr">onResume()</code>: Called when the fragment gains the user focus; parallel to the activity&#39;s <code translate="no" dir="ltr">onResume()</code>.</li>
+</ul>
+<ol type="1" start="8">
+<li>Tap the <strong>Play</strong> button to proceed to the trivia game, and notice the Logcat now.</li>
+</ol>
+<pre translate="no" dir="ltr">21933-21933/com.example.android.navigation I/TitleFragment: onAttach called
+21933-21933/com.example.android.navigation I/TitleFragment: onCreate called
+21933-21933/com.example.android.navigation I/TitleFragment: onCreateView called
+21933-21933/com.example.android.navigation I/TitleFragment: onViewCreated called
+21933-21933/com.example.android.navigation I/TitleFragment: onStart called
+21933-21933/com.example.android.navigation I/TitleFragment: onResume called
+21933-21933/com.example.android.navigation I/TitleFragment: onPause called
+21933-21933/com.example.android.navigation I/TitleFragment: onStop called
+21933-21933/com.example.android.navigation I/TitleFragment: onDestroyView called
+</pre>
+<p>Opening the next fragment causes the title fragment to close and these lifecycle methods to be called:</p>
+<ul>
+<li><code translate="no" dir="ltr">onPause()</code>: Called when the fragment loses the user focus; parallel to the activity&#39;s <code translate="no" dir="ltr">onPause()</code>.</li>
+<li><code translate="no" dir="ltr">onStop()</code>: Called when the fragment is no longer visible on screen; parallel to the activity&#39;s <code translate="no" dir="ltr">onStop()</code>.</li>
+<li><code translate="no" dir="ltr">onDestroyView()</code>: Called when the fragment&#39;s view is no longer needed, to clean up the resources associated with that view.</li>
+</ul>
+<ol type="1" start="9">
+<li>In the app, tap the Up button (the arrow in the top-left corner of the screen) to return to the title fragment.</li>
+</ol>
+<pre translate="no" dir="ltr">21933-21933/com.example.android.navigation I/TitleFragment: onPause called
+21933-21933/com.example.android.navigation I/TitleFragment: onStop called
+21933-21933/com.example.android.navigation I/TitleFragment: onDestroyView called
+21933-21933/com.example.android.navigation I/TitleFragment: onCreateView called
+21933-21933/com.example.android.navigation I/TitleFragment: onViewCreated called
+21933-21933/com.example.android.navigation I/TitleFragment: onStart called
+21933-21933/com.example.android.navigation I/TitleFragment: onResume called
+</pre>
+<p>This time, <code translate="no" dir="ltr">onAttach()</code> and <code translate="no" dir="ltr">onCreate()</code> are probably not called to start the fragment. The fragment object still exists and is still attached to its owner activity, so the lifecycle starts again with <code translate="no" dir="ltr">onCreateView()</code>.</p>
+<ol type="1" start="10">
+<li>Press the device&#39;s Home button. Notice in the Logcat that only <code translate="no" dir="ltr">onPause()</code> and <code translate="no" dir="ltr">onStop()</code> are called. This is the same behavior as for the activity: returning home puts the activity and the fragment into the background.</li>
+<li>Use the recents screen to return to the app. Just as happened for the activity, the <code translate="no" dir="ltr">onStart()</code> and <code translate="no" dir="ltr">onResume()</code> methods are called to return the fragment to the foreground.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Solution code" duration="0">
+          
+          <p>Android Studio project:  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/DessertClickerLogs" target="_blank">DessertClickerLogs</a></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Summary" duration="0">
+          
+          <h2 is-upgraded id="activity-lifecycle" data-text="Activity lifecycle"><strong>Activity lifecycle</strong></h2>
+<ul>
+<li>The <em>activity lifecycle</em> is a set of states through which an activity migrates. The activity lifecycle begins when the activity is first created and ends when the activity is destroyed.</li>
+<li>As the user navigates between activities and inside and outside of your app, each activity moves between states in the activity lifecycle.</li>
+<li>Each state in the activity lifecycle has a corresponding callback method you can override in your <code translate="no" dir="ltr">Activity</code> class. There are seven lifecycle methods: <a href="https://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)" target="_blank"><code translate="no" dir="ltr">onCreate()</code></a><a href="https://developer.android.com/reference/android/app/Activity.html#onStart()" target="_blank"><code translate="no" dir="ltr">onStart()</code></a><a href="https://developer.android.com/reference/android/app/Activity.html#onPause()" target="_blank"><code translate="no" dir="ltr">onPause()</code></a><a href="https://developer.android.com/reference/android/app/Activity.html#onRestart()" target="_blank"><code translate="no" dir="ltr">onRestart()</code></a><a href="https://developer.android.com/reference/android/app/Activity.html#onResume()" target="_blank"><code translate="no" dir="ltr">onResume()</code></a><a href="https://developer.android.com/reference/android/app/Activity.html#onStop()" target="_blank"><code translate="no" dir="ltr">onStop()</code></a><a href="https://developer.android.com/reference/android/app/Activity.html#onDestroy()" target="_blank"><code translate="no" dir="ltr">onDestroy()</code></a></li>
+<li>To add behavior that occurs when your activity transitions into a lifecycle state, override that state&#39;s callback method.</li>
+<li>To add skeleton override methods to your classes in Android Studio, select <strong>Code &gt; Override Methods</strong> or press <code translate="no" dir="ltr">Control+o</code>.</li>
+</ul>
+<h2 is-upgraded id="logging-with-log" data-text="Logging with Log"><strong>Logging with Log</strong></h2>
+<ul>
+<li>The Android logging API, and specifically the <code translate="no" dir="ltr">Log</code> class, enables you to write short messages that are displayed in the Logcat within Android Studio.</li>
+<li>Use <code translate="no" dir="ltr">Log.i()</code> to write an informational message. This method takes two arguments:  the log <em>tag</em>, typically the name of the class, and the log <em>message</em>, a short string.</li>
+<li>Use the <strong>Logcat</strong> pane in Android Studio to view the system logs, including the messages you write.</li>
+</ul>
+<h2 is-upgraded id="logging-with-timber" data-text="Logging with Timber"><strong>Logging with Timber</strong></h2>
+<p><a href="https://github.com/JakeWharton/timber" target="_blank"><code translate="no" dir="ltr">Timber</code></a> is a logging library with several advantages over the Android logging API. In particular, the <code translate="no" dir="ltr">Timber</code> library:</p>
+<ul>
+<li>Generates the log tag for you based on the class name.</li>
+<li>Helps avoid showing logs in a release version of your Android app.</li>
+<li>Allows for integration with crash reporting libraries.</li>
+</ul>
+<p>To use <code translate="no" dir="ltr">Timber</code>, add its dependency to your Gradle file and extend the  <a href="https://developer.android.com/reference/android/app/Application" target="_blank"><code translate="no" dir="ltr">Application</code></a> class to initialize it:</p>
+<ul>
+<li><code translate="no" dir="ltr">Application</code> is a base class that contains global application state for your entire app. There is a default <code translate="no" dir="ltr">Application</code> class that is used by Android if you don&#39;t specify one. You can create your own <code translate="no" dir="ltr">Application</code> subclass to initialize app-wide libraries such as <code translate="no" dir="ltr">Timber</code>.</li>
+<li>Add your custom <code translate="no" dir="ltr">Application</code> class to your app by adding the <code translate="no" dir="ltr">android:name</code> attribute to the <code translate="no" dir="ltr">&lt;application&gt;</code> element in the Android manifest. Do not forget to do this!</li>
+<li>Use <code translate="no" dir="ltr">Timber.i()</code> to write log messages with <code translate="no" dir="ltr">Timber</code>. This method only takes one argument: the message to write. The log tag (the name of the class) is added for you automatically.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Learn more" duration="0">
+          
+          <p>Android developer documentation:</p>
+<ul>
+<li><a href="https://developer.android.com/guide/components/activities/intro-activities" target="_blank">Activities</a> (API guide)</li>
+<li><a href="https://developer.android.com/guide/components/fragments" target="_blank">Fragments</a> (API guide)</li>
+<li><a href="http://developer.android.com/reference/kotlin/android/app/Activity.html" target="_blank"><code translate="no" dir="ltr">Activity</code></a> (API reference)</li>
+<li><a href="https://developer.android.com/reference/kotlin/android/app/Fragment#Lifecycle" target="_blank"><code translate="no" dir="ltr">Fragment</code> Lifecycle</a> (API reference)</li>
+<li><a href="https://developer.android.com/guide/components/activities/activity-lifecycle" target="_blank">Understand the Activity Lifecycle</a></li>
+<li><a href="https://developer.android.com/studio/debug/am-logcat" target="_blank">Write and View Logs with Logcat</a></li>
+<li><a href="https://developer.android.com/reference/kotlin/android/util/Log" target="_blank"><code translate="no" dir="ltr">Log</code></a> (API reference)</li>
+</ul>
+<p>Other:</p>
+<ul>
+<li><a href="https://github.com/JakeWharton/timber" target="_blank">Timber</a> (GitHub)</li>
+<li><a href="https://medium.com/google-developers/the-android-lifecycle-cheat-sheet-part-i-single-activities-e49fd3d202ab" target="_blank">The Android Lifecycle cheat sheet — part I: Single Activities</a> is a visual recap of much of the material here.</li>
+<li><a href="https://medium.com/@JoseAlcerreca/the-android-lifecycle-cheat-sheet-part-ii-multiple-activities-a411fd139f24" target="_blank">The Android Lifecycle cheat sheet — part II: Multiple Activities</a> shows the order of lifecycle calls when two activities interact.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+    </google-codelab>
+  
+    
+
+    
+  </div>
+
+  
+
+  
+    
+    
+    
+  
+
+  
+  
+</article>
+
+
+
+
+            
+          </devsite-content>
+        </main>
+        <devsite-footer-promos class="devsite-footer">
+          
+            
+
+<nav class="devsite-footer-promos nocontent" aria-label="Promosi">
+  <ul class="devsite-footer-promos-list">
+    
+    <li class="devsite-footer-promo">
+      <a href="//twitter.com/AndroidDev"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer Twitter Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="/_static/android/images/logo-twitter.svg"
+             loading="lazy"
+             alt="Twitter">
+        
+        Twitter
+      </a>
+      <div class="devsite-footer-promo-description">Ikuti @AndroidDev di Twitter</div>
+    </li>
+    
+    <li class="devsite-footer-promo">
+      <a href="//www.youtube.com/user/androiddevelopers"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer YouTube Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="//www.gstatic.com/images/icons/material/product/2x/youtube_48dp.png"
+             loading="lazy"
+             alt="YouTube">
+        
+        YouTube
+      </a>
+      <div class="devsite-footer-promo-description">Lihat Developer Android di YouTube</div>
+    </li>
+    
+  </ul>
+</nav>
+
+          
+        </devsite-footer-promos>
+        <devsite-footer-linkboxes class="devsite-footer">
+          
+            
+<nav class="devsite-footer-linkboxes nocontent" aria-label="Link footer">
+  
+  <ul class="devsite-footer-linkboxes-list">
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Selengkapnya tentang Android</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Android
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/enterprise/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Enterprise
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/security-center/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Keamanan
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//source.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Source
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dukungan</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=190923&amp;template=841312"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Laporkan bug platform
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=192697"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Laporkan bug dokumentasi
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//support.google.com/googleplay/android-developer"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Google Play support
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://google.qualtrics.com/jfe/form/SV_ewWXIoEVLBcyp7f??reserved=1&amp;utm_source=FooterLink&amp;Q_Language=en&amp;utm_medium=own_srch&amp;utm_campaign=developer.android.com&amp;utm_term=0&amp;utm_content=0&amp;productTag=reg&amp;campaignDate=may19&amp;pType=devel&amp;referral_code=gV420370"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Bergabung dengan studi riset
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dokumentasi</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/guide"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Panduan developer
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/design"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Panduan desain
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/reference"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Referensi API
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/samples"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Sampel
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/studio/intro"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 5)"
+            >
+          
+            Android Studio
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+  
+</nav>
+          
+        </devsite-footer-linkboxes>
+        <devsite-footer-utility class="devsite-footer">
+          
+            
+
+<div class="devsite-footer-utility nocontent">
+  
+  
+  <nav class="devsite-footer-sites" aria-label="Situs Google Developers lain">
+    <a href="https://developers.google.com/"
+       class="devsite-footer-sites-logo-link gc-analytics-event"
+       data-category="Site-Wide Custom Events"
+       data-label="Footer Google Developers Link">
+      <img class="devsite-footer-sites-logo"
+           src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup-developers.svg"
+           loading="lazy"
+           alt="Google Developers">
+    </a>
+    <ul class="devsite-footer-sites-list">
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.android.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Android Link"
+         
+         >
+          Android
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.chrome.com/home"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Chrome Link"
+         
+         >
+          Chrome
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//firebase.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Firebase Link"
+         
+         >
+          Firebase
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//cloud.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Google Cloud Platform Link"
+         
+         >
+          Google Cloud Platform
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developers.google.com/products/"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer All products Link"
+         
+         >
+          Semua produk
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  
+
+  
+  <nav class="devsite-footer-utility-links" aria-label="Link utilitas">
+    
+    <ul class="devsite-footer-utility-list">
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="//policies.google.com/privacy"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Privacy link"
+         >
+          Privasi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/license"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer License link"
+         >
+          Lisensi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/distribute/marketing-tools/brand-guidelines"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Brand guidelines link"
+         >
+          Pedoman brand
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 devsite-footer-utility-button">
+        
+        <span class="devsite-footer-utility-description">Dapatkan berita dan tips melalui email</span>
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/updates"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Subscribe link"
+         >
+          Berlangganan
+        </a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+  </nav>
+</div>
+          
+        </devsite-footer-utility>
+        <devsite-panel></devsite-panel>
+      </section></section>
+    <devsite-sitemask></devsite-sitemask>
+    
+<devsite-snackbar 
+                  ></devsite-snackbar>
+
+    <devsite-tooltip ></devsite-tooltip>
+    <devsite-heading-link></devsite-heading-link>
+    <devsite-analytics enable-analytics-iframe>
+      
+        <script type="application/json" analytics>[{"gaid": "UA-5831155-1", "dimensions": {"dimension11": false, "dimension4": "Developer Android", "dimension1": "Signed In", "dimension6": "en", "dimension3": false, "dimension5": "id"}, "metrics": {"ratings_count": "metric2", "ratings_value": "metric1"}}]</script>
+<script type="application/json" gtm>{"parameters": {"freeTrialEligibleUser": "False", "internalUser": "False", "language": {"machineTranslated": "False", "requested": "id", "served": "en"}, "pageType": "codelab", "projectName": "Developer Android", "signedIn": "True", "tenant": "android", "recommendations": {"sourcePage": "", "sourceType": 0, "sourceRank": 0, "sourceIdenticalDescriptions": 0, "sourceTitleWords": 0, "sourceDescriptionWords": 0, "experiment": ""}}, "tags": ["GTM-KMSWPCJ"]}</script>
+      
+    </devsite-analytics>
+    
+      <devsite-badger></devsite-badger>
+    
+    
+<android-fully-clickable target=".fully-clickable" watch="devsite-content"></android-fully-clickable>
+    <script nonce="VD814mmhzU2FoVmEZIVFEpZK+YWp+M">
+  
+  (function(d,e,v,s,i,t,E){d['GoogleDevelopersObject']=i;
+    t=e.createElement(v);t.async=1;t.src=s;E=e.getElementsByTagName(v)[0];
+    E.parentNode.insertBefore(t,E);})(window, document, 'script',
+    'https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/js/app_loader.js', '[3,"id",null,"/js/devsite_app_module.js","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android","https://android-dot-devsite-v2-prod.appspot.com",1,null,["/_pwa/android/manifest.json","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/images/video-placeholder.svg","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg","https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap"],1,null,[1,6,8,12,14,17,21,25,40,50,63,70,75,76,80,87,88,91,92,93,97,98,100,101,102,103,104,105,107,108,111,112,113,115,117,118,120,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,138,147,148],"AIzaSyAP-jjEJBzmIyKR4F-3XITp8yM9T1gEEI8","AIzaSyB6xiKGDR5O3Ak2okS4rLkauxGUG7XP0hg"]')
+  
+</script>
+    <devsite-a11y-announce></devsite-a11y-announce>
+  </body>
+</html>

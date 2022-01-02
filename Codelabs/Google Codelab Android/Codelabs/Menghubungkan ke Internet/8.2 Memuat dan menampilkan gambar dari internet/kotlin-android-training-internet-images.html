@@ -1,0 +1,2092 @@
+<!doctype html>
+<html 
+      lang="id"
+      dir="ltr">
+  <head>
+    <meta name="google-signin-client-id" content="721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com">
+    <meta name="google-signin-scope"
+          content="profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award">
+    <meta property="og:site_name" content="Android Developers">
+    <meta property="og:type" content="website"><meta name="robots" content="noindex"><meta name="theme-color" content="#3ddc84"><meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/_pwa/android/manifest.json"
+          crossorigin="use-credentials">
+    <link rel="preconnect" href="//www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="//apis.google.com" crossorigin>
+    <link rel="preconnect" href="//www.google-analytics.com" crossorigin><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap">
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Material+Icons&display=block"><link rel="stylesheet" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/css/app.css">
+      <link rel="shortcut icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png">
+    <link rel="apple-touch-icon" href="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/touchicon-180.png"><link rel="canonical" href="https://developer.android.com/codelabs/kotlin-android-training-internet-images?hl=id"><link rel="search" type="application/opensearchdescription+xml"
+            title="Android Developers" href="https://developer.android.com/s/opensearch.xml">
+      
+
+<title>Android Kotlin Fundamentals: Loading and displaying images from the Internet</title>
+
+<meta property="og:title" content="Android Kotlin Fundamentals: Loading and displaying images from the Internet"><meta name="description" content="In this codelab, you use the Glide library to load and display photos from the internet in your Android Kotlin app. You also build a RecyclerView and use it to display a grid of images.">
+  <meta property="og:description" content="In this codelab, you use the Glide library to load and display photos from the internet in your Android Kotlin app. You also build a RecyclerView and use it to display a grid of images."><meta property="og:url" content="https://developer.android.com/codelabs/kotlin-android-training-internet-images?hl=id"><meta property="og:image" content="https://developer.android.com/images/social/android-developers.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675"><meta property="og:locale" content="en"><meta name="twitter:card" content="summary_large_image">
+  <meta name="xsrf_token" content="k4xZoa5iIkLZLBW4gmFqLPu6X2ANGNeVPLUZdY0CA806MTYyNzQ4MjU5MTM3Njk3Mw">
+  
+
+  <meta name="session_expiry" content="1627483460">
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    <meta name="original_source" content="https://docs.google.com/document/d/15otYgEn9JUdRpbPq0nb4zQNKhuPsbAB2AvvMh-XluU0/edit" />
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+  
+
+    </head>
+  <body class="devsite-full-width-page"
+        template="codelab"
+        theme="android-theme"
+        type="codelab"
+        
+        layout="full"
+        
+        
+        pending>
+    <devsite-progress type="indeterminate" id="app-progress"></devsite-progress>
+  
+    <section class="devsite-wrapper"><devsite-header>
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="devsite-header--inner nocontent">
+  <div class="devsite-top-logo-row-wrapper-wrapper">
+    <div class="devsite-top-logo-row-wrapper">
+      <div class="devsite-top-logo-row">
+        <button type="button" id="devsite-hamburger-menu"
+          class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+          data-category="Site-Wide Custom Events"
+          data-label="Navigation menu button"
+          visually-hidden
+          aria-label="Open menu">
+        </button>
+        <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo"
+       alt="Android Developers">
+
+</a>
+
+
+
+  
+  
+  <span class="devsite-product-name">
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+  </span>
+
+</div>
+        <div class="devsite-top-logo-row-middle">
+          <div class="devsite-header-upper-tabs">
+            
+              
+              
+  <devsite-tabs class="upper-tabs">
+
+    <nav class="devsite-tabs-wrapper" aria-label="Tab atas">
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/about"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="platform"
+   track-metadata-eventdetail="https://developer.android.com/about"
+   track-metadata-position="nav - platform"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Platform"
+   >
+  Platform
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/studio"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="android studio"
+   track-metadata-eventdetail="https://developer.android.com/studio"
+   track-metadata-position="nav - android studio"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Android Studio"
+   >
+  Android Studio
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/distribute"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="google play"
+   track-metadata-eventdetail="https://developer.android.com/distribute"
+   track-metadata-position="nav - google play"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Google Play"
+   >
+  Google Play
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/jetpack"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="jetpack"
+   track-metadata-eventdetail="https://developer.android.com/jetpack"
+   track-metadata-position="nav - jetpack"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Jetpack"
+   >
+  Jetpack
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/kotlin"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="kotlin"
+   track-metadata-eventdetail="https://developer.android.com/kotlin"
+   track-metadata-position="nav - kotlin"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Kotlin"
+   >
+  Kotlin
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/docs"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="dokumen"
+   track-metadata-eventdetail="https://developer.android.com/docs"
+   track-metadata-position="nav - dokumen"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Dokumen"
+   >
+  Dokumen
+</a>
+
+          </tab>
+        
+      
+        
+          <tab  >
+            <a href="https://developer.android.com/news"
+   class="gc-analytics-event "
+   track-type="nav"
+   track-name="berita"
+   track-metadata-eventdetail="https://developer.android.com/news"
+   track-metadata-position="nav - berita"
+   track-metadata-module="primary nav"
+   
+   
+     data-category="Site-Wide Custom Events"
+   
+     data-label="Tab: Berita"
+   >
+  Berita
+</a>
+
+          </tab>
+        
+      
+    </nav>
+
+  </devsite-tabs>
+
+            
+           </div>
+          
+<devsite-search
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    enable-signin
+    enable-search
+    enable-suggestions
+      enable-query-completion
+    
+    project-name="Developer Android"
+    tenant-name="Android Developers"
+    
+    
+    
+    
+    
+    role="combobox">
+  <form class="devsite-search-form" action="https://developer.android.com/s/results" method="GET">
+    <div class="devsite-search-container">
+      <div class="devsite-searchbox">
+        <input
+          aria-activedescendant=""
+          aria-autocomplete="list"
+          
+          aria-label="Penelusuran"
+          aria-haspopup="false"
+          aria-multiline="false"
+          aria-label="Kotak penelusuran"
+          autocomplete="off"
+          class="devsite-search-field devsite-search-query"
+          name="q"
+          
+          placeholder="Penelusuran"
+          role="searchbox"
+          type="text"
+          value=""
+          >
+        <div class="devsite-search-image material-icons" aria-hidden="true"></div>
+      </div>
+      <button type="button"
+              search-open
+              class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+              
+              aria-label="Buka penelusuran"></button>
+    </div>
+  </form>
+  <button type="button"
+          search-close
+          class="devsite-search-button devsite-header-icon-button button-flat material-icons"
+          
+          aria-label="Tutup penelusuran"></button>
+</devsite-search>
+
+        </div>
+
+        
+
+        
+
+        
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+
+        
+
+        
+          
+          
+          <devsite-user signed-in
+                        
+                        
+                          enable-profiles
+                        
+                        
+                          
+                        id="devsite-user"></devsite-user>
+           
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="devsite-collapsible-section
+    
+      devsite-header-no-lower-tabs
+    ">
+    <div class="devsite-header-background">
+      
+        
+      
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+  
+</devsite-header>
+      <devsite-book-nav scrollbars hidden>
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="devsite-book-nav devsite-nav nocontent"
+     aria-label="Menu samping">
+  <div class="devsite-mobile-header">
+    <button type="button"
+            id="devsite-close-nav"
+            class="devsite-header-icon-button button-flat material-icons gc-analytics-event"
+            data-category="Site-Wide Custom Events"
+            data-label="Close navigation"
+            aria-label="Close navigation">
+    </button>
+    <div class="devsite-product-name-wrapper">
+
+  <a href="/" class="devsite-site-logo-link gc-analytics-event"
+   data-category="Site-Wide Custom Events" data-label="Site logo" track-type="globalNav"
+   track-name="androidDevelopers" track-metadata-position="nav"
+   track-metadata-eventDetail="nav">
+
+  <img src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg" class="devsite-site-logo" alt="Android Developers">
+
+</a>
+
+
+  
+      <span class="devsite-product-name">
+        
+        
+        <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+      
+    
+  </li>
+  
+</ul>
+      </span>
+    
+
+</div>
+  </div>
+
+  <div class="devsite-book-nav-wrapper">
+    <div class="devsite-mobile-nav-top">
+      
+        <ul class="devsite-nav-list">
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/about"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Platform"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="platform">
+  
+    <span class="devsite-nav-text" tooltip >
+      Platform
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/studio"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Android Studio"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="androidStudio">
+  
+    <span class="devsite-nav-text" tooltip >
+      Android Studio
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/distribute"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Google Play"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="googlePlay">
+  
+    <span class="devsite-nav-text" tooltip >
+      Google Play
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/jetpack"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Jetpack"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="jetpack">
+  
+    <span class="devsite-nav-text" tooltip >
+      Jetpack
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/kotlin"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Kotlin"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="kotlin">
+  
+    <span class="devsite-nav-text" tooltip >
+      Kotlin
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/docs"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Dokumen"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="dokumen">
+  
+    <span class="devsite-nav-text" tooltip >
+      Dokumen
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+            <li class="devsite-nav-item">
+              
+  
+  <a href="/news"
+    
+       class="devsite-nav-title gc-analytics-event
+              
+              "
+    
+
+    
+     data-category="Site-Wide Custom Events"
+     data-label="Responsive Tab: Berita"
+     track-type="globalNav"
+     track-metadata-eventDetail="globalMenu"
+     track-metadata-position="nav"
+     track-name="berita">
+  
+    <span class="devsite-nav-text" tooltip >
+      Berita
+   </span>
+    
+  
+  </a>
+  
+
+  
+              
+            </li>
+          
+          
+          
+        </ul>
+      
+    </div>
+    
+  </div>
+</nav>
+        
+      </devsite-book-nav>
+      <section id="gc-wrapper">
+        <main role="main" class="devsite-main-content"
+            
+            >
+          
+          <devsite-toc class="devsite-nav"
+                       role="navigation"
+                       aria-label="Daftar isi"
+            disabled></devsite-toc>
+          <devsite-content>
+            
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="devsite-article"><style>
+      body {
+        transition: opacity ease-in 0.2s;
+      }
+
+      body[unresolved] {
+        opacity: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+      </style>
+  
+  
+  
+
+  <div class="devsite-article-meta nocontent" role="navigation">
+    
+    
+    <ul class="devsite-breadcrumb-list"
+  >
+  
+  <li class="devsite-breadcrumb-item
+             ">
+    
+    
+    
+      
+  <a href="https://developer.android.com/"
+      
+        class="devsite-breadcrumb-link gc-analytics-event"
+      
+        data-category="Site-Wide Custom Events"
+      
+        data-label="Breadcrumbs"
+      
+        data-value="1"
+      
+        track-type="globalNav"
+      
+        track-name="breadcrumb"
+      
+        track-metadata-position="1"
+      
+        track-metadata-eventdetail="Developer Android"
+      
+    >
+    
+        Developer Android
+      
+  </a>
+  
+    
+  </li>
+  
+</ul>
+    
+  </div>
+  
+  
+    <h1 class="devsite-page-title">Android Kotlin Fundamentals: Loading and displaying images from the Internet</h1><devsite-bookmark></devsite-bookmark>
+  
+
+  <devsite-toc class="devsite-nav" devsite-toc-embedded
+               disabled>
+  </devsite-toc>
+
+  
+
+  <div class="devsite-article-body clearfix
+    ">
+
+    
+      
+    <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+    <google-codelab codelab-gaid="UA-81734179-1"
+                    doc-id="15otYgEn9JUdRpbPq0nb4zQNKhuPsbAB2AvvMh-XluU0"
+                    id="kotlin-android-training-internet-images"
+                    title="Android Kotlin Fundamentals: Loading and displaying images from the Internet"
+                    environment="web"
+                    category="android,kotlin"
+                    feedback-link="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/issues/new?assignees=&amp;labels=&amp;template=android-kotlin-fundamentals.md&amp;title=Android&#43;Kotlin&#43;Fundamentals&#43;codelab%3A&#43;"
+                    >
+      
+        <google-codelab-step label="Welcome" duration="0">
+          
+            <google-codelab-about codelab-title="Android Kotlin Fundamentals: Loading and displaying images from the Internet"
+                                  authors="Google Developers Training team"
+                                  >
+            </google-codelab-about>
+          
+          <p>This codelab is part of the Android Kotlin Fundamentals course. You&#39;ll get the most value out of this course if you work through the codelabs in sequence. All the course codelabs are listed on the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+<h2 is-upgraded id="introduction" data-text="Introduction"><strong>Introduction</strong></h2>
+<p>In the previous codelab, you learned how to get data from a web service and parse the response into a data object.  In this codelab, you build on that knowledge to load and display photos from a web URL.  You also revisit how to build a <code translate="no" dir="ltr">RecyclerView</code> and use it to display a grid of images on the overview page.</p>
+<h2 is-upgraded id="what-you-should-already-know" data-text="What you should already know"><strong>What you should already know</strong></h2>
+<ul>
+<li>How to create and use fragments.</li>
+<li>How to use architecture components including view models, view model factories, transformations, and <code translate="no" dir="ltr">LiveData</code>.</li>
+<li>How to retrieve JSON from a REST web service and parse that data into Kotlin objects using the  <a href="https://square.github.io/retrofit/" target="_blank">Retrofit</a> and  <a href="https://github.com/square/moshi" target="_blank">Moshi</a> libraries.</li>
+<li>How to construct a grid layout with a <code translate="no" dir="ltr">RecyclerView</code>.</li>
+<li>How <code translate="no" dir="ltr">Adapter</code>, <code translate="no" dir="ltr">ViewHolder</code>, and <code translate="no" dir="ltr">DiffUtil</code> work.</li>
+</ul>
+<h2 class="checklist" is-upgraded id="what-youll-learn" data-text="What you'll learn"><strong>What you'll learn</strong></h2>
+<ul class="checklist">
+<li>How to use the  <a href="https://github.com/bumptech/glide" target="_blank">Glide</a> library to load and display an image from a web URL.</li>
+<li>How to use a <code translate="no" dir="ltr">RecyclerView</code> and a grid adapter to display a grid of images.</li>
+<li>How to handle potential errors as the images download and display.</li>
+</ul>
+<h2 is-upgraded id="what-youll-do" data-text="What you'll do"><strong>What you'll do</strong></h2>
+<ul>
+<li>Modify the MarsRealEstate app to get the image URL from the Mars property data, and use Glide to load and display that image.</li>
+<li>Add a loading animation and error icon to the app.</li>
+<li>Use a <code translate="no" dir="ltr">RecyclerView</code> to display a grid of Mars property images.</li>
+<li>Add status and error handling to the <code translate="no" dir="ltr">RecyclerView</code>.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="App overview" duration="0">
+          
+          <p>In this codelab, you work with an app called MarsRealEstate, which shows properties for sale on Mars. The app connects to an internet server to retrieve and display property data, including details such as the price and whether the property is available for sale or rent. The images representing each property are real-life photos from Mars captured from NASA&#39;s Mars rovers.</p>
+<p class="image-container"><img alt="b31d2df6e0f5e858.png" style="width: 289.50px" src="/codelabs/kotlin-android-training-internet-images/img/b31d2df6e0f5e858.png"></p>
+<p>The version of the app you build in this codelab fills in the overview page, which displays a grid of images.  The images are part of the property data that your app gets from the Mars real estate web service.  Your app will use the Glide library to load and display the images, and a <code translate="no" dir="ltr">RecyclerView</code> to create the grid layout for the images. Your app will also handle network errors gracefully.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Display an internet image" duration="0">
+          
+          <p>Displaying a photo from a web URL might sound straightforward, but there is quite a bit of engineering to make it work well. The image has to be downloaded, internally stored, and decoded from its compressed format to an image that Android can use. The image should be cached to an in-memory cache, a storage-based cache, or both. All this has to happen in low-priority background threads so the UI remains responsive.  Also, for best network and CPU performance, you might want to fetch and decode more than one image at once.  Learning how to efficiently load images from the network could be a codelab in itself.</p>
+<p>Fortunately, you can use a community-developed library called  <a href="https://github.com/bumptech/glide" target="_blank">Glide</a> to download, buffer, decode, and cache your images. Without the use of Glide, you would have much more work to do.</p>
+<p>Glide basically needs two things:</p>
+<ul>
+<li>The URL of the image you want to load and display.</li>
+<li>An <code translate="no" dir="ltr">ImageView</code> object to actually display that image.</li>
+</ul>
+<p>In this task, you learn how to use Glide to display a single image from the real estate web service. You display the image that represents the first Mars property in the list of properties that the web service returns.  Here are the before and after screenshots:</p>
+<p class="image-container"><img alt="613d3568c44757d7.png" style="width: 212.89px" src="/codelabs/kotlin-android-training-internet-images/img/613d3568c44757d7.png"> <img alt="144df3c58ea3ce44.png" style="width: 188.50px" src="/codelabs/kotlin-android-training-internet-images/img/144df3c58ea3ce44.png"></p>
+<h2 is-upgraded id="step-1:-add-glide-dependency" data-text="Step 1: Add Glide dependency"><strong>Step 1: Add Glide dependency</strong></h2>
+<ol type="1">
+<li>Open the MarsRealEstate app from the last codelab. (You can download  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/MarsRealEstateNetwork" target="_blank">MarsRealEstateNetwork</a> here if you don&#39;t have the app.)</li>
+<li>Run the app to see what it does (it shows the total number of Mars properties retrieved).</li>
+<li>Open <strong>build.gradle (Module: app)</strong>.</li>
+<li>In the <code translate="no" dir="ltr">dependencies</code> section, add this line for the Glide library:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">implementation &#34;com.github.bumptech.glide:glide:$version_glide&#34;
+</code></pre>
+<p>Notice that the version number is already defined separately in the project Gradle file.</p>
+<ol type="1" start="5">
+<li>Click <strong>Sync Now</strong> to rebuild the project with the new dependency.</li>
+</ol>
+<h2 is-upgraded id="step-2:-update-the-view-model" data-text="Step 2: Update the view model"><strong>Step 2: Update the view model</strong></h2>
+<p>Next you update the <code translate="no" dir="ltr">OverviewViewModel</code> class to include live data for a single Mars property.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">overview/OverviewViewModel.kt</code>. Just below the <code translate="no" dir="ltr">LiveData</code> for the <code translate="no" dir="ltr">_response</code>, add both internal (mutable) and external (immutable) live data for a single <code translate="no" dir="ltr">MarsProperty</code> object.</li>
+</ol>
+<p>Import the <code translate="no" dir="ltr">MarsProperty</code> class (<code translate="no" dir="ltr">com.example.android.marsrealestate.network.MarsProperty</code>) when requested.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private val _property = MutableLiveData&lt;MarsProperty&gt;()
+
+val property: LiveData&lt;MarsProperty&gt;
+   get() = _property
+</code></pre>
+<ol type="1" start="2">
+<li>In the <code translate="no" dir="ltr">getMarsRealEstateProperties()</code> method, find the line inside the <code translate="no" dir="ltr">try/catch {}</code> block that sets <code translate="no" dir="ltr">_response.value</code> to the number of properties.  Add the test shown below after the <code translate="no" dir="ltr">try/catch</code>. If <code translate="no" dir="ltr">MarsProperty</code> objects are available, this test sets the value of the <code translate="no" dir="ltr">_property</code> <code translate="no" dir="ltr">LiveData</code> to the first property in the <code translate="no" dir="ltr">listResult</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">if (listResult.size &gt; 0) {   
+    _property.value = listResult[0]
+}
+</code></pre>
+<p>The complete <code translate="no" dir="ltr">try/catch {}</code> block now looks like this:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">try {
+   val listResult = MarsApi.retrofitService.getProperties()
+   _response.value = &#34;Success: ${listResult.size} Mars properties retrieved&#34;
+    if (listResult.size &gt; 0) {      
+       _property.value = listResult[0]
+   }
+} catch (e: Exception) {
+  _response.value = &#34;Failure: ${e.message}&#34;
+}
+</code></pre>
+<ol type="1" start="3">
+<li>Open the <code translate="no" dir="ltr">res/layout/fragment_overview.xml</code> file.  In the <code translate="no" dir="ltr">&lt;TextView&gt;</code> element, change <code translate="no" dir="ltr">android:text</code> to bind to the <code translate="no" dir="ltr">imgSrcUrl</code> component of the <code translate="no" dir="ltr">property</code> <code translate="no" dir="ltr">LiveData</code>:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">android:text=&#34;@{viewModel.property.imgSrcUrl}&#34;
+</code></pre>
+<ol type="1" start="4">
+<li>Run the app.  The <code translate="no" dir="ltr">TextView</code> displays only the URL of the image in the first Mars property. All you&#39;ve done so far is set up the view model and the live data for that URL.</li>
+</ol>
+<p class="image-container"><img alt="f36bebfbdb68ecb3.png" style="width: 243.00px" src="/codelabs/kotlin-android-training-internet-images/img/f36bebfbdb68ecb3.png"></p>
+<h2 is-upgraded id="step-3:-create-a-binding-adapter-and-call-glide" data-text="Step 3: Create a binding adapter and call Glide"><strong>Step 3: Create a binding adapter and call Glide</strong></h2>
+<p>Now you have the URL of an image to display, it&#39;s time to start working with Glide to load that image.  In this step, you use a  <a href="https://developer.android.com/topic/libraries/data-binding/binding-adapters" target="_blank">binding adapter</a> to take the URL from an XML attribute associated with an <code translate="no" dir="ltr">ImageView</code>, and you use Glide to load the image from that URL. Binding adapters are extension methods that sit between a view and bound data to provide custom behavior when the data changes.  In this case, the custom behavior is to call Glide to load an image from a URL into an <code translate="no" dir="ltr">ImageView</code>.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">BindingAdapters.kt</code>.  This file will hold the binding adapters that you use throughout the app.</li>
+<li>Create a <code translate="no" dir="ltr">bindImage()</code> function that takes an <code translate="no" dir="ltr">ImageView</code> and a <code translate="no" dir="ltr">String</code> as parameters. Annotate the function with <code translate="no" dir="ltr">@BindingAdapter</code>. The <code translate="no" dir="ltr">@BindingAdapter</code> annotation tells data binding that you want this binding adapter executed when an XML item has the <code translate="no" dir="ltr">imageUrl</code> attribute.</li>
+</ol>
+<p>Import <code translate="no" dir="ltr">androidx.databinding.BindingAdapter</code> and <code translate="no" dir="ltr">android.widget.ImageView</code> when requested.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@BindingAdapter(&#34;imageUrl&#34;)
+fun bindImage(imgView: ImageView, imgUrl: String?) {
+
+}
+</code></pre>
+<ol type="1" start="3">
+<li>Inside the <code translate="no" dir="ltr">bindImage()</code> function, add a <code translate="no" dir="ltr">let {}</code> block for the <code translate="no" dir="ltr">imgUrl</code> argument:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">imgUrl?.let { 
+}
+</code></pre>
+<ol type="1" start="4">
+<li>Inside the <code translate="no" dir="ltr">let {}</code> block, add the line shown below to convert the URL string (from the XML)  to a <code translate="no" dir="ltr">Uri</code> object.  Import <code translate="no" dir="ltr">androidx.core.net.toUri</code> when requested.</li>
+</ol>
+<p>You want the final <code translate="no" dir="ltr">Uri</code> object to use the HTTPS scheme, because the server you pull the images from requires that secure scheme. To use the HTTPS scheme, append <code translate="no" dir="ltr">buildUpon.scheme("https")</code> to the <code translate="no" dir="ltr">toUri</code> builder. The <code translate="no" dir="ltr">toUri()</code> method is a Kotlin extension function from the Android KTX core library, so it just looks like it&#39;s part of the <code translate="no" dir="ltr">String</code> class.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val imgUri = imgUrl.toUri().buildUpon().scheme(&#34;https&#34;).build()
+</code></pre>
+<ol type="1" start="5">
+<li>Still inside <code translate="no" dir="ltr">let {}</code>, call <code translate="no" dir="ltr">Glide.with()</code> to load the image from the <code translate="no" dir="ltr">Uri</code> object into the <code translate="no" dir="ltr">ImageView</code>. Import <code translate="no" dir="ltr">com.bumptech.glide.Glide</code> when requested.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">Glide.with(imgView.context)
+       .load(imgUri)
+       .into(imgView)
+</code></pre>
+<p>You may have to add the following options to your module <code translate="no" dir="ltr">build.gradle</code> file:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">android {
+...
+   kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+   }
+...
+}
+</code></pre>
+<h2 is-upgraded id="step-4:-update-the-layout-and-fragments" data-text="Step 4: Update the layout and fragments"><strong>Step 4: Update the layout and fragments</strong></h2>
+<p>Although Glide has loaded the image, there&#39;s nothing to see yet.  The next step is to update the layout and the fragments with an <code translate="no" dir="ltr">ImageView</code> to display the image.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">res/layout/gridview_item.xml</code>.  This is the layout resource file you&#39;ll use for each item in the <code translate="no" dir="ltr">RecyclerView</code> later in the codelab.  You use it temporarily here to show just the single image.</li>
+<li>Above the <code translate="no" dir="ltr">&lt;ImageView&gt;</code> element, add a <code translate="no" dir="ltr">&lt;data&gt;</code> element for the data binding, and bind to the <code translate="no" dir="ltr">OverviewViewModel</code> class:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;data&gt;
+   &lt;variable
+       name=&#34;viewModel&#34;
+       type=&#34;com.example.android.marsrealestate.overview.OverviewViewModel&#34; /&gt;
+&lt;/data&gt;
+</code></pre>
+<ol type="1" start="3">
+<li>Add an <code translate="no" dir="ltr">app:imageUrl</code> attribute to the <code translate="no" dir="ltr">ImageView</code> element to use the new image loading binding adapter:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">app:imageUrl=&#34;@{viewModel.property.imgSrcUrl}&#34;
+</code></pre>
+<ol type="1" start="4">
+<li>Open <code translate="no" dir="ltr">overview/OverviewFragment.kt</code>.  In the <code translate="no" dir="ltr">onCreateView()</code> method, comment out the line that inflates the <code translate="no" dir="ltr">FragmentOverviewBinding</code> class and assigns it to the binding variable. You will see errors due to removing this line. This is only temporary; you&#39;ll go back to it later.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">//val binding = FragmentOverviewBinding.inflate(inflater)
+</code></pre>
+<ol type="1" start="5">
+<li>Add a line to inflate the <code translate="no" dir="ltr">GridViewItemBinding</code> class instead.  Import <code translate="no" dir="ltr">com.example.android.marsrealestate. databinding.GridViewItemBinding</code> if requested.</li>
+</ol>
+<aside class="special"><p><strong>Note:</strong> This change may result in data-binding errors in Android Studio. To resolve those errors, you may need to clean and rebuild the app.</p>
+</aside>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val binding = GridViewItemBinding.inflate(inflater)
+</code></pre>
+<ol type="1" start="6">
+<li>Run the app. Now you should see a photo of the image from the first <code translate="no" dir="ltr">MarsProperty</code> in the result list.<br><img alt="144df3c58ea3ce44.png" style="width: 243.00px" src="/codelabs/kotlin-android-training-internet-images/img/144df3c58ea3ce44.png"></li>
+</ol>
+<h2 is-upgraded id="step-5:-add-simple-loading-and-error-images" data-text="Step 5: Add simple loading and error images">Step 5: Add simple loading and error images</h2>
+<p>Glide can improve the user experience by showing a placeholder image while loading the image and an error image if the loading fails, for example if the image is missing or corrupt.  In this step, you add that functionality to the binding adapter and to the layout.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">res/drawable/ic_broken_image.xml</code>, and click the <strong>Design</strong> tab on the right. For the error image, you&#39;re using the broken-image icon that&#39;s available in the built-in icon library. This vector drawable uses the <code translate="no" dir="ltr">android:tint</code> attribute to color the icon gray.</li>
+</ol>
+<p class="image-container"><img alt="467c213c859e1904.png" style="width: 140.50px" src="/codelabs/kotlin-android-training-internet-images/img/467c213c859e1904.png"></p>
+<ol type="1" start="2">
+<li>Open <code translate="no" dir="ltr">res/drawable/loading_animation.xml</code>.  This drawable is an animation that&#39;s defined with the <code translate="no" dir="ltr">&lt;animated-rotate&gt;</code> tag. The animation rotates an image drawable, <code translate="no" dir="ltr">loading_img.xml</code>, around the center point.  (You don&#39;t see the animation in the preview.)</li>
+</ol>
+<p class="image-container"><img alt="6c1f87d1c932c762.png" style="width: 141.50px" src="/codelabs/kotlin-android-training-internet-images/img/6c1f87d1c932c762.png"></p>
+<ol type="1" start="3">
+<li>Return to the <code translate="no" dir="ltr">BindingAdapters.kt</code> file. In the <code translate="no" dir="ltr">bindImage()</code> method, update the call to <code translate="no" dir="ltr">Glide.with()</code> to call the <code translate="no" dir="ltr">apply()</code> function between <code translate="no" dir="ltr">load()</code> and <code translate="no" dir="ltr">into()</code>.  Import <code translate="no" dir="ltr">com.bumptech.glide.request.RequestOptions</code> when requested.</li>
+</ol>
+<p>This code sets the placeholder loading image to use while loading (the <code translate="no" dir="ltr">loading_animation</code> drawable). The code also sets an image to use if image loading fails (the <code translate="no" dir="ltr">broken_image</code> drawable).  The complete <code translate="no" dir="ltr">bindImage()</code> method now looks like this:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@BindingAdapter(&#34;imageUrl&#34;)
+fun bindImage(imgView: ImageView, imgUrl: String?) {
+    imgUrl?.let {
+        val imgUri = 
+           imgUrl.toUri().buildUpon().scheme(&#34;https&#34;).build()
+        Glide.with(imgView.context)
+                .load(imgUri)
+                .apply(RequestOptions()
+                        .placeholder(R.drawable.loading_animation)
+                        .error(R.drawable.ic_broken_image))
+                .into(imgView)
+    }
+}
+</code></pre>
+<ol type="1" start="4">
+<li>Run the app.  Depending on the speed of your network connection, you might briefly see the loading image as Glide downloads and displays the property image.  But you won&#39;t see the broken-image icon yet, even if you turn off your network—you fix that in the last part of the codelab.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Display a grid of images with a RecyclerView" duration="0">
+          
+          <p>Your app now loads Mars property information from the internet. Using data from the first <code translate="no" dir="ltr">MarsProperty</code> list item, you&#39;ve created a <code translate="no" dir="ltr">LiveData</code> property in the view model, and you&#39;ve used the image URL from that property data to populate an <code translate="no" dir="ltr">ImageView</code>.  But the goal is for your app to display a grid of images, so you want to use a <code translate="no" dir="ltr">RecyclerView</code> with a <code translate="no" dir="ltr">GridLayoutManager</code>.</p>
+<h2 is-upgraded id="step-1:-update-the-view-model" data-text="Step 1: Update the view model"><strong>Step 1: Update the view model</strong></h2>
+<p>Right now the view model has a <code translate="no" dir="ltr">_property</code> <code translate="no" dir="ltr">LiveData</code> that holds one <code translate="no" dir="ltr">MarsProperty</code> object—the first one in the response list from the web service. In this step, you change that <code translate="no" dir="ltr">LiveData</code> to hold the entire list of <code translate="no" dir="ltr">MarsProperty</code> objects.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">overview/OverviewViewModel.kt</code>.</li>
+<li>Change the private <code translate="no" dir="ltr">_property</code> variable to <code translate="no" dir="ltr">_properties</code>. Change the type to be a list of <code translate="no" dir="ltr">MarsProperty</code> objects.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private val _properties = MutableLiveData&lt;List&lt;MarsProperty&gt;&gt;()
+</code></pre>
+<ol type="1" start="3">
+<li>Replace the external <code translate="no" dir="ltr">property</code> live data with <code translate="no" dir="ltr">properties</code>. Add the list to the <code translate="no" dir="ltr">LiveData</code> type here as well:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr"> val properties: LiveData&lt;List&lt;MarsProperty&gt;&gt;
+        get() = _properties
+</code></pre>
+<ol type="1" start="4">
+<li>Scroll down to the <code translate="no" dir="ltr">getMarsRealEstateProperties()</code> method. Inside the <code translate="no" dir="ltr">try {}</code> block, replace the entire test that you added in the previous task with the line shown below. Because the <code translate="no" dir="ltr">MarsApi.</code><strong><code translate="no" dir="ltr">retrofitService</code></strong><code translate="no" dir="ltr">.getProperties()</code></li>
+</ol>
+<p>returns a list of <code translate="no" dir="ltr">MarsProperty</code> objects, you can just assign it to <code translate="no" dir="ltr">_properties.value</code> instead of testing for a successful response.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">_properties.value = MarsApi.retrofitService.getProperties()
+</code></pre>
+<p>The entire <code translate="no" dir="ltr">try/catch</code> block now looks like this:</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">try {
+    _properties.value = MarsApi.retrofitService.getProperties()   
+    _response.value = &#34;Success: Mars properties retrieved&#34;
+} catch (e: Exception) {
+   _response.value = &#34;Failure: ${e.message}&#34;
+}
+</code></pre>
+<h2 is-upgraded id="step-2:-update-the-layouts-and-fragments" data-text="Step 2: Update the layouts and fragments"><strong>Step 2: Update the layouts and fragments</strong></h2>
+<p>The next step is to change the app&#39;s layout and fragments to use a recycler view and a grid layout, rather than the single image view.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">res/layout/gridview_item.xml</code>. Change the data binding from the <code translate="no" dir="ltr">OverviewViewModel</code> to <code translate="no" dir="ltr">MarsProperty</code>, and rename the variable to <code translate="no" dir="ltr">"property"</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;variable
+   name=&#34;property&#34;
+   type=&#34;com.example.android.marsrealestate.network.MarsProperty&#34; /&gt;
+</code></pre>
+<ol type="1" start="2">
+<li>In the <code translate="no" dir="ltr">&lt;ImageView&gt;</code>, change the <code translate="no" dir="ltr">app:imageUrl</code> attribute to refer to the image URL in the <code translate="no" dir="ltr">MarsProperty</code> object:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">app:imageUrl=&#34;@{property.imgSrcUrl}&#34;
+</code></pre>
+<ol type="1" start="3">
+<li>Open <code translate="no" dir="ltr">overview/OverviewFragment.kt</code>. In <code translate="no" dir="ltr">onCreateview()</code>, uncomment the line that inflates <code translate="no" dir="ltr">FragmentOverviewBinding</code>. Delete or comment out the line that inflates <code translate="no" dir="ltr">GridViewBinding</code>. These changes undo the temporary changes you made in the last task.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val binding = FragmentOverviewBinding.inflate(inflater)
+ // val binding = GridViewItemBinding.inflate(inflater)
+</code></pre>
+<ol type="1" start="4">
+<li>Open <code translate="no" dir="ltr">res/layout/fragment_overview.xml</code>.  Delete the entire <code translate="no" dir="ltr">&lt;TextView&gt;</code> element.</li>
+<li>Add this <code translate="no" dir="ltr">&lt;RecyclerView&gt;</code> element instead, which uses a <code translate="no" dir="ltr">GridLayoutManager</code> and the <code translate="no" dir="ltr">grid_view_item</code> layout for a single item:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;androidx.recyclerview.widget.RecyclerView
+            android:id=&#34;@+id/photos_grid&#34;
+            android:layout_width=&#34;0dp&#34;
+            android:layout_height=&#34;0dp&#34;
+            android:padding=&#34;6dp&#34;
+            android:clipToPadding=&#34;false&#34;
+            app:layoutManager=
+               &#34;androidx.recyclerview.widget.GridLayoutManager&#34;
+            app:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+            app:layout_constraintLeft_toLeftOf=&#34;parent&#34;
+            app:layout_constraintRight_toRightOf=&#34;parent&#34;
+            app:layout_constraintTop_toTopOf=&#34;parent&#34;
+            app:spanCount=&#34;2&#34;
+            tools:itemCount=&#34;16&#34;
+            tools:listitem=&#34;@layout/grid_view_item&#34; /&gt;
+</code></pre>
+<h2 is-upgraded id="step-3:-add-the-photo-grid-adapter" data-text="Step 3: Add the photo grid adapter"><strong>Step 3: Add the photo grid adapter</strong></h2>
+<p>Now the <code translate="no" dir="ltr">fragment_overview</code> layout has a <code translate="no" dir="ltr">RecyclerView</code> while the <code translate="no" dir="ltr">grid_view_item</code> layout has a single <code translate="no" dir="ltr">ImageView</code>.  In this step, you bind the data to the <code translate="no" dir="ltr">RecyclerView</code> through a <code translate="no" dir="ltr">RecyclerView</code> adapter.</p>
+<aside class="special"><p><strong>Note:</strong> This might be a good time to review the <code translate="no" dir="ltr">RecyclerView</code> codelabs!</p>
+</aside>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">overview/PhotoGridAdapter.kt</code>.</li>
+<li>Create the <code translate="no" dir="ltr">PhotoGridAdapter</code> class, with the constructor parameters shown below.  The <code translate="no" dir="ltr">PhotoGridAdapter</code> class extends <code translate="no" dir="ltr">ListAdapter</code>, whose constructor needs the list item type, the view holder, and a <code translate="no" dir="ltr">DiffUtil.ItemCallback</code> implementation.</li>
+</ol>
+<p>Import the <code translate="no" dir="ltr">androidx.recyclerview.widget.ListAdapter</code> and <code translate="no" dir="ltr">com.example.android.marsrealestate.network.MarsProperty</code> classes when requested.  In the following steps, you implement the other missing parts of this constructor that are producing errors.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class PhotoGridAdapter : ListAdapter&lt;MarsProperty,
+        PhotoGridAdapter.MarsPropertyViewHolder&gt;(DiffCallback) {
+
+}
+</code></pre>
+<ol type="1" start="3">
+<li>Click anywhere in the <code translate="no" dir="ltr">PhotoGridAdapter</code> class and press <code translate="no" dir="ltr">Control+i</code> to implement the <code translate="no" dir="ltr">ListAdapter</code> methods, which are <code translate="no" dir="ltr">onCreateViewHolder()</code> and <code translate="no" dir="ltr">onBindViewHolder()</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoGridAdapter.MarsPropertyViewHolder {
+   TODO(&#34;not implemented&#34;) 
+}
+
+override fun onBindViewHolder(holder: PhotoGridAdapter.MarsPropertyViewHolder, position: Int) {
+   TODO(&#34;not implemented&#34;) 
+}
+</code></pre>
+<ol type="1" start="4">
+<li>At the end of the <code translate="no" dir="ltr">PhotoGridAdapter</code> class definition, after the methods you just added, add a companion object definition for <code translate="no" dir="ltr">DiffCallback</code>, as shown below.</li>
+</ol>
+<p>Import <code translate="no" dir="ltr">androidx.recyclerview.widget.DiffUtil</code> when requested.</p>
+<p>The <code translate="no" dir="ltr">DiffCallback</code> object extends <code translate="no" dir="ltr">DiffUtil.ItemCallback</code> with the type of object you want to compare—<code translate="no" dir="ltr">MarsProperty</code>.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">companion object DiffCallback : DiffUtil.ItemCallback&lt;MarsProperty&gt;() {
+}
+</code></pre>
+<ol type="1" start="5">
+<li>Press <code translate="no" dir="ltr">Control+i</code> to implement the comparator methods for this object, which are <code translate="no" dir="ltr">areItemsTheSame()</code> and <code translate="no" dir="ltr">areContentsTheSame()</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun areItemsTheSame(oldItem: MarsProperty, newItem: MarsProperty): Boolean {
+   TODO(&#34;not implemented&#34;) 
+}
+
+override fun areContentsTheSame(oldItem: MarsProperty, newItem: MarsProperty): Boolean {
+   TODO(&#34;not implemented&#34;) }
+</code></pre>
+<ol type="1" start="6">
+<li>For the <code translate="no" dir="ltr">areItemsTheSame()</code> method, remove the TODO. Use Kotlin&#39;s referential equality operator (<code translate="no" dir="ltr">===</code>), which returns <code translate="no" dir="ltr">true</code> if the object references for <code translate="no" dir="ltr">oldItem</code> and <code translate="no" dir="ltr">newItem</code> are the same.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun areItemsTheSame(oldItem: MarsProperty, 
+                  newItem: MarsProperty): Boolean {
+   return oldItem === newItem
+}
+</code></pre>
+<ol type="1" start="7">
+<li>For <code translate="no" dir="ltr">areContentsTheSame()</code>, use the standard structural equality operator on just the ID of <code translate="no" dir="ltr">oldItem</code> and <code translate="no" dir="ltr">newItem</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">override fun areContentsTheSame(oldItem: MarsProperty, 
+                  newItem: MarsProperty): Boolean {
+   return oldItem.id == newItem.id
+}
+</code></pre>
+<ol type="1" start="8">
+<li>Still inside the <code translate="no" dir="ltr">PhotoGridAdapter</code> class, below the companion object, add an inner class definition for <code translate="no" dir="ltr">MarsPropertyViewHolder</code>, which extends <code translate="no" dir="ltr">RecyclerView.ViewHolder</code>.</li>
+</ol>
+<p>Import <code translate="no" dir="ltr">androidx.recyclerview.widget.RecyclerView</code> and <code translate="no" dir="ltr">com.example.android.marsrealestate.databinding.GridViewItemBinding</code> if requested.</p>
+<p>You need the <code translate="no" dir="ltr">GridViewItemBinding</code> variable for binding the <code translate="no" dir="ltr">MarsProperty</code> to the layout, so pass the variable into the <code translate="no" dir="ltr">MarsPropertyViewHolder</code>.  Because the base <code translate="no" dir="ltr">ViewHolder</code> class requires a view in its constructor, you pass it the binding root view.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">class MarsPropertyViewHolder(private var binding: 
+                   GridViewItemBinding):
+       RecyclerView.ViewHolder(binding.root) {
+}
+</code></pre>
+<ol type="1" start="9">
+<li>In <code translate="no" dir="ltr">MarsPropertyViewHolder</code>, create a <code translate="no" dir="ltr">bind()</code> method that takes a <code translate="no" dir="ltr">MarsProperty</code> object as an argument and sets <code translate="no" dir="ltr">binding.property</code> to that object. Call <code translate="no" dir="ltr">executePendingBindings()</code> after setting the property, which causes the update to execute immediately.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">fun bind(marsProperty: MarsProperty) {
+   binding.property = marsProperty
+   binding.executePendingBindings()
+}
+</code></pre>
+<aside class="special"><p><strong>Note:</strong> This change may result in data-binding errors in Android Studio. To resolve those errors, you may need to clean and rebuild the app.</p>
+</aside>
+<ol type="1" start="10">
+<li>Still inside the <code translate="no" dir="ltr">PhotoGridAdapter</code> class in <code translate="no" dir="ltr">onCreateViewHolder()</code>, remove the TODO and add the line shown below. Import <code translate="no" dir="ltr">android.view.LayoutInflater</code> when requested.</li>
+</ol>
+<p>The <code translate="no" dir="ltr">onCreateViewHolder()</code> method needs to return a new <code translate="no" dir="ltr">MarsPropertyViewHolder</code>, created by inflating the <code translate="no" dir="ltr">GridViewItemBinding</code> and using the <code translate="no" dir="ltr">LayoutInflater</code> from your parent <code translate="no" dir="ltr">ViewGroup</code> context.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">   return MarsPropertyViewHolder(GridViewItemBinding.inflate(
+      LayoutInflater.from(parent.context)))
+</code></pre>
+<ol type="1" start="11">
+<li>In the <code translate="no" dir="ltr">onBindViewHolder()</code> method, remove the TODO and add the lines shown below.  Here you call <code translate="no" dir="ltr">getItem()</code> to get the <code translate="no" dir="ltr">MarsProperty</code> object associated with the current <code translate="no" dir="ltr">RecyclerView</code> position, and then pass that property to the <code translate="no" dir="ltr">bind()</code> method in the <code translate="no" dir="ltr">MarsPropertyViewHolder</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val marsProperty = getItem(position)
+holder.bind(marsProperty)
+</code></pre>
+<h2 is-upgraded id="step-4:-add-the-binding-adapter-and-connect-the-parts" data-text="Step 4: Add the binding adapter and connect the parts"><strong>Step 4: Add the binding adapter and connect the parts</strong></h2>
+<p>Finally, use a <code translate="no" dir="ltr">BindingAdapter</code> to initialize the <code translate="no" dir="ltr">PhotoGridAdapter</code> with the list of <code translate="no" dir="ltr">MarsProperty</code> objects. Using a <code translate="no" dir="ltr">BindingAdapter</code> to set the <code translate="no" dir="ltr">RecyclerView</code> data causes data binding to automatically observe the <code translate="no" dir="ltr">LiveData</code> for the list of <code translate="no" dir="ltr">MarsProperty</code> objects. Then the binding adapter is called automatically when the <code translate="no" dir="ltr">MarsProperty</code> list changes.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">BindingAdapters.kt</code>.</li>
+<li>At the end of the file, add a <code translate="no" dir="ltr">bindRecyclerView()</code> method that takes a <code translate="no" dir="ltr">RecyclerView</code> and a list of <code translate="no" dir="ltr">MarsProperty</code> objects as arguments.  Annotate that method with a <code translate="no" dir="ltr">@BindingAdapter</code>.</li>
+</ol>
+<p>Import <code translate="no" dir="ltr">androidx.recyclerview.widget.RecyclerView</code> and <code translate="no" dir="ltr">com.example.android.marsrealestate.network.MarsProperty</code> when requested.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@BindingAdapter(&#34;listData&#34;)
+fun bindRecyclerView(recyclerView: RecyclerView, 
+    data: List&lt;MarsProperty&gt;?) {
+}
+</code></pre>
+<ol type="1" start="3">
+<li>Inside the <code translate="no" dir="ltr">bindRecyclerView()</code> function, cast <code translate="no" dir="ltr">recyclerView.adapter</code> to <code translate="no" dir="ltr">PhotoGridAdapter</code>, and call <code translate="no" dir="ltr">adapter.submitList()</code> with the data. This tells the <code translate="no" dir="ltr">RecyclerView</code> when a new list is available.</li>
+</ol>
+<p>Import <code translate="no" dir="ltr">com.example.android.marsrealestate.overview.PhotoGridAdapter</code> if requested.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">val adapter = recyclerView.adapter as PhotoGridAdapter
+adapter.submitList(data)
+</code></pre>
+<ol type="1" start="4">
+<li>Open <code translate="no" dir="ltr">res/layout/fragment_overview.xml</code>.  Add the <code translate="no" dir="ltr">app:listData</code> attribute to the <code translate="no" dir="ltr">RecyclerView</code> element and set it to <code translate="no" dir="ltr">viewmodel.properties</code> using data binding.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">app:listData=&#34;@{viewModel.properties}&#34;
+</code></pre>
+<ol type="1" start="5">
+<li>Open <code translate="no" dir="ltr">overview/OverviewFragment.kt</code>.  In <code translate="no" dir="ltr">onCreateView()</code>, just before the call to <code translate="no" dir="ltr">setHasOptionsMenu()</code>, initialize the <code translate="no" dir="ltr">RecyclerView</code> adapter in <code translate="no" dir="ltr">binding.photosGrid</code> to a new <code translate="no" dir="ltr">PhotoGridAdapter</code> object.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">binding.photosGrid.adapter = PhotoGridAdapter()
+</code></pre>
+<ol type="1" start="6">
+<li>Run the app.  You should see a grid of <code translate="no" dir="ltr">MarsProperty</code> images. As you scroll to see new images, the app shows the loading-progress icon before displaying the image itself.  If you turn on airplane mode, images that have not yet loaded appear as broken-image icons.</li>
+</ol>
+<p class="image-container"><img alt="5d826827fb87002.png" style="width: 225.00px" src="/codelabs/kotlin-android-training-internet-images/img/5d826827fb87002.png"></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Task: Add error handling in RecyclerView" duration="0">
+          
+          <p>The MarsRealEstate app displays the broken-image icon when an image cannot be fetched. But when there&#39;s no network, the app shows a blank screen.</p>
+<p class="image-container"><img alt="75f8800fef6d5de2.png" style="width: 225.00px" src="/codelabs/kotlin-android-training-internet-images/img/75f8800fef6d5de2.png"></p>
+<p>This isn&#39;t a great user experience.  In this task, you add basic error handling, to give the user a better idea of what&#39;s happening. If the internet isn&#39;t available, the app will show the connection-error icon. While the app is fetching the <code translate="no" dir="ltr">MarsProperty</code> list, the app will show the loading animation.</p>
+<h2 is-upgraded id="step-1:-add-status-to-the-view-model" data-text="Step 1:  Add status to the view model"><strong>Step 1:  Add status to the view model</strong></h2>
+<p>To start, you create a <code translate="no" dir="ltr">LiveData</code> in the view model to represent the status of the web request. There are three states to consider—loading, success, and failure.  The loading state happens while you&#39;re waiting for data in the call to <code translate="no" dir="ltr">await()</code>.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">overview/OverviewViewModel.kt</code>.  At the top of the file (after the imports, before the class definition), add an <code translate="no" dir="ltr">enum</code> to represent all the available statuses:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">enum class MarsApiStatus { LOADING, ERROR, DONE }
+</code></pre>
+<ol type="1" start="2">
+<li>Rename both the internal and external <code translate="no" dir="ltr">_response</code> live data definitions throughout the <code translate="no" dir="ltr">OverviewViewModel</code> class to <code translate="no" dir="ltr">_status</code>.  Because you added support for the <code translate="no" dir="ltr">_properties</code> <code translate="no" dir="ltr">LiveData</code> earlier in this codelab, the complete web service response has been unused.  You need a <code translate="no" dir="ltr">LiveData</code> here to keep track of the current status, so you can just rename the existing variables.</li>
+</ol>
+<p>Also, change the types from <code translate="no" dir="ltr">String</code> to <code translate="no" dir="ltr">MarsApiStatus.</code></p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">private val _status = MutableLiveData&lt;MarsApiStatus&gt;()
+
+val status: LiveData&lt;MarsApiStatus&gt;
+   get() = _status
+</code></pre>
+<ol type="1" start="3">
+<li>Scroll down to the <code translate="no" dir="ltr">getMarsRealEstateProperties()</code> method and update <code translate="no" dir="ltr">_response</code> to <code translate="no" dir="ltr">_status</code> here as well.  Change the <code translate="no" dir="ltr">"Success"</code> string to the <code translate="no" dir="ltr">MarsApiStatus.DONE</code> state, and the <code translate="no" dir="ltr">"Failure"</code> string to <code translate="no" dir="ltr">MarsApiStatus.ERROR</code>.</li>
+<li>Set the status to <code translate="no" dir="ltr">MarsApiStatus.LOADING</code> before the <code translate="no" dir="ltr">try {}</code> block.  This is the initial status while the coroutine is running and you&#39;re waiting for data.  The complete <code translate="no" dir="ltr">try/catch {}</code> block now looks like this:</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">_status.value = MarsApiStatus.LOADING
+try {
+   _properties.value = MarsApi.retrofitService.getProperties()
+   _status.value = MarsApiStatus.DONE
+} catch (e: Exception) {
+   _status.value = MarsApiStatus.ERROR
+}
+</code></pre>
+<ol type="1" start="5">
+<li>After the error state in the <code translate="no" dir="ltr">catch {}</code> block, set the <code translate="no" dir="ltr">_properties</code> <code translate="no" dir="ltr">LiveData</code> to an empty list.  This clears the <code translate="no" dir="ltr">RecyclerView</code>.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">} catch (e: Exception) {
+   _status.value = MarsApiStatus.ERROR
+   _properties.value = ArrayList()
+}
+</code></pre>
+<h2 is-upgraded id="step-2:-add-a-binding-adapter-for-the-status-imageview" data-text="Step 2: Add a binding adapter for the status ImageView"><strong>Step 2: Add a binding adapter for the status ImageView</strong></h2>
+<p>Now you have a status in the view model, but it&#39;s just a set of states.  How do you make it appear in the app itself?  In this step, you use an <code translate="no" dir="ltr">ImageView</code>, connected to data binding, to display icons for the loading and error states.  When the app is in the loading state or the error state, the <code translate="no" dir="ltr">ImageView</code> should be visible. When the app is done loading, the <code translate="no" dir="ltr">ImageView</code> should be invisible.</p>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">BindingAdapters.kt</code>.  Add a new binding adapter called <code translate="no" dir="ltr">bindStatus()</code> that takes an <code translate="no" dir="ltr">ImageView</code> and a <code translate="no" dir="ltr">MarsApiStatus</code> value as arguments.  Import <code translate="no" dir="ltr">com.example.android.marsrealestate.overview.MarsApiStatus</code> when requested.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">@BindingAdapter(&#34;marsApiStatus&#34;)
+fun bindStatus(statusImageView: ImageView, 
+          status: MarsApiStatus?) {
+}
+</code></pre>
+<ol type="1" start="2">
+<li>Add a <code translate="no" dir="ltr">when {}</code> inside the <code translate="no" dir="ltr">bindStatus()</code> method to switch between the different statuses.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">when (status) {
+
+}
+</code></pre>
+<ol type="1" start="3">
+<li>Inside the <code translate="no" dir="ltr">when {}</code>, add a case for the loading state (<code translate="no" dir="ltr">MarsApiStatus.LOADING</code>).    For this state, set the <code translate="no" dir="ltr">ImageView</code> to visible, and assign it the loading animation. This is the same animation drawable you used for Glide in the previous task.  Import <code translate="no" dir="ltr">android.view.View</code> when requested.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">when (status) {
+   MarsApiStatus.LOADING -&gt; {
+      statusImageView.visibility = View.VISIBLE
+      statusImageView.setImageResource(R.drawable.loading_animation)
+   }
+}
+</code></pre>
+<ol type="1" start="4">
+<li>Add a case for the error state, which is <code translate="no" dir="ltr">MarsApiStatus.ERROR</code>.  Similarly to what you did for the <code translate="no" dir="ltr">LOADING</code> state, set the status <code translate="no" dir="ltr">ImageView</code> to visible and reuse the connection-error drawable.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">MarsApiStatus.ERROR -&gt; {
+   statusImageView.visibility = View.VISIBLE
+   statusImageView.setImageResource(R.drawable.ic_connection_error)
+}
+</code></pre>
+<ol type="1" start="5">
+<li>Add a case for the done state, which is <code translate="no" dir="ltr">MarsApiStatus.DONE</code>. Here you have a successful response, so turn off the visibility of the status <code translate="no" dir="ltr">ImageView</code> to hide it.</li>
+</ol>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">MarsApiStatus.DONE -&gt; {
+   statusImageView.visibility = View.GONE
+}
+</code></pre>
+<h2 is-upgraded id="step-3:-add-the-status-imageview-to-the-layout" data-text="Step 3: Add the status ImageView to the layout"><strong>Step 3: Add the status ImageView to the layout</strong></h2>
+<ol type="1">
+<li>Open <code translate="no" dir="ltr">res/layout/fragment_overview.xml</code>.  Below the <code translate="no" dir="ltr">RecyclerView</code> element, inside the <code translate="no" dir="ltr">ConstraintLayout</code>, add the <code translate="no" dir="ltr">ImageView</code> shown below.</li>
+</ol>
+<p>This <code translate="no" dir="ltr">ImageView</code> has the same constraints as the <code translate="no" dir="ltr">RecyclerView</code>. However, the width and height use <code translate="no" dir="ltr">wrap_content</code> to center the image rather than stretch the image to fill the view.  Also notice the <code translate="no" dir="ltr">app:marsApiStatus</code> attribute, which has the view call your <code translate="no" dir="ltr">BindingAdapter</code> when the status property in the view model changes.</p>
+<pre translate="no" dir="ltr"><code translate="no" dir="ltr">&lt;ImageView
+   android:id=&#34;@+id/status_image&#34;
+    android:layout_width=&#34;wrap_content&#34;
+    android:layout_height=&#34;wrap_content&#34;
+    app:layout_constraintBottom_toBottomOf=&#34;parent&#34;
+    app:layout_constraintLeft_toLeftOf=&#34;parent&#34;
+    app:layout_constraintRight_toRightOf=&#34;parent&#34;
+    app:layout_constraintTop_toTopOf=&#34;parent&#34;
+    app:marsApiStatus=&#34;@{viewModel.status}&#34; /&gt;
+</code></pre>
+<ol type="1" start="2">
+<li>Turn on airplane mode in your emulator or device to simulate a missing network connection. Compile and run the app, and notice that the error image appears:</li>
+</ol>
+<p class="image-container"><img alt="eb0d20401060679c.png" style="width: 256.46px" src="/codelabs/kotlin-android-training-internet-images/img/eb0d20401060679c.png"></p>
+<ol type="1" start="3">
+<li>Tap the Back button to close the app, and turn off airplane mode.  Use the recents screen to return the app.  Depending on the speed of your network connection, you may see an extremely brief loading spinner when the app queries the web service before the images begin to load.</li>
+</ol>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Solution code" duration="0">
+          
+          <p>Android Studio project:  <a href="https://github.com/google-developer-training/android-kotlin-fundamentals-apps/tree/master/MarsRealEstateGrid" target="_blank">MarsRealEstateGrid</a></p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Summary" duration="0">
+          
+          <ul>
+<li>To simplify the process of managing images, use the  <a href="https://github.com/bumptech/glide" target="_blank">Glide library</a> to download, buffer, decode, and cache images in your app.</li>
+<li>Glide needs two things to load an image from the internet:  the URL of an image, and an <code translate="no" dir="ltr">ImageView</code> object to put the image in. To specify these options, use the <code translate="no" dir="ltr">load()</code> and <code translate="no" dir="ltr">into()</code> methods with Glide.</li>
+<li><a href="https://developer.android.com/topic/libraries/data-binding/binding-adapters" target="_blank">Binding adapters</a> are extension methods that sit between a view and that view&#39;s bound data. Binding adapters provide custom behavior when the data changes, for example, to call Glide to load an image from a URL into an <code translate="no" dir="ltr">ImageView</code>.</li>
+<li>Binding adapters are extension methods annotated with the <code translate="no" dir="ltr">@BindingAdapter</code> annotation.</li>
+<li>To add options to the Glide request, use the <code translate="no" dir="ltr">apply()</code> method. For example, use <code translate="no" dir="ltr">apply()</code> with <code translate="no" dir="ltr">placeholder()</code> to specify a loading drawable, and use <code translate="no" dir="ltr">apply()</code> with <code translate="no" dir="ltr">error()</code> to specify an error drawable.</li>
+<li>To produce a grid of images, use a <code translate="no" dir="ltr">RecyclerView</code> with a <code translate="no" dir="ltr">GridLayoutManager</code>.</li>
+<li>To update the list of properties when it changes, use a binding adapter between the <code translate="no" dir="ltr">RecyclerView</code> and the layout.</li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Learn more" duration="0">
+          
+          <p>Udacity course:</p>
+<ul>
+<li><a href="https://www.udacity.com/course/developing-android-apps-with-kotlin--ud9012" target="_blank">Developing Android Apps with Kotlin</a></li>
+</ul>
+<p>Android developer documentation:</p>
+<ul>
+<li><a href="https://developer.android.com/topic/libraries/architecture/viewmodel" target="_blank">ViewModel Overview</a></li>
+<li><a href="https://developer.android.com/topic/libraries/architecture/livedata#kotlin" target="_blank">LiveData Overview</a></li>
+<li><a href="https://kotlinlang.org/docs/reference/coroutines-overview.html" target="_blank">Coroutines, official documentation</a></li>
+<li><a href="https://developer.android.com/topic/libraries/data-binding/binding-adapters" target="_blank">Binding adapters</a></li>
+</ul>
+<p>Other:</p>
+<ul>
+<li><a href="https://github.com/bumptech/glide" target="_blank">Glide</a></li>
+<li><a href="https://medium.com/@vlonjatgashi/using-glide-with-kotlin-5e345b557547" target="_blank">Using Glide with Kotlin</a></li>
+<li><a href="https://android.jlelse.eu/binding-adapters-with-kotlin-part-1-78b957ad6b8b" target="_blank">Binding adapters with Kotlin</a></li>
+</ul>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Homework" duration="0">
+          
+          <p>This section lists possible homework assignments for students who are working through this codelab as part of a course led by an instructor. It&#39;s up to the instructor to do the following:</p>
+<ul>
+<li>Assign homework if required.</li>
+<li>Communicate to students how to submit homework assignments.</li>
+<li>Grade the homework assignments.</li>
+</ul>
+<p>Instructors can use these suggestions as little or as much as they want, and should feel free to assign any other homework they feel is appropriate.</p>
+<p>If you&#39;re working through this codelab on your own, feel free to use these homework assignments to test your knowledge.</p>
+<h2 is-upgraded id="answer-these-questions" data-text="Answer these questions">Answer these questions</h2>
+<h3 is-upgraded id="question-1" data-text="Question 1"><strong>Question 1</strong></h3>
+<p>Which Glide method do you use to indicate the <code translate="no" dir="ltr">ImageView</code> that will contain the loaded image?</p>
+<p>▢ <code translate="no" dir="ltr">into()</code></p>
+<p>▢ <code translate="no" dir="ltr">with()</code></p>
+<p>▢ <code translate="no" dir="ltr">imageview()</code></p>
+<p>▢ <code translate="no" dir="ltr">apply()</code></p>
+<h3 is-upgraded id="question-2" data-text="Question 2"><strong>Question 2</strong></h3>
+<p>How do you specify a placeholder image to show when Glide is loading?</p>
+<p>▢ Use the <code translate="no" dir="ltr">into()</code> method with a drawable.</p>
+<p>▢ Use <code translate="no" dir="ltr">RequestOptions()</code> and call the <code translate="no" dir="ltr">placeholder()</code> method with a drawable.</p>
+<p>▢ Assign the <code translate="no" dir="ltr">Glide.placeholder</code> property to a drawable.</p>
+<p>▢ Use <code translate="no" dir="ltr">RequestOptions()</code> and call the <code translate="no" dir="ltr">loadingImage()</code> method with a drawable.</p>
+<h3 is-upgraded id="question-3" data-text="Question 3"><strong>Question 3</strong></h3>
+<p>How do you indicate that a method is a binding adapter?</p>
+<p>▢ Call the <code translate="no" dir="ltr">setBindingAdapter()</code> method on the <code translate="no" dir="ltr">LiveData</code>.</p>
+<p>▢ Put the method into a Kotlin file called <code translate="no" dir="ltr">BindingAdapters.kt</code>.</p>
+<p>▢ Use the <code translate="no" dir="ltr">android:adapter</code> attribute in the XML layout.</p>
+<p>▢ Annotate the method with <code translate="no" dir="ltr">@BindingAdapter</code>.</p>
+
+
+        </google-codelab-step>
+      
+        <google-codelab-step label="Next codelab" duration="0">
+          
+          <p>Start the next lesson:  <a href="https://codelabs.developers.google.com/codelabs/kotlin-android-training-internet-filtering/" target="_blank"><paper-button class="colored" raised>Filtering and detail views with internet data</paper-button></a></p>
+<p>For links to other codelabs in this course, see the  <a href="https://codelabs.developers.google.com/android-kotlin-fundamentals/" target="_blank">Android Kotlin Fundamentals codelabs landing page</a>.</p>
+
+
+        </google-codelab-step>
+      
+    </google-codelab>
+  
+    
+
+    
+  </div>
+
+  
+
+  
+    
+    
+    
+  
+
+  
+  
+</article>
+
+
+
+
+            
+          </devsite-content>
+        </main>
+        <devsite-footer-promos class="devsite-footer">
+          
+            
+
+<nav class="devsite-footer-promos nocontent" aria-label="Promosi">
+  <ul class="devsite-footer-promos-list">
+    
+    <li class="devsite-footer-promo">
+      <a href="//twitter.com/AndroidDev"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer Twitter Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="/_static/android/images/logo-twitter.svg"
+             loading="lazy"
+             alt="Twitter">
+        
+        Twitter
+      </a>
+      <div class="devsite-footer-promo-description">Ikuti @AndroidDev di Twitter</div>
+    </li>
+    
+    <li class="devsite-footer-promo">
+      <a href="//www.youtube.com/user/androiddevelopers"
+         class="devsite-footer-promo-title gc-analytics-event"
+         data-category="Site-Wide Custom Events"
+       
+       
+         data-label="Footer YouTube Promo"
+       >
+        
+        
+        <img class="devsite-footer-promo-icon"
+             src="//www.gstatic.com/images/icons/material/product/2x/youtube_48dp.png"
+             loading="lazy"
+             alt="YouTube">
+        
+        YouTube
+      </a>
+      <div class="devsite-footer-promo-description">Lihat Developer Android di YouTube</div>
+    </li>
+    
+  </ul>
+</nav>
+
+          
+        </devsite-footer-promos>
+        <devsite-footer-linkboxes class="devsite-footer">
+          
+            
+<nav class="devsite-footer-linkboxes nocontent" aria-label="Link footer">
+  
+  <ul class="devsite-footer-linkboxes-list">
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Selengkapnya tentang Android</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Android
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/enterprise/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Enterprise
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//www.android.com/security-center/"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Keamanan
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//source.android.com"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Source
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dukungan</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=190923&amp;template=841312"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Laporkan bug platform
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//issuetracker.google.com/issues/new?component=192697"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Laporkan bug dokumentasi
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="//support.google.com/googleplay/android-developer"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Google Play support
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="https://google.qualtrics.com/jfe/form/SV_ewWXIoEVLBcyp7f??reserved=1&amp;utm_source=FooterLink&amp;Q_Language=en&amp;utm_medium=own_srch&amp;utm_campaign=developer.android.com&amp;utm_term=0&amp;utm_content=0&amp;productTag=reg&amp;campaignDate=may19&amp;pType=devel&amp;referral_code=gV420370"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Bergabung dengan studi riset
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+    <li class="devsite-footer-linkbox ">
+    <h3 class="devsite-footer-linkbox-heading no-link">Dokumentasi</h3>
+      <ul class="devsite-footer-linkbox-list">
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/guide"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 1)"
+            >
+          
+            Panduan developer
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/design"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 2)"
+            >
+          
+            Panduan desain
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/reference"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 3)"
+            >
+          
+            Referensi API
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/samples"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 4)"
+            >
+          
+            Sampel
+          
+          </a>
+          
+        </li>
+        
+        <li class="devsite-footer-linkbox-item">
+          
+          <a href="/studio/intro"
+             class="devsite-footer-linkbox-link gc-analytics-event"
+             data-category="Site-Wide Custom Events"
+            
+             data-label="Footer Link (index 5)"
+            >
+          
+            Android Studio
+          
+          </a>
+          
+        </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+  
+</nav>
+          
+        </devsite-footer-linkboxes>
+        <devsite-footer-utility class="devsite-footer">
+          
+            
+
+<div class="devsite-footer-utility nocontent">
+  
+  
+  <nav class="devsite-footer-sites" aria-label="Situs Google Developers lain">
+    <a href="https://developers.google.com/"
+       class="devsite-footer-sites-logo-link gc-analytics-event"
+       data-category="Site-Wide Custom Events"
+       data-label="Footer Google Developers Link">
+      <img class="devsite-footer-sites-logo"
+           src="https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup-developers.svg"
+           loading="lazy"
+           alt="Google Developers">
+    </a>
+    <ul class="devsite-footer-sites-list">
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.android.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Android Link"
+         
+         >
+          Android
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developer.chrome.com/home"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Chrome Link"
+         
+         >
+          Chrome
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//firebase.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Firebase Link"
+         
+         >
+          Firebase
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//cloud.google.com"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer Google Cloud Platform Link"
+         
+         >
+          Google Cloud Platform
+        </a>
+      </li>
+      
+      <li class="devsite-footer-sites-item">
+        <a href="//developers.google.com/products/"
+           class="devsite-footer-sites-link
+                  gc-analytics-event"
+           data-category="Site-Wide Custom Events"
+         
+           data-label="Footer All products Link"
+         
+         >
+          Semua produk
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  
+
+  
+  <nav class="devsite-footer-utility-links" aria-label="Link utilitas">
+    
+    <ul class="devsite-footer-utility-list">
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="//policies.google.com/privacy"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Privacy link"
+         >
+          Privasi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/license"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer License link"
+         >
+          Lisensi
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 ">
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/distribute/marketing-tools/brand-guidelines"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Brand guidelines link"
+         >
+          Pedoman brand
+        </a>
+        
+      </li>
+      
+      <li class="devsite-footer-utility-item
+                 devsite-footer-utility-button">
+        
+        <span class="devsite-footer-utility-description">Dapatkan berita dan tips melalui email</span>
+        
+        
+        <a class="devsite-footer-utility-link gc-analytics-event"
+           href="/updates"
+           data-category="Site-Wide Custom Events"
+           data-label="Footer Subscribe link"
+         >
+          Berlangganan
+        </a>
+        
+      </li>
+      
+    </ul>
+    
+    
+    
+<devsite-language-selector>
+  <devsite-select class="devsite-language-selector-menu">
+    
+    <select aria-label="Pilih preferensi bahasa Anda."
+            class="devsite-language-selector-select"
+            name="language"
+            track-name="click"
+            track-type="languageSelector">
+    
+    
+      <option value="en"
+              lang="en"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="en"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        English
+      </option>
+    
+      <option value="id"
+              lang="id"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="id"
+              track-name="changed"
+              track-type="languageSelector"
+            
+              selected="selected"
+            >
+        Bahasa Indonesia
+      </option>
+    
+      <option value="es_419"
+              lang="es_419"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="es_419"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Español – América Latina
+      </option>
+    
+      <option value="pt_br"
+              lang="pt_br"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="pt_br"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        Português – Brasil
+      </option>
+    
+      <option value="zh_cn"
+              lang="zh_cn"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="zh_cn"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        中文 – 简体
+      </option>
+    
+      <option value="ja"
+              lang="ja"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ja"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        日本語
+      </option>
+    
+      <option value="ko"
+              lang="ko"
+              track-metadata-original-language="id"
+              track-metadata-selected-language="ko"
+              track-name="changed"
+              track-type="languageSelector"
+            >
+        한국어
+      </option>
+    
+    </select>
+  </devsite-select>
+</devsite-language-selector>
+
+  </nav>
+</div>
+          
+        </devsite-footer-utility>
+        <devsite-panel></devsite-panel>
+      </section></section>
+    <devsite-sitemask></devsite-sitemask>
+    
+<devsite-snackbar 
+                  ></devsite-snackbar>
+
+    <devsite-tooltip ></devsite-tooltip>
+    <devsite-heading-link></devsite-heading-link>
+    <devsite-analytics enable-analytics-iframe>
+      
+        <script type="application/json" analytics>[{"gaid": "UA-5831155-1", "dimensions": {"dimension11": false, "dimension5": "id", "dimension3": false, "dimension1": "Signed In", "dimension6": "en", "dimension4": "Developer Android"}, "metrics": {"ratings_count": "metric2", "ratings_value": "metric1"}}]</script>
+<script type="application/json" gtm>{"parameters": {"freeTrialEligibleUser": "False", "internalUser": "False", "language": {"machineTranslated": "False", "requested": "id", "served": "en"}, "pageType": "codelab", "projectName": "Developer Android", "signedIn": "True", "tenant": "android", "recommendations": {"sourcePage": "", "sourceType": 0, "sourceRank": 0, "sourceIdenticalDescriptions": 0, "sourceTitleWords": 0, "sourceDescriptionWords": 0, "experiment": ""}}, "tags": ["GTM-KMSWPCJ"]}</script>
+      
+    </devsite-analytics>
+    
+      <devsite-badger></devsite-badger>
+    
+    
+<android-fully-clickable target=".fully-clickable" watch="devsite-content"></android-fully-clickable>
+    <script nonce="9+VkCQfxfG9wWzinxkt5O28uq14h1+">
+  
+  (function(d,e,v,s,i,t,E){d['GoogleDevelopersObject']=i;
+    t=e.createElement(v);t.async=1;t.src=s;E=e.getElementsByTagName(v)[0];
+    E.parentNode.insertBefore(t,E);})(window, document, 'script',
+    'https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/js/app_loader.js', '[3,"id",null,"/js/devsite_app_module.js","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android","https://android-dot-devsite-v2-prod.appspot.com",1,null,["/_pwa/android/manifest.json","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/images/video-placeholder.svg","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/favicon.png","https://www.gstatic.com/devrel-devsite/prod/v854c54f3442b5b06d97cb2bf43f3647f489796c80c33899ecd29b91ae5303388/android/images/lockup.svg","https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700&display=swap"],1,null,[1,6,8,12,14,17,21,25,40,50,63,70,75,76,80,87,88,91,92,93,97,98,100,101,102,103,104,105,107,108,111,112,113,115,117,118,120,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,138,147,148,149],"AIzaSyAP-jjEJBzmIyKR4F-3XITp8yM9T1gEEI8","AIzaSyB6xiKGDR5O3Ak2okS4rLkauxGUG7XP0hg"]')
+  
+</script>
+    <devsite-a11y-announce></devsite-a11y-announce>
+  </body>
+</html>
