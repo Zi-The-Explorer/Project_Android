@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_time"
+            android:icon="@drawable/ic_baseline_access_time_24"
+            android:title="Time"/>
+
+        <item
+            android:id="@+id/nav_star"
+            android:icon="@drawable/ic_baseline_star_border_24"
+            android:title="Star"/>
+
+        <item
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/ic_baseline_calendar_today_24"
+            android:title="Calendar"/>
+    </group>
+
+    <item android:title="Runnable">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:title="Log out"/>
+
+            <item
+                android:id="@+id/nav_delete_account"
+                android:title="Delete Account"/>
+        </menu>
+    </item>
+
+
+</menu>

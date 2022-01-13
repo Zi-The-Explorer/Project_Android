@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="30dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.view.authpage.SigninActivity">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signInArrowBack"
+        app:cornerRadius="50dp"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        app:icon="@drawable/ic_baseline_arrow_back_ios_24"
+        app:iconTint="@color/black"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/soft_gray500"
+        app:iconGravity="textStart"
+        app:iconPadding="-10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello Again!\nWelcome\nBack"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto"
+        android:textStyle="bold"
+        android:textSize="36sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextFieldEmailAddress"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:boxBackgroundColor="#4D9088D4"
+        app:boxStrokeColor="@color/soft_purple500"
+        app:hintTextColor="@color/soft_black"
+        android:hint="Email Address"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etemail_signIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextFieldPasswordSignIn"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:boxBackgroundColor="#4D9088D4"
+        app:boxStrokeColor="@color/soft_purple500"
+        app:hintTextColor="@color/soft_black"
+        android:hint="Password"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/show_password_selector"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password_signIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="35dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_signInToActionMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cornerRadius="30dp"
+                android:padding="20dp"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/txt_button"
+                android:textColor="@color/soft_gray200"
+                android:backgroundTint="@color/soft_purple500"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationLoading"
+                android:visibility="invisible"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerHorizontal="true"
+                app:lottie_rawRes="@raw/loading"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"/>
+
+            <TextView
+                android:id="@+id/linkSignToSignup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="Sign Up"
+                android:textColor="@color/soft_purple700"
+                android:textStyle="bold" />
+        </RelativeLayout>
+</LinearLayout>

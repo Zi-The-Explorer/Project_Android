@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="145dp"
+    android:layout_height="145dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_list_category_task"
+    app:cardCornerRadius="15dp"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:id="@+id/ll_list_task_category"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="10dp"
+        android:background="@color/soft_blue"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_item_list_task_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icons8_eye_24"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_item_list_task_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selamat malam semua yang dirindukan"
+            android:textAlignment="center"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
