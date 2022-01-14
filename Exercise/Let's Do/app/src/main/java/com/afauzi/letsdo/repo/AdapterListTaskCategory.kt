@@ -1,5 +1,6 @@
 package com.afauzi.letsdo.repo
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +27,13 @@ class AdapterListTaskCategory(private val itemsListTaskCategory: ArrayList<Model
         holder.nameTaskCategory.text = currentItem.name
 
         // generate random colors
-        val generator = ColorGenerator.DEFAULT
+        val generator = ColorGenerator.create(mutableListOf(
+            0xff706897.toInt(),
+            0xff9088D4.toInt(),
+            0xff81B2F3.toInt(),
+            0xffF6C192.toInt(),
+            0xffF29999.toInt()
+        ))
         val color = generator.randomColor
         holder.linearLayout.setBackgroundColor(color)
     }

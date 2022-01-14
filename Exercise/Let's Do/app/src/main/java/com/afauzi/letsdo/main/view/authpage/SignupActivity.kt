@@ -45,7 +45,9 @@ class SignupActivity : AppCompatActivity() {
         createAccountInputArray = arrayOf(et_username_signup, et_email_signup, et_password_signup)
 
         actionToPage(linkSIgnupToSignin, SigninActivity::class.java)
-        actionToPage(signUpArrowBack, LandingActivity::class.java)
+        signUpArrowBack.setOnClickListener {
+            super.onBackPressed()
+        }
 
         btn_signupToActionMain.setOnClickListener {
             signUp()

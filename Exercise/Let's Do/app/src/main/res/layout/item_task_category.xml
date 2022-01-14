@@ -21,14 +21,16 @@
             android:id="@+id/iv_item_list_task_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icons8_eye_24"
-            app:tint="@color/white" />
+            android:src="@drawable/ic_minecraft"/>
 
         <TextView
             android:id="@+id/tv_item_list_task_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Selamat malam semua yang dirindukan"
+            android:fontFamily="@font/rubik_light"
+            android:textStyle="bold"
+            android:textSize="16sp"
             android:textAlignment="center"
             android:textColor="@color/white"/>
     </LinearLayout>

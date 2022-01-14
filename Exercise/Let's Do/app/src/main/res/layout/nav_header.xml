@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="20dp"
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/image_profile_account"
+        android:id="@+id/image_profile_account_drawer"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:src="@drawable/profile_image_example"/>
+        android:src="@drawable/avatar_example"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,30 +18,37 @@
         android:layout_marginTop="20dp">
 
         <TextView
+            android:id="@+id/tv_name_profile_drawer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
             android:text="Akhmad Fauzi"
-            android:textSize="20sp"
             android:textColor="@color/soft_black"
-            android:textStyle="bold"
-            android:fontFamily="@font/roboto"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_edit_profile_drawer"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:layout_alignParentEnd="true"
-            android:backgroundTint="@color/white"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_baseline_edit_24" />
+            app:cornerRadius="50dp"
+            app:icon="@drawable/ic_baseline_edit_24"
+            app:iconGravity="textStart"
+            app:iconPadding="-0dp"
+            app:iconTint="@color/black"
+            app:strokeColor="@color/soft_gray500" />
+
+        <TextView
+            android:id="@+id/tv_email_profile_drawer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="akhmadfauzi@gmail.com"
+            android:layout_below="@id/tv_name_profile_drawer"
+            android:textColor="@color/soft_gray500"
+            android:fontFamily="@font/roboto"/>
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="akhmadfauzi@gmail.com"
-        android:textColor="@color/soft_gray500"
-        android:fontFamily="@font/roboto"/>
+
 
 </LinearLayout>
