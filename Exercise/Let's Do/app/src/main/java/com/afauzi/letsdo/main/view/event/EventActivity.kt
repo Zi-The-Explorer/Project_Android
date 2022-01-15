@@ -1,22 +1,26 @@
 package com.afauzi.letsdo.main.view.event
 
+import android.content.Context
+import android.content.DialogInterface
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
-import android.widget.PopupMenu
-import android.widget.TextView
-import android.widget.Toast
+import android.view.Window
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import com.afauzi.letsdo.R
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_event.*
 import kotlinx.android.synthetic.main.bottom_sheet_layout.view.*
+import kotlinx.android.synthetic.main.no_page_introduction.*
 
 class EventActivity : AppCompatActivity() {
 
@@ -102,16 +106,27 @@ class EventActivity : AppCompatActivity() {
     }
 
     private fun popupMenu() {
+
         val popupMenu = PopupMenu(this, BtnMoreOption, Gravity.RIGHT)
         popupMenu.menuInflater.inflate(R.menu.event_menu, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.today -> {
-                    Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
-                }
-            }
+
+            dialogShowNotPage()
+
+//            when (it.itemId) {
+//                R.id.short_by -> {
+//                    Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+
             true
         }
         popupMenu.show()
+    }
+
+    private fun dialogShowNotPage() {
+        MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialog_rounded)
+            .setView(R.layout.no_page_introduction)
+            .show()
     }
 }
