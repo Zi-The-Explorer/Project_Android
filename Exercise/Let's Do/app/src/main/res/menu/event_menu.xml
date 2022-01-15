@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/short_by"
+        android:title="Short by" />
+
+    <item
+        android:id="@+id/change_list_name"
+        android:title="Change list name" />
+
+    <item
+        android:id="@+id/delete_list"
+        android:title="Delete list"/>
+
+    <item
+        android:id="@+id/delete_all_task"
+        android:title="Delete all completed tasks"/>
+</menu>

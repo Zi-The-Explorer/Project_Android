@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".main.view.event.EventActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/EventArrowBack"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            app:cornerRadius="50dp"
+            app:icon="@drawable/ic_baseline_arrow_back_ios_24"
+            app:iconGravity="textStart"
+            app:iconPadding="-10dp"
+            app:iconTint="@color/black"
+            app:strokeColor="@color/soft_gray500"
+            app:strokeWidth="1dp" />
+
+        <TextView
+            android:id="@+id/tv_category_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/roboto"
+            android:gravity="center"
+            android:text="Category Name"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/BtnMoreOption"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:cornerRadius="50dp"
+            app:icon="@drawable/ic_baseline_more_vert_24"
+            app:iconGravity="textStart"
+            app:iconPadding="-0dp"
+            app:iconTint="@color/black"
+            app:strokeColor="@color/soft_gray500"
+            app:strokeWidth="1dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_button_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Praktikum Modul 3" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:layout_marginStart="25dp"
+            android:background="@drawable/rounded_background">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Today | 22.00"
+                android:textColor="@color/white"/>
+        </FrameLayout>
+
+        <RadioButton
+            android:id="@+id/radio_button_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Interaksi Manusia Dan Komputer" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:layout_marginStart="25dp"
+            android:background="@drawable/rounded_background">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sunday, 16 Jan 2021 | 22.00"
+                android:textColor="@color/white"/>
+        </FrameLayout>
+
+        <RadioButton
+            android:id="@+id/radio_button_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jaringan Komputer" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:layout_marginStart="25dp"
+            android:background="@drawable/rounded_background">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Monday, 17 Jan 2021 | 22.00"
+                android:textColor="@color/white"/>
+        </FrameLayout>
+
+        <RadioButton
+            android:id="@+id/radio_button_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Interaksi Manusia Dan Komputer" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:layout_marginStart="25dp"
+            android:background="@drawable/rounded_background">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tuesday, 18 Jan 2021 | 22.00"
+                android:textColor="@color/white"/>
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_done_event"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done (2)"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/EventArrowUp"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            app:cornerRadius="50dp"
+            android:layout_alignParentEnd="true"
+            app:icon="@drawable/ic_baseline_keyboard_arrow_up_24"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/black"
+            app:strokeColor="@color/soft_gray500"
+            app:strokeWidth="1dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/tv_done_event"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|start"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_check_24"
+                    app:tint="@color/soft_purple500" />
+                <TextView
+                    android:id="@+id/tv_clear1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Multimedia"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_check_24"
+                    app:tint="@color/soft_purple500" />
+                <TextView
+                    android:id="@+id/tv_clear2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Multimedia"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/floating_action_button_create_event"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:clickable="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            app:lottie_rawRes="@raw/floating_button"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:focusable="true" />
+    </RelativeLayout>
+
+</LinearLayout>
