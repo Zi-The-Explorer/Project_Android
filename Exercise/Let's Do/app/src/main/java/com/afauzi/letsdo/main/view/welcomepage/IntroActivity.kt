@@ -1,12 +1,12 @@
 package com.afauzi.letsdo.main.view.welcomepage
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import com.afauzi.letsdo.R
 import com.afauzi.letsdo.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +17,7 @@ class IntroActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
+    @SuppressLint("ObsoleteSdkInt")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
@@ -34,7 +35,7 @@ class IntroActivity : AppCompatActivity() {
             val window = this.window
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.statusBarColor = this.resources.getColor(R.color.soft_purple500)
+            window.statusBarColor = this.resources.getColor(R.color.soft_purple500, theme)
         }
 
         btnIntroToLanding.setOnClickListener {

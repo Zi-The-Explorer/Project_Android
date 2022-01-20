@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RadioButton
+        android:id="@+id/item_event_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="title item"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/soft_black"/>
+
+        <TextView
+            android:id="@+id/item_event_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/item_event_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Senin | 23-02-2022 | 07:00 AM"
+        android:padding="5dp"
+        android:textSize="10sp"
+        android:textAlignment="center"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_background"/>
+
+</LinearLayout>

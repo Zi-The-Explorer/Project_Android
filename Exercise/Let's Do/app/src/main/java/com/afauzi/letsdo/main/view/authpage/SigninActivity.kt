@@ -28,13 +28,13 @@ class SigninActivity : AppCompatActivity() {
     }
 
     // declaration for firebase authentication
-    lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     private lateinit var mGoogleSignInClient: GoogleSignInClient
 
-    lateinit var createAccountInputArray: Array<EditText>
+    private lateinit var createAccountInputArray: Array<EditText>
 
-    lateinit var signInEmail: String
-    lateinit var signInPassword: String
+    private lateinit var signInEmail: String
+    private lateinit var signInPassword: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,7 +94,7 @@ class SigninActivity : AppCompatActivity() {
     }
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
         val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
-        auth.signInWithCredential(credential).addOnCompleteListener() { Task ->
+        auth.signInWithCredential(credential).addOnCompleteListener { Task ->
             if (Task.isSuccessful) {
                 val intent = Intent(applicationContext, MainActivity::class.java)
                 startActivity(intent)

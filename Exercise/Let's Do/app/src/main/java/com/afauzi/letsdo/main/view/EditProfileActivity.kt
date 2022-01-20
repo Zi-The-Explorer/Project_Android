@@ -20,6 +20,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_edit_profile.*
+import kotlinx.android.synthetic.main.activity_signup.*
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -57,6 +58,10 @@ class EditProfileActivity : AppCompatActivity() {
             selectImage()
         }
 
+        btn_edit_save.setOnClickListener {
+            saveEditData()
+        }
+
         btnBackAction()
     }
 
@@ -74,7 +79,11 @@ class EditProfileActivity : AppCompatActivity() {
                     tv_name_edit.text = snapshot.child("username").value.toString()
                     tv_email_edit.text = snapshot.child("email").value.toString()
                     val getImg = snapshot.child("photo_profile").value.toString()
-                    Picasso.get().load(getImg).placeholder(R.drawable.avatar_example).into(edit_image_profile)
+                    Picasso.get().load(getImg).placeholder(R.drawable.avatar_example)
+                        .into(edit_image_profile)
+
+                    et_edit_username.setText(snapshot.child("username").value.toString())
+                    et_edit_email.setText(snapshot.child("email").value.toString())
                 } else {
                     val user: FirebaseUser? = auth.currentUser
                     user.let {
@@ -85,7 +94,11 @@ class EditProfileActivity : AppCompatActivity() {
 
                         tv_name_edit.text = nameProv
                         tv_email_edit.text = emailProv
-                        Picasso.get().load(photoUrlProv).placeholder(R.drawable.avatar_example).into(edit_image_profile)
+                        Picasso.get().load(photoUrlProv).placeholder(R.drawable.avatar_example)
+                            .into(edit_image_profile)
+
+                        et_edit_email.setText(emailProv)
+                        et_edit_username.setText(nameProv)
 
                     }
                 }
@@ -97,7 +110,6 @@ class EditProfileActivity : AppCompatActivity() {
 
         })
     }
-
 
     /**
      * Menangani Aksi kembali ke halaman sebelumnya
@@ -127,40 +139,60 @@ class EditProfileActivity : AppCompatActivity() {
                 val bitmap: Bitmap =
                     MediaStore.Images.Media.getBitmap(this.contentResolver, fillPath)
                 edit_image_profile.setImageBitmap(bitmap)
-
-                val uuid = UUID.randomUUID().toString()
-                val storeRef: StorageReference = storageReference.child("profile_image/$uuid")
-
-                storeRef.putFile(fillPath).addOnSuccessListener { taskSnapshot ->
-                    taskSnapshot.storage.downloadUrl.addOnSuccessListener { uri ->
-
-                        val user: FirebaseUser? = auth.currentUser
-                        val userId = user!!.uid
-                        databaseReference = firebaseDatabase.getReference("users").child(userId)
-                            .child("photo_profile")
-                        databaseReference.setValue(uri.toString()).addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                Toast.makeText(
-                                    this,
-                                    "Photo Profile Success Update",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            } else {
-                                Toast.makeText(
-                                    this,
-                                    "error upload!",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
-                    }
-                }.addOnFailureListener { e ->
-                    print(e.message)
-                    Toast.makeText(this, "Failed ${e.message}", Toast.LENGTH_SHORT).show()
-                }
             } catch (e: IOException) {
                 e.printStackTrace()
             }
+        }
+    }
+
+    private fun saveEditData() {
+
+        val user: FirebaseUser? = auth.currentUser
+        val userId = user!!.uid
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId)
+
+        val hashMap: HashMap<String, String> = HashMap()
+        hashMap.put("user_id", userId)
+        hashMap.put("username", et_edit_username.text.toString().trim())
+        hashMap.put("email", et_edit_email.text.toString().trim())
+
+        databaseReference.setValue(hashMap).addOnCompleteListener(this) { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(this, "Data kamu tersimpan", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Toast.makeText(this, "Maaf Ada Kesalahan Penyimpanan data, Ini akan segera diperbaiki", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+        val uuid = UUID.randomUUID().toString()
+        val storeRef: StorageReference = storageReference.child("profile_image/$uuid")
+
+        storeRef.putFile(fillPath).addOnSuccessListener { taskSnapshot ->
+            taskSnapshot.storage.downloadUrl.addOnSuccessListener { uri ->
+
+                databaseReference = firebaseDatabase.getReference("users").child(userId).child("photo_profile")
+                databaseReference.setValue(uri.toString()).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Toast.makeText(
+                            this,
+                            "Photo profile berhasil deperbarui!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "error upload!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }.addOnFailureListener { e ->
+            print(e.message)
+            Toast.makeText(this, "Failed ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
 

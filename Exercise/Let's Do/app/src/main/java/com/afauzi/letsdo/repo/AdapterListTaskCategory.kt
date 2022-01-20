@@ -11,10 +11,16 @@ import com.afauzi.letsdo.R
 import com.afauzi.letsdo.data.ModelItemListTaskCategory
 import com.amulyakhare.textdrawable.util.ColorGenerator
 
-class AdapterListTaskCategory(private val context: Context, private val callClickListener: CallClickListener, private val itemsListTaskCategory: ArrayList<ModelItemListTaskCategory>): RecyclerView.Adapter<AdapterListTaskCategory.ListTaskCategoryViewHolder>() {
+class AdapterListTaskCategory(
+    private val context: Context,
+    private val callClickListener: CallClickListener,
+    private val itemsListTaskCategory: ArrayList<ModelItemListTaskCategory>
+    ): RecyclerView.Adapter<AdapterListTaskCategory.ListTaskCategoryViewHolder>() {
 
     class ListTaskCategoryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        // item categoryTask
         var nameTaskCategory: TextView = itemView.findViewById(R.id.tv_item_list_task_category)
+        var dateTaskCategory: TextView = itemView.findViewById(R.id.tv_item_date)
         val linearLayout: LinearLayout = itemView.findViewById(R.id.ll_list_task_category)
     }
 
@@ -26,6 +32,7 @@ class AdapterListTaskCategory(private val context: Context, private val callClic
     override fun onBindViewHolder(holder: ListTaskCategoryViewHolder, position: Int) {
         val currentItem = itemsListTaskCategory[position]
         holder.nameTaskCategory.text = currentItem.name
+        holder.dateTaskCategory.text = currentItem.date_created
 
         // generate random colors
         val generator = ColorGenerator.create(mutableListOf(

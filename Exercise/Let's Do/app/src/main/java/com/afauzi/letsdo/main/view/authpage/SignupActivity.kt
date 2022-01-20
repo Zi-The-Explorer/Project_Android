@@ -8,32 +8,27 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import com.afauzi.letsdo.R
 import com.afauzi.letsdo.main.MainActivity
-import com.afauzi.letsdo.main.view.welcomepage.LandingActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_signin.*
 import kotlinx.android.synthetic.main.activity_signup.*
 
 class SignupActivity : AppCompatActivity() {
 
     // declaration for firebase authentication
-    lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     // declaration for firebase realtimedatabase
-    lateinit var databaseReference: DatabaseReference
+    private lateinit var databaseReference: DatabaseReference
 
     // declaration for input view editText
-    lateinit var userName: String
-    lateinit var email: String
-    lateinit var password: String
-    lateinit var createAccountInputArray: Array<EditText>
+    private lateinit var userName: String
+    private lateinit var email: String
+    private lateinit var password: String
+    private lateinit var createAccountInputArray: Array<EditText>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +60,7 @@ class SignupActivity : AppCompatActivity() {
     }
 
 
-    fun actionToPage(view: View, className: Class<*>) {
+    private fun actionToPage(view: View, className: Class<*>) {
         view.setOnClickListener {
             startActivity(Intent(this, className))
             finish()
@@ -83,44 +78,48 @@ class SignupActivity : AppCompatActivity() {
             // Create Users
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
+                    when {
+                        task.isSuccessful -> {
 
-                        val user: FirebaseUser? = auth.currentUser
-                        val userId: String = user!!.uid
+                            val user: FirebaseUser? = auth.currentUser
+                            val userId: String = user!!.uid
 
-                        databaseReference =
-                            FirebaseDatabase.getInstance().getReference("users").child(userId)
+                            databaseReference =
+                                FirebaseDatabase.getInstance().getReference("users").child(userId)
 
-                        val hashMap: HashMap<String, String> = HashMap()
-                        hashMap.put("user_id", userId)
-                        hashMap.put("username", userName)
-                        hashMap.put("email", email)
+                            val hashMap: HashMap<String, String> = HashMap()
+                            hashMap["user_id"] = userId
+                            hashMap["username"] = userName
+                            hashMap["email"] = email
 
-                        databaseReference.setValue(hashMap).addOnCompleteListener(this) {
-                            if (task.isSuccessful) {
-                                Toast.makeText(this, "Data kamu tersimpan", Toast.LENGTH_SHORT)
-                                    .show()
-                                Toast.makeText(
-                                    this,
-                                    "Terimakasih $userName sudah mendaftar",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                startActivity(Intent(this, MainActivity::class.java))
-                                finish()
-                            } else {
-                                Toast.makeText(this, "Maaf Ada Kesalahan Penyimpanan data, Ini akan segera diperbaiki", Toast.LENGTH_SHORT).show()
-                                visibilityModifierVisible(btn_signupToActionMain)
-                                visibilityModifierGone(animationLoadingSignUp)
+                            databaseReference.setValue(hashMap).addOnCompleteListener(this) {
+                                if (task.isSuccessful) {
+                                    Toast.makeText(this, "Data kamu tersimpan", Toast.LENGTH_SHORT)
+                                        .show()
+                                    Toast.makeText(
+                                        this,
+                                        "Terimakasih $userName sudah mendaftar",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    startActivity(Intent(this, MainActivity::class.java))
+                                    finish()
+                                } else {
+                                    Toast.makeText(this, "Maaf Ada Kesalahan Penyimpanan data, Ini akan segera diperbaiki", Toast.LENGTH_SHORT).show()
+                                    visibilityModifierVisible(btn_signupToActionMain)
+                                    visibilityModifierGone(animationLoadingSignUp)
+                                }
                             }
                         }
-                    } else if (et_password_signup.text.toString().length < 8) {
-                        Toast.makeText(this, "Password minimal 8 karakter!", Toast.LENGTH_SHORT).show()
-                        visibilityModifierVisible(btn_signupToActionMain)
-                        visibilityModifierGone(animationLoadingSignUp)
-                    } else {
-                        Toast.makeText(this, "ada masalah pada jaringan anda", Toast.LENGTH_SHORT).show()
-                        visibilityModifierVisible(btn_signupToActionMain)
-                        visibilityModifierGone(animationLoadingSignUp)
+                        et_password_signup.text.toString().length < 8 -> {
+                            Toast.makeText(this, "Password minimal 8 karakter!", Toast.LENGTH_SHORT).show()
+                            visibilityModifierVisible(btn_signupToActionMain)
+                            visibilityModifierGone(animationLoadingSignUp)
+                        }
+                        else -> {
+                            Toast.makeText(this, "ada masalah pada jaringan anda", Toast.LENGTH_SHORT).show()
+                            visibilityModifierVisible(btn_signupToActionMain)
+                            visibilityModifierGone(animationLoadingSignUp)
+                        }
                     }
                 }
         } else if (userName.trim().isEmpty() && email.trim().isEmpty() && password.trim().isEmpty()) {
