@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.afauzi.letsdo.R
 import com.afauzi.letsdo.data.ModelItemEvent
 import com.afauzi.letsdo.repo.AdapterListItemEvent
-import com.airbnb.lottie.LottieAnimationView
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -21,9 +20,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_event.*
+import kotlinx.android.synthetic.main.bottom_sheet_layout_event.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class EventActivity : AppCompatActivity() {
 
@@ -39,7 +40,7 @@ class EventActivity : AppCompatActivity() {
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
 
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint("SimpleDateFormat", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
@@ -49,23 +50,20 @@ class EventActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!
 
-        calendar = Calendar.getInstance()
-        simpleDateFormat = SimpleDateFormat("EEEE | dd-MM-yyyy | h:mm:ss a")
-        val date: String = simpleDateFormat.format(calendar.time)
+        readDataCategory(tv_category_name, "data")
 
-
-
-        readDataCategory()
+        val bundle = intent.extras
+        val dataString = bundle!!.getString("data")
+        tv_data_event_empty.text = "Untuk category $dataString masih belum ada acara nih"
 
         EventArrowUp.setOnClickListener {
-            val animationUp = AnimationUtils.loadAnimation(this, R.anim.slide_up_animation)
-            ll_event_done_to_animation.startAnimation(animationUp)
+            slideAnimation(R.anim.slide_up_animation, ll_event_done_to_animation)
             EventArrowUp.visibility = View.GONE
             EventArrowDown.visibility = View.VISIBLE
         }
+
         EventArrowDown.setOnClickListener {
-            val animationDown = AnimationUtils.loadAnimation(this, R.anim.slide_down_animation)
-            ll_event_done_to_animation.startAnimation(animationDown)
+          slideAnimation(R.anim.slide_down_animation, ll_event_done_to_animation)
             EventArrowUp.visibility = View.VISIBLE
             EventArrowDown.visibility = View.GONE
         }
@@ -91,23 +89,41 @@ class EventActivity : AppCompatActivity() {
         getListItemEvent()
 
 
+    }
 
+    private fun slideAnimation(anim: Int, viewTarget: View) {
+        val animation = AnimationUtils.loadAnimation(this, anim)
+        viewTarget.startAnimation(animation)
     }
 
     private fun getListItemEvent() {
+
+        val bundle = intent.extras
+        val categoryToken = bundle!!.getString("token_task")
+
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!
         val userId = user.uid
 
-        databaseReference = firebaseDatabase.getReference("user_detail").child(userId).child("item_task_event").child("Tugas 3")
-        databaseReference.addValueEventListener(object : ValueEventListener{
+        databaseReference =
+            firebaseDatabase.getReference("user_detail").child(userId).child("event_task")
+                .child(categoryToken!!)
+        databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+
+                    listItemEventArrayList.clear()
+
                     for (listItemEvent in snapshot.children) {
                         val listItem = listItemEvent.getValue(ModelItemEvent::class.java)
                         listItemEventArrayList.add(listItem!!)
                     }
+                    tv_data_event_empty.visibility = View.GONE
+                    rv_list_event_item.visibility = View.VISIBLE
                     recyclerViewItemEvent.adapter = AdapterListItemEvent(listItemEventArrayList)
+                } else {
+                    tv_data_event_empty.visibility = View.VISIBLE
+                    rv_list_event_item.visibility = View.GONE
                 }
             }
 
@@ -141,21 +157,52 @@ class EventActivity : AppCompatActivity() {
     @SuppressLint("InflateParams")
     private fun bottomSheetDialog() {
         val dialog = BottomSheetDialog(this)
-        val view = layoutInflater.inflate(R.layout.bottom_sheet_layout, null)
-        val btnClose = view.findViewById<Button>(R.id.idBtnDismiss)
-        val btnSendTask = view.findViewById<Button>(R.id.idBtnSendTask)
-        val btnCalenderEvent = view.findViewById<Button>(R.id.btn_calendar)
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_layout_event, null)
+        val btnClose = view.findViewById<Button>(R.id.idBtnDismissEvent)
+        val btnCalenderEvent = view.findViewById<Button>(R.id.btn_calendar_event)
+        val titleCategoryBottomSheet = view.findViewById<TextView>(R.id.tv_title_bottom_sheet_event)
+
+        val btnSendEvent = view.findViewById<Button>(R.id.idBtnSendEvent)
+
+        readDataCategory(titleCategoryBottomSheet, "data")
 
         btnCalenderEvent.setOnClickListener {
             datePicker()
         }
 
-        btnSendTask.setOnClickListener {
+        btnSendEvent.setOnClickListener {
 
-            val animationLoading =
-                view.findViewById<LottieAnimationView>(R.id.animationLoadingDialog)
-            btnSendTask.visibility = View.GONE
-            animationLoading.visibility = View.VISIBLE
+            val etCreateEvent = view.et_send_new_event.text.toString().trim()
+            val etCreateDesc = view.et_send_desc_event.text.toString().trim()
+
+            user = auth.currentUser!!
+            val uid = user.uid
+            val bundle = intent.extras
+            val categoryToken = bundle!!.getString("token_task")
+
+            calendar = Calendar.getInstance()
+            simpleDateFormat = SimpleDateFormat("EEEE | dd-MM-yyyy | h:mm:ss a")
+            val date: String = simpleDateFormat.format(calendar.time)
+
+            databaseReference = firebaseDatabase.getReference("user_detail").child(uid).child("event_task").child(categoryToken!!).child(etCreateEvent)
+            val hashMap: HashMap<String, String> = HashMap()
+            hashMap["category_id"] = categoryToken
+            hashMap["event_name"] = etCreateEvent
+            hashMap["desc"] = etCreateDesc
+            hashMap["item_date_created"] = date
+
+            if (etCreateEvent.isEmpty() && etCreateDesc.isEmpty()) {
+                Toast.makeText(this, "Task is required!", Toast.LENGTH_SHORT).show()
+            } else {
+                databaseReference.setValue(hashMap).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Toast.makeText(this, "Succes create a new task", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+                    } else {
+                        Toast.makeText(this, "Ada Masalah Jaringan", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
 
         }
 
@@ -168,12 +215,12 @@ class EventActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun readDataCategory() {
+    private fun readDataCategory(textView: TextView? = null, key: String) {
         if (intent.extras != null) {
             val bundle = intent.extras
-            tv_category_name.text = bundle!!.getString("data")
+            textView!!.text = bundle!!.getString(key)
         } else {
-            tv_category_name.text = intent.getStringExtra("data")
+            textView!!.text = intent.getStringExtra(key)
         }
     }
 

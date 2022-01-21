@@ -31,7 +31,7 @@ class AdapterListTaskCategory(
 
     override fun onBindViewHolder(holder: ListTaskCategoryViewHolder, position: Int) {
         val currentItem = itemsListTaskCategory[position]
-        holder.nameTaskCategory.text = currentItem.name
+        holder.nameTaskCategory.text = currentItem.category_name
         holder.dateTaskCategory.text = currentItem.date_created
 
         // generate random colors

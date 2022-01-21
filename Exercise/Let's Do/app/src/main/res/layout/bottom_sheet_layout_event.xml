@@ -8,7 +8,7 @@
     android:padding="20dp">
 
     <TextView
-        android:id="@+id/tv_task"
+        android:id="@+id/tv_title_bottom_sheet_event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto"
@@ -18,10 +18,10 @@
         android:textStyle="bold" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/idBtnDismiss"
+        android:id="@+id/idBtnDismissEvent"
         android:layout_width="40dp"
         android:layout_height="50dp"
-        android:layout_below="@id/tv_task"
+        android:layout_below="@id/tv_title_bottom_sheet_event"
         android:layout_alignParentEnd="true"
         app:cornerRadius="50dp"
         app:icon="@drawable/ic_baseline_cancel_24"
@@ -36,9 +36,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_task"
+        android:layout_below="@id/tv_title_bottom_sheet_event"
         android:layout_marginTop="10dp"
-        android:hint="Create Task"
+        android:hint="Create Event"
         app:boxBackgroundColor="@color/soft_gray200"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
@@ -48,7 +48,7 @@
         app:hintTextColor="@color/soft_gray500">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_send_new_task"
+            android:id="@+id/et_send_new_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text" />
@@ -56,11 +56,38 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextFieldDesc"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/outlinedTextFieldSendNewTask"
+        android:layout_marginTop="10dp"
+        android:hint="Wrrite describtion"
+        app:boxBackgroundColor="@color/soft_gray200"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:boxStrokeColor="@color/soft_gray500"
+        app:hintTextColor="@color/soft_gray500">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_send_desc_event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="5"
+            android:maxLines="10"
+            android:gravity="center"
+            android:inputType="textMultiLine" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_calendar_event"
         android:layout_width="40dp"
         android:layout_height="50dp"
-        android:layout_below="@id/outlinedTextFieldSendNewTask"
+        android:layout_below="@id/outlinedTextFieldDesc"
         android:layout_marginTop="10dp"
         app:cornerRadius="50dp"
         app:icon="@drawable/ic_baseline_calendar_today_24"
@@ -70,7 +97,7 @@
     <com.google.android.material.button.MaterialButton
         android:layout_width="40dp"
         android:layout_height="50dp"
-        android:layout_below="@id/outlinedTextFieldSendNewTask"
+        android:layout_below="@id/outlinedTextFieldDesc"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/btn_calendar_event"
@@ -81,10 +108,10 @@
         app:iconPadding="0dp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/idBtnSendTask"
+        android:id="@+id/idBtnSendEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/outlinedTextFieldSendNewTask"
+        android:layout_below="@id/outlinedTextFieldDesc"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
@@ -98,10 +125,10 @@
         app:cornerRadius="30dp" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationLoadingDialog"
+        android:id="@+id/animationLoadingDialogEvent"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_below="@id/outlinedTextFieldSendNewTask"
+        android:layout_below="@id/outlinedTextFieldDesc"
         android:layout_centerHorizontal="true"
         android:visibility="invisible"
         app:lottie_autoPlay="true"
@@ -109,10 +136,10 @@
         app:lottie_rawRes="@raw/loading" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationSuccessDialog"
+        android:id="@+id/animationSuccessDialogEvent"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_below="@id/outlinedTextFieldSendNewTask"
+        android:layout_below="@id/outlinedTextFieldDesc"
         android:layout_centerHorizontal="true"
         android:visibility="invisible"
         app:lottie_autoPlay="true"

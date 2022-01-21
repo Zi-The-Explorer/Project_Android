@@ -26,8 +26,8 @@ class AdapterListItemEvent(private val listItemEvent: ArrayList<ModelItemEvent>)
 
     override fun onBindViewHolder(holder: ListItemEventViewHolder, position: Int) {
         val currentItem = listItemEvent[position]
-        holder.title.text = currentItem.item_name
-        holder.desc.text = currentItem.describ
+        holder.title.text = currentItem.event_name
+        holder.desc.text = currentItem.desc
         holder.date.text = currentItem.item_date_created
 
         // generate random colors
