@@ -39,6 +39,7 @@
         android:layout_below="@id/tv_task"
         android:layout_marginTop="10dp"
         android:hint="Create Task"
+        app:placeholderText="Belajar"
         app:boxBackgroundColor="@color/soft_gray200"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"

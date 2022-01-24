@@ -44,6 +44,7 @@
         app:boxCornerRadiusBottomStart="20dp"
         app:boxCornerRadiusTopEnd="20dp"
         app:boxCornerRadiusTopStart="20dp"
+        app:placeholderText="Mengajar"
         app:boxStrokeColor="@color/soft_gray500"
         app:hintTextColor="@color/soft_gray500">
 
@@ -64,6 +65,7 @@
         android:layout_below="@id/outlinedTextFieldSendNewTask"
         android:layout_marginTop="10dp"
         android:hint="Wrrite describtion"
+        app:placeholderText="Siap mengajar anak anak di sekolah SD Mentari pagi"
         app:boxBackgroundColor="@color/soft_gray200"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
@@ -76,10 +78,10 @@
             android:id="@+id/et_send_desc_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lines="5"
-            android:maxLines="10"
             android:gravity="center"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:maxLines="10" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,30 +90,60 @@
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:layout_below="@id/outlinedTextFieldDesc"
-        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/item_event_select_date"
+        android:layout_marginLeft="10dp"
         app:cornerRadius="50dp"
         app:icon="@drawable/ic_baseline_calendar_today_24"
         app:iconGravity="textStart"
         app:iconPadding="0dp" />
 
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="40dp"
-        android:layout_height="50dp"
+    <TextView
+        android:id="@+id/item_event_select_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/outlinedTextFieldDesc"
         android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_background"
+        android:padding="5dp"
+        android:text="Select Date"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_time_event"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/item_event_select_date"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/btn_calendar_event"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/item_event_select_time"
         app:cornerRadius="50dp"
-        app:iconTint="@color/soft_pink"
-        app:icon="@drawable/ic_baseline_star_border_24"
+        app:icon="@drawable/ic_baseline_access_time_24"
         app:iconGravity="textStart"
-        app:iconPadding="0dp"/>
+        app:iconPadding="0dp"
+        app:iconTint="@color/soft_pink" />
+
+    <TextView
+        android:id="@+id/item_event_select_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_event_select_date"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="@color/soft_pink"
+        android:padding="5dp"
+        android:text="Select Time"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/idBtnSendEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/outlinedTextFieldDesc"
+        android:layout_below="@id/item_event_select_date"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
@@ -128,7 +160,7 @@
         android:id="@+id/animationLoadingDialogEvent"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_below="@id/outlinedTextFieldDesc"
+        android:layout_below="@id/item_event_select_date"
         android:layout_centerHorizontal="true"
         android:visibility="invisible"
         app:lottie_autoPlay="true"
@@ -139,7 +171,7 @@
         android:id="@+id/animationSuccessDialogEvent"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_below="@id/outlinedTextFieldDesc"
+        android:layout_below="@id/item_event_select_date"
         android:layout_centerHorizontal="true"
         android:visibility="invisible"
         app:lottie_autoPlay="true"

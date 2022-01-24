@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/ll_item_event"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <RadioButton
-        android:id="@+id/item_event_title"
+    <RadioGroup
+        android:id="@+id/enableRadioGroup"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="title item"/>
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/item_event_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="title item"/>
+    </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,17 +38,29 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/item_event_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Senin | 23-02-2022 | 07:00 AM"
-        android:padding="5dp"
-        android:textSize="10sp"
-        android:textAlignment="center"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/white"
-        android:background="@drawable/rounded_background"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/item_event_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Senin | 23-02-2022 | 07:00 AM"
+            android:padding="5dp"
+            android:textSize="10sp"
+            android:textAlignment="center"
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_background"/>
+        <ImageView
+            android:id="@+id/_item_icon_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_access_time_24"/>
+
+    </LinearLayout>
 </LinearLayout>

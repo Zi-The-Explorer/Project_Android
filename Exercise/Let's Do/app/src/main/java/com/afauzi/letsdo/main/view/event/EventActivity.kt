@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.format.DateFormat.is24HourFormat
 import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -11,11 +12,16 @@ import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afauzi.letsdo.R
 import com.afauzi.letsdo.data.ModelItemEvent
+import com.afauzi.letsdo.data.ModelItemEventClear
 import com.afauzi.letsdo.repo.AdapterListItemEvent
+import com.afauzi.letsdo.repo.AdapterListItemEventClear
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD
+import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -26,10 +32,14 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class EventActivity : AppCompatActivity() {
+class EventActivity : AppCompatActivity(), AdapterListItemEvent.CallClickListenerEvent {
 
     private lateinit var listItemEventArrayList: ArrayList<ModelItemEvent>
     private lateinit var recyclerViewItemEvent: ShimmerRecyclerView
+
+    private lateinit var recyclerViewItemEventClear: ShimmerRecyclerView
+    private lateinit var listItemEventClearArrayList: ArrayList<ModelItemEventClear>
+
 
     private lateinit var calendar: Calendar
     private lateinit var simpleDateFormat: SimpleDateFormat
@@ -63,7 +73,7 @@ class EventActivity : AppCompatActivity() {
         }
 
         EventArrowDown.setOnClickListener {
-          slideAnimation(R.anim.slide_down_animation, ll_event_done_to_animation)
+            slideAnimation(R.anim.slide_down_animation, ll_event_done_to_animation)
             EventArrowUp.visibility = View.VISIBLE
             EventArrowDown.visibility = View.GONE
         }
@@ -80,13 +90,14 @@ class EventActivity : AppCompatActivity() {
             bottomSheetDialog()
         }
 
-        strikeThrough(tv_clear1)
-        strikeThrough(tv_clear2)
-
-
         recyclerViewSetup()
         listItemEventArrayList = ArrayList<ModelItemEvent>()
         getListItemEvent()
+
+        recyclerViewSetupClear()
+        listItemEventClearArrayList = ArrayList<ModelItemEventClear>()
+        getListItemEventClear()
+
 
 
     }
@@ -120,10 +131,53 @@ class EventActivity : AppCompatActivity() {
                     }
                     tv_data_event_empty.visibility = View.GONE
                     rv_list_event_item.visibility = View.VISIBLE
-                    recyclerViewItemEvent.adapter = AdapterListItemEvent(listItemEventArrayList)
+                    recyclerViewItemEvent.adapter = AdapterListItemEvent(
+                        this@EventActivity,
+                        this@EventActivity,
+                        listItemEventArrayList
+                    )
                 } else {
                     tv_data_event_empty.visibility = View.VISIBLE
                     rv_list_event_item.visibility = View.GONE
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    private fun getListItemEventClear() {
+        val bundle = intent.extras
+        val categoryToken = bundle!!.getString("token_task")
+
+        auth = FirebaseAuth.getInstance()
+        user = auth.currentUser!!
+        val userId = user.uid
+
+        databaseReference =
+            firebaseDatabase.getReference("user_detail").child(userId).child("_delete_event_task")
+                .child(categoryToken!!)
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    listItemEventClearArrayList.clear()
+
+                    tv_data_event_clear_empty.visibility = View.GONE
+                    rv_list_event_item_clear.visibility = View.VISIBLE
+
+                    for (listItemEventClear in snapshot.children) {
+                        val listItem = listItemEventClear.getValue(ModelItemEventClear::class.java)
+                        listItemEventClearArrayList.add(listItem!!)
+                    }
+                    recyclerViewItemEventClear.adapter = AdapterListItemEventClear(
+                        listItemEventClearArrayList
+                    )
+                } else {
+                    tv_data_event_clear_empty.visibility = View.VISIBLE
+                    rv_list_event_item_clear.visibility = View.GONE
                 }
             }
 
@@ -140,18 +194,53 @@ class EventActivity : AppCompatActivity() {
         recyclerViewItemEvent.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
-    private fun strikeThrough(textView: TextView) {
-        textView.paintFlags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+    private fun recyclerViewSetupClear() {
+        recyclerViewItemEventClear = findViewById(R.id.rv_list_event_item_clear)
+        recyclerViewItemEventClear.setHasFixedSize(true)
+        recyclerViewItemEventClear.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
-    private fun datePicker() {
+    private fun datePicker(setDate: TextView) {
         val datePicker =
             MaterialDatePicker.Builder.datePicker()
                 .setTitleText("Select date")
                 .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .setTheme(R.style.ThemeOverlay_App_DatePicker)
                 .build()
+        datePicker.addOnPositiveButtonClickListener {
+            val c = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).apply {
+                timeZone = TimeZone.getTimeZone("UTC")
+            }
+            val text = c.format(it)
+            setDate.text = text
 
+        }
         datePicker.show(supportFragmentManager, "tag")
+    }
+
+    private fun timePicker(setTime: TextView) {
+
+        val isSystem24Hour = is24HourFormat(this)
+        val clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
+
+        val picker =
+            MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_12H)
+                .setHour(12)
+                .setMinute(10)
+                .setTitleText("Select Appointment time")
+                .setInputMode(INPUT_MODE_KEYBOARD)
+                .setTheme(R.style.ThemeOverlay_App_TimePicker)
+                .build()
+        picker.addOnPositiveButtonClickListener {
+            val h = picker.hour
+            val m = picker.hour
+            val time = "$h:$m"
+
+            setTime.text = time
+        }
+        picker.show(supportFragmentManager, "tag")
+
     }
 
     @SuppressLint("InflateParams")
@@ -160,14 +249,22 @@ class EventActivity : AppCompatActivity() {
         val view = layoutInflater.inflate(R.layout.bottom_sheet_layout_event, null)
         val btnClose = view.findViewById<Button>(R.id.idBtnDismissEvent)
         val btnCalenderEvent = view.findViewById<Button>(R.id.btn_calendar_event)
+        val btnTimeEvent = view.findViewById<Button>(R.id.btn_time_event)
         val titleCategoryBottomSheet = view.findViewById<TextView>(R.id.tv_title_bottom_sheet_event)
+
+        val textDate = view.findViewById<TextView>(R.id.item_event_select_date)
+        val textTime = view.findViewById<TextView>(R.id.item_event_select_time)
 
         val btnSendEvent = view.findViewById<Button>(R.id.idBtnSendEvent)
 
         readDataCategory(titleCategoryBottomSheet, "data")
 
+        btnTimeEvent.setOnClickListener {
+            timePicker(textTime)
+        }
+
         btnCalenderEvent.setOnClickListener {
-            datePicker()
+            datePicker(textDate)
         }
 
         btnSendEvent.setOnClickListener {
@@ -175,21 +272,24 @@ class EventActivity : AppCompatActivity() {
             val etCreateEvent = view.et_send_new_event.text.toString().trim()
             val etCreateDesc = view.et_send_desc_event.text.toString().trim()
 
+            val tvSelectDate = view.item_event_select_date.text.toString()
+            val tvSelectTime = view.item_event_select_time.text.toString()
+
             user = auth.currentUser!!
             val uid = user.uid
             val bundle = intent.extras
             val categoryToken = bundle!!.getString("token_task")
 
-            calendar = Calendar.getInstance()
-            simpleDateFormat = SimpleDateFormat("EEEE | dd-MM-yyyy | h:mm:ss a")
-            val date: String = simpleDateFormat.format(calendar.time)
-
-            databaseReference = firebaseDatabase.getReference("user_detail").child(uid).child("event_task").child(categoryToken!!).child(etCreateEvent)
+            databaseReference =
+                firebaseDatabase.getReference("user_detail").child(uid).child("event_task")
+                    .child(categoryToken!!).child(etCreateEvent)
             val hashMap: HashMap<String, String> = HashMap()
             hashMap["category_id"] = categoryToken
             hashMap["event_name"] = etCreateEvent
             hashMap["desc"] = etCreateDesc
-            hashMap["item_date_created"] = date
+            hashMap["time"] = "$tvSelectDate | $tvSelectTime"
+            hashMap["item_date_created"] = tvSelectDate
+            hashMap["item_time_created"] = tvSelectTime
 
             if (etCreateEvent.isEmpty() && etCreateDesc.isEmpty()) {
                 Toast.makeText(this, "Task is required!", Toast.LENGTH_SHORT).show()
@@ -247,5 +347,34 @@ class EventActivity : AppCompatActivity() {
         dialog.setView(R.layout.no_page_introduction)
         dialog.setTitle(title)
         dialog.show()
+    }
+
+    override fun onClickListenerEvent(data: ModelItemEvent) {
+
+        user = auth.currentUser!!
+        val uid = user.uid
+        val bundle = intent.extras
+        val categoryToken = bundle!!.getString("token_task")
+
+        databaseReference =
+            firebaseDatabase.getReference("user_detail").child(uid).child("_delete_event_task")
+                .child(categoryToken!!).child(data.event_name!!)
+        val hashMap: HashMap<String, String> = HashMap()
+        hashMap["category_id"] = categoryToken
+        hashMap["item_name"] = data.event_name!!
+
+            databaseReference.setValue(hashMap).addOnCompleteListener {
+                if (it.isSuccessful) {
+
+                    databaseReference =
+                        firebaseDatabase.getReference("user_detail").child(uid).child("event_task")
+                            .child(categoryToken).child(data.event_name!!)
+                    databaseReference.removeValue()
+
+                    Toast.makeText(this, "${data.event_name} Selesai", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Ada Masalah Jaringan", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 }
