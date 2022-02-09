@@ -1,4 +1,4 @@
-package com.afauzi.lib2
+package com.afauzi.libs.kotlin
 
 fun main() {
     println("Hello World")
