@@ -16,4 +16,30 @@ fun main() {
     } else {
         println("Unhealth ratio")
     }
+
+    /**
+     * Pernyataan if dengan range
+     */
+    val fish = 50
+    if (fish in 1..100) {
+        println("$fish in range")
+    }
+
+    /**
+     * Untuk penggunaan banyak kasus bisa gunakan else if dan juga operator logika Or (||) dan (&&)
+     */
+
+    if (numberOfFish == 0) {
+        println("Empty tank")
+    } else if (numberOfFish < 40) {
+        println("Got Fish!")
+    } else {
+        println("That's a lot of fish!") // => Output
+    }
+
+
+
+
+
+
 }
