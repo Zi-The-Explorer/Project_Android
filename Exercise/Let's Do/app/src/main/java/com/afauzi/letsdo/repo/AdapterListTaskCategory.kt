@@ -1,9 +1,11 @@
 package com.afauzi.letsdo.repo
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +24,7 @@ class AdapterListTaskCategory(
         var nameTaskCategory: TextView = itemView.findViewById(R.id.tv_item_list_task_category)
         var dateTaskCategory: TextView = itemView.findViewById(R.id.tv_item_date)
         val linearLayout: LinearLayout = itemView.findViewById(R.id.ll_list_task_category)
+        var btnRemove: Button = itemView.findViewById(R.id.btn_remove_item_task_category)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListTaskCategoryViewHolder {
@@ -48,6 +51,13 @@ class AdapterListTaskCategory(
         holder.linearLayout.setOnClickListener {
            callClickListener.onClickListener(currentItem)
         }
+        holder.linearLayout.setOnLongClickListener {
+           callClickListener.onLongClickListener(currentItem)
+            true
+        }
+        holder.btnRemove.setOnClickListener {
+            callClickListener.onClickRemove(currentItem)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -56,5 +66,7 @@ class AdapterListTaskCategory(
 
     interface CallClickListener {
         fun onClickListener(data: ModelItemListTaskCategory)
+        fun onLongClickListener(data: ModelItemListTaskCategory)
+        fun onClickRemove(data: ModelItemListTaskCategory)
     }
 }

@@ -49,6 +49,10 @@
             android:fontFamily="@font/roboto"/>
     </RelativeLayout>
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/soft_gray500"
+        android:layout_marginTop="20dp"/>
 
 </LinearLayout>
