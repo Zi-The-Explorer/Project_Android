@@ -22,8 +22,9 @@
             android:gravity="center"
             android:padding="1dp"
             android:clickable="true"
-            android:background="@color/soft_blue"
-            android:orientation="vertical">
+            android:background="@color/blue_soft"
+            android:orientation="vertical"
+            android:focusable="true">
 
             <TextView
                 android:id="@+id/tv_item_date"
@@ -69,6 +70,6 @@
         app:iconGravity="textStart"
         app:iconPadding="-0dp"
         app:iconTint="@color/black"
-        app:strokeColor="@color/soft_gray500"
+        app:strokeColor="@color/white"
         app:strokeWidth="1dp" />
 </FrameLayout>

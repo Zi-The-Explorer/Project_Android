@@ -1,11 +1,11 @@
 package com.afauzi.letsdo.main.view.event
 
 import android.annotation.SuppressLint
-import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat.is24HourFormat
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.*
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.afauzi.letsdo.R
 import com.afauzi.letsdo.data.ModelItemEvent
 import com.afauzi.letsdo.data.ModelItemEventClear
+import com.afauzi.letsdo.databinding.ActivityEventBinding
 import com.afauzi.letsdo.repo.AdapterListItemEvent
 import com.afauzi.letsdo.repo.AdapterListItemEventClear
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView
@@ -25,24 +26,21 @@ import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_event.*
-import kotlinx.android.synthetic.main.bottom_sheet_layout_event.view.*
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.zip.Inflater
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 class EventActivity : AppCompatActivity(), AdapterListItemEvent.CallClickListenerEvent {
+
+    private lateinit var binding: ActivityEventBinding
 
     private lateinit var listItemEventArrayList: ArrayList<ModelItemEvent>
     private lateinit var recyclerViewItemEvent: ShimmerRecyclerView
 
     private lateinit var recyclerViewItemEventClear: ShimmerRecyclerView
     private lateinit var listItemEventClearArrayList: ArrayList<ModelItemEventClear>
-
-
-    private lateinit var calendar: Calendar
-    private lateinit var simpleDateFormat: SimpleDateFormat
 
     private lateinit var auth: FirebaseAuth
     private lateinit var user: FirebaseUser
@@ -53,52 +51,82 @@ class EventActivity : AppCompatActivity(), AdapterListItemEvent.CallClickListene
     @SuppressLint("SimpleDateFormat", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_event)
+        binding = ActivityEventBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         firebaseDatabase = FirebaseDatabase.getInstance()
 
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!
 
-        readDataCategory(tv_category_name, "data")
+        readDataCategory(binding.tvCategoryName, "data")
 
         val bundle = intent.extras
         val dataString = bundle!!.getString("data")
-        tv_data_event_empty.text = "Untuk category $dataString masih belum ada acara nih"
-
-        EventArrowUp.setOnClickListener {
-            slideAnimation(R.anim.slide_up_animation, ll_event_done_to_animation)
-            EventArrowUp.visibility = View.GONE
-            EventArrowDown.visibility = View.VISIBLE
-        }
-
-        EventArrowDown.setOnClickListener {
-            slideAnimation(R.anim.slide_down_animation, ll_event_done_to_animation)
-            EventArrowUp.visibility = View.VISIBLE
-            EventArrowDown.visibility = View.GONE
-        }
-
-        EventArrowBack.setOnClickListener {
-            super.onBackPressed()
-        }
-
-        BtnMoreOption.setOnClickListener {
-            popupMenu()
-        }
-
-        floating_action_button_create_event.setOnClickListener {
-            bottomSheetDialog()
-        }
+        binding.tvDataEventEmpty.text = "Untuk category $dataString masih belum ada acara nih"
 
         recyclerViewSetup()
-        listItemEventArrayList = ArrayList<ModelItemEvent>()
+        listItemEventArrayList = ArrayList()
         getListItemEvent()
 
         recyclerViewSetupClear()
-        listItemEventClearArrayList = ArrayList<ModelItemEventClear>()
+        listItemEventClearArrayList = ArrayList()
         getListItemEventClear()
 
+        getCountDataDone()
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        binding.EventArrowUp.setOnClickListener {
+            slideAnimation(R.anim.slide_up_animation, binding.llEventDoneToAnimation)
+            binding.EventArrowUp.visibility = View.GONE
+            binding.EventArrowDown.visibility = View.VISIBLE
+        }
+
+        binding.EventArrowDown.setOnClickListener {
+            slideAnimation(R.anim.slide_down_animation, binding.llEventDoneToAnimation)
+            binding.EventArrowUp.visibility = View.VISIBLE
+            binding.EventArrowDown.visibility = View.GONE
+        }
+
+        binding.EventArrowBack.setOnClickListener {
+            super.onBackPressed()
+        }
+
+        binding.BtnMoreOption.setOnClickListener {
+            popupMenu()
+        }
+
+        binding.floatingActionButtonCreateEvent.setOnClickListener {
+            bottomSheetDialog()
+        }
+    }
+
+    private fun getCountDataDone() {
+        val bundle = intent.extras
+        val categoryToken = bundle!!.getString("token_task")
+
+        auth = FirebaseAuth.getInstance()
+        user = auth.currentUser!!
+        val userId = user.uid
+
+        databaseReference =
+            firebaseDatabase.getReference("user_detail").child(userId).child("_delete_event_task")
+                .child(categoryToken!!)
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("SetTextI18n")
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val size: String = snapshot.childrenCount.toString()
+                binding.tvDoneEventCount.text = "Done($size)"
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
 
     }
 
@@ -129,16 +157,16 @@ class EventActivity : AppCompatActivity(), AdapterListItemEvent.CallClickListene
                         val listItem = listItemEvent.getValue(ModelItemEvent::class.java)
                         listItemEventArrayList.add(listItem!!)
                     }
-                    tv_data_event_empty.visibility = View.GONE
-                    rv_list_event_item.visibility = View.VISIBLE
+                    binding.tvDataEventEmpty.visibility = View.GONE
+                    binding.rvListEventItem.visibility = View.VISIBLE
                     recyclerViewItemEvent.adapter = AdapterListItemEvent(
                         this@EventActivity,
                         this@EventActivity,
                         listItemEventArrayList
                     )
                 } else {
-                    tv_data_event_empty.visibility = View.VISIBLE
-                    rv_list_event_item.visibility = View.GONE
+                    binding.tvDataEventEmpty.visibility = View.VISIBLE
+                    binding.rvListEventItem.visibility = View.GONE
                 }
             }
 
@@ -165,8 +193,8 @@ class EventActivity : AppCompatActivity(), AdapterListItemEvent.CallClickListene
                 if (snapshot.exists()) {
                     listItemEventClearArrayList.clear()
 
-                    tv_data_event_clear_empty.visibility = View.GONE
-                    rv_list_event_item_clear.visibility = View.VISIBLE
+                    binding.tvDataEventClearEmpty.visibility = View.GONE
+                    binding.rvListEventItemClear.visibility = View.VISIBLE
 
                     for (listItemEventClear in snapshot.children) {
                         val listItem = listItemEventClear.getValue(ModelItemEventClear::class.java)
@@ -176,8 +204,8 @@ class EventActivity : AppCompatActivity(), AdapterListItemEvent.CallClickListene
                         listItemEventClearArrayList
                     )
                 } else {
-                    tv_data_event_clear_empty.visibility = View.VISIBLE
-                    rv_list_event_item_clear.visibility = View.GONE
+                    binding.tvDataEventClearEmpty.visibility = View.VISIBLE
+                    binding.rvListEventItemClear.visibility = View.GONE
                 }
             }
 
@@ -269,11 +297,11 @@ class EventActivity : AppCompatActivity(), AdapterListItemEvent.CallClickListene
 
         btnSendEvent.setOnClickListener {
 
-            val etCreateEvent = view.et_send_new_event.text.toString().trim()
-            val etCreateDesc = view.et_send_desc_event.text.toString().trim()
+            val etCreateEvent = view.findViewById<EditText>(R.id.et_send_new_event).text.toString().trim()
+            val etCreateDesc = view.findViewById<EditText>(R.id.et_send_desc_event).text.toString().trim()
 
-            val tvSelectDate = view.item_event_select_date.text.toString()
-            val tvSelectTime = view.item_event_select_time.text.toString()
+            val tvSelectDate = view.findViewById<TextView>(R.id.item_event_select_date).text.toString()
+            val tvSelectTime = view.findViewById<TextView>(R.id.item_event_select_time).text.toString()
 
             user = auth.currentUser!!
             val uid = user.uid
@@ -327,7 +355,7 @@ class EventActivity : AppCompatActivity(), AdapterListItemEvent.CallClickListene
     @SuppressLint("RtlHardcoded")
     private fun popupMenu() {
 
-        val popupMenu = PopupMenu(this, BtnMoreOption, Gravity.RIGHT)
+        val popupMenu = PopupMenu(this, binding.BtnMoreOption, Gravity.RIGHT)
         popupMenu.menuInflater.inflate(R.menu.event_menu, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener {
             dialogShowNotPage(it.title)
@@ -344,7 +372,8 @@ class EventActivity : AppCompatActivity(), AdapterListItemEvent.CallClickListene
 
     private fun dialogShowNotPage(title: CharSequence) {
         val dialog = MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialog_rounded)
-        dialog.setView(R.layout.no_page_introduction)
+        val dialogView: View = layoutInflater.inflate(R.layout.no_page_introduction, null)
+        dialog.setView(dialogView)
         dialog.setTitle(title)
         dialog.show()
     }

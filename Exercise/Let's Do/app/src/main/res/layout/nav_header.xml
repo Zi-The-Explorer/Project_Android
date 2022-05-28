@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
             android:text="Akhmad Fauzi"
-            android:textColor="@color/soft_black"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -37,7 +37,7 @@
             app:iconGravity="textStart"
             app:iconPadding="-0dp"
             app:iconTint="@color/black"
-            app:strokeColor="@color/soft_gray500" />
+            app:strokeColor="@color/white" />
 
         <TextView
             android:id="@+id/tv_email_profile_drawer"
@@ -45,14 +45,14 @@
             android:layout_height="wrap_content"
             android:text="akhmadfauzi@gmail.com"
             android:layout_below="@id/tv_name_profile_drawer"
-            android:textColor="@color/soft_gray500"
+            android:textColor="@color/white"
             android:fontFamily="@font/roboto"/>
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/soft_gray500"
+        android:background="@color/white"
         android:layout_marginTop="20dp"/>
 
 </LinearLayout>

@@ -22,7 +22,7 @@
             app:iconGravity="textStart"
             app:iconPadding="-10dp"
             app:iconTint="@color/black"
-            app:strokeColor="@color/soft_gray500"
+            app:strokeColor="@color/white"
             app:strokeWidth="1dp" />
 
         <TextView
@@ -48,7 +48,7 @@
             app:iconGravity="textStart"
             app:iconPadding="-0dp"
             app:iconTint="@color/black"
-            app:strokeColor="@color/soft_gray500"
+            app:strokeColor="@color/white"
             app:strokeWidth="1dp" />
     </RelativeLayout>
 
@@ -56,6 +56,132 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="30dp">
+
+                <TextView
+                    android:id="@+id/tv_data_event_empty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto"
+                    android:text="Masih Belum Ada Event Nih"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
+
+                <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+                    android:id="@+id/rv_list_event_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:shimmer_demo_angle="20"
+                    app:shimmer_demo_shimmer_color="#73ffffff" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/darker_gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/tv_done_event_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Done (2)"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/EventArrowUp"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    app:cornerRadius="50dp"
+                    app:icon="@drawable/ic_baseline_keyboard_arrow_up_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconTint="@color/black"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/EventArrowDown"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:visibility="invisible"
+                    app:cornerRadius="50dp"
+                    app:icon="@drawable/ic_baseline_keyboard_arrow_down_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconTint="@color/black"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_done_event_count"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_event_done_to_animation"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_data_event_clear_empty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/roboto"
+                                android:text="Masih Belum Ada Event Yang Selesai"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:visibility="invisible" />
+
+                            <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+                                android:id="@+id/rv_list_event_item_clear"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:shimmer_demo_angle="20"
+                                app:shimmer_demo_shimmer_color="#73ffffff"
+                                tools:itemCount="5"
+                                tools:listitem="@layout/item_list_event_clear" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/floating_action_button_create_event"
             android:layout_width="100dp"
@@ -67,131 +193,6 @@
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/floating_button" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_marginTop="30dp">
-
-                    <TextView
-                        android:id="@+id/tv_data_event_empty"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textAlignment="center"
-                        android:fontFamily="@font/roboto"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:visibility="invisible"
-                        android:textColor="@color/soft_black"
-                        android:text="Masih Belum Ada Event Nih"/>
-
-                    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
-                        android:id="@+id/rv_list_event_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:shimmer_demo_angle="20"
-                        app:shimmer_demo_shimmer_color="#73ffffff" />
-                </FrameLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@android:color/darker_gray" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="40dp"
-                    android:layout_marginTop="20dp">
-
-                    <TextView
-                        android:id="@+id/tv_done_event"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Done (2)"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/EventArrowUp"
-                        android:layout_width="30dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentEnd="true"
-                        app:cornerRadius="50dp"
-                        app:icon="@drawable/ic_baseline_keyboard_arrow_up_24"
-                        app:iconGravity="textStart"
-                        app:iconPadding="0dp"
-                        app:iconTint="@color/black"
-                        app:strokeColor="@color/soft_gray500"
-                        app:strokeWidth="1dp" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/EventArrowDown"
-                        android:layout_width="30dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentEnd="true"
-                        android:visibility="invisible"
-                        app:cornerRadius="50dp"
-                        app:icon="@drawable/ic_baseline_keyboard_arrow_down_24"
-                        app:iconGravity="textStart"
-                        app:iconPadding="0dp"
-                        app:iconTint="@color/black"
-                        app:strokeColor="@color/soft_gray500"
-                        app:strokeWidth="1dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_done_event"
-                        android:layout_marginTop="20dp"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:id="@+id/ll_event_done_to_animation"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:id="@+id/tv_data_event_clear_empty"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:textAlignment="center"
-                                    android:fontFamily="@font/roboto"
-                                    android:textStyle="bold"
-                                    android:textSize="16sp"
-                                    android:visibility="invisible"
-                                    android:textColor="@color/soft_black"
-                                    android:text="Masih Belum Ada Event Yang Selesai"/>
-
-                                <com.cooltechworks.views.shimmer.ShimmerRecyclerView
-                                    android:id="@+id/rv_list_event_item_clear"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    app:shimmer_demo_angle="20"
-                                    app:shimmer_demo_shimmer_color="#73ffffff"
-                                    tools:listitem="@layout/item_list_event_clear"
-                                    tools:itemCount="5"/>
-                            </FrameLayout>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-            </LinearLayout>
     </FrameLayout>
 
 </LinearLayout>

@@ -7,42 +7,36 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.afauzi.letsdo.R
-import com.afauzi.letsdo.main.MainActivity
+import com.afauzi.letsdo.databinding.ActivityEditProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_edit_profile.*
-import kotlinx.android.synthetic.main.activity_signup.*
 import java.io.IOException
-import java.text.SimpleDateFormat
 import java.util.*
 
 class EditProfileActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityEditProfileBinding
 
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
-    private lateinit var calendar: Calendar
-    private lateinit var simpleDateFormat: SimpleDateFormat
-
     private lateinit var firebaseStorage: FirebaseStorage
     private lateinit var storageReference: StorageReference
 
     private lateinit var fillPath: Uri
-    private val PICK_IMAGE_REQUEST: Int = 22
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_profile)
+        binding = ActivityEditProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
         firebaseDatabase = FirebaseDatabase.getInstance()
@@ -52,38 +46,39 @@ class EditProfileActivity : AppCompatActivity() {
         val user: FirebaseUser? = auth.currentUser
         val userId = user!!.uid
 
-        getDataUser(userId, tv_name_edit, tv_email_edit, edit_image_profile)
+        getDataUser(userId)
 
-        btn_upload_photo.setOnClickListener {
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        binding.btnUploadPhoto.setOnClickListener {
             selectImage()
         }
 
-        btn_edit_save.setOnClickListener {
+        binding.btnEditSave.setOnClickListener {
             saveEditData()
         }
 
         btnBackAction()
     }
 
-    private fun getDataUser(
-        userId: String,
-        username: TextView,
-        email: TextView,
-        imageProfile: ImageView?
-    ) {
+    private fun getDataUser(userId: String) {
         databaseReference = firebaseDatabase.getReference("users").child(userId)
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 if (snapshot.exists()) {
-                    tv_name_edit.text = snapshot.child("username").value.toString()
-                    tv_email_edit.text = snapshot.child("email").value.toString()
+                    binding.tvNameEdit.text = snapshot.child("username").value.toString()
+                    binding.tvEmailEdit.text = snapshot.child("email").value.toString()
                     val getImg = snapshot.child("photo_profile").value.toString()
                     Picasso.get().load(getImg).placeholder(R.drawable.avatar_example)
-                        .into(edit_image_profile)
+                        .into(binding.editImageProfile)
 
-                    et_edit_username.setText(snapshot.child("username").value.toString())
-                    et_edit_email.setText(snapshot.child("email").value.toString())
+                    binding.etEditUsername.setText(snapshot.child("username").value.toString())
+                    binding.etEditEmail.setText(snapshot.child("email").value.toString())
                 } else {
                     val user: FirebaseUser? = auth.currentUser
                     user.let {
@@ -92,13 +87,13 @@ class EditProfileActivity : AppCompatActivity() {
                         val emailProv = user.email
                         val photoUrlProv = user.photoUrl
 
-                        tv_name_edit.text = nameProv
-                        tv_email_edit.text = emailProv
+                        binding.tvNameEdit.text = nameProv
+                        binding.tvEmailEdit.text = emailProv
                         Picasso.get().load(photoUrlProv).placeholder(R.drawable.avatar_example)
-                            .into(edit_image_profile)
+                            .into(binding.editImageProfile)
 
-                        et_edit_email.setText(emailProv)
-                        et_edit_username.setText(nameProv)
+                        binding.etEditEmail.setText(emailProv)
+                        binding.etEditUsername.setText(nameProv)
 
                     }
                 }
@@ -115,7 +110,7 @@ class EditProfileActivity : AppCompatActivity() {
      * Menangani Aksi kembali ke halaman sebelumnya
      */
     fun btnBackAction() {
-        EditArrowBack.setOnClickListener {
+        binding.EditArrowBack.setOnClickListener {
             super.onBackPressed()
         }
     }
@@ -128,6 +123,7 @@ class EditProfileActivity : AppCompatActivity() {
             Intent.createChooser(intent, "Select Image From Here"),
             PICK_IMAGE_REQUEST
         )
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -138,7 +134,7 @@ class EditProfileActivity : AppCompatActivity() {
             try {
                 val bitmap: Bitmap =
                     MediaStore.Images.Media.getBitmap(this.contentResolver, fillPath)
-                edit_image_profile.setImageBitmap(bitmap)
+                binding.editImageProfile.setImageBitmap(bitmap)
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -153,9 +149,9 @@ class EditProfileActivity : AppCompatActivity() {
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId)
 
         val hashMap: HashMap<String, String> = HashMap()
-        hashMap.put("user_id", userId)
-        hashMap.put("username", et_edit_username.text.toString().trim())
-        hashMap.put("email", et_edit_email.text.toString().trim())
+        hashMap["user_id"] = userId
+        hashMap["username"] = binding.etEditUsername.text.toString().trim()
+        hashMap["email"] = binding.etEditEmail.text.toString().trim()
 
         databaseReference.setValue(hashMap).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
@@ -194,6 +190,10 @@ class EditProfileActivity : AppCompatActivity() {
             print(e.message)
             Toast.makeText(this, "Failed ${e.message}", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    companion object {
+        private const val PICK_IMAGE_REQUEST: Int = 22
     }
 
 }

@@ -8,7 +8,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
-import com.afauzi.letsdo.R
+import com.afauzi.letsdo.databinding.ActivitySigninBinding
 import com.afauzi.letsdo.main.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -19,9 +19,10 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import kotlinx.android.synthetic.main.activity_signin.*
 
 class SigninActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySigninBinding
 
     companion object {
         private const val RC_SIGN_IN = 123
@@ -38,24 +39,25 @@ class SigninActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signin)
+        binding = ActivitySigninBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Initials auth
         auth = FirebaseAuth.getInstance()
 
-        createAccountInputArray = arrayOf(etemail_signIn, et_password_signIn)
+        createAccountInputArray = arrayOf(binding.etemailSignIn, binding.etPasswordSignIn)
 
-        actionToPage(linkSignToSignup, SignupActivity::class.java)
-        signInArrowBack.setOnClickListener {
+        actionToPage(binding.linkSignToSignup, SignupActivity::class.java)
+        binding.signInArrowBack.setOnClickListener {
             super.onBackPressed()
         }
 
-        btn_signInToActionMain.setOnClickListener {
+        binding.btnSignInToActionMain.setOnClickListener {
             signIn()
             closeKeyboard()
         }
 
-        signInWithGoogle.setOnClickListener {
+        binding.signInWithGoogle.setOnClickListener {
             signInGoogle()
         }
         createRequest()
@@ -86,19 +88,19 @@ class SigninActivity : AppCompatActivity() {
             try {
                 val account: GoogleSignInAccount = task.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(account)
-            }catch (e: ApiException) {
+            } catch (e: ApiException) {
                 Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
             }
         }
 
     }
+
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
         val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener { Task ->
             if (Task.isSuccessful) {
-                val intent = Intent(applicationContext, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+                actionToPageAndClearTask()
+                Toast.makeText(this, "Success login in Google", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Sorry Auth Failed", Toast.LENGTH_LONG).show()
             }
@@ -106,26 +108,25 @@ class SigninActivity : AppCompatActivity() {
     }
 
     private fun signIn() {
-        signInEmail = etemail_signIn.text.toString().trim()
-        signInPassword = et_password_signIn.text.toString().trim()
+        signInEmail = binding.etemailSignIn.text.toString().trim()
+        signInPassword = binding.etPasswordSignIn.text.toString().trim()
 
         if (signInEmail.isNotEmpty() && signInPassword.isNotEmpty()) {
-            btn_signInToActionMain.visibility = View.GONE
-            animationLoading.visibility = View.VISIBLE
+            binding.btnSignInToActionMain.visibility = View.GONE
+            binding.animationLoading.visibility = View.VISIBLE
 
             auth.signInWithEmailAndPassword(signInEmail, signInPassword)
                 .addOnCompleteListener { signIn ->
                     if (signIn.isSuccessful) {
-                        startActivity(Intent(this, MainActivity::class.java))
-                        finish()
+                        actionToPageAndClearTask()
                     } else {
                         Toast.makeText(
                             this,
                             "Periksa kembali email & password \natau ada masalah jaringan",
                             Toast.LENGTH_LONG
                         ).show()
-                        btn_signInToActionMain.visibility = View.VISIBLE
-                        animationLoading.visibility = View.GONE
+                        binding.btnSignInToActionMain.visibility = View.VISIBLE
+                        binding.animationLoading.visibility = View.GONE
                     }
                 }
         } else if (signInPassword.trim().isEmpty() && signInEmail.trim().isEmpty()) {
@@ -135,6 +136,13 @@ class SigninActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Password is required!", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun actionToPageAndClearTask() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        finish()
     }
 
     private fun closeKeyboard() {

@@ -1,5 +1,6 @@
 package com.afauzi.letsdo.repo
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,7 @@ class AdapterListItemEvent(
         val desc: TextView = itemView.findViewById(R.id.item_event_desc)
         val date: TextView = itemView.findViewById(R.id.item_event_date)
         val icTime: ImageView = itemView.findViewById(R.id._item_icon_time)
+        val divider: View = itemView.findViewById(R.id.dividerDescriptionEvent)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemEventViewHolder {
@@ -33,6 +35,7 @@ class AdapterListItemEvent(
         return ListItemEventViewHolder(itemView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ListItemEventViewHolder, position: Int) {
         val currentItem = listItemEvent[position]
         holder.title.text = currentItem.event_name
@@ -57,6 +60,10 @@ class AdapterListItemEvent(
         val bgColor = generator.randomColor
         holder.date.setBackgroundColor(bgColor)
         holder.icTime.setColorFilter(bgColor)
+
+        if (currentItem.desc == "") {
+            holder.desc.text = "no description!"
+        }
     }
 
     override fun getItemCount(): Int {

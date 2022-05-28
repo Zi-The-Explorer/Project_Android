@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="2dp"
@@ -27,8 +28,8 @@
         app:icon="@drawable/ic_baseline_cancel_24"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
-        app:iconTint="@color/soft_pink"
-        app:strokeColor="@color/soft_pink"
+        app:iconTint="@color/pink_soft"
+        app:strokeColor="@color/pink_soft"
         app:strokeWidth="1dp" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -38,15 +39,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_title_bottom_sheet_event"
         android:layout_marginTop="10dp"
-        android:hint="Create Event"
-        app:boxBackgroundColor="@color/soft_gray200"
+        android:hint="@string/create_event"
+        app:boxBackgroundColor="@color/white"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
         app:boxCornerRadiusTopEnd="20dp"
         app:boxCornerRadiusTopStart="20dp"
         app:placeholderText="Mengajar"
-        app:boxStrokeColor="@color/soft_gray500"
-        app:hintTextColor="@color/soft_gray500">
+        app:boxStrokeColor="@color/white"
+        app:hintTextColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_send_new_event"
@@ -64,15 +65,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/outlinedTextFieldSendNewTask"
         android:layout_marginTop="10dp"
-        android:hint="Wrrite describtion"
+        android:hint="@string/write_description"
         app:placeholderText="Siap mengajar anak anak di sekolah SD Mentari pagi"
-        app:boxBackgroundColor="@color/soft_gray200"
+        app:boxBackgroundColor="@color/white"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
         app:boxCornerRadiusTopEnd="20dp"
         app:boxCornerRadiusTopStart="20dp"
-        app:boxStrokeColor="@color/soft_gray500"
-        app:hintTextColor="@color/soft_gray500">
+        app:boxStrokeColor="@color/white"
+        app:hintTextColor="@color/white"
+        tools:ignore="HardcodedText">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_send_desc_event"
@@ -90,8 +92,8 @@
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:layout_below="@id/outlinedTextFieldDesc"
-        android:layout_toRightOf="@id/item_event_select_date"
         android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/item_event_select_date"
         app:cornerRadius="50dp"
         app:icon="@drawable/ic_baseline_calendar_today_24"
         app:iconGravity="textStart"
@@ -123,7 +125,7 @@
         app:icon="@drawable/ic_baseline_access_time_24"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
-        app:iconTint="@color/soft_pink" />
+        app:iconTint="@color/pink_soft" />
 
     <TextView
         android:id="@+id/item_event_select_time"
@@ -132,7 +134,7 @@
         android:layout_below="@id/item_event_select_date"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_background"
-        android:backgroundTint="@color/soft_pink"
+        android:backgroundTint="@color/pink_soft"
         android:padding="5dp"
         android:text="Select Time"
         android:textAlignment="center"
@@ -150,7 +152,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/soft_blue"
+        android:backgroundTint="@color/blue_soft"
         android:text="Save"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -176,7 +178,7 @@
         android:visibility="invisible"
         app:lottie_autoPlay="true"
         app:lottie_loop="false"
-        app:lottie_rawRes="@raw/success" />
+        app:lottie_rawRes="@raw/success_anim" />
 
 
 </RelativeLayout>

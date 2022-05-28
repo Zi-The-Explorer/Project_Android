@@ -8,49 +8,72 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
-import com.afauzi.letsdo.R
+import com.afauzi.letsdo.databinding.ActivitySignupBinding
 import com.afauzi.letsdo.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_signup.*
 
 class SignupActivity : AppCompatActivity() {
 
-    // declaration for firebase authentication
+    /**
+     * Declare ViewBinding
+     */
+    private lateinit var binding: ActivitySignupBinding
+
+    /**
+     * declaration for firebase authentication
+     */
     private lateinit var auth: FirebaseAuth
 
-    // declaration for firebase realtimedatabase
+    /**
+     * declaration for firebase realtimedatabase
+     */
     private lateinit var databaseReference: DatabaseReference
 
-    // declaration for input view editText
+    /**
+     * declaration for input view editText to String
+     */
     private lateinit var userName: String
     private lateinit var email: String
     private lateinit var password: String
-    private lateinit var createAccountInputArray: Array<EditText>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
+
+        // Initials ViewBinding
+        binding = ActivitySignupBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+    }
+
+    override fun onStart() {
+        super.onStart()
 
         // Initials auth
         auth = FirebaseAuth.getInstance()
 
-        createAccountInputArray = arrayOf(et_username_signup, et_email_signup, et_password_signup)
-
-        actionToPage(linkSIgnupToSignin, SigninActivity::class.java)
-        signUpArrowBack.setOnClickListener {
-            super.onBackPressed()
-        }
-
-        btn_signupToActionMain.setOnClickListener {
+        // Btn Action Sign Up
+        binding.btnSignupToActionMain.setOnClickListener {
+            // Call signUp Methode
             signUp()
+
+            // Call close keyboard Methode
             closeKeyboard()
         }
 
+        // Btn Move Back Page
+        actionToPage(binding.linkSIgnupToSignin, SigninActivity::class.java)
+
+        binding.signUpArrowBack.setOnClickListener {
+            super.onBackPressed()
+        }
     }
 
+    /**
+     * Methode closeKeyboard
+     */
     private fun closeKeyboard() {
         val view = this.currentFocus
         if (view != null) {
@@ -59,7 +82,9 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-
+    /**
+     * Methode Action Move Page
+     */
     private fun actionToPage(view: View, className: Class<*>) {
         view.setOnClickListener {
             startActivity(Intent(this, className))
@@ -67,15 +92,23 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Methode signUp to User
+     */
     private fun signUp() {
-        userName = et_username_signup.text.toString().trim()
-        email = et_email_signup.text.toString().trim()
-        password = et_password_signup.text.toString().trim()
 
+        // => Initials get editText convert to String
+        userName = binding.etUsernameSignup.text.toString().trim()
+        email = binding.etEmailSignup.text.toString().trim()
+        password = binding.etPasswordSignup.text.toString().trim()
+
+        // => kondisi jika seluruh input tidak kosong maka ambil tindakan untuk menyimpan kedalam database
         if (userName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
-            visibilityModifierGone(btn_signupToActionMain)
-            visibilityModifierVisible(animationLoadingSignUp)
-            // Create Users
+
+            visibilityModifierGone(binding.btnSignupToActionMain)
+            visibilityModifierVisible(binding.animationLoadingSignUp)
+
+            // Create Users with auth provider firebase
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     when {
@@ -101,24 +134,26 @@ class SignupActivity : AppCompatActivity() {
                                         "Terimakasih $userName sudah mendaftar",
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                    startActivity(Intent(this, MainActivity::class.java))
+                                    val intent = Intent(this, MainActivity::class.java)
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                                    startActivity(intent)
                                     finish()
                                 } else {
                                     Toast.makeText(this, "Maaf Ada Kesalahan Penyimpanan data, Ini akan segera diperbaiki", Toast.LENGTH_SHORT).show()
-                                    visibilityModifierVisible(btn_signupToActionMain)
-                                    visibilityModifierGone(animationLoadingSignUp)
+                                    visibilityModifierVisible(binding.btnSignupToActionMain)
+                                    visibilityModifierGone(binding.animationLoadingSignUp)
                                 }
                             }
                         }
-                        et_password_signup.text.toString().length < 8 -> {
+                        binding.etPasswordSignup.text.toString().length < 8 -> {
                             Toast.makeText(this, "Password minimal 8 karakter!", Toast.LENGTH_SHORT).show()
-                            visibilityModifierVisible(btn_signupToActionMain)
-                            visibilityModifierGone(animationLoadingSignUp)
+                            visibilityModifierVisible(binding.btnSignupToActionMain)
+                            visibilityModifierGone(binding.animationLoadingSignUp)
                         }
                         else -> {
                             Toast.makeText(this, "ada masalah pada jaringan anda", Toast.LENGTH_SHORT).show()
-                            visibilityModifierVisible(btn_signupToActionMain)
-                            visibilityModifierGone(animationLoadingSignUp)
+                            visibilityModifierVisible(binding.btnSignupToActionMain)
+                            visibilityModifierGone(binding.animationLoadingSignUp)
                         }
                     }
                 }

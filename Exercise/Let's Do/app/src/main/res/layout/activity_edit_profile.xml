@@ -20,9 +20,9 @@
             android:layout_height="50dp"
             android:layout_centerVertical="true"
             app:icon="@drawable/ic_baseline_arrow_back_ios_24"
-            app:iconTint="@color/black"
+            app:iconTint="@color/blue_soft"
             app:strokeWidth="1dp"
-            app:strokeColor="@color/soft_gray500"
+            app:strokeColor="@color/blue_soft"
             app:iconGravity="textStart"
             app:iconPadding="-10dp"/>
 
@@ -65,7 +65,7 @@
                 android:layout_marginTop="10dp"
                 app:cornerRadius="50dp"
                 android:layout_gravity="center|bottom|end"
-                android:backgroundTint="@color/soft_blue"
+                android:backgroundTint="@color/yellow_soft"
                 app:iconTint="@color/white"
                 app:icon="@drawable/ic_baseline_edit_24"
                 app:iconGravity="textStart"
@@ -105,8 +105,8 @@
         app:boxCornerRadiusTopEnd="20dp"
         app:boxCornerRadiusTopStart="20dp"
         app:boxBackgroundColor="#4D9088D4"
-        app:boxStrokeColor="@color/soft_purple500"
-        app:hintTextColor="@color/soft_black"
+        app:boxStrokeColor="@color/blue_soft"
+        app:hintTextColor="@color/black"
         android:hint="Email Address"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -127,8 +127,8 @@
         app:boxCornerRadiusTopEnd="20dp"
         app:boxCornerRadiusTopStart="20dp"
         app:boxBackgroundColor="#4D9088D4"
-        app:boxStrokeColor="@color/soft_purple500"
-        app:hintTextColor="@color/soft_black"
+        app:boxStrokeColor="@color/blue_soft"
+        app:hintTextColor="@color/black"
         android:hint="Username"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -149,20 +149,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/soft_purple500"
+            android:backgroundTint="@color/blue_soft"
             android:padding="20dp"
             android:text="Save"
-            android:textColor="@color/soft_gray200"
+            android:textColor="@color/white"
             app:cornerRadius="30dp" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationLoadingEdit"
-            android:visibility="invisible"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_centerHorizontal="true"
-            app:lottie_rawRes="@raw/loading"
+            android:visibility="invisible"
             app:lottie_autoPlay="true"
-            app:lottie_loop="true"/>
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading" />
     </RelativeLayout>
 </LinearLayout>

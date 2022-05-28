@@ -2,28 +2,46 @@ package com.afauzi.letsdo.main.view.welcomepage
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import com.afauzi.letsdo.R
+import com.afauzi.letsdo.databinding.ActivityIntroBinding
 import com.afauzi.letsdo.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_intro.*
 
 class IntroActivity : AppCompatActivity() {
+    /**
+     * Declare ViewBinding
+     */
+    private lateinit var binding: ActivityIntroBinding
 
+    /**
+     * Declare firebaseAuth
+     */
     private lateinit var auth: FirebaseAuth
 
     @SuppressLint("ObsoleteSdkInt")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_intro)
+        // Initials ViewBinding
+        binding = ActivityIntroBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
+        // Initials FirebaseAuth
         auth = FirebaseAuth.getInstance()
+
+        /**
+         * Declare FirebaseUser
+         */
         val user: FirebaseUser? = auth.currentUser
+
+        /*
+        Todo => Cek kondisi jika user sudah login
+         */
         if (user != null) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
@@ -31,16 +49,28 @@ class IntroActivity : AppCompatActivity() {
             Toast.makeText(this, "Silakan masuk dulu", Toast.LENGTH_SHORT).show()
         }
 
-        if (Build.VERSION.SDK_INT >= 21) {
-            val window = this.window
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.statusBarColor = this.resources.getColor(R.color.soft_purple500, theme)
-        }
+        /**
+         * Change status bar color
+         */
+        val window: Window = this.window
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = this.getColor(R.color.soft_purple500)
+        window.decorView.systemUiVisibility = 0
 
-        btnIntroToLanding.setOnClickListener {
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        /*
+           Todo => Tombol untuk mengarahkan ke activity Landing
+        */
+        binding.btnIntroToLanding.setOnClickListener {
             startActivity(Intent(this, LandingActivity::class.java))
             finish()
         }
     }
+
 }

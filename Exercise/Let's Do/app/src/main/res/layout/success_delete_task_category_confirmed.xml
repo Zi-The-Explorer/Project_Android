@@ -10,7 +10,7 @@
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        app:lottie_rawRes="@raw/success"
+        app:lottie_rawRes="@raw/success_anim"
         app:lottie_autoPlay="true"
         android:adjustViewBounds="true"
         app:lottie_loop="false"/>
